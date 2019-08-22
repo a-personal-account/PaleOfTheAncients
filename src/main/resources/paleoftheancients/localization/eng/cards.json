@@ -1,0 +1,83 @@
+{
+  "paleoftheancients:BossBurn": {
+    "NAME": "Burn",
+    "DESCRIPTION": "When drawn, NL draw a card. NL You take !M! more damage.",
+    "EXTENDED_DESCRIPTION": ["Exhaust. NL ", " NL Downgrade this card. NL ", " NL Downgrades instead of exhausting."]
+  },
+
+
+  "paleoftheancients:Peck": {
+    "NAME": "Peck",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "paleoftheancients:Swoop": {
+    "NAME": "Swoop",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "paleoftheancients:CawCaw": {
+    "NAME": "Caw Caw!",
+    "DESCRIPTION": "Gain !M! Strength."
+  },
+  "paleoftheancients:Headbutt": {
+    "NAME": "Headbutt",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "paleoftheancients:BeSad": {
+    "NAME": "Be Sad",
+    "DESCRIPTION": "Do nothing."
+  },
+
+  "paleoftheancients:Columbify": {
+    "NAME": "Columbify",
+    "DESCRIPTION": "Byrd up!"
+  },
+  "paleoftheancients:CrashingLights": {
+    "NAME": "Crashing Lights",
+    "DESCRIPTION": "!D!"
+  },
+  "paleoftheancients:DapperFlourish": {
+    "NAME": "Dapper Flourish",
+    "DESCRIPTION": "!D! damage / !M! Buffer"
+  },
+  "paleoftheancients:ExaggeratedArmSweeps": {
+    "NAME": "Exaggerated Arm Sweeps",
+    "DESCRIPTION": "paleoftheancients:Stacked NL paleoftheancients:Stacked NL !D!"
+  },
+  "paleoftheancients:ForMyNextTrick": {
+    "NAME": "For My Next Trick!",
+    "DESCRIPTION": "!M!"
+  },
+  "paleoftheancients:GrossDisplay": {
+    "NAME": "A Gross Display",
+    "DESCRIPTION": "paleoftheancients:Stacked NL Deal !D! / !M! times"
+  },
+  "paleoftheancients:IsThisYourCard": {
+    "NAME": "Is This Your Card?",
+    "DESCRIPTION": "Deal !D! / !M! times"
+  },
+  "paleoftheancients:ReappearingTrick": {
+    "NAME": "Reappearing Trick",
+    "DESCRIPTION": "!D!"
+  },
+  "paleoftheancients:Showstopper": {
+    "NAME": "Showstopper",
+    "DESCRIPTION": "!?"
+  },
+  "paleoftheancients:SybilFlourish": {
+    "NAME": "Sybil Flourish",
+    "DESCRIPTION": "!B! Block / !M! [E]"
+  },
+  "paleoftheancients:VanDeGraafsRevenge": {
+    "NAME": "Van de Graaf's Revenge",
+    "DESCRIPTION": "!D! all the dazes"
+  },
+  "paleoftheancients:WillingVolunteer": {
+    "NAME": "Willing Volunteer",
+    "DESCRIPTION": "WillingVolunteer"
+  },
+
+
+  "paleoftheancients:Doot": {
+    "NAME": "Doot"
+  }
+}

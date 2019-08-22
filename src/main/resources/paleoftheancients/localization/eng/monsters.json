@@ -1,0 +1,161 @@
+{
+  "paleoftheancients:DonuDeca": {
+    "NAME": "DonuDeca"
+  },
+
+
+  "paleoftheancients:TheDefect": {
+    "NAME": "The Defect",
+    "DIALOG": [
+      "Chargeup successfull. NL Preparing #yTempest.",
+      "Situation critical. NL Loading module \"Echo\".",
+      "Energy reserves charged. NL Loading module \"Echo\".",
+      "Charging energy. NL Rerouting allocated resources.",
+      "Energy Levels critical. NL Initiating reabsorbtion.",
+      "Energy limits near maximum. NL Kinetic release approved.",
+      "01010011 01101000 01101001 01110100"
+    ]
+  },
+
+
+  "paleoftheancients:emptyorbslot": {
+    "MOVES": [
+    ],
+    "NAME": "Your Orb Here",
+    "DIALOG": [
+    ]
+  },
+  "paleoftheancients:lightningorb": {
+    "MOVES": [
+    ],
+    "NAME": "Lightning Orb",
+    "DIALOG": [
+      "#yPassive: At the end of turn, deal #b",
+      " damage. NL #yEvoke: Deal #b",
+      " damage. NL #yDamaging an orb will evoke it!"
+    ]
+  },
+  "paleoftheancients:frostorb": {
+    "MOVES": [
+    ],
+    "NAME": "Frost Orb",
+    "DIALOG": [
+      "#yPassive: At the end of turn, gain #b",
+      " #yBlock. NL #yEvoke: Gain #b",
+      " #yBlock. NL #yDamaging an orb will evoke it!"
+    ]
+  },
+  "paleoftheancients:darkorb": {
+    "MOVES": [
+    ],
+    "NAME": "Dark Orb",
+    "DIALOG": [
+      "#yPassive: At the end of turn, increase this Orb's damage by #b",
+      ". NL #yEvoke: Deal #b",
+      " damage to you. NL #yDamaging an orb will evoke it!"
+    ]
+  },
+  "paleoftheancients:plasmaorb": {
+    "MOVES": [
+    ],
+    "NAME": "Plasma Orb",
+    "DIALOG": [
+      "#yPassive: At the start of turn, gain #r",
+      " Strength this turn . NL #yEvoke: Gain #r",
+      " Strength this turn. NL #yDamaging an orb will evoke it!"
+    ]
+  },
+
+
+  "paleoftheancients:TheVixenBoss": {
+    "MOVES": [
+      "Trick Room",
+      "Synergy Burst",
+      "Psycracker",
+      "Clear Sky",
+      "Endure",
+      "Psybeam",
+      "Facade",
+      "Swagger",
+      "Overheat",
+      "Solar Beam",
+      "Flame Wheel",
+      "Ember",
+      "Flamethrower",
+      "Fire Spin",
+      "Flare Blitz",
+      "Refresh",
+      "Blaze",
+      "Substitute",
+      "Inferno Overdrive",
+      "Struggle"
+    ],
+    "NAME": "The Vixen",
+    "DIALOG": [
+      "Back to the Exordium...",
+      "@Argh@",
+      "Here we go again...",
+      "Should've picked Lizard Tail...",
+      "@Streak ruined!@",
+      "Hello Neow, my old friend..."
+    ]
+  },
+
+
+  "paleoftheancients:TheShowmanBoss": {
+    "MOVES": [
+      "Second Act"
+    ],
+    "NAME": "The Showman",
+    "DIALOG": [
+      "Hi",
+      "And that concludes our show. Thank you and goodbye~",
+      "The show now moves on to its second act!"
+    ]
+  },
+  "paleoftheancients:ShowmanStage": {
+    "NAME": "Showman's Stage"
+  },
+
+  "paleoftheancients:IronCluck": {
+    "NAME": "The IronCluck",
+    "DIALOG": [
+      "@Chicken noises@"
+    ]
+  },
+
+  "paleoftheancients:BardBoss": {
+    "NAME": "The Bard",
+    "MOVES": [
+      "Sonata",
+      "Rhapsody",
+      "Silence",
+      "Dervish Dance",
+      "Flourish",
+      "Lifedrain",
+      "Encore"
+    ]
+  },
+
+  "paleoftheancients:N": {
+    "NAME": "Vengeful Ancient",
+    "DIALOG": [
+      "~Think~ ~sweet~ ~nothings~ NL ~as~ ~you~ ~drift~ ~away...~",
+      "~All~ ~shall~ ~be~ NL ~as~ ~I~ ~desire~",
+      "~Death,~ ~Rebirth.~ NL ~Do~ ~not~ ~fight~ ~Fate.~",
+      "~The~ ~Revelations~ ~will~ ~not~ ~save~ ~you.~ ~Submit!~",
+      "@You@ @will@ @serve,@ @Puppet!@",
+      "@I@ @will@ @not@ @be@ NL @denied@ @by@ @one@ NL @such@ @as@ @you!@",
+      "@I@ @WILL@ @have@ NL @my@ @Revenge!@"
+    ]
+  },
+  "paleoftheancients:EyeOfSlumber": {
+    "NAME": "Eye of Slumber"
+  },
+  "paleoftheancients:EyeOfDisremembrance": {
+    "NAME": "Eye of Disremembrance"
+  },
+  "paleoftheancients:EyeOfRebirth": {
+    "NAME": "Eye of Rebirth"
+  }
+}

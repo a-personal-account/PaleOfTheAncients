@@ -1,0 +1,301 @@
+{
+  "paleoftheancients:KineticBarrierPower": {
+    "NAME": "Kinetic Barrier",
+    "DESCRIPTIONS": [
+      "Decreases damage taken by #b",
+      "%."
+    ]
+  },
+  "paleoftheancients:DivertingPowerPower": {
+    "NAME": "Diverting Power",
+    "DESCRIPTIONS": [
+      "Increases damage taken by #b",
+      "%."
+    ]
+  },
+  "paleoftheancients:NotEchoPower": {
+    "NAME": "Echo Form",
+    "DESCRIPTIONS": [
+      "Acts once more per turn.",
+      "Acts #g",
+      " more times per turn."
+    ]
+  },
+  "paleoftheancients:OrbReactivePower": {
+    "NAME": "Reactive",
+    "DESCRIPTIONS": [
+      "Upon an orb being destroyed, may change intent."
+    ]
+  },
+  "paleoftheancients:BossOrbPower": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Electronically linked with the Defect. NL Single target attacks directed toward this will also affect the Defect."
+    ]
+  },
+
+
+
+  "paleoftheancients:BurnPower": {
+    "NAME": "Burn",
+    "DESCRIPTIONS": [
+      "Takes #b",
+      " more damage.",
+      " Caused by Status cards in your drawpile, discardpile or hand.",
+      " Every #b",
+      " burn applied, the enemy gains 1 weak. At the end of its turn, halve Burn."
+    ]
+  },
+  "paleoftheancients:SunnyDayPower": {
+    "NAME": "Sunny Day",
+    "DESCRIPTIONS": [
+      "The next card with a Sunny effect you play is enhanced.",
+      "The next #b",
+      " cards with a Sunny effect you play are enhanced.",
+      "Some attacks will consume a stack of this and have additional effects. NL (Intent damage is accurate)"
+    ]
+  },
+  "paleoftheancients:SynergyBurstPower": {
+    "NAME": "Synergy Burst",
+    "DESCRIPTIONS": [
+      "Able to use Psycracker."
+    ]
+  },
+  "paleoftheancients:BlazePower": {
+    "NAME": "Blaze",
+    "DESCRIPTIONS": [
+      "If you are at or below #y50% Health #b(","), whenever a cycle completes, apply #b",
+      " upgrades split between all #rBurn cards.",
+      "Blaze active",
+      "Blaze inactive"
+    ]
+  },
+  "paleoftheancients:SubstitutePower": {
+    "NAME": "Substitute",
+    "DESCRIPTIONS": [
+      "Prevent the next #b",
+      " damage you would take. Any damage you would take when this effect wears off is negated."
+    ]
+  },
+  "paleoftheancients:GutsPower": {
+    "NAME": "Guts",
+    "DESCRIPTIONS": [
+      "Effects act as if you had one more common debuff with duration #b",
+      ". At the end of your turn, gain Block equal to the cumulative duration of your common debuffs."
+    ]
+  },
+  "TheVixenMod:FlameBodyPower": {
+    "NAME": "Flame Body",
+    "DESCRIPTIONS": [
+      "Whenever you are attacked, the attacker receives a Burn of #b",
+      " next turn."
+    ]
+  },
+  "paleoftheancients:EndurePower": {
+    "NAME": "Endure",
+    "DESCRIPTIONS": [
+      "You cannot be reduced below 1 HP",
+      ". When at 1 HP, lose this power, #b",
+      " HP for each stack of Sunny Day and prepare for the final attack..."
+    ]
+  },
+  "paleoftheancients:ClearSkyPower": {
+    "NAME": "Clear Sky",
+    "DESCRIPTIONS": [
+      "Sunny Day is not consumed this turn.",
+      "Japanese translators suck it for #b",
+      " turns.",
+      "Sunny day is not consumed for... basically ever."
+    ]
+  },
+  "paleoftheancients:ConfusionPower": {
+    "NAME": "Confuzzled",
+    "DESCRIPTIONS": [
+      "Whenever this enemy deals damage, it takes damage equal to half the inflicted damage. NL Wears off at the end of its turn."
+    ]
+  },
+  "paleoftheancients:DazzlingPower": {
+    "NAME": "Dazzling",
+    "DESCRIPTIONS": [
+      "Whenever the #rSunny effect of a card is triggered, gain #b",
+      " Block."
+    ]
+  },
+  "paleoftheancients:ReverseVulnerablePower": {
+    "NAME": "Filter",
+    "DESCRIPTIONS": [
+      "You take significantly less damage while #rVulnerable",
+      " this turn.",
+      " for #b",
+      " turn/s.",
+      "."
+    ]
+  },
+  "paleoftheancients:DefiantPower": {
+    "NAME": "Defiant",
+    "DESCRIPTIONS": [
+      "End of turn, gain up to #b",
+      " #rSunny #rDay, one for every #rdebuff unrelated to Strength you were inflicted with this turn."
+    ]
+  },
+  "paleoftheancients:WishPower": {
+    "NAME": "Wish",
+    "DESCRIPTIONS": [
+      "At the start of your next turn, heal for half the HP you lost this turn."
+    ]
+  },
+  "paleoftheancients:BossFacadePower": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Amount of attacks next round increases with the number of common debuffs on the boss."
+    ]
+  },
+  "paleoftheancients:EternalFlamePower": {
+    "NAME": "Eternal Flame",
+    "DESCRIPTIONS": [
+      "Gains temporary Strength equal to the amount of its Sunny Day."
+    ]
+  },
+
+
+  "paleoftheancients:ColumbifyPower": {
+    "NAME": "Columbified",
+    "DESCRIPTIONS": [
+      "I'm a byrd, oh no!",
+      " NL Lasts #b",
+      " turn.",
+      " turns."
+    ]
+  },
+  "paleoftheancients:VolunteeringPower": {
+    "NAME": "Volunteering",
+    "DESCRIPTIONS": [
+      "The next instance of attack damage you cause this turn damages yourself instead."
+    ]
+  },
+
+
+  "paleoftheancients:SlimeSplitPower": {
+    "NAME": "Surplus Slime",
+    "DESCRIPTIONS": [
+      "Reconstitutes itself to full hp after dying or splitting ",
+      "once.",
+      " times."
+    ]
+  },
+  "paleoftheancients:SlimeUnityPower": {
+    "NAME": "Slime Unity",
+    "DESCRIPTIONS": [
+      "The slime that spawned this cannot be harmed as long as this is alive."
+    ]
+  },
+
+  "paleoftheancients:HexaghostPower": {
+    "NAME": "Rekindling",
+    "DESCRIPTIONS": [
+      "Upon death, #rrevives itself. NL #rRevival damages the #rmain #rhealthbar and consumes up to #b2 #yflames (affects behaviour)."
+    ]
+  },
+
+  "paleoftheancients:GuardianLinkedPower": {
+    "NAME": "Linked",
+    "DESCRIPTIONS": [
+      "Both Guardians share the damage they take. NL Upon shifting into #bDefense #bMode, loses half its #rStrength. NL When this #rGuardian is damaged, the other guardian increases its #yform #yshift counter by the amount of damage taken."
+    ]
+  },
+
+  "paleoftheancients:EnergyWarpPower": {
+    "NAME": "Galvanized Time Warp",
+    "DESCRIPTIONS": [
+      "After you spend #b",
+      " [E] , ends your turn and gains #b",
+      " #yStrength. NL Amount of [E] required decreases by #r1 each time the counter reaches 0 (until a minimum of #b4)."
+    ]
+  },
+
+  "paleoftheancients:LifestealPower": {
+    "NAME": "Vampiric",
+    "DESCRIPTIONS": [
+      "Unblocked #rdamage this creature deals will #yheal it."
+    ]
+  },
+  "paleoftheancients:FormShiftPower": {
+    "NAME": "Adapting",
+    "DESCRIPTIONS": [
+      "Will change behaviour after sustaining #r"," damage.","",
+      "Will change behaviour after attacking or inflicting damage #r"," more times. NL This creature deals #r","% more damage."
+    ]
+  },
+
+  "paleoftheancients:ConditionalShackles": {
+    "DESCRIPTIONS": [
+      " NL Cannot reduce Strength below 0."
+    ]
+  },
+  "paleoftheancients:CuccoSwarmPower": {
+    "NAME": "Power of Chicken",
+    "DESCRIPTIONS": [
+      "After sustaining #r", " damage in one turn, resets temporary Strengthloss and changes intent to deal #r"," basedamage #r"," times."
+    ]
+  },
+
+  "paleoftheancients:MelodyPotencyPower": {
+    "NAME": "Warmed up",
+    "DESCRIPTIONS": [
+      "Melodies are #r","% stronger."
+    ]
+  },
+  "paleoftheancients:Encore": {
+    "NAME": "Encore",
+    "DESCRIPTIONS": [
+      "Your next #yMelody is performed twice.",
+      "Your next ",
+      " #yMelodies are performed twice."
+    ]
+  },
+  "paleoftheancients:Silenced": {
+    "NAME": "Silenced",
+    "DESCRIPTIONS": [
+      "You cannot debuff enemies or buff yourself for #b",
+      " cannot debuff you or buff themselves for #b",
+      " turns.",
+      " turn."
+    ]
+  },
+
+  "paleoftheancients:GazeOne": {
+    "NAME": "Gaze of the closing Eyes",
+    "DESCRIPTIONS": [
+      "The first card you play each turn causes its adjacent cards to cost #b"
+    ," more [E] until end of turn. Upon death, all other eyes start gaining #b"
+    ," Strength every turn."
+    ]
+  },
+  "paleoftheancients:GazeTwo": {
+    "NAME": "Gaze of the empty Mind",
+    "DESCRIPTIONS": [
+      "The second card you play each turn is ",
+      "removed from combat.",
+      "replaced with a #gSlimed this combat.",
+      "replaced with a random #pCurse this combat.",
+      " Upon death, all other eyes start gaining #b",
+      " Strength every turn."
+    ]
+  },
+  "paleoftheancients:GazeThree": {
+    "NAME": "Gaze of the reborn Heart",
+    "DESCRIPTIONS": [
+      "The third card you play each turn causes ",
+      "all enemies gain #b",
+      " #rStrength and ",
+      "you to lose your #yleftmost non-starter, non-boss #yrelic. Upon death, all other eyes start gaining #b",
+      " Strength every turn."
+    ]
+  },
+  "paleoftheancients:PlayerGaze": {
+    "NAME": "Eyes of the Ancient",
+    "DESCRIPTIONS": [
+      "At the end of your turn, take #r"," damage. Each time you play a card, damage taken through this power increases by #b1"," and you gain 1 #rStrength","."
+    ]
+  }
+}

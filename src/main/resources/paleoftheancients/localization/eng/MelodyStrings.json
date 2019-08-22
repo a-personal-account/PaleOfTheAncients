@@ -1,0 +1,67 @@
+{
+  "paleoftheancients:AttackUpSmall": {
+    "NAME": "Attack Up",
+    "DESCRIPTION": "Gain !M! Strength."
+  },
+  "paleoftheancients:DefenseUpSmall": {
+    "NAME": "Defense Up",
+    "DESCRIPTION": "Gain !M! Metallicize."
+  },
+  "paleoftheancients:DivineProtection": {
+    "NAME": "Divine Protection",
+    "DESCRIPTION": "Gain !M! Intangible."
+  },
+  "paleoftheancients:Draw": {
+    "NAME": "Draw",
+    "DESCRIPTION": "Player draws 1 less card for !M! turn/s."
+  },
+  "paleoftheancients:Artifact": {
+    "NAME": "Artifact",
+    "DESCRIPTION": "Gain !M! Artifact."
+  },
+  "paleoftheancients:WeakenSmall": {
+    "NAME": "Weaken",
+    "DESCRIPTION": "Apply !M! Weak."
+  },
+  "paleoftheancients:VulnerabilitySmall": {
+    "NAME": "Vulnerability",
+    "DESCRIPTION": "Apply !M! Vulnerable."
+  },
+  "paleoftheancients:InspireSmall": {
+    "NAME": "Inspire (S)",
+    "DESCRIPTION": "Gain !M! Inspiration 50."
+  },
+  "paleoftheancients:InspireLarge": {
+    "NAME": "Inspire (L)",
+    "DESCRIPTION": "Gain !M! Inspiration 100."
+  },
+  "paleoftheancients:DamageSmall": {
+    "NAME": "Damage (S)",
+    "DESCRIPTION": "Deal !M! damage."
+  },
+  "paleoftheancients:DamageMedium": {
+    "NAME": "Damage (M)",
+    "DESCRIPTION": "Deal !M! damage."
+  },
+  "paleoftheancients:DamageLarge": {
+    "NAME": "Damage (L)",
+    "DESCRIPTION": "Deal !M! damage."
+  },
+  "paleoftheancients:BlockSmall": {
+    "NAME": "Block (S)",
+    "DESCRIPTION": "Gain !M! Block."
+  },
+  "paleoftheancients:BlockMedium": {
+    "NAME": "Block (M)",
+    "DESCRIPTION": "Gain !M! Block."
+  },
+  "paleoftheancients:BlockLarge": {
+    "NAME": "Block (L)",
+    "DESCRIPTION": "Gain !M! Block."
+  },
+
+  "paleoftheancients:Cacophony": {
+    "NAME": "Cacophony",
+    "DESCRIPTION": "The player's next turn is skipped."
+  }
+}

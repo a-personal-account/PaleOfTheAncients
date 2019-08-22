@@ -1,0 +1,17 @@
+{
+  "paleoftheancients:BurnKeyword": {
+    "PROPER_NAME": "Burn",
+    "NAMES": [
+      "burn",
+      "burned"
+    ],
+    "DESCRIPTION": "Burned creatures take more damage from all attacks equal to the amount of #rBurn on them. NL When the stack of #rBurn passes a multiple of 4, apply 1 #bWeak. NL On monsters, #rBurn is halved at the end of turn."
+  },
+  "paleoftheancients:StackedKeyword": {
+    "PROPER_NAME": "Stacked",
+    "NAMES": [
+      "stacked"
+    ],
+    "DESCRIPTION": "Numbers are reduced by the amount of cards in the drawpile."
+  }
+}

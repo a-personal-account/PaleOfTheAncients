@@ -1,0 +1,579 @@
+
+cards.png
+size: 2016,1920
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack/balestra
+  rotate: false
+  xy: 254, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/bucklerBash
+  rotate: false
+  xy: 506, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/dervishDance
+  rotate: false
+  xy: 254, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/echoEcho
+  rotate: false
+  xy: 1010, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/enGarde
+  rotate: false
+  xy: 2, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/fingerOfDeath
+  rotate: false
+  xy: 2, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/firstStrike
+  rotate: false
+  xy: 254, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/flourish
+  rotate: false
+  xy: 506, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/lifeDrain
+  rotate: false
+  xy: 506, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/lingeringEcho
+  rotate: false
+  xy: 758, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/offKey
+  rotate: false
+  xy: 758, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/phantasmalForce
+  rotate: false
+  xy: 1262, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/reverseGravity
+  rotate: false
+  xy: 758, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/riposte
+  rotate: false
+  xy: 1262, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/shifting
+  rotate: false
+  xy: 1514, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/shiftingAttack
+  rotate: false
+  xy: 1766, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/shout
+  rotate: false
+  xy: 758, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/songBolt
+  rotate: false
+  xy: 1262, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/strike
+  rotate: false
+  xy: 1010, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/studiedStrike
+  rotate: false
+  xy: 1262, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/thickOfTheFight
+  rotate: false
+  xy: 1514, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/thunderwave
+  rotate: false
+  xy: 1766, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+attack/viciousMockery
+  rotate: false
+  xy: 1514, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/covetousAura
+  rotate: false
+  xy: 2, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/deathMetal
+  rotate: false
+  xy: 506, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/discordantVoice
+  rotate: false
+  xy: 506, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/glyphOfWarding
+  rotate: false
+  xy: 1262, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/greaterMagicWeapon
+  rotate: false
+  xy: 1514, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/harmoniousVoice
+  rotate: false
+  xy: 506, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/mantleOfInspiration
+  rotate: false
+  xy: 1766, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/melodyInspireSmall
+  rotate: false
+  xy: 254, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/sixFourTime
+  rotate: false
+  xy: 1514, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/sixFourTime2
+  rotate: false
+  xy: 1766, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/sonata
+  rotate: false
+  xy: 1010, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/splendidForm
+  rotate: false
+  xy: 1514, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+power/splendidFormg
+  rotate: false
+  xy: 1766, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/accelerando
+  rotate: false
+  xy: 2, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/aphasia
+  rotate: false
+  xy: 2, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/bestowCurse
+  rotate: false
+  xy: 2, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/blink
+  rotate: false
+  xy: 254, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/cuttingWords
+  rotate: false
+  xy: 254, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/defend
+  rotate: false
+  xy: 758, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/demoralize
+  rotate: false
+  xy: 2, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/doot
+  rotate: false
+  xy: 758, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/encore
+  rotate: false
+  xy: 254, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/faerieFire
+  rotate: false
+  xy: 506, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/falseLife
+  rotate: false
+  xy: 758, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/feastOnFear
+  rotate: false
+  xy: 1010, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/fermata
+  rotate: false
+  xy: 1262, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/focused
+  rotate: false
+  xy: 758, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/gamble
+  rotate: false
+  xy: 1010, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/greatness
+  rotate: false
+  xy: 2, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/guardPoint
+  rotate: false
+  xy: 254, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/haste
+  rotate: false
+  xy: 758, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/heroism
+  rotate: false
+  xy: 1010, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/hideousLaughter
+  rotate: false
+  xy: 1262, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/improv
+  rotate: false
+  xy: 1514, 1538
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/inspire
+  rotate: false
+  xy: 1766, 1730
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/inspiringSong
+  rotate: false
+  xy: 2, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/invisibility
+  rotate: false
+  xy: 254, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/lingeringPerformance
+  rotate: false
+  xy: 1010, 962
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/locateObject
+  rotate: false
+  xy: 1262, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/magnumOpus
+  rotate: false
+  xy: 1514, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/melodyDivineProtection
+  rotate: false
+  xy: 2, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/mnemonicVestments
+  rotate: false
+  xy: 506, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/parry
+  rotate: false
+  xy: 1010, 770
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/powerWordStun
+  rotate: false
+  xy: 1514, 1154
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/prismaticSpray
+  rotate: false
+  xy: 1766, 1346
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/quickSong
+  rotate: false
+  xy: 254, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/rest
+  rotate: false
+  xy: 506, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/rhapsody
+  rotate: false
+  xy: 1010, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/shiftingBlock
+  rotate: false
+  xy: 506, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/sift
+  rotate: false
+  xy: 1010, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/silence
+  rotate: false
+  xy: 1262, 578
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/solo
+  rotate: false
+  xy: 758, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/tinyHut
+  rotate: false
+  xy: 1262, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/wish
+  rotate: false
+  xy: 1766, 386
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/wish2
+  rotate: false
+  xy: 1514, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/wishr0
+  rotate: false
+  xy: 1766, 194
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+skill/wishr1
+  rotate: false
+  xy: 1766, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1
+
+cards2.png
+size: 252,192
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skill/wishr2
+  rotate: false
+  xy: 2, 2
+  size: 250, 190
+  orig: 250, 190
+  offset: 0, 0
+  index: -1

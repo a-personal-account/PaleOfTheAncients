@@ -1,0 +1,83 @@
+{
+  "paleoftheancients:AttackUpSmall": {
+    "NOTES": [
+      "U", "A", "A"
+    ]
+  },
+  "paleoftheancients:DefenseUpSmall": {
+    "NOTES": [
+      "U", "B", "B"
+    ]
+  },
+  "paleoftheancients:DivineProtection": {
+    "NOTES": [
+      "B", "U", "U", "B"
+    ]
+  },
+  "paleoftheancients:Draw": {
+    "NOTES": [
+      "U", "D", "U"
+    ]
+  },
+  "paleoftheancients:Artifact": {
+    "NOTES": [
+      "B", "D", "B"
+    ]
+  },
+  "paleoftheancients:WeakenSmall": {
+    "NOTES": [
+      "A", "D"
+    ]
+  },
+  "paleoftheancients:VulnerabilitySmall": {
+    "NOTES": [
+      "B", "D"
+    ]
+  },
+  "paleoftheancients:InspireSmall": {
+    "NOTES": [
+      "A", "U", "B"
+    ]
+  },
+  "paleoftheancients:InspireLarge": {
+    "NOTES": [
+      "B", "A", "U", "U"
+    ]
+  },
+  "paleoftheancients:DamageSmall": {
+    "NOTES": [
+      "D", "A"
+    ]
+  },
+  "paleoftheancients:DamageMedium": {
+    "NOTES": [
+      "D", "A", "A"
+    ]
+  },
+  "paleoftheancients:DamageLarge": {
+    "NOTES": [
+      "A", "D", "U", "A"
+    ]
+  },
+  "paleoftheancients:BlockSmall": {
+    "NOTES": [
+      "B", "U"
+    ]
+  },
+  "paleoftheancients:BlockMedium": {
+    "NOTES": [
+      "B", "U", "B"
+    ]
+  },
+  "paleoftheancients:BlockLarge": {
+    "NOTES": [
+      "B", "U", "D", "B"
+    ]
+  },
+
+  "paleoftheancients:Cacophony": {
+    "NOTES": [
+      "*","*","*","*","*","*","*","*"
+    ]
+  }
+}

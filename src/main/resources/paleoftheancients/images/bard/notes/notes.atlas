@@ -1,0 +1,90 @@
+
+notes.png
+size: 116,122
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bars
+  rotate: false
+  xy: 2, 90
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+barsGlow
+  rotate: false
+  xy: 2, 56
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+clefTreble
+  rotate: false
+  xy: 2, 6
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+clefTrebleGlow
+  rotate: false
+  xy: 36, 6
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+noteAttack
+  rotate: false
+  xy: 70, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+noteBlock
+  rotate: false
+  xy: 100, 85
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+noteBuff
+  rotate: false
+  xy: 70, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+noteDebuff
+  rotate: false
+  xy: 100, 67
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+noteRest
+  rotate: false
+  xy: 70, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+queuedDebuff
+  rotate: false
+  xy: 100, 103
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+toggleOff
+  rotate: false
+  xy: 88, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+toggleOn
+  rotate: false
+  xy: 88, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

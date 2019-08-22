@@ -1,0 +1,104 @@
+{
+  "paleoftheancients:PaleOfTheAncients": {
+    "TEXT": [
+      "Pale of the Ancients"
+    ]
+  },
+
+
+  "paleoftheancients:psybeamintent": {
+    "TEXT": [
+      "Psychic",
+      "This enemy intends to NL make you #yAttack yourself NL for #b",
+      " damage. NL #rSunny: They will gain Block equal to the damage dealt."
+    ]
+  },
+  "paleoftheancients:swaggerintent": {
+    "TEXT": [
+      "Swagger",
+      "This enemy intends to NL make you #yAttack yourself NL for #b",
+      " damage and will inflict NL a negative ailment on you."
+    ]
+  },
+  "paleoftheancients:sunnyattack": {
+    "TEXT": [
+      "Burn",
+      "This enemy intends to NL #yAttack for #b",
+      " damage. NL #rSunny: NL Add Status cards to your deck that increase your damage taken."
+    ]
+  },
+  "paleoftheancients:sunnyattackbig": {
+    "TEXT": [
+      "Solar Beam",
+      "This enemy intends to NL #yAttack for #b",
+      " damage. NL #rSunny: NL Consume all Sunny day stacks. Repeat this once for each stack."
+    ]
+  },
+  "paleoftheancients:facadeintent": {
+    "TEXT": [
+      "Facade",
+      "This enemy intends to NL #yAttack for #b",
+      " damage. NL Repeat this for each unique common debuff on them."
+    ]
+  },
+  "paleoftheancients:selfdebuffintent": {
+    "TEXT": [
+      "Reckless",
+      "This enemy intends to NL #yAttack for #b",
+      " damage. NL #rSunny: NL They inflict a #yNegative #yEffect on #rthemselves."
+    ]
+  },
+  "paleoftheancients:firespin": {
+    "TEXT": [
+      "Aggressive",
+      "This enemy intends to NL #yAttack for #b",
+      " damage #b",
+      " times. NL #rSunny: NL They attack 2 more times (already displayed)."
+    ]
+  },
+  "paleoftheancients:flamewheel": {
+    "TEXT": [
+      "Exploitative",
+      "This enemy intends to NL #yAttack for #b",
+      " damage and Block for 2 for each point of increased damage you took through special Status cards. NL #rSunny: NL Repeat this once (already displayed)."
+    ]
+  },
+
+  "paleoftheancients:Perform": {
+    "TEXT": [
+      "Note Queue",
+      "Can hold up to #b",
+      " #yNotes. NL Performs #yMelodies at the Bard's behest. Performing a #yMelody consumes its #yNotes.",
+      "Toggle Melodies Panel",
+      "Melodies",
+      "+%d more",
+      "Note Queue too short",
+      "Expand your Note Queue to unlock more #yMelodies to perform."
+    ]
+  },
+
+
+  "paleoftheancients:DervishDanceIntent": {
+    "TEXT": [
+      "Melodious",
+      "Intends to #yAttack for #b",
+      " damage and then repeat the attack for each [AttackNote] in the notequeue."
+    ]
+  },
+  "paleoftheancients:FlourishIntent": {
+    "TEXT": [
+      "Melodious",
+      "Intends to #yAttack for #b",
+      " damage and queue a note."
+    ]
+  },
+
+
+  "paleoftheancients:MonsterPiles": {
+    "TEXT": [
+      "Drawpile",
+      "Discardpile",
+      "Exhaustpile"
+    ]
+  }
+}

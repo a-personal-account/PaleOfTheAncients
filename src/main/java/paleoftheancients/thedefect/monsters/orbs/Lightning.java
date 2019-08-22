@@ -1,0 +1,107 @@
+package paleoftheancients.thedefect.monsters.orbs;
+
+import paleoftheancients.PaleMod;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import thedefect.vfx.OrbFlareCopyPaste;
+
+public class Lightning extends AbstractBossOrb {
+    private static final MonsterStrings monsterStrings;
+    public static final String NAME;
+    public static final String[] MOVES;
+    public static final String[] DIALOG;
+    private float vfxTimer = 1.0F;
+    private float vfxIntervalMin = 0.15F;
+    private float vfxIntervalMax = 0.8F;
+
+    public static final String ID = PaleMod.makeID("lightningorb");
+    public Lightning(TheDefectBoss owner) {
+        super(owner, NAME, ID);
+
+        owner.lightningChanneled++;
+
+        this.img = ImageMaster.ORB_LIGHTNING;
+        this.baseEvokeAmount = 8;
+        this.evokeAmount = this.baseEvokeAmount;
+        this.basePassiveAmount = 3;
+        this.passiveAmount = this.basePassiveAmount;
+
+        this.angle = MathUtils.random(360.0F);
+        this.channelAnimTimer = 0.5F;
+
+        this.name = NAME;
+        this.applyFocus();
+        this.updateDescription();
+    }
+
+    public void updateAnimations() {
+        super.updateAnimations();
+        this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+        this.vfxTimer -= Gdx.graphics.getDeltaTime();
+        if (this.vfxTimer < 0.0F) {
+            AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.hb.cX, this.hb.cY));
+            if (MathUtils.randomBoolean()) {
+                AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.hb.cX, this.hb.cY));
+            }
+
+            this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
+        }
+    }
+
+    public void render(SpriteBatch sb) {
+        sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
+        sb.setBlendFunction(770, 1);
+        sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
+        sb.draw(this.img, this.hb.cX - 48.0F, this.hb.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, this.scale * 1.2F, this.angle, 0, 0, 96, 96, false, false);
+        sb.draw(this.img, this.hb.cX - 48.0F, this.hb.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale * 1.2F, this.scale + MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, -this.angle, 0, 0, 96, 96, false, false);
+        sb.setBlendFunction(770, 771);
+        sb.setColor(this.c);
+        sb.draw(this.img, this.hb.cX - 48.0F, this.hb.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, this.angle / 12.0F, 0, 0, 96, 96, false, false);
+        super.render(sb);
+    }
+
+    public void updateDescription() {
+        this.description = DIALOG[0] + this.passiveAmount + DIALOG[1] + this.evokeAmount + DIALOG[2];
+    }
+
+    public void evoke(AbstractCreature target) {
+        trigger(target, this.evokeAmount);
+    }
+    public void passive(AbstractCreature target) {
+        AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareCopyPaste(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.0F));
+        trigger(target, this.passiveAmount);
+    }
+    private void trigger(AbstractCreature target, int dmg) {
+        DamageInfo info = new DamageInfo(target, dmg, DamageInfo.DamageType.THORNS);
+        info.output = AbstractOrb.applyLockOn(target, info.base);
+        AbstractDungeon.actionManager.addToTop(new DamageAction(target, info, AbstractGameAction.AttackEffect.NONE, true));
+        AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningEffect(target.drawX, target.drawY), 0.0F));
+        AbstractDungeon.actionManager.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
+    }
+
+    public void playChannelSFX() { CardCrawlGame.sound.play("ORB_LIGHTNING_CHANNEL", 0.1F); }
+
+    static {
+        monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
+        NAME = monsterStrings.NAME;
+        MOVES = monsterStrings.MOVES;
+        DIALOG = monsterStrings.DIALOG;
+    }
+}

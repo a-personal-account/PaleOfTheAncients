@@ -1,0 +1,62 @@
+{
+  "paleoftheancients:ForkInTheRoad": {
+    "NAME": "Defying Fate",
+    "DESCRIPTIONS": [
+      "A voice seemingly coming from nowhere addresses you: NL NL ",
+      "Another being cursed to walk these halls forever. NL ",
+      "You already know what lies on the path ahead. Will you walk it still, accepting your faith, or would you heed my offer, ",
+      "Ahead lies the one you seek, the fate bestowed upon you by the exiled one, but I could offer you a different path, ",
+      "one that could free us all...",
+      " NL NL ",
+      "If you are strong enough.",
+      " NL NL A small, glittering, round object falls on the ground before you.",
+      "As soon as you touch it, the space around you twists into dark, fog-covered nothingness..."
+    ],
+    "OPTIONS": [
+      "[Pick up the Object] #yReject #yyour #yFate",
+      "[Ignore the Object] #yApproach #ythe #yHeart",
+      "Continue"
+    ]
+  },
+
+  "paleoftheancients:Recollection": {
+    "NAME": "Recollection",
+    "DESCRIPTIONS": [
+      "Memories start flooding your mind.",
+      "Above you towers a great, horned creature. NL It looks rather displeased. NL NL #r@GRRROOOOOOAAAAAARGH!@",
+      "You see yourself, visibly tired next to a giant, beating heart.",
+      "You are beholden to a vision of yourself expiring somewhere amidst the lower reaches of the spire.",
+      "A collection of rather bizarre items enters your field of vision.",
+      "Your thoughts start to get clouded, trying to rob you of the revelations you acquired in the beyond...",
+      "The sensation fades and your vision clears."
+    ],
+    "OPTIONS": [
+      "Continue",
+      "Obtain ",
+      "Gain #b",
+      " max HP",
+      " #yFocus...",
+      "#yLet #ygo...",
+      "#yHold #yon",
+      "Heal to max HP and Lose #r",
+      "Copy a card in your deck",
+      "Leave"
+    ]
+  },
+
+  "paleoftheancients:DejaVu": {
+    "NAME": "Deja Vu",
+    "DESCRIPTIONS": [
+      "~...~",
+      "~The~ ~cycle~ ~will~ ~continue~",
+      "~Sleep,~ ~and~ ~serve~",
+      "~Accept~ ~your~ ~fate~"
+    ],
+    "OPTIONS": [
+      "Fight!",
+      "Fight...",
+      "Fight",
+      "Fight."
+    ]
+  }
+}

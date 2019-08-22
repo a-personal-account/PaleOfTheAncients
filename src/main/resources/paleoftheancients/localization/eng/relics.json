@@ -1,0 +1,32 @@
+{
+  "paleoftheancients:MagicTuningFork": {
+    "NAME": "",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      ""
+    ]
+  },
+
+  "paleoftheancients:Timepiece": {
+    "NAME": "Timepiece",
+    "FLAVOR": "It has no clockhands. The letters T E are carved in its back.",
+    "DESCRIPTIONS": [
+      "Turns back the clock for you at the expense of your enemies once. After combat, restores half your missing HP.",
+      "Right-Click: ???"
+    ]
+  },
+  "paleoftheancients:SoulOfTheVixen": {
+    "NAME": "Soul of the Vixen",
+    "FLAVOR": "Burns with fiery passion.",
+    "DESCRIPTIONS": [
+      "Whenever you attack, inflict 1 #rpaleoftheancients:Burn."
+    ]
+  },
+  "paleoftheancients:SoulOfTheDefect": {
+    "NAME": "Core of the Defect",
+    "FLAVOR": "01000010 01100001 01101100 01100001 01101110 01100011 01100101",
+    "DESCRIPTIONS": [
+      "The first 2 #bpowers each combat are played 3 times."
+    ]
+  }
+}
