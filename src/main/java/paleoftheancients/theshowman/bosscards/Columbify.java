@@ -18,7 +18,7 @@ public class Columbify extends AbstractShowmanCard {
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Skill.png";
+    public static final String IMG_PATH = "bosscards/Columbify.png";
 
     private static final CardStrings cardStrings;
 

@@ -13,7 +13,8 @@ public class ExaggeratedArmSweeps extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("ExaggeratedArmSweeps");
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String UPGRADE_DESCRIPTION;
+    public static final String IMG_PATH = "bosscards/ExaggeratedArmSweeps.png";
 
     private static final CardStrings cardStrings;
 
@@ -46,6 +47,8 @@ public class ExaggeratedArmSweeps extends AbstractShowmanCard {
         if(!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(-1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 
@@ -58,5 +61,6 @@ public class ExaggeratedArmSweeps extends AbstractShowmanCard {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
+        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     }
 }

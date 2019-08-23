@@ -1,7 +1,5 @@
 package paleoftheancients.theshowman.bosscards;
 
-import paleoftheancients.theshowman.actions.ExhaustShowmanCardAction;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,6 +7,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.theshowman.actions.ExhaustShowmanCardAction;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public abstract class AbstractShowmanExhaustingCard extends AbstractShowmanCard 
     }
 
     public int highestExhaustPriority(ArrayList<AbstractCard> availableExhaustCards) {
-        int highestExhaustPriority = -1000;
+        int highestExhaustPriority = Integer.MIN_VALUE / 2;
         for(final AbstractCard card : availableExhaustCards) {
             if(card.costForTurn > -2 && card != this) {
                 AbstractShowmanCard asc = (AbstractShowmanCard) card;

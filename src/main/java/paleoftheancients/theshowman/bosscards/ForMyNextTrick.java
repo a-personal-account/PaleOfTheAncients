@@ -1,5 +1,6 @@
 package paleoftheancients.theshowman.bosscards;
 
+import basemod.BaseMod;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.theshowman.powers.ForMyNextTrickPower;
@@ -18,7 +19,7 @@ public class ForMyNextTrick extends AbstractShowmanExhaustingCard {
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Skill.png";
+    public static final String IMG_PATH = "bosscards/ForMyNextTrick.png";
 
     private static final CardStrings cardStrings;
 
@@ -29,19 +30,15 @@ public class ForMyNextTrick extends AbstractShowmanExhaustingCard {
     private static final int COST = 1;
 
     public ForMyNextTrick(TheShowmanBoss owner) {
-        super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.STRONG_DEBUFF);
+        super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.BUFF);
         this.baseMagicNumber = this.magicNumber = 2;
+        this.exhaust = true;
     }
 
     @Override
     public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
         this.highestExhaustPriority(availableExhaustCards);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, m, new ForMyNextTrickPower(this.owner, this.toExhaust, this.magicNumber)));
-    }
-
-    @Override
-    public int getPriority(ArrayList<AbstractCard> availableExhaustCards, int availableEnergy, int byrdHits) {
-        return this.highestExhaustPriority(availableExhaustCards) * this.magicNumber / 2;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, m, new ForMyNextTrickPower(this.owner, this.toExhaust, this.magicNumber)));
     }
 
     @Override

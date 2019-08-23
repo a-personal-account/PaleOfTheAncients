@@ -1,6 +1,5 @@
 package paleoftheancients.scenes;
 
-import paleoftheancients.PaleMod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,10 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
+import paleoftheancients.PaleMod;
 
 import java.util.ArrayList;
 
-public class NeowsRealmScene extends AbstractScene {
+public class PaleScene extends AbstractScene {
 
     private ArrayList<DeathScreenFloatyEffect> particles;
     private Texture filledPixel;
@@ -23,7 +23,7 @@ public class NeowsRealmScene extends AbstractScene {
 
     private Color[] possibilities;
 
-    public NeowsRealmScene() {
+    public PaleScene() {
         super("endingScene/scene.atlas");
         particles = new ArrayList<>();
         this.ambianceName = "AMBIANCE_BEYOND";

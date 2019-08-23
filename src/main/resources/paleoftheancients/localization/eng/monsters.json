@@ -108,9 +108,16 @@
     ],
     "NAME": "The Showman",
     "DIALOG": [
-      "Hi",
+      "Do you know how much these cost!?",
+      "Please refrain from doing that.",
+      "No, no, NO!",
+      "This will just NOT do!",
+      "The show now moves on to its second act!",
+      "Do not fret, my friend. Plenty more tricks up my sleeves!",
+      "For this marvelous occasion, I shall show you my specialties!",
       "And that concludes our show. Thank you and goodbye~",
-      "The show now moves on to its second act!"
+      "You were a fantastic audience, truly!",
+      "I hope you enjoyed this as much as I have. Goodbye~"
     ]
   },
   "paleoftheancients:ShowmanStage": {

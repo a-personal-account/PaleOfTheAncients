@@ -31,12 +31,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class PaleVictoryScreen {
+public abstract class PaleVictoryScreen {
     public static String ID = PaleMod.makeID("PaleVictory");
 
     private Color bgColor;
     private Color eyeColor;
-    private CustomEye[] eyes;
+    protected CustomEye[] eyes;
     private int currentDialog = 0;
     private int clickCount = 0;
     private static final CharacterStrings charStrings;
@@ -55,7 +55,7 @@ public class PaleVictoryScreen {
     private boolean fadingOut;
     private float fadeOutTimer;
 
-    private AbstractGameAction.AttackEffect[] attacks;
+    protected AbstractGameAction.AttackEffect[] attacks;
 
     public PaleVictoryScreen() {
         this.font = FontHelper.deckBannerFont;
@@ -146,6 +146,8 @@ public class PaleVictoryScreen {
                 return;
             }
 
+
+            watDo();
             for(int i = 0; i < 3; i++) {
                 int index;
                 do {
@@ -172,7 +174,9 @@ public class PaleVictoryScreen {
 
     }
 
-    private void playSfx() {
+    protected abstract void watDo();
+
+    protected void playSfx() {
         int roll = MathUtils.random(3);
         if (roll == 0) {
             CardCrawlGame.sound.playA("VO_NEOW_1A", -0.2F);

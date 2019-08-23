@@ -29,51 +29,76 @@
 
   "paleoftheancients:Columbify": {
     "NAME": "Columbify",
-    "DESCRIPTION": "Byrd up!"
+    "DESCRIPTION": "Replace an enemy with a Byrd this turn."
   },
   "paleoftheancients:CrashingLights": {
     "NAME": "Crashing Lights",
-    "DESCRIPTION": "!D!"
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle a Dazed into your draw pile."
   },
   "paleoftheancients:DapperFlourish": {
     "NAME": "Dapper Flourish",
-    "DESCRIPTION": "!D! damage / !M! Buffer"
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL When this card is Exhausted, gain !M! Buffer."
   },
   "paleoftheancients:ExaggeratedArmSweeps": {
     "NAME": "Exaggerated Arm Sweeps",
-    "DESCRIPTION": "paleoftheancients:Stacked NL paleoftheancients:Stacked NL !D!"
+    "DESCRIPTION": "Deal !D! damage. NL paleoftheancients:Stacked. NL paleoftheancients:Stacked. NL paleoftheancients:Stacked.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL paleoftheancients:Stacked. NL paleoftheancients:Stacked."
   },
   "paleoftheancients:ForMyNextTrick": {
     "NAME": "For My Next Trick!",
-    "DESCRIPTION": "!M!"
+    "DESCRIPTION": "Exhaust a card in your hand. NL Next turn, add !M! copies to your hand that cost 1 less that turn. NL Exhaust."
   },
   "paleoftheancients:GrossDisplay": {
     "NAME": "A Gross Display",
-    "DESCRIPTION": "paleoftheancients:Stacked NL Deal !D! / !M! times"
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage !M! times. NL paleoftheancients:Stacked."
   },
   "paleoftheancients:IsThisYourCard": {
-    "NAME": "Is This Your Card?",
-    "DESCRIPTION": "Deal !D! / !M! times"
+    "NAME": "Is THIS Your Card?",
+    "DESCRIPTION": "For each card you have in your exhaust pile, deal !D! damage."
   },
   "paleoftheancients:ReappearingTrick": {
     "NAME": "Reappearing Trick",
-    "DESCRIPTION": "!D!"
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Shuffle ALL non-Curse, non-Status cards from your Exhaust pile into your draw pile."
   },
   "paleoftheancients:Showstopper": {
     "NAME": "Showstopper",
-    "DESCRIPTION": "!?"
+    "DESCRIPTION": "Replay in a random order, ALL Class cards in your Exhaust pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Replay in a random order, ALL Class cards in your Exhaust pile."
+  },
+  "theShowman:SleeveAces": {
+    "NAME": "Sleeve Aces",
+    "DESCRIPTION": "Add a copy of a non-Status, non-Curse card from your Exhaust pile to your discard pile and draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Add !M! copies of a non-Status, non-Curse card from your Exhaust pile to your discard pile and draw pile. NL Exhaust."
   },
   "paleoftheancients:SybilFlourish": {
     "NAME": "Sybil Flourish",
-    "DESCRIPTION": "!B! Block / !M! [E]"
+    "DESCRIPTION": "Gain !B! Block. NL When this card is Exhausted, gain 2 Energy next turn."
   },
-  "paleoftheancients:VanDeGraafsRevenge": {
-    "NAME": "Van de Graaf's Revenge",
-    "DESCRIPTION": "!D! all the dazes"
+  "paleoftheancients:VanDeGraaffsRevenge": {
+    "NAME": "Van de Graaff's Revenge",
+    "DESCRIPTION": "Deal !D! damage. NL Add !M! Dazed to your and your enemy's hand, draw pile, and discard pile."
   },
   "paleoftheancients:WillingVolunteer": {
     "NAME": "Willing Volunteer",
-    "DESCRIPTION": "WillingVolunteer"
+    "DESCRIPTION": "The first attack that would hit you during the enemy's turn hits the targeted enemy instead. NL Lasts until the start of your next turn.",
+    "UPGRADE_DESCRIPTION": "The first two attacks that would hit you during the enemy's turn hits the targeted enemy instead. NL Lasts until the start of your next turn."
+  },
+  "paleoftheancients:SpeechCard": {
+    "NAME": "Ladies and Gentlemen...",
+    "DESCRIPTION": "Make a speech. NL Innate. NL Fleeting.",
+    "EXTENDED_DESCRIPTION": ["Ladies and Gentlemen...",
+      "Aragolts and Arthropods", "KDX and Potatoes", "Sneckos and Slimes", "Byrds and Byrds", "Boys and Girls", "Constructs and Cultists", "Nobs and Gentlenobs", "Slavers and... Uhh. Slavers?", "BD and BD's stupid Pylons",
+      "This is no Jedi trick! This is", "You'll certainly be Vex'd by", "Welcome to", "CAW CAW CAW", "Without futher ado", "We're diving right into", "Prepare to be inSPIREd by", "Please shackle your attention to", "Let your eyes devour",
+      "BIIIIG DAMAGE", "The vivacious Vixen's fiery finale!", "Yes", "CAW CAW CAW CAW!", "The Spectacle of Spires", "Enriching the Emporium!", "Putting the Shopkeep to Sleep!", "The Plundering of the Pillar", "The Toppling of the Tower",
+      "Blah blah blah"]
+  },
+  "paleoftheancients:SetTheStage": {
+    "NAME": "Set the Stage",
+    "DESCRIPTION": "Why you gotta NL ruin everything, bro?"
+  },
+  "paleoftheancients:SecondAct": {
+    "NAME": "Second Act",
+    "DESCRIPTION": "The REAL show begins now!"
   },
 
 

@@ -15,7 +15,7 @@ public class ReappearingTrick extends AbstractShowmanCard {
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String IMG_PATH = "bosscards/ReappearingAct.png";
 
     private static final CardStrings cardStrings;
 

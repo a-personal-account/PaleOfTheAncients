@@ -19,9 +19,10 @@ import paleoftheancients.guardian.monsters.Guardianest;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.rooms.*;
-import paleoftheancients.scenes.NeowsRealmScene;
+import paleoftheancients.scenes.PaleScene;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -35,12 +36,12 @@ public class PaleOfTheAncients extends CustomDungeon {
     public static final String NAME = TEXT[0];
 
     public PaleOfTheAncients() {
-        super(new NeowsRealmScene(), NAME, ID);
+        super(new PaleScene(), NAME, ID);
         this.onEnterEvent(Recollection.class);
         this.addTempMusic(PaleMod.makeID("undyne"), PaleMod.assetPath("music/undertale_undyne.ogg"));
-        this.addTempMusic(PaleMod.makeID("dragonsnest"), PaleMod.assetPath("music/pokken-dragonsnest.ogg"));
-        this.addTempMusic(PaleMod.makeID("tellurtownautumn"), PaleMod.assetPath("music/pokken-tellurtownautumn.ogg"));
-        this.addTempMusic(PaleMod.makeID("phoenix"), PaleMod.assetPath("music/ffxiv-phoenix.ogg"));
+        this.addTempMusic(PaleMod.makeID("dragonsnest"), PaleMod.assetPath("music/pokken-dragonsnest_loop.ogg"));
+        this.addTempMusic(PaleMod.makeID("tellurtownautumn"), PaleMod.assetPath("music/pokken-tellurtownautumn_loop.ogg"));
+        this.addTempMusic(PaleMod.makeID("phoenix"), PaleMod.assetPath("music/ffxiv-phoenix_loop.ogg"));
     }
 
     public PaleOfTheAncients(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
@@ -104,6 +105,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/ironcluck.png"), PaleMod.assetPath("images/ui/map/ironcluckOutline.png"), IronCluck.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/donudeca.png"), PaleMod.assetPath("images/ui/map/donudecaOutline.png"), DonuDeca.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bard.png"), PaleMod.assetPath("images/ui/map/bardOutline.png"), BardBoss.ID));
+        easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));
@@ -246,7 +248,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         CardCrawlGame.music.silenceTempBgmInstantly();
         CardCrawlGame.music.silenceBGMInstantly();
         AbstractDungeon.scene.fadeOutAmbiance();
-        CardCrawlGame.music.playTempBgmInstantly(key, true);
+        CardCrawlGame.music.playTempBGM(key);
     }
     public static void resumeMainMusic() {
         CardCrawlGame.music.silenceTempBgmInstantly();

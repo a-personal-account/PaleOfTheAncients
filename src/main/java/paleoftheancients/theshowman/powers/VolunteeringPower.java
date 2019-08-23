@@ -1,13 +1,14 @@
 package paleoftheancients.theshowman.powers;
 
-import paleoftheancients.PaleMod;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import paleoftheancients.PaleMod;
 
 
 public class VolunteeringPower extends AbstractShowmanPower {
@@ -17,15 +18,16 @@ public class VolunteeringPower extends AbstractShowmanPower {
     public static final String[] DESCRIPTIONS;
 
     public static PowerType POWER_TYPE = PowerType.DEBUFF;
-    public static final String IMG = "columbify.png";
+    public static final String IMG = "volunteering.png";
 
-    public VolunteeringPower(AbstractCreature owner) {
+    public VolunteeringPower(AbstractCreature owner, int amount) {
         super(IMG);
         this.owner = owner;
 
         this.name = NAME;
         this.ID = POWER_ID;
         this.type = POWER_TYPE;
+        this.amount = amount;
 
         updateDescription();
     }
@@ -33,12 +35,21 @@ public class VolunteeringPower extends AbstractShowmanPower {
     @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];
+        if(this.amount > 0) {
+            this.description += DESCRIPTIONS[2];
+        } else {
+            this.description += DESCRIPTIONS[1];
+        }
     }
 
     @Override
     public int onAttackToChangeDamage(DamageInfo info, int damageAmount) {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(this.owner, info));
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        if(this.amount > 1) {
+            AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
+        } else {
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        }
         return 0;
     }
     @Override

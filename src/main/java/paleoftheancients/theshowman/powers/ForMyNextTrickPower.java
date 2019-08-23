@@ -1,16 +1,16 @@
 package paleoftheancients.theshowman.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 
-public class ForMyNextTrickPower extends AbstractShowmanPower implements NonStackablePower {
+public class ForMyNextTrickPower extends AbstractShowmanPower implements NonStackablePower, OnDiscardHandPower {
     public static final String POWER_ID = PaleMod.makeID("ForMyNextTrickPower");
     private static final PowerStrings powerStrings;
     public static final String NAME;
@@ -41,15 +41,13 @@ public class ForMyNextTrickPower extends AbstractShowmanPower implements NonStac
     }
 
     @Override
-    public void atEndOfRound() {
+    public void onDiscardHand() {
         AbstractCard tmp;
         for(int i = 0; i < this.amount; i++) {
             tmp = card.makeStatEquivalentCopy();
-            tmp.cost--;
             tmp.costForTurn--;
             ((TheShowmanBoss) this.owner).hand.addToBottom(tmp);
         }
-        ((TheShowmanBoss) this.owner).resetOrbPositions();
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 

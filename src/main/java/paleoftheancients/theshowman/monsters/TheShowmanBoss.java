@@ -1,39 +1,44 @@
 package paleoftheancients.theshowman.monsters;
 
+import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FlightPower;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.theshowman.actions.DiscardShowmanCardAction;
 import paleoftheancients.theshowman.actions.DiscardShowmanHandAction;
 import paleoftheancients.theshowman.actions.ExhaustShowmanCardAction;
 import paleoftheancients.theshowman.bosscards.*;
+import paleoftheancients.theshowman.helpers.ShowmanAnimation;
 import paleoftheancients.theshowman.misc.DummyOrb;
 import paleoftheancients.theshowman.misc.MonsterSoulGroup;
+import paleoftheancients.theshowman.powers.OnDiscardHandPower;
 import paleoftheancients.theshowman.ui.MonsterDiscardPilePanel;
 import paleoftheancients.theshowman.ui.MonsterDrawPilePanel;
 import paleoftheancients.theshowman.ui.MonsterEnergyPanel;
 import paleoftheancients.theshowman.ui.MonsterExhaustPanel;
-import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FlightPower;
-import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,28 +65,28 @@ public class TheShowmanBoss extends CustomMonster {
 
     private ArrayList<DummyMonster> cards;
 
-    private ShowmanStage stage;
-    private int baseenergy;
+    public ShowmanStage stage;
+    public int baseenergy;
     public int curenergy;
     public int tempenergy;
 
     private Texture emptypixel;
 
     private int drawnThisTurn = 0;
-    private int handsize = 3;
+    public int handsize = 3;
     private static final int EXHAUSTRELIC = 3;
     private int cardUse;
 
-    private boolean upgraded;
+    public boolean upgraded;
     private int turncounter;
 
     public TheShowmanBoss() {
-        super(NAME, ID, 600, 0.0F, -15.0F, 300.0F, 230.0F, PaleMod.assetPath("images/misc/emptypixel.png"), 0.0F, 0.0F);
+        super(NAME, ID, 600, 0.0F, -15.0F, 300.0F, 300.0F, PaleMod.assetPath("images/misc/emptypixel.png"), 0.0F, 0.0F);
 
-        //this.animation = new BraixenAnimation(this, TheVixenMod.getResourcePath("spriter/thevixen.scml"), AbstractDungeon.aiRng.random(4095) == 0);
+        this.animation = new ShowmanAnimation(PaleMod.assetPath("images/TheShowman/character/Spriter.scml"));
 
-        this.dialogX = (this.drawX - 30.0F * Settings.scale);
-        this.dialogY = (this.drawY + 140.0F * Settings.scale);
+        this.dialogX = (-30.0F * Settings.scale);
+        this.dialogY = (100.0F * Settings.scale);
 
         this.type = EnemyType.NORMAL;
 
@@ -100,19 +105,6 @@ public class TheShowmanBoss extends CustomMonster {
     public void usePreBattleAction() {
         PaleOfTheAncients.playTempMusic(PaleMod.makeID("tellurtownautumn"));
 
-        this.drawpile.addToTop(new Columbify(this));
-        this.drawpile.addToTop(new CrashingLights(this));
-        this.drawpile.addToTop(new CrashingLights(this));
-        this.drawpile.addToTop(new DapperFlourish(this));
-        this.drawpile.addToTop(new ExaggeratedArmSweeps(this));
-        this.drawpile.addToTop(new ForMyNextTrick(this));
-        this.drawpile.addToTop(new GrossDisplay(this));
-        this.drawpile.addToTop(new IsThisYourCard(this));
-        this.drawpile.addToTop(new ReappearingTrick(this));
-        this.drawpile.addToTop(new Showstopper(this));
-        this.drawpile.addToTop(new SybilFlourish(this));
-        this.drawpile.addToTop(new WillingVolunteer(this));
-        Collections.shuffle(this.drawpile.group, AbstractDungeon.monsterRng.random);
 
         cards = new ArrayList<>();
         emptypixel = ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
@@ -123,6 +115,9 @@ public class TheShowmanBoss extends CustomMonster {
         this.energyPanel = new MonsterEnergyPanel(this);
         this.soulGroup = new MonsterSoulGroup(this);
         this.initialized = true;
+        this.hand.addToBottom(new SpeechCard(this));
+        this.bestOne();
+        this.refreshHandLayout();
 
         if(AbstractDungeon.ascensionLevel >= 4) {
             this.handsize++;
@@ -140,7 +135,9 @@ public class TheShowmanBoss extends CustomMonster {
     }
     public void resetOrbPositions(int count) {
         for(int i = 0; i < count; i++) {
-            cards.add(new DummyMonster(0, 0, 0, 100, emptypixel, this));
+            DummyMonster mo = new DummyMonster(0, 0, 0, 100, emptypixel, this);
+            cards.add(mo);
+            mo.setMove((byte)0, Intent.NONE, -1, -1, false);
         }
         for(int i = this.cards.size() - 1; i >= count; i--) {
             cards.remove(0);
@@ -149,7 +146,7 @@ public class TheShowmanBoss extends CustomMonster {
         AbstractOrb p = new DummyOrb();
         for(int i = 0; i < count; i++) {
             DummyMonster card = cards.get(i);
-            p.setSlot(i, 3);
+            p.setSlot(i, this.hand.size());
             card.drawX = p.tX - AbstractDungeon.player.drawX + this.drawX;
             card.drawY = p.tY - (AbstractDungeon.player.drawY + AbstractDungeon.player.hb_h / 2.0F) + this.drawY + this.hb_h;
             card.refresh();
@@ -159,68 +156,48 @@ public class TheShowmanBoss extends CustomMonster {
     @Override
     public void takeTurn() {
         this.tempenergy = 0;
-        if(stage == null || stage.isDead) {
-            if (stage == null) {
-                stage = new ShowmanStage(100, this);
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(stage, true));
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0]));
-            } else {
-                stage.maxHealth += 20;
-                AbstractDungeon.actionManager.addToBottom(new HealAction(stage, this, stage.maxHealth));
-            }
-        } else {
-            if(this.intent != Intent.NONE) {
-                this.upgraded = true;
-                this.baseenergy++;
-                this.handsize += 2;
-                CardGroup[] groups = new CardGroup[]{
-                        this.hand, this.drawpile, this.discardpile, this.exhaustpile
-                };
-                for(final CardGroup group : groups) {
-                    for(final AbstractCard card : group.group) {
-                        card.upgrade();
-                    }
-                }
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[2]));
-            } else {
-                int hasTrigger = -1;
-                ArrayList<AbstractShowmanCard> toUse = new ArrayList<>();
-                for (int i = this.hand.size() - 1; i >= 0; i--) {
-                    AbstractCard card = this.hand.group.get(i);
-                    if (card.isGlowing) {
-                        toUse.add((AbstractShowmanCard) card);
 
-                        if (((AbstractShowmanCard) card).exhaustTrigger) {
-                            hasTrigger = toUse.size() - 1;
-                        }
-                    }
-                }
-                ArrayList<AbstractCard> residue = new ArrayList<>();
-                residue.addAll(this.hand.group);
-                residue.removeAll(toUse);
+        int hasTrigger = -1;
+        ArrayList<AbstractShowmanCard> toUse = new ArrayList<>();
+        for (int i = this.hand.size() - 1; i >= 0; i--) {
+            AbstractCard card = this.hand.group.get(i);
+            if (card.isGlowing) {
+                toUse.add((AbstractShowmanCard) card);
 
-                if (toUse.size() >= this.cardUse && hasTrigger > -1 && this.cardUse - 1 != hasTrigger) {
-                    AbstractShowmanCard tmp;
-                    tmp = toUse.get(hasTrigger);
-                    toUse.set(hasTrigger, toUse.get(this.cardUse - 1));
-                    toUse.set(this.cardUse - 1, tmp);
-                }
-                for (int i = 0; i < toUse.size(); i++) {
-                    AbstractShowmanCard card = toUse.get(i);
-                    card.use(residue, AbstractDungeon.player, this);
-                    if (card.purgeOnUse) {
-                        this.hand.removeCard(card);
-                    } else if (--this.cardUse == 0 || card.exhaust) {
-                        if (this.cardUse == 0) {
-                            this.cardUse = EXHAUSTRELIC;
-                        }
-                        AbstractDungeon.actionManager.addToBottom(new ExhaustShowmanCardAction(this, card));
-                    } else {
-                        AbstractDungeon.actionManager.addToBottom(new DiscardShowmanCardAction(this, card));
-                    }
-                    AbstractDungeon.actionManager.addToBottom(new WaitAction(2F));
+                if (((AbstractShowmanCard) card).exhaustTrigger) {
+                    hasTrigger = toUse.size() - 1;
                 }
             }
+        }
+        ArrayList<AbstractCard> residue = new ArrayList<>();
+        residue.addAll(this.hand.group);
+        residue.removeAll(toUse);
+
+        if (toUse.size() >= this.cardUse && hasTrigger > -1 && this.cardUse - 1 != hasTrigger) {
+            AbstractShowmanCard tmp;
+            tmp = toUse.get(hasTrigger);
+            toUse.set(hasTrigger, toUse.get(this.cardUse - 1));
+            toUse.set(this.cardUse - 1, tmp);
+        }
+        boolean useAttackAnimation = false;
+        for (int i = 0; i < toUse.size(); i++) {
+            AbstractShowmanCard card = toUse.get(i);
+            useAttackAnimation |= card.baseDamage > 0;
+            card.use(residue, AbstractDungeon.player, this);
+            if (card.purgeOnUse) {
+                this.hand.removeCard(card);
+            } else if (--this.cardUse == 0 || card.exhaust) {
+                if (this.cardUse == 0) {
+                    this.cardUse = EXHAUSTRELIC;
+                }
+                AbstractDungeon.actionManager.addToBottom(new ExhaustShowmanCardAction(this, card));
+            } else {
+                AbstractDungeon.actionManager.addToBottom(new DiscardShowmanCardAction(this, card));
+            }
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(2F));
+        }
+        if(useAttackAnimation) {
+            ((ShowmanAnimation) this.animation).attack();
         }
 
         this.turncounter++;
@@ -235,40 +212,46 @@ public class TheShowmanBoss extends CustomMonster {
     }
     @Override
     protected void getMove(int num) {
-        if(!upgraded && (this.currentHealth < this.maxHealth / 2 || this.turncounter >= 10)) {
-            this.discardHand();
-            this.setMove(MOVES[0], (byte)0, Intent.BUFF);
-        } else if(initialized) {
+        if(initialized) {
             if (!this.soulGroup.monsterIsActive()) {
                 AbstractDungeon.actionManager.addToTop(new RollMoveAction(this));
                 return;
             }
-            if (stage != null && !stage.isDead) {
-                for (; this.drawnThisTurn < this.handsize && !(this.drawpile.isEmpty() && this.discardpile.isEmpty()); this.drawnThisTurn++) {
-                    if (this.drawpile.isEmpty() && !this.discardpile.isEmpty()) {
-                        while (!this.discardpile.isEmpty()) {
-                            this.soulGroup.shuffle(this.discardpile.getBottomCard(), false);
-                        }
-                        AbstractDungeon.actionManager.addToTop(new RollMoveAction(this));
-                        return;
+
+            for (; this.drawnThisTurn < this.handsize && !(this.drawpile.isEmpty() && this.discardpile.isEmpty()); this.drawnThisTurn++) {
+                if (this.drawpile.isEmpty() && !this.discardpile.isEmpty()) {
+                    while (!this.discardpile.isEmpty()) {
+                        this.soulGroup.shuffle(this.discardpile.getBottomCard(), false);
                     }
-                    AbstractCard card = this.drawpile.getTopCard();
-                    card.lighten(true);
-                    this.hand.addToTop(card);
-                    this.drawpile.removeTopCard();
-                    card.current_x = this.drawPilePanel.privateHb.cX;
-                    card.current_y = this.drawPilePanel.privateHb.cY;
+                    AbstractDungeon.actionManager.addToTop(new RollMoveAction(this));
+                    return;
                 }
-                this.curenergy = this.baseenergy + this.tempenergy;
-                bestOne();
-                for (int i = 0; i < this.hand.size(); i++) {
-                    AbstractCard card = this.hand.group.get(i);
-                    card.target_x = cards.get(i).drawX;
-                    card.target_y = cards.get(i).drawY + cards.get(i).effect.y;
-                }
+                AbstractCard card = this.drawpile.getTopCard();
+                card.lighten(true);
+                this.hand.addToTop(card);
+                this.drawpile.removeTopCard();
+                card.current_x = this.drawPilePanel.privateHb.cX;
+                card.current_y = this.drawPilePanel.privateHb.cY;
             }
+            if(this.stage != null && !this.stage.isDying && !upgraded && (this.currentHealth < this.maxHealth * 2 / 3 || this.turncounter >= 10)) {
+                AbstractCard secondact = new SecondAct(this);
+                this.hand.addToBottom(secondact);
+                this.upgraded = true;
+                secondact.current_x = this.drawPilePanel.privateHb.cX;
+                secondact.current_y = this.drawPilePanel.privateHb.cY;
+            }
+            bestOne();
+            this.refreshHandLayout();
         } else {
             this.setMove((byte)0, Intent.NONE);
+        }
+    }
+
+    public void refreshHandLayout() {
+        for (int i = 0; i < this.hand.size(); i++) {
+            AbstractCard card = this.hand.group.get(i);
+            card.target_x = cards.get(i).drawX;
+            card.target_y = cards.get(i).drawY + cards.get(i).effect.y;
         }
     }
 
@@ -276,6 +259,7 @@ public class TheShowmanBoss extends CustomMonster {
         this.hand.removeCard(card);
         this.exhaustpile.addToTop(card);
         card.isGlowing = false;
+        card.costForTurn = card.cost;
         card.triggerOnExhaust();
         AbstractDungeon.effectList.add(new ExhaustCardEffect(card));
     }
@@ -286,6 +270,7 @@ public class TheShowmanBoss extends CustomMonster {
     }
     public void discardCard(AbstractCard card) {
         card.isGlowing = false;
+        card.costForTurn = card.cost;
         if(card.isEthereal) {
             this.exhaustCard(card);
         } else {
@@ -295,6 +280,12 @@ public class TheShowmanBoss extends CustomMonster {
     public void discardHand() {
         while(!this.hand.isEmpty()) {
             this.discardCard(this.hand.getTopCard());
+        }
+
+        for(final AbstractPower p : this.powers) {
+            if(p instanceof OnDiscardHandPower) {
+                ((OnDiscardHandPower) p).onDiscardHand();
+            }
         }
     }
 
@@ -329,22 +320,23 @@ public class TheShowmanBoss extends CustomMonster {
 
     @Override
     public void damage(DamageInfo info) {
-        /*
         if ((info.type != DamageInfo.DamageType.THORNS) && (
                 info.output > this.currentBlock)) {
-            BraixenAnimation sa = (BraixenAnimation)this.animation;
-            sa.damage();
-        }*/
+            ((ShowmanAnimation) this.animation).damage();
+        }
         super.damage(info);
     }
 
     @Override
     public void die() {
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3F, DIALOG[MathUtils.random(DIALOG.length - 1)], this.isPlayer));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3F, DIALOG[MathUtils.random(7, 9)], this.isPlayer));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         PaleOfTheAncients.resumeMainMusic();
         super.die();
+        for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
+        }
     }
 
     @Override
@@ -368,6 +360,7 @@ public class TheShowmanBoss extends CustomMonster {
     }
 
     private ArrayList<AbstractShowmanCard> bestOne() {
+        this.curenergy = this.baseenergy + this.tempenergy;
         for(final AbstractCard card : this.hand.group) {
             card.applyPowers();
             ((AbstractShowmanCard) card).isGlowing = false;
@@ -381,11 +374,18 @@ public class TheShowmanBoss extends CustomMonster {
         ArrayList<AbstractShowmanCard> bestCombo = new ArrayList<>();
         ArrayList<AbstractShowmanCard> usedCards;
         int bestpriority = -1;
+        int curcardprio;
         for(final AbstractCard card : this.hand.group) {
-            if(card.costForTurn > -2 && ((AbstractShowmanCard)card).getPriority(this.hand.group, this.baseenergy + this.tempenergy, byrdHits) > 0) {
-                int[] priority = new int[]{0};
+            if(card.costForTurn > -2 && (curcardprio = ((AbstractShowmanCard)card).getPriority(this.hand.group, this.baseenergy + this.tempenergy, byrdHits)) > 0) {
+                int[] priority = new int[]{curcardprio};
+
+                ArrayList<AbstractShowmanCard> exhausted = new ArrayList<>();
+                if(card instanceof AbstractShowmanExhaustingCard) {
+                    exhausted.add((AbstractShowmanCard)((AbstractShowmanExhaustingCard) card).toExhaust);
+                }
+
                 usedCards = new ArrayList<>();
-                usedCards = recur(usedCards, (AbstractShowmanCard) card, this.curenergy, priority, byrdHits);
+                usedCards = recur(usedCards, exhausted, (AbstractShowmanCard) card, this.curenergy, priority, byrdHits);
                 if (priority[0] > bestpriority) {
                     bestpriority = priority[0];
                     bestCombo = usedCards;
@@ -408,42 +408,39 @@ public class TheShowmanBoss extends CustomMonster {
         return bestCombo;
     }
 
-    private ArrayList<AbstractShowmanCard> recur(ArrayList<AbstractShowmanCard> checked, AbstractShowmanCard currentCard, int energy, int[] priority, int byrdHits) {
+    private ArrayList<AbstractShowmanCard> recur(ArrayList<AbstractShowmanCard> checked, ArrayList<AbstractShowmanCard> exhausted, AbstractShowmanCard currentCard, int energy, int[] priority, int byrdHits) {
         int[] tmppriority;
-        boolean eligible;
         checked.add(currentCard);
-        ArrayList<AbstractCard> exclusions = new ArrayList<>();
-        exclusions.addAll(this.hand.group);
-        exclusions.removeAll(checked);
-        int bestPriority = priority[0] + currentCard.getPriority(exclusions, energy, byrdHits);
+        ArrayList<AbstractCard> exhaustible = new ArrayList<>();
+        exhaustible.addAll(this.hand.group);
+        exhaustible.removeAll(checked);
+        exhaustible.removeAll(exhausted);
         if(currentCard.cost > -1) {
             energy -= currentCard.costForTurn;
         } else {
             energy = 0;
         }
+        int bestPriority = priority[0];
         int basePriority = bestPriority;
         ArrayList<AbstractShowmanCard> bestCombo = checked;
-        for(final AbstractCard card : this.hand.group) {
-            if(card.costForTurn > -2 && energy - card.costForTurn >= 0 && ((AbstractShowmanCard)card).getPriority(exclusions, energy, byrdHits) > 0) {
-                eligible = true;
-                for (final AbstractShowmanCard alreadyIn : checked) {
-                    if (alreadyIn == card) {
-                        eligible = false;
-                        break;
-                    }
+        int curcardprio;
+        for(final AbstractCard card : exhaustible) {
+            if(card.costForTurn > -2 && energy - card.costForTurn >= 0 && (curcardprio = ((AbstractShowmanCard)card).getPriority(exhaustible, energy, byrdHits)) > 0) {
+                tmppriority = new int[]{basePriority + curcardprio};
+
+                ArrayList<AbstractShowmanCard> tmpexhaust = exhausted;
+                if(card instanceof AbstractShowmanExhaustingCard) {
+                    tmpexhaust = new ArrayList<>();
+                    tmpexhaust.addAll(exhausted);
+                    tmpexhaust.add((AbstractShowmanCard)((AbstractShowmanExhaustingCard)card).toExhaust);
                 }
-                if (eligible) {
-                    ArrayList<AbstractShowmanCard> tmp = new ArrayList<>();
-                    tmp.addAll(checked);
-                    if(card instanceof AbstractShowmanExhaustingCard) {
-                        tmp.add((AbstractShowmanCard)((AbstractShowmanExhaustingCard)card).toExhaust);
-                    }
-                    tmppriority = new int[]{basePriority};
-                    tmp = recur(tmp, (AbstractShowmanCard) card, energy, tmppriority, byrdHits);
-                    if (basePriority + tmppriority[0] > bestPriority) {
-                        bestCombo = tmp;
-                        bestPriority = basePriority + tmppriority[0];
-                    }
+
+                ArrayList<AbstractShowmanCard> tmp = new ArrayList<>();
+                tmp.addAll(checked);
+                tmp = recur(tmp, tmpexhaust, (AbstractShowmanCard) card, energy, tmppriority, byrdHits);
+                if (basePriority + tmppriority[0] > bestPriority) {
+                    bestCombo = tmp;
+                    bestPriority = basePriority + tmppriority[0];
                 }
             }
         }
@@ -455,9 +452,19 @@ public class TheShowmanBoss extends CustomMonster {
     }
 
     public void stageStun() {
-        this.setMove((byte)0, Intent.STUN);
-        this.createIntent();
-        this.discardHand();
+        SetTheStage sts = new SetTheStage(this, this.hand, this.drawpile, this.discardpile);
+        sts.current_x = this.drawPilePanel.current_x;
+        sts.current_y = this.drawPilePanel.current_y;
+
+        this.hand.clear();
+        this.drawpile.clear();
+        this.discardpile.clear();
+        this.hand.addToBottom(sts);
+
+        this.bestOne();
+        this.refreshHandLayout();
+
+        AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[MathUtils.random(3)]));
     }
 
     static {
@@ -465,5 +472,22 @@ public class TheShowmanBoss extends CustomMonster {
         NAME = monsterStrings.NAME;
         MOVES = monsterStrings.MOVES;
         DIALOG = monsterStrings.DIALOG;
+    }
+
+
+    public static class Enums {
+        @SpireEnum
+        public static AbstractPlayer.PlayerClass PALE_THE_SHOWMAN;
+        @SpireEnum(
+                name = "PALE_SHOWMAN_PURPLE_COLOR"
+        )
+        public static AbstractCard.CardColor PALE_COLOR_PURPLE;
+        @SpireEnum(
+                name = "PALE_SHOWMAN_PURPLE_COLOR"
+        )
+        public static CardLibrary.LibraryType PALE_LIBRARY_COLOR;
+
+        public Enums() {
+        }
     }
 }

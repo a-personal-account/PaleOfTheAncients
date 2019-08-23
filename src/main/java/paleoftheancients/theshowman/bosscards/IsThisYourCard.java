@@ -11,7 +11,7 @@ public class IsThisYourCard extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("IsThisYourCard");
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String IMG_PATH = "bosscards/IsThisYourCard.png";
 
     private static final CardStrings cardStrings;
 

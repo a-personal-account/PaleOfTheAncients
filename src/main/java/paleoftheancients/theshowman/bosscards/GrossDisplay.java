@@ -1,19 +1,27 @@
 package paleoftheancients.theshowman.bosscards;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
+import paleoftheancients.theshowman.vfx.GrossDisplayVFX;
+import paleoftheancients.theshowman.vfx.TossCardEffect;
+
+import java.util.ArrayList;
 
 public class GrossDisplay extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("GrossDisplay");
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String IMG_PATH = "bosscards/AGrossDisplay.png";
 
     private static final CardStrings cardStrings;
 
@@ -27,6 +35,18 @@ public class GrossDisplay extends AbstractShowmanCard {
         super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.ATTACK);
         this.baseDamage = 12;
         this.baseMagicNumber = this.magicNumber = 12;
+        this.isEthereal = true;
+    }
+
+    @Override
+    public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
+        if(this.magicNumber == this.baseMagicNumber) {
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new GrossDisplayVFX(p, this.damage * this.magicNumber)));
+        }
+        for(int i = 0; i < this.magicNumber; ++i) {
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new TossCardEffect(m.hb.cX, m.hb.cY, p, this.damage, -1), 0.1F));
+            AbstractDungeon.actionManager.addToBottom(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        }
     }
 
     @Override

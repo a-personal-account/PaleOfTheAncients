@@ -1,7 +1,5 @@
 package paleoftheancients.theshowman.bosscards;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -12,6 +10,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 import java.util.ArrayList;
 
@@ -31,12 +31,12 @@ public abstract class AbstractShowmanCard extends CustomCard {
     public boolean exhaustTrigger;
 
     public AbstractShowmanCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target, TheShowmanBoss owner, AbstractMonster.Intent intent) {
-        super(id, name, img, cost, rawDescription, type, CardColor.CURSE, rarity, target);
+        super(id, name, img, cost, rawDescription, type, TheShowmanBoss.Enums.PALE_COLOR_PURPLE, rarity, target);
         this.init(owner, intent);
     }
 
     public AbstractShowmanCard(String id, String name, RegionName img, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target, TheShowmanBoss owner, AbstractMonster.Intent intent) {
-        super(id, name, img, cost, rawDescription, type, CardColor.CURSE, rarity, target);
+        super(id, name, img, cost, rawDescription, type, TheShowmanBoss.Enums.PALE_COLOR_PURPLE, rarity, target);
         this.init(owner, intent);
     }
 

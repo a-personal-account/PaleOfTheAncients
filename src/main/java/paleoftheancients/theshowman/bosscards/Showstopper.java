@@ -17,7 +17,8 @@ public class Showstopper extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("Showstopper");
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Skill.png";
+    public static final String UPGRADE_DESCRIPTION;
+    public static final String IMG_PATH = "bosscards/Showstopper.png";
 
     private static final CardStrings cardStrings;
 
@@ -29,6 +30,7 @@ public class Showstopper extends AbstractShowmanCard {
 
     public Showstopper(TheShowmanBoss owner) {
         super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.MAGIC);
+        this.exhaust = true;
     }
 
     @Override
@@ -60,6 +62,16 @@ public class Showstopper extends AbstractShowmanCard {
     }
 
     @Override
+    public void upgrade() {
+        if(!this.upgraded) {
+            this.upgradeName();
+            this.exhaust = false;
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new Showstopper(this.owner);
     }
@@ -68,5 +80,6 @@ public class Showstopper extends AbstractShowmanCard {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
+        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     }
 }

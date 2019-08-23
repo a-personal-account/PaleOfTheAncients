@@ -1,13 +1,19 @@
 package paleoftheancients.theshowman.bosscards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.misc.ShowmanDazed;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.theshowman.vfx.CrashingLightsVFX;
 
 import java.util.ArrayList;
 
@@ -16,7 +22,7 @@ public class CrashingLights extends AbstractShowmanCard {
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String IMG_PATH = "bosscards/CrashingLights.png";
 
     private static final CardStrings cardStrings;
 
@@ -33,7 +39,8 @@ public class CrashingLights extends AbstractShowmanCard {
 
     @Override
     public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
-        super.use(availableExhaustCards, p, m);
+        AbstractDungeon.actionManager.addToBottom(new VFXAction(new CrashingLightsVFX(p, this.damage), 0.8F));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         this.owner.soulGroup.shuffleNewlyCreatedCard(new ShowmanDazed(this.owner));
     }
 

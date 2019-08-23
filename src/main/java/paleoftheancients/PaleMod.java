@@ -5,6 +5,7 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -93,7 +95,11 @@ public class PaleMod implements
 
         (new PaleOfTheAncients()).addAct(TheEnding.ID);
 
+
+        Color SHOWMAN_PURPLE = CardHelper.getColor(143.0F, 109.0F, 237.0F);
         BaseMod.addMonster(TheShowmanBoss.ID, () -> new TheShowmanBoss());
+        BaseMod.addColor(TheShowmanBoss.Enums.PALE_COLOR_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, PaleMod.assetPath("images/TheShowman/512/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/1024/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/512/card_small_orb.png"));
+
         BaseMod.addMonster(TheVixenBoss.ID, () -> new TheVixenBoss());
         BaseMod.addMonster(IronCluck.ID, () -> new IronCluck());
         BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());

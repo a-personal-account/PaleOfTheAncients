@@ -14,7 +14,7 @@ public class DapperFlourish extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("DapperFlourish");
     public static final String NAME;
     public static final String DESCRIPTION;
-    public static final String IMG_PATH = "bosscards/Attack.png";
+    public static final String IMG_PATH = "bosscards/DapperFlourish.png";
 
     private static final CardStrings cardStrings;
 

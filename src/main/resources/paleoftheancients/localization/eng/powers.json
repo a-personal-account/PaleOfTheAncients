@@ -170,7 +170,17 @@
   "paleoftheancients:VolunteeringPower": {
     "NAME": "Volunteering",
     "DESCRIPTIONS": [
-      "The next instance of attack damage you cause this turn damages yourself instead."
+      "You have #rwillingly #rvolunteered to take the next #b",
+      " instance of attackdamage you'd deal, until the start of your next turn.",
+      " instances of attackdamage you'd deal, until the start of your next turn."
+    ]
+  },
+  "paleoftheancients:ForMyNextTrickPower": {
+    "NAME": "For My Next Trick!",
+    "DESCRIPTIONS": [
+      "Next turn, add #b",
+      " copies of \"",
+      "\" to your hand. They cost 1 less."
     ]
   },
 
