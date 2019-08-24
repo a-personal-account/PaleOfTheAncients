@@ -29,7 +29,7 @@
 
   "paleoftheancients:Columbify": {
     "NAME": "Columbify",
-    "DESCRIPTION": "Replace an enemy with a Byrd this turn."
+    "DESCRIPTION": "Replace an enemy with a Byrd this turn. NL They retain their Block one turn."
   },
   "paleoftheancients:CrashingLights": {
     "NAME": "Crashing Lights",

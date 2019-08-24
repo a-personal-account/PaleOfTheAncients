@@ -35,6 +35,12 @@
   },
 
 
+  "paleoftheancients:PrematureAwakening": {
+    "NAME": "Premature Awakening",
+    "DESCRIPTIONS": [
+      "Damage dealt is #yhalved for #y"," turn."," turns."
+    ]
+  },
 
   "paleoftheancients:BurnPower": {
     "NAME": "Burn",
@@ -245,10 +251,16 @@
   "paleoftheancients:CuccoSwarmPower": {
     "NAME": "Power of Chicken",
     "DESCRIPTIONS": [
-      "After sustaining #r", " damage in one turn, resets temporary Strengthloss and changes intent to deal #r"," basedamage #r"," times."
+      "After sustaining #r", " damage in one turn, resets temporary #rStrength #rloss and changes intent to deal #r"," basedamage #r"," times."
     ]
   },
 
+  "paleoftheancients:QueueNotePower": {
+    "NAME": ""
+  },
+  "paleoftheancients:DelaySonataPower": {
+    "NAME": ""
+  },
   "paleoftheancients:MelodyPotencyPower": {
     "NAME": "Warmed up",
     "DESCRIPTIONS": [
@@ -272,13 +284,30 @@
       " turn."
     ]
   },
+  "paleoftheancients:Inspiration": {
+    "NAME": "Inspiration",
+    "DESCRIPTIONS": [
+      "The next",
+      "The next #b",
+      " action",
+      " actions",
+      " you perform is #b",
+      "% stronger."
+    ]
+  },
+  "paleoftheancients:Sonata": {
+    "NAME": "Sonata",
+    "DESCRIPTIONS": [
+      "You can play every possible #yMelody in your Note Queue."
+    ]
+  },
 
   "paleoftheancients:GazeOne": {
     "NAME": "Gaze of the closing Eyes",
     "DESCRIPTIONS": [
       "The first card you play each turn causes its adjacent cards to cost #b"
-    ," more [E] until end of turn. Upon death, all other eyes start gaining #b"
-    ," Strength every turn."
+    ," more [E] until end of turn. NL Upon death, all other eyes start gaining #b"
+    ," #rStrength every turn."
     ]
   },
   "paleoftheancients:GazeTwo": {
@@ -288,8 +317,8 @@
       "removed from combat.",
       "replaced with a #gSlimed this combat.",
       "replaced with a random #pCurse this combat.",
-      " Upon death, all other eyes start gaining #b",
-      " Strength every turn."
+      " NL Upon death, all other eyes start gaining #b",
+      " #rStrength every turn."
     ]
   },
   "paleoftheancients:GazeThree": {
@@ -298,8 +327,8 @@
       "The third card you play each turn causes ",
       "all enemies gain #b",
       " #rStrength and ",
-      "you to lose your #yleftmost non-starter, non-boss #yrelic. Upon death, all other eyes start gaining #b",
-      " Strength every turn."
+      "you to shuffle a random card from your starterdeck into your discard pile. NL Upon death, all other eyes start gaining #b",
+      " #rStrength every turn."
     ]
   },
   "paleoftheancients:PlayerGaze": {

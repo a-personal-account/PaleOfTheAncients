@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
@@ -92,8 +93,10 @@ public class PaleMod implements
                 "It's an act 4. It probably sucks.", modPanel);
 
 
-
+        int before = AbstractDungeon.floorNum;
+        AbstractDungeon.floorNum = 5;
         (new PaleOfTheAncients()).addAct(TheEnding.ID);
+        AbstractDungeon.floorNum = before;
 
 
         Color SHOWMAN_PURPLE = CardHelper.getColor(143.0F, 109.0F, 237.0F);

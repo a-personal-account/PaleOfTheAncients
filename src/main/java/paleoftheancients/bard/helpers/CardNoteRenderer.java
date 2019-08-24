@@ -55,8 +55,9 @@ public class CardNoteRenderer extends AbstractGameEffect {
                 }
                 List<AbstractNote> notes = carddata.get(__instance.uuid).notes;
 
+                sb.setColor(Color.WHITE);
                 sb.draw(bagpipes, __instance.current_x - 256.0F, __instance.current_y - 256.0F, 256.0F, 256.0F, 512.0F, 768.0F, __instance.drawScale * Settings.scale, __instance.drawScale * Settings.scale, __instance.angle, 0, 0, 512, 768, false, false);
-                Color oldColor = sb.getColor();
+
                 float offsetX = -(32.0F * (float) notes.size() / 2.0F);
 
                 for (Iterator var7 = notes.iterator(); var7.hasNext(); offsetX += 32.0F) {
@@ -67,9 +68,8 @@ public class CardNoteRenderer extends AbstractGameEffect {
                     sb.setColor(note.color());
                     sb.draw(note.getTexture(), __instance.current_x + offset.x, __instance.current_y + offset.y, 0.0F, 0.0F, (float) note.getTexture().originalWidth, (float) note.getTexture().originalHeight, __instance.drawScale * Settings.scale * 1.1F, __instance.drawScale * Settings.scale * 1.1F, __instance.angle);
                 }
-
-                sb.setColor(oldColor);
             }
+            sb.setColor(Color.WHITE);
         }
     }
 

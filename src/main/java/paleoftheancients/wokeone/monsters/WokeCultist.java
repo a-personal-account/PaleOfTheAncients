@@ -1,16 +1,11 @@
 package paleoftheancients.wokeone.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.wokeone.vfx.CultistWingParticle;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.spine.Bone;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.Settings;
@@ -26,6 +21,9 @@ import com.megacrit.cardcrawl.powers.UnawakenedPower;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import com.megacrit.cardcrawl.vfx.AwakenedWingParticle;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.wokeone.powers.PrematureAwakening;
+import paleoftheancients.wokeone.vfx.CultistWingParticle;
 
 import java.util.ArrayList;
 
@@ -58,16 +56,24 @@ public class WokeCultist extends Cultist {
         ReflectionHacks.setPrivate(this.wokeone, AwakenedOne.class, "form1", false);
         this.wokeone.hb.cX = this.hb.cX;
         this.wokeone.hb.cY = this.hb.cY;
+        this.wokeone.powers = this.powers;
+        this.wokeone.setMove((byte)0, Intent.NONE);
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        this.wokeone.applyPowers();
     }
 
     @Override
     public void takeTurn() {
-        if(this.reborn) {
+        if(this.halfDead) {
+            rebirth();
+        } else if(this.reborn) {
             this.wokeone.takeTurn();
             this.wokeone.createIntent();
             AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
-        } else if(this.halfDead) {
-            rebirth();
         } else {
             super.takeTurn();
         }
@@ -120,6 +126,7 @@ public class WokeCultist extends Cultist {
         if(pow != null) {
             AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this, this, pow, (pow.amount + 1) / 2));
         }
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new PrematureAwakening(this,3)));
         (new RollMoveAction(this.wokeone)).update();
         this.wokeone.createIntent();
         (new RollMoveAction(this)).update();

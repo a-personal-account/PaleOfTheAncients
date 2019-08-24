@@ -51,6 +51,8 @@ public class SetTheStage extends AbstractShowmanCard {
         this.owner.discardpile.group.addAll(cards[0].group);
         this.owner.drawpile.group.addAll(cards[1].group);
         this.owner.discardpile.group.addAll(cards[2].group);
+        this.owner.resetOrbPositions();
+        this.owner.refreshHandLayout();
     }
 
     @Override

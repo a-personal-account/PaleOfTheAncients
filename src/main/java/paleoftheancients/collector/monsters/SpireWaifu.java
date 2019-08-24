@@ -1,7 +1,5 @@
 package paleoftheancients.collector.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.collector.vfx.BloodyChair;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -25,6 +23,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.collector.vfx.BloodyChair;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -120,7 +120,7 @@ public class SpireWaifu extends TheCollector {
 
         int bronzeorbs = 0;
         for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if(m.id == BronzeOrbThing.ID && m.isDeadOrEscaped()) {
+            if(m.id == BronzeOrbThing.ID && !m.isDeadOrEscaped()) {
                 bronzeorbs++;
             }
         }

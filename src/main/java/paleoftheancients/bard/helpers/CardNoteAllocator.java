@@ -1,17 +1,16 @@
 package paleoftheancients.bard.helpers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.bard.notes.*;
 import com.evacipated.cardcrawl.mod.bard.cards.AbstractBardCard;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.*;
 import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
 import javassist.expr.NewExpr;
+import paleoftheancients.PaleMod;
+import paleoftheancients.bard.notes.*;
 
 import java.util.*;
 
@@ -86,43 +85,33 @@ public class CardNoteAllocator {
             }
             return notes;
         } else {
-            List<AbstractNote> notes = new ArrayList();
-            Iterator var2 = card.tags.iterator();
+            List<AbstractNote> notes = new ArrayList<>();
 
-            while(var2.hasNext()) {
-                AbstractCard.CardTags tag = (AbstractCard.CardTags)var2.next();
+            // Other mods can define notes for a card via CardTags
+            for (AbstractCard.CardTags tag : card.tags) {
                 AbstractNote note = MelodyManager.getNoteByTag(tag);
                 if (note != null) {
                     notes.add(note);
                 }
             }
-
             if (!notes.isEmpty()) {
                 return notes;
-            } else {
-                if (isBlockGainingCard(card)) {
-                    notes.add(BlockNote.get());
-                }
-
-                if (isDamageDealingCard(card)) {
-                    notes.add(AttackNote.get());
-                }
-
-                if (isBuffCard(card)) {
-                    notes.add(BuffNote.get());
-                }
-
-                if (isDebuffCard(card)) {
-                    notes.add(DebuffNote.get());
-                }
-
-
-                if(notes.size() > 1) {
-                    Collections.shuffle(notes, new Random(Settings.seed + AbstractDungeon.floorNum));
-                }
-
-                return notes;
             }
+
+            // Otherwise, automatically assign values
+            if (isBlockGainingCard(card)) {
+                notes.add(BlockNote.get());
+            }
+            if (isDamageDealingCard(card)) {
+                notes.add(AttackNote.get());
+            }
+            if (isBuffCard(card)) {
+                notes.add(BuffNote.get());
+            }
+            if (isDebuffCard(card)) {
+                notes.add(DebuffNote.get());
+            }
+            return notes;
         }
     }
 
@@ -139,8 +128,14 @@ public class CardNoteAllocator {
             calculateBuffDebuff(card);
         }
 
-        Integer buffType = (Integer)otherCardBuffDebuff.get(card.cardID);
-        return buffType != null && (buffType & 1) == 1;
+        Integer buffType = otherCardBuffDebuff.get(card.cardID);
+        if (buffType != null) {
+            if ((buffType & 1) == 1) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean isDebuffCard(AbstractCard card) {
@@ -148,8 +143,14 @@ public class CardNoteAllocator {
             calculateBuffDebuff(card);
         }
 
-        Integer buffType = (Integer)otherCardBuffDebuff.get(card.cardID);
-        return buffType != null && (buffType & 2) == 2;
+        Integer buffType = otherCardBuffDebuff.get(card.cardID);
+        if (buffType != null) {
+            if ((buffType & 2) == 2) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void calculateBuffDebuff(final AbstractCard card) {
@@ -157,113 +158,98 @@ public class CardNoteAllocator {
             ClassPool pool = Loader.getClassPool();
             CtClass ctClass = pool.get(card.getClass().getName());
             ctClass.defrost();
-
             CtMethod useMethod;
             try {
                 useMethod = ctClass.getDeclaredMethod("use");
-            } catch (NotFoundException var9) {
+            } catch (NotFoundException ignore) {
+                // This card doesn't have a `use` method, skip it
+                // I blame Infinite Spire
                 otherCardBuffDebuff.putIfAbsent(card.cardID, 0);
                 return;
             }
 
-            final AbstractCard.CardTarget[] targetType = new AbstractCard.CardTarget[]{AbstractCard.CardTarget.NONE};
-            CtConstructor[] var5 = ctClass.getConstructors();
-            int var6 = var5.length;
-
-            for(int var7 = 0; var7 < var6; ++var7) {
-                CtConstructor ctor = var5[var7];
+            final AbstractCard.CardTarget[] targetType = {AbstractCard.CardTarget.NONE};
+            for (CtConstructor ctor : ctClass.getConstructors()) {
                 if (ctor.callsSuper()) {
-                    ctor.instrument(new ExprEditor() {
-                        public void edit(FieldAccess f) {
+                    ctor.instrument(new ExprEditor()
+                    {
+                        @Override
+                        public void edit(FieldAccess f)
+                        {
                             if (f.getClassName().equals(AbstractCard.CardTarget.class.getName())) {
                                 targetType[0] = AbstractCard.CardTarget.valueOf(f.getFieldName());
                             }
-
                         }
                     });
                 }
             }
 
             useMethod.instrument(new ExprEditor() {
-                public void edit(NewExpr e) {
+                @Override
+                public void edit(NewExpr e)
+                {
                     try {
                         CtConstructor ctConstructor = e.getConstructor();
                         CtClass cls = ctConstructor.getDeclaringClass();
                         if (cls != null) {
                             CtClass parent = cls;
-
                             do {
                                 parent = parent.getSuperclass();
-                            } while(parent != null && !parent.getName().equals(AbstractPower.class.getName()));
-
+                            } while (parent != null && !parent.getName().equals(AbstractPower.class.getName()));
                             if (parent != null && parent.getName().equals(AbstractPower.class.getName())) {
-                                final int[] buffType = new int[]{0};
+                                // found a power
+                                final int[] buffType = {0};
                                 ExprEditor buffDebuffFinder = new ExprEditor() {
-                                    public void edit(FieldAccess f) {
+                                    @Override
+                                    public void edit(FieldAccess f)
+                                    {
                                         if (f.getClassName().equals(AbstractPower.PowerType.class.getName())) {
-                                            String var2 = f.getFieldName();
-                                            byte var3 = -1;
-                                            switch(var2.hashCode()) {
-                                                case 2050131:
-                                                    if (var2.equals("BUFF")) {
-                                                        var3 = 0;
-                                                    }
+                                            switch (f.getFieldName()) {
+                                                case "BUFF":
+                                                    buffType[0] |= 1;
                                                     break;
-                                                case 2012555348:
-                                                    if (var2.equals("DEBUFF")) {
-                                                        var3 = 1;
-                                                    }
-                                            }
-
-                                            int[] var10000;
-                                            switch(var3) {
-                                                case 0:
-                                                    var10000 = buffType;
-                                                    var10000[0] |= 1;
-                                                    break;
-                                                case 1:
-                                                    var10000 = buffType;
-                                                    var10000[0] |= 2;
+                                                case "DEBUFF":
+                                                    buffType[0] |= 2;
                                                     break;
                                                 default:
                                                     System.out.println("idk what we found ??");
+                                                    break;
                                             }
                                         }
-
                                     }
                                 };
                                 ctConstructor.instrument(buffDebuffFinder);
+                                // Because StrengthPower sets its BUFF/DEBUFF status in updateDescription
+                                // Others probably do too
                                 CtMethod updateDescription = cls.getDeclaredMethod("updateDescription");
                                 updateDescription.instrument(buffDebuffFinder);
+
                                 if (buffType[0] == 0) {
+                                    // powers default to being a buff
                                     buffType[0] = 1;
                                 }
-
                                 if ((buffType[0] & 1) == 1 && (buffType[0] & 2) == 2) {
-                                    switch(targetType[0]) {
+                                    // Both buff and debuff, guess at which based on CardTarget
+                                    switch (targetType[0]) {
                                         case SELF:
                                             buffType[0] = 1;
                                             break;
                                         case ENEMY:
                                         case ALL_ENEMY:
                                             buffType[0] = 2;
+                                            break;
                                     }
                                 }
-
-                                otherCardBuffDebuff.compute(card.cardID, (k, v) -> {
-                                    return (v == null ? 0 : v) | buffType[0];
-                                });
+                                otherCardBuffDebuff.compute(card.cardID, (k,v) -> (v == null ? 0 : v) | buffType[0]);
                             }
                         }
-                    } catch (CannotCompileException | NotFoundException var8) {
+                    } catch (NotFoundException | CannotCompileException ignored) {
                     }
-
                 }
             });
-        } catch (CannotCompileException | NotFoundException var10) {
-            var10.printStackTrace();
+        } catch (NotFoundException | CannotCompileException e) {
+            e.printStackTrace();
         }
-
         otherCardBuffDebuff.putIfAbsent(card.cardID, 0);
     }
 }

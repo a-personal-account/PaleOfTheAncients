@@ -297,7 +297,7 @@ public class TheShowmanBoss extends CustomMonster {
         for(final AbstractCard card : this.hand.group) {
             card.update();
         }
-        for(int i = 0; i < this.hand.size(); i++) {
+        for(int i = 0; i < this.hand.size() && i < this.cards.size(); i++) {
             if(!((AbstractShowmanCard) this.hand.group.get(i)).hb.hovered) {
                 this.cards.get(i).update();
             }

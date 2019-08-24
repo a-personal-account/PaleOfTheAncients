@@ -1,5 +1,6 @@
 package paleoftheancients.finarubossu.powers;
 
+import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +26,6 @@ public abstract class AbstractGazePower extends NRPower {
     public static final String IMG = "neoweye.png";
 
     protected int onCardNumber;
-    protected int cardsPlayed;
 
     protected Color color;
     protected int demonform;
@@ -37,6 +37,7 @@ public abstract class AbstractGazePower extends NRPower {
         this.owner = owner;
         this.priority = onCardNumber - 5;
         this.onCardNumber = onCardNumber;
+        this.amount = 0;
 
         this.demonform = AbstractDungeon.ascensionLevel >= 19 ? 3 : 2;
     }
@@ -44,12 +45,12 @@ public abstract class AbstractGazePower extends NRPower {
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(!card.purgeOnUse) {
-            if (this.cardsPlayed < this.onCardNumber) {
-                this.amount++;
-            }
-            if (++this.cardsPlayed == this.onCardNumber) {
-                this.flashWithoutSound();
-                this.trigger(card);
+            BaseMod.logger.error(this.name + ": " + this.amount + " / " + this.onCardNumber);
+            if(this.amount < this.onCardNumber) {
+                if (++this.amount == this.onCardNumber) {
+                    this.flashWithoutSound();
+                    this.trigger(card);
+                }
             }
         }
     }
@@ -59,7 +60,6 @@ public abstract class AbstractGazePower extends NRPower {
     @Override
     public void atEndOfRound() {
         this.amount = 0;
-        this.cardsPlayed = 0;
         AbstractDungeon.actionManager.addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
     }
 

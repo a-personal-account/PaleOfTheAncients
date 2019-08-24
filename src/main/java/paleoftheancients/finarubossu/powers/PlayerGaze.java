@@ -97,8 +97,6 @@ public class PlayerGaze extends NRPower {
         if(!card.purgeOnUse) {
             if(markofthebloom == null) {
                 this.amount++;
-            } else {
-                markofthebloom.flash();
             }
             this.flashWithoutSound();
             this.updateDescription();

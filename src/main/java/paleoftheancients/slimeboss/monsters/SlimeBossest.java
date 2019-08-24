@@ -101,9 +101,11 @@ public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
             if(((WeirdSlimeThing)mo).getSuicided()) {
                 ((WeirdSlimeThing)mo).resetSuicided();
                 InvinciblePower ip = (InvinciblePower) mo.getPower(InvinciblePower.POWER_ID);
-                ip.amount = 0;
-                ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", 0);
-                mo.hb.height = 0;
+                if(ip != null) {
+                    ip.amount = 0;
+                    ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", 0);
+                    mo.hb.height = 0;
+                }
             }
             return false;
         } else {

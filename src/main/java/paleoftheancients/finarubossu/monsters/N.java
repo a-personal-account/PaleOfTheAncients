@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.MarkOfTheBloom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
@@ -41,7 +40,6 @@ import paleoftheancients.finarubossu.vfx.BackgroundMonster;
 import paleoftheancients.thevixen.cards.status.BossBurn;
 import paleoftheancients.thevixen.helpers.RandomPoint;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,9 +62,6 @@ public class N extends AbstractMonster {
     private static final int TOTALEYES = 3;
     private int openEyes = 0;
     private int turncounter = 1;
-
-    private ArrayList<AbstractRelic> relics;
-    private ArrayList<Integer> relicslots;
 
     private static final byte AWAKEN = Byte.MAX_VALUE;
     private static final byte ALLDEBUFFS = 1;
@@ -154,7 +149,7 @@ public class N extends AbstractMonster {
         AbstractPower[] p = new AbstractPower[]{
                 new GazeOne(null),
                 new GazeTwo(null),
-                new GazeThree(null, relics = new ArrayList<>(), relicslots = new ArrayList<>())
+                new GazeThree(null)
         };
         for(int i = 0; i < this.eyemonsters.length; i++) {
             this.eyemonsters[i].powers.add(p[i]);
@@ -297,9 +292,6 @@ public class N extends AbstractMonster {
 
     @Override
     public void die() {
-        for(int i = 0; i < relics.size(); i++) {
-            AbstractDungeon.player.relics.add(relicslots.get(i), relics.get(i));
-        }
         CardCrawlGame.stopClock = true;
         this.onBossVictoryLogic();
         this.onFinalBossVictoryLogic();

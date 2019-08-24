@@ -20,12 +20,14 @@ public class Numbers {
     }
 
     public static void dispose() {
-        for(final Texture n : nums) {
-            if(n != null) {
-                n.dispose();
+        if(nums != null) {
+            for (final Texture n : nums) {
+                if (n != null) {
+                    n.dispose();
+                }
             }
+            nums = null;
         }
-        nums = null;
     }
 
     public static Texture[] getWholeNumber(int n) {

@@ -40,12 +40,6 @@ public class GazeTwo extends AbstractGazePower {
             if(tmpcard != null) {
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(tmpcard, 1));
             }
-
-            GazeThree gt = (GazeThree) this.owner.getPower(GazeThree.POWER_ID);
-            if(gt != null) {
-                gt.amount++;
-                gt.cardsPlayed++;
-            }
         }
         card.purgeOnUse = true;
     }
