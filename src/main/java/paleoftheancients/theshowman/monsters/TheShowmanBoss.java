@@ -1,5 +1,6 @@
 package paleoftheancients.theshowman.monsters;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,6 +32,8 @@ import paleoftheancients.theshowman.actions.DiscardShowmanCardAction;
 import paleoftheancients.theshowman.actions.DiscardShowmanHandAction;
 import paleoftheancients.theshowman.actions.ExhaustShowmanCardAction;
 import paleoftheancients.theshowman.bosscards.*;
+import paleoftheancients.theshowman.helpers.Cards;
+import paleoftheancients.theshowman.helpers.Numbers;
 import paleoftheancients.theshowman.helpers.ShowmanAnimation;
 import paleoftheancients.theshowman.misc.DummyOrb;
 import paleoftheancients.theshowman.misc.MonsterSoulGroup;
@@ -81,7 +84,7 @@ public class TheShowmanBoss extends CustomMonster {
     private int turncounter;
 
     public TheShowmanBoss() {
-        super(NAME, ID, 600, 0.0F, -15.0F, 300.0F, 300.0F, PaleMod.assetPath("images/misc/emptypixel.png"), 0.0F, 0.0F);
+        super(NAME, ID, 700, 0.0F, -15.0F, 300.0F, 300.0F, PaleMod.assetPath("images/misc/emptypixel.png"), 0.0F, 0.0F);
 
         this.animation = new ShowmanAnimation(PaleMod.assetPath("images/TheShowman/character/Spriter.scml"));
 
@@ -135,7 +138,7 @@ public class TheShowmanBoss extends CustomMonster {
     }
     public void resetOrbPositions(int count) {
         for(int i = 0; i < count; i++) {
-            DummyMonster mo = new DummyMonster(0, 0, 0, 100, emptypixel, this);
+            DummyMonster mo = new DummyMonster(0, 0, 0, 100, emptypixel);
             cards.add(mo);
             mo.setMove((byte)0, Intent.NONE, -1, -1, false);
         }
@@ -184,9 +187,8 @@ public class TheShowmanBoss extends CustomMonster {
             AbstractShowmanCard card = toUse.get(i);
             useAttackAnimation |= card.baseDamage > 0;
             card.use(residue, AbstractDungeon.player, this);
-            if (card.purgeOnUse) {
-                this.hand.removeCard(card);
-            } else if (--this.cardUse == 0 || card.exhaust) {
+            this.hand.removeCard(card);
+            if (--this.cardUse == 0 || card.exhaust) {
                 if (this.cardUse == 0) {
                     this.cardUse = EXHAUSTRELIC;
                 }
@@ -309,11 +311,14 @@ public class TheShowmanBoss extends CustomMonster {
 
     @Override
     public void applyPowers() {
-        for(final AbstractMonster mo : this.cards) {
+        for(int i = 0; i < this.hand.size(); i++) {
+            AbstractCard card = this.hand.group.get(i);
+            AbstractMonster mo = this.cards.get(i);
             mo.applyPowers();
-        }
-        for(final AbstractCard card : this.hand.group) {
             card.applyPowers();
+            if(card.damage != mo.getIntentDmg()) {
+                ReflectionHacks.setPrivate(mo, AbstractMonster.class, "intentDmg", card.damage);
+            }
         }
         super.applyPowers();
     }
@@ -357,6 +362,12 @@ public class TheShowmanBoss extends CustomMonster {
             card.render(sb);
             i++;
         }
+    }
+
+    @Override
+    public void dispose() {
+        Cards.dispose();
+        Numbers.dispose();
     }
 
     private ArrayList<AbstractShowmanCard> bestOne() {

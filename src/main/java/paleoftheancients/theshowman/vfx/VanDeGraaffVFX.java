@@ -49,7 +49,7 @@ public class VanDeGraaffVFX extends AbstractGameEffect {
         this.x = MathUtils.lerp(this.x, this.targetX, Gdx.graphics.getDeltaTime() * 5.0F);
         this.y = MathUtils.lerp(this.y, this.targetY, Gdx.graphics.getDeltaTime() * 5.0F);
         if (this.duration <= 0.0F) {
-            AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningJumpVFX(this.targetX, this.targetY, this.targetMonster.hb.cX, this.targetMonster.hb.cY, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.0F));
+            AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningJumpVFX(this.targetX, this.targetY, this.targetMonster.hb.cX, this.targetMonster.hb.cY, true), 0.0F));
             this.isDone = true;
         }
 

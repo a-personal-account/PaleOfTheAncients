@@ -96,7 +96,13 @@ public abstract class AbstractShowmanCard extends CustomCard {
         DamageInfo info = new DamageInfo(this.owner, this.baseDamage, this.damageTypeForTurn);
         info.applyPowers(this.owner, AbstractDungeon.player);
         this.damage = info.output;
+        if(this.baseDamage != this.damage) {
+            this.isDamageModified = true;
+        }
         this.block = this.baseBlock;
+        if(this.baseBlock != this.block) {
+            this.isBlockModified = true;
+        }
         this.exhaustPriority = (this.damage + this.block) / 2;
         if(this.multiplier > 1) {
             this.exhaustPriority *= this.multiplier;

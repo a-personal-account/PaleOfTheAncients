@@ -12,23 +12,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.helpers.Cards;
 
-public class TossCardEffect extends AbstractGameEffect {
-    public static final String[] IMG = new String[] {
-            PaleMod.assetPath("images/TheShowman/vfx/cards/card_back_mk2.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/card_face_clubs.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/card_face_diamonds.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/club_3.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/club_7.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/diamond_4.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/diamond_8.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/heart_2.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/heart_6.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/heart_ace.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/spade_5.png"),
-            PaleMod.assetPath("images/TheShowman/vfx/cards/spade_9.png")
-    };
+public class TossCardVFX extends AbstractGameEffect {
 
     private Texture[] cards;
 
@@ -42,26 +28,17 @@ public class TossCardEffect extends AbstractGameEffect {
     private float progress;
     private int damage;
 
-    private void chooseImage(int img) {
-        this.img = new TextureRegion(cards[img]);
-    }
-
-    public TossCardEffect(float x, float y, AbstractCreature m, int damage, int specifyImg) {
-        this.cards = new Texture[IMG.length];
-        for(int i = 0; i < this.cards.length; i++) {
-            this.cards[i] = new Texture(IMG[i]);
-        }
-
+    public TossCardVFX(float x, float y, AbstractCreature m, int damage, int specifyImg) {
         this.img = null;
         if (this.img == null) {
             if (specifyImg == -1) {
                 if (MathUtils.randomBoolean()) {
-                    this.chooseImage(MathUtils.random(1, this.cards.length));
+                    this.img = new TextureRegion(Cards.getCard(MathUtils.random(1, Cards.size() - 1)));
                 } else {
-                    this.img = new TextureRegion(this.cards[0]);
+                    this.img = new TextureRegion(Cards.getCard(0));
                 }
             } else {
-                this.chooseImage(specifyImg);
+                this.img = new TextureRegion(Cards.getCard(specifyImg));
             }
         }
 
@@ -76,7 +53,7 @@ public class TossCardEffect extends AbstractGameEffect {
         this.scale = 1.2F * Settings.scale;
     }
 
-    public TossCardEffect(float x, float y, AbstractCreature m, int damage) {
+    public TossCardVFX(float x, float y, AbstractCreature m, int damage) {
         this(x, y, m, damage, -1);
 
         this.scale = 0.3F * Settings.scale;

@@ -1,6 +1,5 @@
 package paleoftheancients.screens;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,7 +11,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.cutscenes.NeowEye;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -24,7 +22,6 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.ui.SpeechWord;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 
 import java.util.ArrayList;
@@ -37,9 +34,9 @@ public abstract class PaleVictoryScreen {
     private Color bgColor;
     private Color eyeColor;
     protected CustomEye[] eyes;
-    private int currentDialog = 0;
+    protected int currentDialog = 0;
     private int clickCount = 0;
-    private static final CharacterStrings charStrings;
+    protected static final CharacterStrings charStrings;
     private static float curLineWidth;
     private static int curLine;
     private static Scanner s;
@@ -67,6 +64,9 @@ public abstract class PaleVictoryScreen {
         this.fadeOutTimer = 3.0F;
 
         this.attacks = AbstractDungeon.player.getSpireHeartSlashEffect();
+        if(this.attacks.length == 0) {
+            this.attacks = new AbstractGameAction.AttackEffect[] {AbstractGameAction.AttackEffect.SLASH_HEAVY};
+        }
     }
 
     public void open() {
@@ -146,20 +146,9 @@ public abstract class PaleVictoryScreen {
                 return;
             }
 
+            ;
 
-            watDo();
-            for(int i = 0; i < 3; i++) {
-                int index;
-                do {
-                    index = MathUtils.random(this.eyes.length - 1);
-                } while (this.eyes[index].stopped);
-                float x = (float) ReflectionHacks.getPrivate(eyes[index], NeowEye.class, index % 2 == 1 ? "leftX" : "rightX");
-                float y = (float) ReflectionHacks.getPrivate(eyes[index], NeowEye.class, "y");
-                AbstractDungeon.topLevelEffects.add(new FlashAtkImgEffect(x + 128F * Settings.scale, y + 128F * Settings.scale, attacks[MathUtils.random(attacks.length - 1)]));
-                this.eyes[index].stop();
-            }
-
-            s = new Scanner(charStrings.TEXT[this.currentDialog]);
+            s = new Scanner(this.watDo());
             this.textDone = false;
             if (this.clickCount > 4) {
                 this.wordTimer = 0.1F;
@@ -174,7 +163,7 @@ public abstract class PaleVictoryScreen {
 
     }
 
-    protected abstract void watDo();
+    protected abstract String watDo();
 
     protected void playSfx() {
         int roll = MathUtils.random(3);

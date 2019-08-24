@@ -1,8 +1,10 @@
 package paleoftheancients.theshowman.misc;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class DummyCard extends CustomCard {
@@ -26,6 +28,11 @@ public class DummyCard extends CustomCard {
         this.isCostModifiedForTurn = toCopy.isCostModifiedForTurn;
         this.misc = toCopy.misc;
         this.freeToPlayOnce = toCopy.freeToPlayOnce;
+
+        this.current_x = Settings.WIDTH / 2 + MathUtils.random(-0.3F, 0.3F) * Settings.WIDTH;
+        this.current_y = Settings.HEIGHT / 2;
+        this.target_x = this.current_x;
+        this.target_y = this.current_y;
 
         this.applyPowers();
     }

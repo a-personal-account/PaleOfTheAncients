@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.theshowman.vfx.GrossDisplayVFX;
-import paleoftheancients.theshowman.vfx.TossCardEffect;
+import paleoftheancients.theshowman.vfx.TossCardVFX;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class GrossDisplay extends AbstractShowmanCard {
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new GrossDisplayVFX(p, this.damage * this.magicNumber)));
         }
         for(int i = 0; i < this.magicNumber; ++i) {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new TossCardEffect(m.hb.cX, m.hb.cY, p, this.damage, -1), 0.1F));
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new TossCardVFX(m.hb.cX, m.hb.cY, p, this.damage, -1), 0.1F));
             AbstractDungeon.actionManager.addToBottom(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }
     }

@@ -305,7 +305,12 @@
   "paleoftheancients:PlayerGaze": {
     "NAME": "Eyes of the Ancient",
     "DESCRIPTIONS": [
-      "At the end of your turn, take #r"," damage. Each time you play a card, damage taken through this power increases by #b1"," and you gain 1 #rStrength","."
+      "At the end of your turn, take #r",
+      " damage. Whenever you play a card, damage taken through this power increases by #b1",
+      " and you gain #b1 #rStrength",
+      ".",
+      "The #bRevelations shield you from the Ancient's malefic eyes.",
+      " Whenever you play a card, gain #b1 #rStrength."
     ]
   }
 }

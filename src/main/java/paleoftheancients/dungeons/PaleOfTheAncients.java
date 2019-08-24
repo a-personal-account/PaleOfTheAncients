@@ -246,9 +246,15 @@ public class PaleOfTheAncients extends CustomDungeon {
 
     public static void playTempMusic(String key) {
         CardCrawlGame.music.silenceTempBgmInstantly();
-        CardCrawlGame.music.silenceBGMInstantly();
+        CardCrawlGame.music.silenceBGM();
         AbstractDungeon.scene.fadeOutAmbiance();
         CardCrawlGame.music.playTempBGM(key);
+    }
+    public static void playTempMusicInstantly(String key) {
+        CardCrawlGame.music.silenceTempBgmInstantly();
+        CardCrawlGame.music.silenceBGMInstantly();
+        AbstractDungeon.scene.fadeOutAmbiance();
+        CardCrawlGame.music.playTempBgmInstantly(key);
     }
     public static void resumeMainMusic() {
         CardCrawlGame.music.silenceTempBgmInstantly();

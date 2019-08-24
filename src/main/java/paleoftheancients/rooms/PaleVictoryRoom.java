@@ -1,22 +1,27 @@
 package paleoftheancients.rooms;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import paleoftheancients.PaleMod;
 import paleoftheancients.screens.DefaultPaleVictoryScreen;
 import paleoftheancients.screens.PaleVictoryScreen;
 import paleoftheancients.screens.ShowmanVictoryScreen;
-import theShowman.cards.Columbify;
+import paleoftheancients.theshowman.helpers.Cards;
+import paleoftheancients.theshowman.monsters.DummyMonster;
 
 public class PaleVictoryRoom extends AbstractRoom {
     private PaleVictoryScreen screen;
 
     public PaleVictoryRoom() {
         this.phase = RoomPhase.INCOMPLETE;
-        if(Loader.isModLoaded("theShowman") && AbstractDungeon.player.masterDeck.findCardById(Columbify.ID) != null) {
+        if(AbstractDungeon.player.masterDeck.findCardById("theShowman:Columbify") != null) {
+            Cards.preload();
             this.screen = new ShowmanVictoryScreen();
+            this.monsters = new MonsterGroup(new DummyMonster(0, 0, 0, 0, ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"))));
         } else {
             this.screen = new DefaultPaleVictoryScreen();
         }

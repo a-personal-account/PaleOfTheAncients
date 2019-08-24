@@ -23,7 +23,7 @@ public class ExplodeCardVFX extends AbstractGameEffect {
     private float targetX;
     private float targetY;
     private float alpha;
-    public static final String IMG = PaleMod.assetPath("images/TheShowman/vfx/card.png");
+    public static final String IMG = PaleMod.assetPath("images/TheShowman/vfx/cards/card.png");
     private TextureRegion img = null;
     private Texture texture;
     private float x;

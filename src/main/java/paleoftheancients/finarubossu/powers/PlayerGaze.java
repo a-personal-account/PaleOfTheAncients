@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.MarkOfTheBloom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.NRPower;
 import paleoftheancients.PaleMod;
@@ -32,6 +34,7 @@ public class PlayerGaze extends NRPower {
 
     private AbstractCreature source;
     private Color color;
+    private AbstractRelic markofthebloom;
 
     public PlayerGaze(AbstractCreature owner, AbstractCreature source) {
         super("neoweye.png");
@@ -45,31 +48,42 @@ public class PlayerGaze extends NRPower {
 
         this.color = Color.PURPLE.cpy();
 
+        markofthebloom = AbstractDungeon.player.getRelic(MarkOfTheBloom.ID);
+
         this.updateDescription();
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         this.flash();
-        for(int i = 0; i < 20; i++) {
-            if(MathUtils.randomBoolean()) {
-                AbstractDungeon.effectList.add(new DamageCurvy(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.PURPLE));
-            } else {
-                AbstractDungeon.effectList.add(new DamageLine(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.PURPLE, MathUtils.random((float)Math.PI * 2)));
+        if(this.amount > 0) {
+            for (int i = 0; i < 20; i++) {
+                if (MathUtils.randomBoolean()) {
+                    AbstractDungeon.effectList.add(new DamageCurvy(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.PURPLE));
+                } else {
+                    AbstractDungeon.effectList.add(new DamageLine(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.PURPLE, MathUtils.random((float) Math.PI * 2)));
+                }
             }
+            AbstractDungeon.actionManager.addToBottom(new DamageAction(this.owner, new DamageInfo(this.source, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
         }
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(this.owner, new DamageInfo(this.source, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE));
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        if(markofthebloom == null) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 
-        if(AbstractDungeon.ascensionLevel < 9) {
-            this.description += DESCRIPTIONS[2];
+            if (AbstractDungeon.ascensionLevel < 9) {
+                this.description += DESCRIPTIONS[2];
+            }
+
+            this.description += DESCRIPTIONS[3];
+        } else {
+            this.description = DESCRIPTIONS[4];
+            if (AbstractDungeon.ascensionLevel < 9) {
+                this.description += DESCRIPTIONS[5];
+            }
         }
-
-        this.description += DESCRIPTIONS[3];
     }
 
     @Override
@@ -81,7 +95,11 @@ public class PlayerGaze extends NRPower {
     @Override
     public void onPlayCard(AbstractCard card, AbstractMonster m) {
         if(!card.purgeOnUse) {
-            this.amount++;
+            if(markofthebloom == null) {
+                this.amount++;
+            } else {
+                markofthebloom.flash();
+            }
             this.flashWithoutSound();
             this.updateDescription();
             if (AbstractDungeon.ascensionLevel < 9) {

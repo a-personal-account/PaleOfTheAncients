@@ -65,7 +65,7 @@
     "DESCRIPTION": "Replay in a random order, ALL Class cards in your Exhaust pile. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Replay in a random order, ALL Class cards in your Exhaust pile."
   },
-  "theShowman:SleeveAces": {
+  "paleoftheancients:SleeveAces": {
     "NAME": "Sleeve Aces",
     "DESCRIPTION": "Add a copy of a non-Status, non-Curse card from your Exhaust pile to your discard pile and draw pile. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Add !M! copies of a non-Status, non-Curse card from your Exhaust pile to your discard pile and draw pile. NL Exhaust."

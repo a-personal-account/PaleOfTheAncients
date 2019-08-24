@@ -26,7 +26,7 @@ public class DapperFlourish extends AbstractShowmanCard {
 
     public DapperFlourish(TheShowmanBoss owner) {
         super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.ATTACK);
-        this.baseDamage = 30;
+        this.baseDamage = 25;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaustTrigger = true;
     }

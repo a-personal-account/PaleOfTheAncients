@@ -10,14 +10,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.unique.RemoveAllPowersAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -137,7 +134,7 @@ public class N extends AbstractMonster {
 
     @Override
     public void usePreBattleAction() {
-        PaleOfTheAncients.playTempMusic(PaleMod.makeID("undyne"));
+        PaleOfTheAncients.playTempMusicInstantly(PaleMod.makeID("undyne"));
 
         this.emptypixel = ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
 

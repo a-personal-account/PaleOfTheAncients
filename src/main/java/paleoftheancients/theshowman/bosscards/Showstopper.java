@@ -1,8 +1,5 @@
 package paleoftheancients.theshowman.bosscards;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.misc.DummyCard;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,8 +7,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.misc.DummyCard;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Showstopper extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("Showstopper");
@@ -41,6 +42,16 @@ public class Showstopper extends AbstractShowmanCard {
         }
     }
 
+    public int getPriority(ArrayList<AbstractCard> availableExhaustCards, int availableEnergy, int byrdHits) {
+        int priority = 0;
+        for(final AbstractCard card : this.getPlayableCards()) {
+            if(card.costForTurn > -2) {
+                priority += ((AbstractShowmanCard)card).getPriority(availableExhaustCards, availableEnergy, byrdHits);
+            }
+        }
+        return priority;
+    }
+
     @Override
     public void applyPowers() {
         this.damage = 0;
@@ -58,6 +69,7 @@ public class Showstopper extends AbstractShowmanCard {
                 cards.add((AbstractShowmanCard) card);
             }
         }
+        Collections.shuffle(cards, AbstractDungeon.monsterRng.random);
         return cards;
     }
 

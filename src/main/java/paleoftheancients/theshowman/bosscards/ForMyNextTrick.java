@@ -37,8 +37,11 @@ public class ForMyNextTrick extends AbstractShowmanExhaustingCard {
 
     @Override
     public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
+        this.toExhaust = null;
         this.highestExhaustPriority(availableExhaustCards);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, m, new ForMyNextTrickPower(this.owner, this.toExhaust, this.magicNumber)));
+        if(this.toExhaust != null) {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, m, new ForMyNextTrickPower(this.owner, this.toExhaust, this.magicNumber)));
+        }
     }
 
     @Override

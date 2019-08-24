@@ -3,20 +3,20 @@ package paleoftheancients.theshowman.bosscards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.misc.ShowmanDazed;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.misc.ShowmanDazed;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.theshowman.vfx.VanDeGraaffVFX;
 
 import java.util.ArrayList;
@@ -45,10 +45,10 @@ public class VanDeGraaffsRevenge extends AbstractShowmanCard {
     @Override
     public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
         for(int i = 1; i <= 5; ++i) {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new VanDeGraaffVFX(m.hb.cX, m.hb.cY, m.hb.cX + (float)i * 200.0F - 400.0F, m.hb.cY + 300.0F, (float)(1.0D + (double)i * -0.1D), p)));
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new VanDeGraaffVFX(m.hb.cX, m.hb.cY, m.hb.cX - i * 200.0F + 400.0F, m.hb.cY + 300.0F, (float)(1.0D + (double)i * -0.1D), p)));
         }
 
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
         for(int i = 0; i < this.magicNumber; i++) {
             this.owner.soulGroup.shuffleNewlyCreatedCard(new ShowmanDazed(this.owner));

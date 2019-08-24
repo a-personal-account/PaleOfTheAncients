@@ -1,5 +1,6 @@
 package paleoftheancients.theshowman.bosscards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
@@ -15,7 +16,7 @@ import paleoftheancients.theshowman.vfx.WillingVolunteerVFX;
 
 import java.util.ArrayList;
 
-public class WillingVolunteer extends AbstractShowmanCard {
+public class WillingVolunteer extends AbstractShowmanCard implements NonStackablePower {
     public static final String ID = PaleMod.makeID("WillingVolunteer");
     public static final String NAME;
     public static final String DESCRIPTION;

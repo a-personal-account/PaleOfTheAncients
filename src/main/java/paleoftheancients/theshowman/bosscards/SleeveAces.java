@@ -34,9 +34,13 @@ public class SleeveAces extends AbstractShowmanCard {
 
     @Override
     public void use(ArrayList<AbstractCard> availableExhaustCards, AbstractPlayer p, AbstractMonster m) {
-        for(int i = 0; i < this.magicNumber; i++) {
-            this.owner.soulGroup.shuffleNewlyCreatedCard(toCopy.makeStatEquivalentCopy());
-            this.owner.soulGroup.discard(toCopy.makeStatEquivalentCopy());
+        this.toCopy = null;
+        this.getPriority(availableExhaustCards, this.owner.baseenergy, 0);
+        if(toCopy != null) {
+            for (int i = 0; i < this.magicNumber; i++) {
+                this.owner.soulGroup.shuffleNewlyCreatedCard(toCopy.makeStatEquivalentCopy());
+                this.owner.soulGroup.discard(toCopy.makeStatEquivalentCopy());
+            }
         }
     }
 

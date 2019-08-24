@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 public class DefaultPaleVictoryScreen extends PaleVictoryScreen {
     @Override
-    protected void watDo() {
+    protected String watDo() {
         for(int i = 0; i < 3; i++) {
             int index;
             do {
@@ -20,5 +20,6 @@ public class DefaultPaleVictoryScreen extends PaleVictoryScreen {
             AbstractDungeon.topLevelEffects.add(new FlashAtkImgEffect(x + 128F * Settings.scale, y + 128F * Settings.scale, attacks[MathUtils.random(attacks.length - 1)]));
             this.eyes[index].stop();
         }
+        return charStrings.TEXT[this.currentDialog];
     }
 }
