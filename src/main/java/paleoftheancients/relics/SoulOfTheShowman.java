@@ -1,7 +1,6 @@
 package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.Settings;
@@ -11,14 +10,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 
-public class SoulOfTheDefect extends CustomRelic {
-    public static final String ID = PaleMod.makeID("SoulOfTheDefect");
+public class SoulOfTheShowman extends CustomRelic {
+    public static final String ID = PaleMod.makeID("SoulOfTheShowman");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    public SoulOfTheDefect() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/defect.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/defect.png")), TIER, SOUND);
+    public SoulOfTheShowman() {
+        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/showman.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/showman.png")), TIER, SOUND);
     }
 
     @Override
@@ -28,45 +27,36 @@ public class SoulOfTheDefect extends CustomRelic {
 
     @Override
     public AbstractRelic makeCopy() {
-        return new SoulOfTheDefect();
+        return new SoulOfTheShowman();
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if(card.type == AbstractCard.CardType.POWER && this.counter > 0) {
-            this.counter--;
-            AbstractMonster m = null;
-            if (action.target != null) {
-                m = (AbstractMonster)action.target;
-            }
+    @Override
+    public void onExhaust(AbstractCard card) {
+        switch(card.type) {
+            case CURSE:
+            case STATUS:
+                break;
 
-            for(int i = 0; i < 2; i++) {
-
+            default:
+                this.flash();
                 AbstractCard tmp = card.makeSameInstanceOf();
-                tmp.dontTriggerOnUseCard = true;
                 AbstractDungeon.player.limbo.addToBottom(tmp);
                 tmp.current_x = card.current_x;
                 tmp.current_y = card.current_y;
                 tmp.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-                tmp.target_y = (float) Settings.HEIGHT / 2.0F;
+                tmp.target_y = (float)Settings.HEIGHT / 2.0F;
                 if (tmp.cost > 0) {
                     tmp.freeToPlayOnce = true;
                 }
 
+                AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
                 if (m != null) {
                     tmp.calculateCardDamage(m);
                 }
 
                 tmp.purgeOnUse = true;
                 AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(tmp, m, card.energyOnUse, true));
-            }
+                break;
         }
-    }
-
-    public void atBattleStart() {
-        this.counter = 2;
-    }
-
-    public void onVictory() {
-        this.counter = -1;
     }
 }

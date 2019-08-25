@@ -22,7 +22,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
     private static final LandingSound SOUND = LandingSound.CLINK;
 
     public Timepiece() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/timepiece.png")), TIER, SOUND);
+        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/timepiece.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/timepiece.png")), TIER, SOUND);
         this.setCounter(-1);
     }
 

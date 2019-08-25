@@ -2,9 +2,9 @@
   "modid": "paleoftheancients",
   "name": "Pale of the Ancients",
   "author_list": ["Razash"],
-  "credits": "Kiooeht - the Bard, GK - the Ironcluck, ComingVirus, DontStealMyKidneys, Left Click - The Showman, Vex - occassionally having good ideas",
+  "credits": "Kiooeht - the Bard, GK - the Ironcluck, ComingVirus, DontStealMyKidneys, Left Click - The Showman, Vex - occassionally having good ideas. The Modding discord - Finding all the broken things.",
   "description": "I made an act. It probably sucks.",
-  "version": "0.1",
+  "version": "0.2",
   "sts_version": "07-17-2019",
   "mts_version": "3.8.3",
   "dependencies": ["basemod", "stslib"]

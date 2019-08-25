@@ -28,5 +28,12 @@
     "DESCRIPTIONS": [
       "The first 2 #bpowers each combat are played 3 times."
     ]
+  },
+  "paleoftheancients:SoulOfTheShowman": {
+    "NAME": "Essence of Showmanship",
+    "FLAVOR": "If you look real closely, there actually is something up my sleeve.",
+    "DESCRIPTIONS": [
+      "Whenever you #rExhaust a card, play a #bcopy of it."
+    ]
   }
 }

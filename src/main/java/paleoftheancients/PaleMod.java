@@ -40,6 +40,7 @@ import paleoftheancients.guardian.monsters.Guardianest;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.relics.SoulOfTheDefect;
+import paleoftheancients.relics.SoulOfTheShowman;
 import paleoftheancients.relics.SoulOfTheVixen;
 import paleoftheancients.relics.Timepiece;
 import paleoftheancients.savefields.BreadCrumbs;
@@ -173,6 +174,7 @@ public class PaleMod implements
         BaseMod.addRelic(new Timepiece(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheVixen(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheDefect(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheShowman(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()
