@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -92,7 +91,6 @@ public class PaleMod implements
         BaseMod.registerModBadge(
                 badgeTexture, "Pale of the Ancients", "Razash",
                 "It's an act 4. It probably sucks.", modPanel);
-
 
         int before = AbstractDungeon.floorNum;
         AbstractDungeon.floorNum = 5;

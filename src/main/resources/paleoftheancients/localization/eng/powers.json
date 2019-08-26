@@ -58,7 +58,7 @@
       "The next card with a Sunny effect you play is enhanced.",
       "The next #b",
       " cards with a Sunny effect you play are enhanced.",
-      "Some attacks will consume a stack of this and have additional effects. NL (Intent damage is accurate)"
+      "Some attacks will consume a stack of this and have #radditional #reffects. NL At the end of its turn, gains #rStrength equal to the amount of its #rSunny #rDay for #b1 turn."
     ]
   },
   "paleoftheancients:SynergyBurstPower": {
@@ -70,7 +70,7 @@
   "paleoftheancients:BlazePower": {
     "NAME": "Blaze",
     "DESCRIPTIONS": [
-      "If you are at or below #y50% Health #b(","), whenever a cycle completes, apply #b",
+      "If you are at or below #y50% Health #b(","), whenever a 4-turn cycle completes, apply #b",
       " upgrades split between all #rBurn cards.",
       "Blaze active",
       "Blaze inactive"
@@ -101,7 +101,7 @@
     "NAME": "Endure",
     "DESCRIPTIONS": [
       "You cannot be reduced below 1 HP",
-      ". When at 1 HP, lose this power, #b",
+      ". When at 1 HP, lose this power, regain #b",
       " HP for each stack of Sunny Day and prepare for the final attack..."
     ]
   },
@@ -154,12 +154,6 @@
     "NAME": "",
     "DESCRIPTIONS": [
       "Amount of attacks next round increases with the number of common debuffs on the boss."
-    ]
-  },
-  "paleoftheancients:EternalFlamePower": {
-    "NAME": "Eternal Flame",
-    "DESCRIPTIONS": [
-      "Gains temporary Strength equal to the amount of its Sunny Day."
     ]
   },
 

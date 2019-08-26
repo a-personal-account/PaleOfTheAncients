@@ -1,7 +1,5 @@
 package paleoftheancients.savefields;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.events.GetForked;
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.EditStringsSubscriber;
@@ -11,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
+import paleoftheancients.PaleMod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,6 @@ public class BreadCrumbs implements CustomSavable<Map<Integer, String>>,
 
     @Override
     public void receivePostInitialize() {
-        BaseMod.addEvent(GetForked.ID, GetForked.class);
         BaseMod.addSaveField("ActLikeIt:breadCrumbs", bc);
 
         ElitesSlain.initialize(); //Doing this means I don't have to subscribe ElitesSlain to BaseMod.

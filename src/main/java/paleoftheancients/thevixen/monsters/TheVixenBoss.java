@@ -1,22 +1,5 @@
 package paleoftheancients.thevixen.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.PaleOfTheAncients;
-import paleoftheancients.relics.SoulOfTheVixen;
-import paleoftheancients.thevixen.TheVixenMod;
-import paleoftheancients.thevixen.actions.PsycrackerAction;
-import paleoftheancients.thevixen.actions.ReduceDebuffDurationAction;
-import paleoftheancients.thevixen.cards.AbstractVixenCard;
-import paleoftheancients.thevixen.cards.attack.*;
-import paleoftheancients.thevixen.cards.status.BossBurn;
-import paleoftheancients.thevixen.enums.VixenIntentEnum;
-import paleoftheancients.thevixen.helpers.BraixenAnimation;
-import paleoftheancients.thevixen.powers.ConfusionPower;
-import paleoftheancients.thevixen.powers.*;
-import paleoftheancients.thevixen.vfx.FireSpinEffect;
-import paleoftheancients.thevixen.vfx.RefreshEffect;
-import paleoftheancients.thevixen.vfx.SwaggerEffect;
-import paleoftheancients.thevixen.vfx.TrickRoomEffect;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
@@ -43,6 +26,23 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.relics.SoulOfTheVixen;
+import paleoftheancients.thevixen.TheVixenMod;
+import paleoftheancients.thevixen.actions.PsycrackerAction;
+import paleoftheancients.thevixen.actions.ReduceDebuffDurationAction;
+import paleoftheancients.thevixen.cards.AbstractVixenCard;
+import paleoftheancients.thevixen.cards.attack.*;
+import paleoftheancients.thevixen.cards.status.BossBurn;
+import paleoftheancients.thevixen.enums.VixenIntentEnum;
+import paleoftheancients.thevixen.helpers.BraixenAnimation;
+import paleoftheancients.thevixen.powers.ConfusionPower;
+import paleoftheancients.thevixen.powers.*;
+import paleoftheancients.thevixen.vfx.FireSpinEffect;
+import paleoftheancients.thevixen.vfx.RefreshEffect;
+import paleoftheancients.thevixen.vfx.SwaggerEffect;
+import paleoftheancients.thevixen.vfx.TrickRoomEffect;
 import thevixen.actions.ApplyTempGainStrengthPowerAction;
 import thevixen.actions.AttackAnimationAction;
 import thevixen.vfx.ShinyEffect;
@@ -368,7 +368,6 @@ public class TheVixenBoss extends CustomMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SunnyDayPower(this, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DefiantPower(this, defiant), defiant));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GutsPower(this, 5), 5));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EternalFlamePower(this)));
 
         AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheVixen.ID).makeCopy()));
     }
