@@ -41,6 +41,13 @@ public abstract class Eye extends AbstractMonster {
         this.drawX = offsetX;
         this.drawY = offsetY;
         this.img = t;
+
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            this.setHp(this.maxHealth * 3 / 2);
+        }
+        if(AbstractDungeon.ascensionLevel >= 4) {
+            this.setHp(this.maxHealth * 3 / 2);
+        }
     }
 
 

@@ -75,7 +75,7 @@ public class N extends AbstractMonster {
     private Eye[] eyemonsters;
 
     public N() {
-        super(NAME, ID, 800, 0, 30, (1920 - 1534) * 2 - 20, 800 - 230 + 20, null, 0, 0);
+        super(NAME, ID, 1000, 0, 30, (1920 - 1534) * 2 - 20, 800 - 230 + 20, null, 0, 0);
 
         this.drawX = 1534.0F * Settings.scale;
         this.drawY = 280.0F * Settings.scale;
