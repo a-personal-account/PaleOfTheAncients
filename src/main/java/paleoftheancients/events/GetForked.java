@@ -1,10 +1,5 @@
 package paleoftheancients.events;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.PaleOfTheAncients;
-import paleoftheancients.patches.ContinueOntoHeartPatch;
-import paleoftheancients.patches.GoToNextDungeonPatch;
-import paleoftheancients.relics.Timepiece;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
@@ -13,6 +8,13 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.MarkOfTheBloom;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.patches.GoToNextDungeonPatch;
+import paleoftheancients.relics.Timepiece;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class GetForked extends AbstractImageEvent {
     public static final String ID = PaleMod.makeID("ForkInTheRoad");
@@ -57,7 +59,13 @@ public class GetForked extends AbstractImageEvent {
                 break;
 
             case 1:
-                ContinueOntoHeartPatch.heartRoom(new ProceedButton());
+                try {
+                    Method yuckyPrivateMethod = ProceedButton.class.getDeclaredMethod("goToVictoryRoomOrTheDoor");
+                    yuckyPrivateMethod.setAccessible(true);
+                    yuckyPrivateMethod.invoke(new ProceedButton());
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }
