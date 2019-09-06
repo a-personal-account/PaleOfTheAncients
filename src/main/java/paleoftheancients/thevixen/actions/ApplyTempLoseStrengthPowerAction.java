@@ -1,4 +1,4 @@
-package thevixen.actions;
+package paleoftheancients.thevixen.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

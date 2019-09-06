@@ -30,6 +30,8 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.relics.SoulOfTheVixen;
 import paleoftheancients.thevixen.TheVixenMod;
+import paleoftheancients.thevixen.actions.ApplyTempGainStrengthPowerAction;
+import paleoftheancients.thevixen.actions.AttackAnimationAction;
 import paleoftheancients.thevixen.actions.PsycrackerAction;
 import paleoftheancients.thevixen.actions.ReduceDebuffDurationAction;
 import paleoftheancients.thevixen.cards.AbstractVixenCard;
@@ -43,8 +45,6 @@ import paleoftheancients.thevixen.vfx.FireSpinEffect;
 import paleoftheancients.thevixen.vfx.RefreshEffect;
 import paleoftheancients.thevixen.vfx.SwaggerEffect;
 import paleoftheancients.thevixen.vfx.TrickRoomEffect;
-import thevixen.actions.ApplyTempGainStrengthPowerAction;
-import thevixen.actions.AttackAnimationAction;
 import thevixen.vfx.ShinyEffect;
 
 import java.util.ArrayList;

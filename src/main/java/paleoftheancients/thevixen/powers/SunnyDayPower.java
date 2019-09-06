@@ -1,10 +1,11 @@
 package paleoftheancients.thevixen.powers;
 
-import paleoftheancients.PaleMod;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.actions.ApplyTempGainStrengthPowerAction;
 
 
 public class SunnyDayPower extends AbstractTheVixenPower {
@@ -46,8 +47,9 @@ public class SunnyDayPower extends AbstractTheVixenPower {
     }
 
     @Override
-    public void onVictory() {
-        totalAmount = 0;
+    public void atEndOfRound() {
+        this.flash();
+        AbstractDungeon.actionManager.addToBottom(new ApplyTempGainStrengthPowerAction(this.owner, this.owner, this.owner.getPower(SunnyDayPower.POWER_ID).amount));
     }
 
     static {

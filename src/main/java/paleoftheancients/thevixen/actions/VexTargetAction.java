@@ -1,4 +1,4 @@
-package thevixen.actions;
+package paleoftheancients.thevixen.actions;
 
 import basemod.BaseMod;
 import basemod.interfaces.PostUpdateSubscriber;

@@ -192,7 +192,8 @@ public class TheShowmanBoss extends CustomMonster {
             useAttackAnimation |= card.baseDamage > 0;
             card.use(residue, AbstractDungeon.player, this);
             this.hand.removeCard(card);
-            if (--this.cardUse == 0 || card.exhaust) {
+            if(card.purgeOnUse) {
+            } else if (--this.cardUse == 0 || card.exhaust) {
                 if (this.cardUse == 0) {
                     this.cardUse = EXHAUSTRELIC;
                 }

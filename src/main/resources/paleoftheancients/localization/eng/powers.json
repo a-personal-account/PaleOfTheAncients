@@ -58,7 +58,7 @@
       "The next card with a Sunny effect you play is enhanced.",
       "The next #b",
       " cards with a Sunny effect you play are enhanced.",
-      "Some attacks will consume a stack of this and have #radditional #reffects. NL At the end of its turn, gains #rStrength equal to the amount of its #rSunny #rDay for #b1 turn."
+      "Some attacks will consume a stack of this and have #radditional #reffects. NL At the end of their turn, they gain #rStrength equal to the amount of their #rSunny #rDay for #b1 turn."
     ]
   },
   "paleoftheancients:SynergyBurstPower": {
@@ -70,7 +70,7 @@
   "paleoftheancients:BlazePower": {
     "NAME": "Blaze",
     "DESCRIPTIONS": [
-      "If you are at or below #y50% Health #b(","), whenever a 4-turn cycle completes, apply #b",
+      "If you are at or below #y50% Health #b(","), after the moves #ySolar #yBeam, #rFire #rSpin or #bFacade are used, apply #b",
       " upgrades split between all #rBurn cards.",
       "Blaze active",
       "Blaze inactive"
@@ -86,8 +86,7 @@
   "paleoftheancients:GutsPower": {
     "NAME": "Guts",
     "DESCRIPTIONS": [
-      "Effects act as if you had one more common debuff with duration #b",
-      ". At the end of your turn, gain Block equal to the cumulative duration of your common debuffs."
+      "At the end of your turn, gain #bBlock equal to twice the cumulative duration of your #ydebuffs. NL This counts as a #ydebuff."
     ]
   },
   "TheVixenMod:FlameBodyPower": {
@@ -117,7 +116,7 @@
   "paleoftheancients:ConfusionPower": {
     "NAME": "Confuzzled",
     "DESCRIPTIONS": [
-      "Whenever this enemy deals damage, it takes damage equal to half the inflicted damage. NL Wears off at the end of its turn."
+      "Whenever this enemy deals damage, they take damage equal to half the inflicted damage. NL Wears off at the end of their turn."
     ]
   },
   "paleoftheancients:DazzlingPower": {

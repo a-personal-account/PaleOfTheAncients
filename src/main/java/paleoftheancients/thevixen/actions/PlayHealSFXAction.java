@@ -1,4 +1,4 @@
-package thevixen.actions;
+package paleoftheancients.thevixen.actions;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
