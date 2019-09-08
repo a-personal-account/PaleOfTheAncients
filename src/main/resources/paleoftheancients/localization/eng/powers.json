@@ -334,5 +334,12 @@
       "The #bRevelations shield you from the Ancient's malefic eyes.",
       " Whenever you play a card, gain #b1 #rStrength."
     ]
+  },
+  "paleoftheancients:MillenialFerocityPower": {
+    "NAME": "Millenial Ferocity",
+    "DESCRIPTIONS": [
+      "Every #b",
+      " damage taken, gain 1 #rStrength this turn."
+    ]
   }
 }

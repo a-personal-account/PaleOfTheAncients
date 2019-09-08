@@ -32,10 +32,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.bard.helpers.AssetLoader;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
-import paleoftheancients.finarubossu.powers.GazeOne;
-import paleoftheancients.finarubossu.powers.GazeThree;
-import paleoftheancients.finarubossu.powers.GazeTwo;
-import paleoftheancients.finarubossu.powers.PlayerGaze;
+import paleoftheancients.finarubossu.powers.*;
 import paleoftheancients.finarubossu.vfx.BackgroundMonster;
 import paleoftheancients.thevixen.cards.status.BossBurn;
 import paleoftheancients.thevixen.helpers.RandomPoint;
@@ -75,7 +72,7 @@ public class N extends AbstractMonster {
     private Eye[] eyemonsters;
 
     public N() {
-        super(NAME, ID, 1000, 0, 30, (1920 - 1534) * 2 - 20, 800 - 230 + 20, null, 0, 0);
+        super(NAME, ID, 1200, 0, 30, (1920 - 1534) * 2 - 20, 800 - 230 + 20, null, 0, 0);
 
         this.drawX = 1534.0F * Settings.scale;
         this.drawY = 280.0F * Settings.scale;
@@ -106,6 +103,7 @@ public class N extends AbstractMonster {
 
         this.hideHealthBar();
         this.halfDead = true;
+        this.setMove(Byte.MIN_VALUE, Intent.NONE);
     }
 
     @Override
@@ -189,6 +187,12 @@ public class N extends AbstractMonster {
                 }
                 AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(AbstractDungeon.player, this, new PlayerGaze(AbstractDungeon.player, this)));
                 AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[MathUtils.random(4, 6)]));
+                for(final AbstractGameEffect mo : AbstractDungeon.effectList) {
+                    if(mo instanceof BackgroundMonster) {
+                        ((BackgroundMonster) mo).accelerate();
+                    }
+                }
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MillenialFerocityPower(this)));
                 break;
 
             case ALLDEBUFFS: {
@@ -305,6 +309,7 @@ public class N extends AbstractMonster {
             this.atlas = null;
         }
         super.dispose();
+        BackgroundMonster.masterDispose();
     }
 
     public void awaken() {
@@ -344,8 +349,8 @@ public class N extends AbstractMonster {
 
         this.backgroundmonstertimer -= Gdx.graphics.getDeltaTime();
         if(this.backgroundmonstertimer <= 0F) {
-            this.backgroundmonstertimer = 2F;
-            AbstractDungeon.effectList.add(new BackgroundMonster());
+            this.backgroundmonstertimer = this.openEyes > 0 ? 0.4F : 2.5F;
+            AbstractDungeon.effectList.add(new BackgroundMonster(this.openEyes > 0));
         }
         this.eyetimer -= Gdx.graphics.getDeltaTime();
         if(this.eyetimer <= 0F) {

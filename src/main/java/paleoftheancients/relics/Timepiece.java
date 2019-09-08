@@ -69,7 +69,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
         int healAmt = (AbstractDungeon.player.maxHealth - AbstractDungeon.player.currentHealth + 1) / 2;
         if(healAmt > 0) {
             this.flash();
-            AbstractDungeon.player.heal(AbstractDungeon.player.maxHealth, true);
+            AbstractDungeon.player.heal(healAmt, true);
         }
     }
 

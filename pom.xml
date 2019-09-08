@@ -53,6 +53,20 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1744254855/Bard.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>vexMod</groupId>
+            <artifactId>vexMod</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/1678617599/vexMod.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>theShowman</groupId>
+            <artifactId>theShowman</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/1854380319/TheShowman.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
