@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import paleoftheancients.thesilent.powers.CorrosionPower;
 
 public class NotBouncingFlaskAction extends AbstractGameAction {
-    private static final float DURATION = 0.01F;
-    private static final float POST_ATTACK_WAIT_DUR = 0.1F;
     private int numTimes;
     private int amount;
 

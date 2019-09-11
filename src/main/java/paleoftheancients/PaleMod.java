@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 import paleoftheancients.RazIntent.CustomIntent;
 import paleoftheancients.bard.helpers.MelodyManager;
 import paleoftheancients.bard.intents.DervishDanceIntent;
+import paleoftheancients.bard.intents.FlourishIntent;
 import paleoftheancients.bard.monsters.BardBoss;
 import paleoftheancients.collector.monsters.SpireWaifu;
 import paleoftheancients.donudeca.monsters.Decaer;
@@ -146,6 +147,7 @@ public class PaleMod implements
         CustomIntent.add(new FireSpinIntent());
 
         CustomIntent.add(new DervishDanceIntent());
+        CustomIntent.add(new FlourishIntent());
     }
 
     @Override

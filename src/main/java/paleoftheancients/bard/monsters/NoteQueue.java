@@ -55,7 +55,9 @@ public class NoteQueue extends CustomMonster {
 
     @Override
     public void takeTurn() {
-        AbstractDungeon.actionManager.addToBottom(new SelectMelodyAction(this));
+        if(this.owner.nextMove != BardBoss.RHAPSODY) {
+            AbstractDungeon.actionManager.addToBottom(new SelectMelodyAction(this));
+        }
     }
 
     @Override

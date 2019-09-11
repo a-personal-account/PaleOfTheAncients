@@ -1,15 +1,6 @@
 package paleoftheancients.bard.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.bard.actions.QueueNoteAction;
-import paleoftheancients.bard.helpers.CardNoteAllocator;
-import paleoftheancients.bard.helpers.CardNoteRenderer;
-import paleoftheancients.bard.helpers.MelodyManager;
-import paleoftheancients.bard.intents.BardIntentEnum;
-import paleoftheancients.bard.melodies.AbstractMelody;
-import paleoftheancients.bard.notes.*;
-import paleoftheancients.bard.powers.*;
-import paleoftheancients.bard.vfx.LifeDrainEffect;
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.mod.bard.characters.Bard;
@@ -22,8 +13,20 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.bard.actions.QueueNoteAction;
+import paleoftheancients.bard.actions.RhapsodyAction;
+import paleoftheancients.bard.helpers.CardNoteAllocator;
+import paleoftheancients.bard.helpers.CardNoteRenderer;
+import paleoftheancients.bard.helpers.MelodyManager;
+import paleoftheancients.bard.intents.BardIntentEnum;
+import paleoftheancients.bard.melodies.AbstractMelody;
+import paleoftheancients.bard.notes.*;
+import paleoftheancients.bard.powers.*;
+import paleoftheancients.bard.vfx.LifeDrainEffect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -42,7 +45,7 @@ public class BardBoss extends CustomMonster {
 
     private Map<Byte, EnemyMoveInfo> moves;
     private static final byte SONATA = 0;
-    private static final byte RHAPSODY = 1;
+    public static final byte RHAPSODY = 1;
     private static final byte SILENCE = 2;
     private static final byte DERVISHDANCE = 3; //Deal N damage + M damage for each attacknote
     private static final byte FLOURISH = 4; //Choose a note to queue and deal damage
@@ -129,13 +132,13 @@ public class BardBoss extends CustomMonster {
                 break;
 
             case DERVISHDANCE:
-                int count = notequeue.count(AttackNote.class) + 1;
+                int count = (int) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentMultiAmt");
                 for (int i = 0; i < count; ++i) {
                     if (i == 0) {
                         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_WHIRLWIND"));
                     }
                     AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(AbstractDungeon.player, new CleaveEffect(), 0));
+                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new CleaveEffect(), 0));
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.NONE, true));
                 }
                 break;
@@ -172,6 +175,10 @@ public class BardBoss extends CustomMonster {
 
             case ENCORE:
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EncorePower(this, 1), 1));
+                break;
+
+            case RHAPSODY:
+                AbstractDungeon.actionManager.addToBottom(new RhapsodyAction(this, this.notequeue));
                 break;
         }
 

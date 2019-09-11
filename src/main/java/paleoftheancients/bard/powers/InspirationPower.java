@@ -1,6 +1,5 @@
 package paleoftheancients.bard.powers;
 
-import paleoftheancients.PaleMod;
 import basemod.interfaces.CloneablePowerInterface;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -10,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import paleoftheancients.PaleMod;
 
 import java.util.Iterator;
 
@@ -77,7 +77,7 @@ public class InspirationPower extends AbstractBardTwoAmountPower implements NonS
     }
 
     public boolean isStackable(AbstractPower power) {
-        return power instanceof com.evacipated.cardcrawl.mod.bard.powers.InspirationPower && this.amount2 == ((com.evacipated.cardcrawl.mod.bard.powers.InspirationPower)power).amount2;
+        return power instanceof InspirationPower && this.amount2 == ((InspirationPower)power).amount2;
     }
 
     public void stackPower(int stackAmount) {

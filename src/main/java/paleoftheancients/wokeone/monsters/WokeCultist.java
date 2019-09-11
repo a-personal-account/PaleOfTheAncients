@@ -117,7 +117,7 @@ public class WokeCultist extends Cultist {
         this.reborn = true;
         AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_AWAKENEDONE_1"));
         AbstractDungeon.actionManager.addToBottom(new VFXAction(this, new IntenseZoomEffect(this.hb.cX, this.hb.cY, true), 0.05F, true));
-        this.setHp(this.maxHealth * 4);
+        this.setHp(this.maxHealth * 2);
         AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
         AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, RitualPower.POWER_ID));
