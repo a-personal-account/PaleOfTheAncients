@@ -686,6 +686,7 @@ public class TheDefectBoss extends AbstractMonster {
         MOVES = new String[]{
                 Rainbow.NAME,
                 BallLightning.NAME,
+                Consume.NAME,
                 Darkness.NAME + '+',
                 ((CardStrings) ReflectionHacks.getPrivateStatic(LockOn.class, "cardStrings")).NAME,
                 Sunder.NAME,
@@ -697,7 +698,7 @@ public class TheDefectBoss extends AbstractMonster {
                 Barrage.NAME,
                 Fission.NAME + '+',
                 MeteorStrike.NAME,
-                Chaos.NAME,
+                Chaos.NAME
         };
         DIALOG = monsterStrings.DIALOG;
     }
