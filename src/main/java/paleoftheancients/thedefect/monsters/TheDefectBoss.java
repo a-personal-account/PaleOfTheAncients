@@ -1,13 +1,5 @@
 package paleoftheancients.thedefect.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.PaleOfTheAncients;
-import paleoftheancients.relics.SoulOfTheDefect;
-import paleoftheancients.thedefect.actions.*;
-import paleoftheancients.thedefect.monsters.orbs.*;
-import paleoftheancients.thedefect.powers.KineticBarrierPower;
-import paleoftheancients.thedefect.powers.NotEchoPower;
-import paleoftheancients.thedefect.powers.OrbReactivePower;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,6 +16,7 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.characters.Defect;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,12 +31,19 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.DataDisk;
 import com.megacrit.cardcrawl.relics.Inserter;
-import com.megacrit.cardcrawl.relics.SymbioticVirus;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.relics.SoulOfTheDefect;
+import paleoftheancients.thedefect.actions.*;
+import paleoftheancients.thedefect.monsters.orbs.*;
+import paleoftheancients.thedefect.powers.KineticBarrierPower;
+import paleoftheancients.thedefect.powers.NotEchoPower;
+import paleoftheancients.thedefect.powers.OrbReactivePower;
 import thedefect.vfx.RainbowCopyPaste;
 
 import java.util.ArrayList;
@@ -682,7 +682,7 @@ public class TheDefectBoss extends AbstractMonster {
 
     static {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-        NAME = monsterStrings.NAME;
+        NAME = Defect.NAMES[0];
         MOVES = new String[]{
                 Rainbow.NAME,
                 BallLightning.NAME,

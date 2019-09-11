@@ -309,6 +309,7 @@ public class N extends AbstractMonster {
             this.atlas = null;
         }
         super.dispose();
+        this.openEyes = -3;
         BackgroundMonster.masterDispose();
     }
 
@@ -347,10 +348,12 @@ public class N extends AbstractMonster {
             this.usePreBattleAction();
         }
 
-        this.backgroundmonstertimer -= Gdx.graphics.getDeltaTime();
-        if(this.backgroundmonstertimer <= 0F) {
-            this.backgroundmonstertimer = this.openEyes > 0 ? 0.4F : 2.5F;
-            AbstractDungeon.effectList.add(new BackgroundMonster(this.openEyes > 0));
+        if(openEyes >= 0) {
+            this.backgroundmonstertimer -= Gdx.graphics.getDeltaTime();
+            if (this.backgroundmonstertimer <= 0F) {
+                this.backgroundmonstertimer = this.openEyes > 0 ? 0.4F : 2.5F;
+                AbstractDungeon.effectList.add(new BackgroundMonster(this.openEyes > 0));
+            }
         }
         this.eyetimer -= Gdx.graphics.getDeltaTime();
         if(this.eyetimer <= 0F) {

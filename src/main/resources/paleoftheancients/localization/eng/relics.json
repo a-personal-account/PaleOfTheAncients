@@ -35,5 +35,13 @@
     "DESCRIPTIONS": [
       "Whenever you #rExhaust a card, play a #bcopy of it."
     ]
+  },
+  "paleoftheancients:SoulOfTheThorton": {
+    "NAME": "Businesscard of Thorton Johnson",
+    "FLAVOR": "What was that guy even doing here?",
+    "DESCRIPTIONS": [
+      "Identifies you as NL #y\"Thorton #yJohnson\".",
+      "the Thorton?"
+    ]
   }
 }

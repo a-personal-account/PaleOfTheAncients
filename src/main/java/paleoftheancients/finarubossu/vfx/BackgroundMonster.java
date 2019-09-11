@@ -165,6 +165,7 @@ public class BackgroundMonster extends AbstractGameEffect {
                 ((AbstractMonster) ac).dispose();
             }
         }
+        data.clear();
     }
 
 

@@ -20,9 +20,6 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
-import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_S;
-import com.megacrit.cardcrawl.monsters.exordium.ApologySlime;
-import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_S;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import paleoftheancients.RazIntent.CustomIntent;
@@ -38,17 +35,16 @@ import paleoftheancients.finarubossu.monsters.N;
 import paleoftheancients.guardian.monsters.Guardianest;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
-import paleoftheancients.relics.SoulOfTheDefect;
-import paleoftheancients.relics.SoulOfTheShowman;
-import paleoftheancients.relics.SoulOfTheVixen;
-import paleoftheancients.relics.Timepiece;
+import paleoftheancients.relics.*;
 import paleoftheancients.savefields.BreadCrumbs;
 import paleoftheancients.savefields.ElitesSlain;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
+import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.intent.*;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
+import paleoftheancients.thorton.monsters.Thorton;
 import paleoftheancients.wokeone.monsters.WokeCultist;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -106,6 +102,7 @@ public class PaleMod implements
         BaseMod.addMonster(IronCluck.ID, () -> new IronCluck());
         BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());
         BaseMod.addMonster(TheDefectBoss.ID, () -> new TheDefectBoss());
+        BaseMod.addMonster(TheSilentBoss.ID, () -> new TheSilentBoss());
 
         BaseMod.addMonster(N.ID, () -> new N());
 
@@ -122,7 +119,6 @@ public class PaleMod implements
                 new WokeCultist(-298.0F, -10.0F),
                 new WokeCultist(-590.0F, 10.0F)
         }));
-        //BaseMod.addMonster(TimeYeeter.ID, () -> new TimeYeeter());
         BaseMod.addMonster(DonuDeca.ID, () -> new MonsterGroup(new AbstractMonster[]{
                 new Decaer(),
                 new Donuer()
@@ -130,17 +126,12 @@ public class PaleMod implements
 
         BaseMod.addMonster(SpireWaifu.ID, () -> new SpireWaifu());
 
-        BaseMod.addMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(ApologySlime.ID, 1F));
-        BaseMod.addMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(AcidSlime_S.ID, 1F));
-        BaseMod.addMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(SpikeSlime_S.ID, 1F));
-
-        BaseMod.addStrongMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(ApologySlime.ID, 1F));
-        BaseMod.addStrongMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(AcidSlime_S.ID, 1F));
-        BaseMod.addStrongMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(SpikeSlime_S.ID, 1F));
-
-        BaseMod.addEliteEncounter(PaleOfTheAncients.ID, new MonsterInfo(ApologySlime.ID, 1F));
-        BaseMod.addEliteEncounter(PaleOfTheAncients.ID, new MonsterInfo(AcidSlime_S.ID, 1F));
-        BaseMod.addEliteEncounter(PaleOfTheAncients.ID, new MonsterInfo(SpikeSlime_S.ID, 1F));
+        for(int i = 1; i <= 3; i++) {
+            BaseMod.addMonster(Thorton.ID + i, () -> new Thorton());
+            BaseMod.addMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
+            BaseMod.addStrongMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
+            BaseMod.addEliteEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
+        }
 
         BaseMod.addBoss(PaleOfTheAncients.ID, N.ID, assetPath("images/misc/emptypixel.png"), assetPath("images/misc/emptypixel.png"));
 
@@ -173,6 +164,7 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheVixen(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheDefect(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShowman(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheThorton(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

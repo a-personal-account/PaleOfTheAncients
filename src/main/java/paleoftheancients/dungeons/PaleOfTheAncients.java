@@ -23,6 +23,7 @@ import paleoftheancients.scenes.PaleScene;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
+import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -106,6 +107,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/donudeca.png"), PaleMod.assetPath("images/ui/map/donudecaOutline.png"), DonuDeca.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bard.png"), PaleMod.assetPath("images/ui/map/bardOutline.png"), BardBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
+        easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));

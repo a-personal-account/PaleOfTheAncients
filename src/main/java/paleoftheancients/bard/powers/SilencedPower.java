@@ -21,10 +21,13 @@ public class SilencedPower extends AbstractBardPower implements BetterOnApplyPow
     private boolean justApplied = false;
 
     public SilencedPower(AbstractCreature owner, int turns) {
-        this(owner, turns, false);
+        this(owner, turns, false, true);
+    }
+    public SilencedPower(AbstractCreature owner, int turns, boolean loadTextures) {
+        this(owner, turns, false, loadTextures);
     }
 
-    public SilencedPower(AbstractCreature owner, int turns, boolean isSourceMonster) {
+    public SilencedPower(AbstractCreature owner, int turns, boolean isSourceMonster, boolean loadTextures) {
         name = NAME;
         ID = POWER_ID;
         this.owner = owner;
@@ -35,7 +38,9 @@ public class SilencedPower extends AbstractBardPower implements BetterOnApplyPow
         type = PowerType.DEBUFF;
         isTurnBased = true;
         updateDescription();
-        loadRegion("silenced");
+        if(loadTextures) {
+            loadRegion("silenced");
+        }
     }
 
     @Override

@@ -5,7 +5,6 @@
 
 
   "paleoftheancients:TheDefect": {
-    "NAME": "The Defect",
     "DIALOG": [
       "Chargeup successfull. NL Preparing #yTempest.",
       "Situation critical. NL Loading module \"Echo\".",
@@ -141,6 +140,39 @@
       "Flourish",
       "Lifedrain",
       "Encore"
+    ]
+  },
+
+  "paleoftheancients:TheSilent": {
+    "DIALOG": [
+      "Catch!",
+      "@RUUUUUURGH@",
+      "My drawpile is empty...",
+
+      "Back to the Exordium...",
+      "@Argh@",
+      "Here we go again...",
+      "Should've picked Lizard Tail...",
+      "@Streak ruined!@",
+      "Hello Neow, my old friend..."
+    ]
+  },
+
+  "paleoftheancients:Thorton": {
+    "NAME": "Thorton Johnson",
+    "MOVES": [
+      "Crashing Stocks",
+      "Cash Buffer",
+      "Cash Bash",
+      "Coin Shield",
+      "Coin Clash",
+      "Investment",
+      "Credit Card",
+      "ROI",
+      "Penny Toss",
+      "Fortune",
+      "Demotion",
+      "Escape"
     ]
   },
 

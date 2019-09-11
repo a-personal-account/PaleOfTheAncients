@@ -295,6 +295,49 @@
     ]
   },
 
+  "paleoftheancients:DemotionPower": {
+    "NAME": "Demotion",
+    "DESCRIPTIONS": [
+      "Lack of #yadministrative #yprivileges prevent you from #bbuffing yourself or #rdebuffing others."
+    ]
+  },
+
+  "paleoftheancients:CorrosionPower": {
+    "NAME": "Corrosion",
+    "DESCRIPTIONS": [
+      "At the end of your turn, take #r",
+      " damage. This can be blocked and is reduced by #b2 at the end of your turn."
+    ]
+  },
+  "paleoftheancients:CorrosiveFumesPower": {
+    "NAME": "Corrosive Fumes",
+    "DESCRIPTIONS": [
+      "At the start of your turn, apply #b",
+      " corrosion to all enemies."
+    ]
+  },
+  "paleoftheancients:EncorrosionPower": {
+    "NAME": "Corrode",
+    "DESCRIPTIONS": [
+      "Whenever you deal unblocked damage, apply #b",
+      " Corrosion."
+    ]
+  },
+  "paleoftheancients:NotWraithFormPower": {
+    "NAME": "Wraith Form",
+    "DESCRIPTIONS": [
+      "At the end of your turn, lose #b",
+      " #yDexterity."
+    ]
+  },
+  "paleoftheancients:NotDexterityPower": {
+    "NAME": "Dexterity",
+    "DESCRIPTIONS": [
+      "Decreases #yBlock gained by #b",
+      "."
+    ]
+  },
+
   "paleoftheancients:GazeOne": {
     "NAME": "Gaze of the closing Eyes",
     "DESCRIPTIONS": [
