@@ -4,7 +4,7 @@
   "author_list": ["Razash"],
   "credits": "Kiooeht - the Bard, GK - the Ironcluck and finding ALL the bugs, ComingVirus, DontStealMyKidneys, Left Click - The Showman, Vex - occassionally having good ideas. The Modding discord - Finding all the broken things.",
   "description": "I made an act. You access it by picking the top option in the event following the act 3 boss (keys not required).",
-  "version": "0.5",
+  "version": "0.5.1",
   "sts_version": "07-17-2019",
   "mts_version": "3.8.3",
   "dependencies": ["basemod", "stslib"]

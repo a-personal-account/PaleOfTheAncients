@@ -749,7 +749,6 @@ public class TheVixenBoss extends CustomMonster {
     }
 
     public void die() {
-        //AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[MathUtils.random(DIALOG.length - 1)]));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         ++this.deathTimer;

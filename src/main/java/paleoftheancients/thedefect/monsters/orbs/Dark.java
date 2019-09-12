@@ -1,8 +1,6 @@
 package paleoftheancients.thedefect.monsters.orbs;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thedefect.actions.DarkBossOrbEvocationAction;
-import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,14 +12,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thedefect.actions.DarkBossOrbEvocationAction;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import thedefect.vfx.OrbFlareCopyPaste;
 
 public class Dark extends AbstractBossOrb {
     private static final MonsterStrings monsterStrings;
     public static final String NAME;
-    public static final String[] MOVES;
     public static final String[] DIALOG;
 
     public static final String ID = PaleMod.makeID("darkorb");
@@ -79,8 +80,7 @@ public class Dark extends AbstractBossOrb {
 
     static {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-        NAME = monsterStrings.NAME;
-        MOVES = monsterStrings.MOVES;
+        NAME = ((OrbStrings) ReflectionHacks.getPrivateStatic(com.megacrit.cardcrawl.orbs.Dark.class, "orbString")).NAME;
         DIALOG = monsterStrings.DIALOG;
     }
 }

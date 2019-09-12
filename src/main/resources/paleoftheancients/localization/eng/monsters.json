@@ -17,17 +17,7 @@
   },
 
 
-  "paleoftheancients:emptyorbslot": {
-    "MOVES": [
-    ],
-    "NAME": "Your Orb Here",
-    "DIALOG": [
-    ]
-  },
   "paleoftheancients:lightningorb": {
-    "MOVES": [
-    ],
-    "NAME": "Lightning Orb",
     "DIALOG": [
       "#yPassive: At the end of turn, deal #b",
       " damage. NL #yEvoke: Deal #b",
@@ -35,9 +25,6 @@
     ]
   },
   "paleoftheancients:frostorb": {
-    "MOVES": [
-    ],
-    "NAME": "Frost Orb",
     "DIALOG": [
       "#yPassive: At the end of turn, gain #b",
       " #yBlock. NL #yEvoke: Gain #b",
@@ -45,9 +32,6 @@
     ]
   },
   "paleoftheancients:darkorb": {
-    "MOVES": [
-    ],
-    "NAME": "Dark Orb",
     "DIALOG": [
       "#yPassive: At the end of turn, increase this Orb's damage by #b",
       ". NL #yEvoke: Deal #b",
@@ -55,9 +39,6 @@
     ]
   },
   "paleoftheancients:plasmaorb": {
-    "MOVES": [
-    ],
-    "NAME": "Plasma Orb",
     "DIALOG": [
       "#yPassive: At the start of turn, gain #r",
       " Strength this turn . NL #yEvoke: Gain #r",
@@ -89,15 +70,7 @@
       "Inferno Overdrive",
       "Struggle"
     ],
-    "NAME": "The Vixen",
-    "DIALOG": [
-      "Back to the Exordium...",
-      "@Argh@",
-      "Here we go again...",
-      "Should've picked Lizard Tail...",
-      "@Streak ruined!@",
-      "Hello Neow, my old friend..."
-    ]
+    "NAME": "The Vixen"
   },
 
 

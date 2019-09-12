@@ -103,7 +103,6 @@ public class N extends AbstractMonster {
 
         this.hideHealthBar();
         this.halfDead = true;
-        this.setMove(Byte.MIN_VALUE, Intent.NONE);
     }
 
     @Override

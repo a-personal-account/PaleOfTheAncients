@@ -1,28 +1,21 @@
 package paleoftheancients.thedefect.monsters.orbs;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
 
 public class EmptyOrbSlot extends AbstractBossOrb {
     public static final String ID = PaleMod.makeID("emptyorbslot");
-
-    private static final MonsterStrings monsterStrings;
-    public static final String NAME;
-    public static final String[] MOVES;
-    public static final String[] DIALOG;
 
     private static Texture img1;
     private static Texture img2;
 
     public EmptyOrbSlot(TheDefectBoss tdb) {
-        super(tdb, NAME, ID);
+        super(tdb, "", ID);
         if (img1 == null) {
             img1 = ImageMaster.loadImage("images/orbs/empty1.png");
             img2 = ImageMaster.loadImage("images/orbs/empty2.png");
@@ -55,12 +48,5 @@ public class EmptyOrbSlot extends AbstractBossOrb {
     }
 
     public void playChannelSFX() {
-    }
-
-    static {
-        monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-        NAME = monsterStrings.NAME;
-        MOVES = monsterStrings.MOVES;
-        DIALOG = monsterStrings.DIALOG;
     }
 }

@@ -1,7 +1,6 @@
 package paleoftheancients.thedefect.monsters.orbs;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,16 +15,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import thedefect.vfx.OrbFlareCopyPaste;
 
 public class Lightning extends AbstractBossOrb {
     private static final MonsterStrings monsterStrings;
     public static final String NAME;
-    public static final String[] MOVES;
     public static final String[] DIALOG;
     private float vfxTimer = 1.0F;
     private float vfxIntervalMin = 0.15F;
@@ -100,8 +101,7 @@ public class Lightning extends AbstractBossOrb {
 
     static {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-        NAME = monsterStrings.NAME;
-        MOVES = monsterStrings.MOVES;
+        NAME = ((OrbStrings) ReflectionHacks.getPrivateStatic(com.megacrit.cardcrawl.orbs.Lightning.class, "orbString")).NAME;
         DIALOG = monsterStrings.DIALOG;
     }
 }
