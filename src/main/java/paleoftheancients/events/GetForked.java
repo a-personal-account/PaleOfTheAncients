@@ -1,10 +1,13 @@
 package paleoftheancients.events;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.MarkOfTheBloom;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
@@ -52,19 +55,29 @@ public class GetForked extends AbstractImageEvent {
                     imageEventText.updateBodyText(DESCRIPTIONS[DESCRIPTIONS.length - 1]);
                     imageEventText.clearAllDialogs();
                     imageEventText.setDialogOption(OPTIONS[2]);
-                    (new Timepiece()).instantObtain();
+                    if(AbstractDungeon.player.hasRelic(Timepiece.ID)) {
+                        AbstractRelic timepiece = AbstractDungeon.player.getRelic(Timepiece.ID);
+                        ((Timepiece) timepiece).reset();
+                        timepiece.flash();
+                    } else {
+                        (new Timepiece()).instantObtain();
+                    }
                 } else {
                     nextDungeon(PaleOfTheAncients.ID);
                 }
                 break;
 
             case 1:
-                try {
-                    Method yuckyPrivateMethod = ProceedButton.class.getDeclaredMethod("goToVictoryRoomOrTheDoor");
-                    yuckyPrivateMethod.setAccessible(true);
-                    yuckyPrivateMethod.invoke(new ProceedButton());
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
+                if(!Settings.isEndless) {
+                    try {
+                        Method yuckyPrivateMethod = ProceedButton.class.getDeclaredMethod("goToVictoryRoomOrTheDoor");
+                        yuckyPrivateMethod.setAccessible(true);
+                        yuckyPrivateMethod.invoke(new ProceedButton());
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    nextDungeon(Exordium.ID);
                 }
                 break;
         }

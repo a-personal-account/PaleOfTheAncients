@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
 import paleoftheancients.finarubossu.monsters.N;
 import paleoftheancients.rooms.DejaVuRoom;
@@ -23,7 +24,6 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
 
     public Timepiece() {
         super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/timepiece.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/timepiece.png")), TIER, SOUND);
-        this.setCounter(-1);
     }
 
     public void onTrigger() {
@@ -54,6 +54,13 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
         super.setCounter(counter);
     }
 
+    public void reset() {
+        this.description = this.getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        this.setCounter(-1);
+    }
+
     @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
@@ -66,10 +73,12 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
 
     @Override
     public void onVictory() {
-        int healAmt = (AbstractDungeon.player.maxHealth - AbstractDungeon.player.currentHealth + 1) / 2;
-        if(healAmt > 0) {
-            this.flash();
-            AbstractDungeon.player.heal(healAmt, true);
+        if(AbstractDungeon.id == PaleOfTheAncients.ID) {
+            int healAmt = (AbstractDungeon.player.maxHealth - AbstractDungeon.player.currentHealth + 1) / 2;
+            if (healAmt > 0) {
+                this.flash();
+                AbstractDungeon.player.heal(healAmt, true);
+            }
         }
     }
 

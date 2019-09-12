@@ -41,6 +41,7 @@ import paleoftheancients.savefields.BreadCrumbs;
 import paleoftheancients.savefields.ElitesSlain;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import paleoftheancients.theshowman.bosscards.SpeechCard;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.intent.*;
@@ -58,6 +59,7 @@ public class PaleMod implements
         PostInitializeSubscriber,
         EditKeywordsSubscriber,
         AddAudioSubscriber,
+        EditCardsSubscriber,
         EditStringsSubscriber,
         EditRelicsSubscriber {
     public static final Logger logger = LogManager.getLogger(PaleMod.class.getSimpleName());
@@ -66,6 +68,8 @@ public class PaleMod implements
         BaseMod.subscribe(new PaleMod());
         BreadCrumbs.initialize();
         ElitesSlain.initialize();
+        Color SHOWMAN_PURPLE = CardHelper.getColor(143.0F, 109.0F, 237.0F);
+        BaseMod.addColor(TheShowmanBoss.Enums.PALE_COLOR_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, PaleMod.assetPath("images/TheShowman/512/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/1024/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/512/card_small_orb.png"));
     }
 
     public static boolean bardLoaded() {
@@ -95,10 +99,7 @@ public class PaleMod implements
         AbstractDungeon.floorNum = before;
 
 
-        Color SHOWMAN_PURPLE = CardHelper.getColor(143.0F, 109.0F, 237.0F);
         BaseMod.addMonster(TheShowmanBoss.ID, () -> new TheShowmanBoss());
-        BaseMod.addColor(TheShowmanBoss.Enums.PALE_COLOR_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, PaleMod.assetPath("images/TheShowman/512/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/1024/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/512/card_small_orb.png"));
-
         BaseMod.addMonster(TheVixenBoss.ID, () -> new TheVixenBoss());
         BaseMod.addMonster(IronCluck.ID, () -> new IronCluck());
         BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());
@@ -167,6 +168,13 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheDefect(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShowman(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheThorton(), RelicType.SHARED);
+    }
+
+
+    @Override
+    public void receiveEditCards() {
+        //To prevent Crashes
+        BaseMod.addCard(new SpeechCard(null));
     }
 
     private Settings.GameLanguage languageSupport()

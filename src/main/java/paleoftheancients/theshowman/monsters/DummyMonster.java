@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 
@@ -49,5 +50,13 @@ public class DummyMonster extends AbstractMonster {
     @SpireOverride
     protected void updateIntent() {
         SpireSuper.call();
+    }
+
+    @SpireOverride
+    protected void calculateDamage(int dmg) {
+        boolean before = Settings.isEndless;
+        Settings.isEndless = false;
+        SpireSuper.call(dmg);
+        Settings.isEndless = before;
     }
 }
