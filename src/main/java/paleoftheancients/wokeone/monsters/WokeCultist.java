@@ -44,6 +44,7 @@ public class WokeCultist extends Cultist {
         this.head = this.skeleton.findBone("head");
         this.back = this.skeleton.findBone("body");
         this.wParticles = new ArrayList<>();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

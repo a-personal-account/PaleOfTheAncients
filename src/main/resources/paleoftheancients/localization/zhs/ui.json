@@ -1,0 +1,104 @@
+{
+  "paleoftheancients:PaleOfTheAncients": {
+    "TEXT": [
+      "先古境地"
+    ]
+  },
+
+
+  "paleoftheancients:psybeamintent": {
+    "TEXT": [
+      "精神干扰",
+      "这名敌人意图 NL 让你 #y攻击 自己 NL #b",
+      " 点伤害。 NL #r艳阳： 他们将获得受到伤害三倍数量的格挡。"
+    ]
+  },
+  "paleoftheancients:swaggerintent": {
+    "TEXT": [
+      "虚张声势",
+      "这名敌人意图 NL 让你 #y攻击 自己 NL  #b",
+      " 点伤害 并给予你负面效果。"
+    ]
+  },
+  "paleoftheancients:sunnyattack": {
+    "TEXT": [
+      "灼伤",
+      "这名敌人意图 NL #y攻击 #b",
+      " 点伤害。 NL #r阳光： NL 向你的牌堆中加入会增加你受到伤害的状态牌。"
+    ]
+  },
+  "paleoftheancients:sunnyattackbig": {
+    "TEXT": [
+      "太阳光束",
+      "这名敌人意图 NL #y攻击 #b",
+      " 点伤害。 NL #r艳阳： NL 消耗所有的艳阳层数，每消耗一层，重复一次攻击。"
+    ]
+  },
+  "paleoftheancients:facadeintent": {
+    "TEXT": [
+      "空元气",
+      "这名敌人意图 NL #y攻击 #b",
+      " 点伤害。 NL 敌人每有一种不同的负面效果，重复一次。"
+    ]
+  },
+  "paleoftheancients:selfdebuffintent": {
+    "TEXT": [
+      "鲁莽的",
+      "这名敌人意图 NL #y攻击 #b",
+      " 点伤害。 NL #r艳阳： NL 他们给予自己一种 #y负面效果 。"
+    ]
+  },
+  "paleoftheancients:firespin": {
+    "TEXT": [
+      "好斗",
+      "这名敌人意图 NL #y攻击 #b",
+      " 点伤害 #b",
+      " 次。 NL #r艳阳： NL 他们额外攻击两次（已经打出）。"
+    ]
+  },
+  "paleoftheancients:flamewheel": {
+    "TEXT": [
+      "剥削",
+      "这名敌人意图 NL #y攻击  #b",
+      " 点伤害并格挡and Block for 2 for each point of increased damage you took through special Status cards. NL #r艳阳： NL 重复一次（已经打出）。"
+    ]
+  },
+
+  "paleoftheancients:Perform": {
+    "TEXT": [
+      "乐谱",
+      "最多能承载 #b",
+      " 枚 #y音符 。 NL 应吟游诗人的要求 #y演奏旋律 。演奏一段 #y旋律 消耗一定的 #y音符 。",
+      "切换旋律面板",
+      "旋律",
+      "+%d ",
+      "乐谱太短了",
+      "扩展乐谱来解锁更多的 演奏 #y旋律 。"
+    ]
+  },
+
+
+  "paleoftheancients:DervishDanceIntent": {
+    "TEXT": [
+      "悦耳的",
+      "意图 #y攻击 #b",
+      " 点伤害并每有一个 [AttackNote] 重复一次。"
+    ]
+  },
+  "paleoftheancients:FlourishIntent": {
+    "TEXT": [
+      "悦耳的",
+      "意图 #y攻击 #b",
+      " 点伤害并谱写一枚音符。"
+    ]
+  },
+
+
+  "paleoftheancients:MonsterPiles": {
+    "TEXT": [
+      "抽牌堆",
+      "弃牌堆",
+      "消耗堆"
+    ]
+  }
+}

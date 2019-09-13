@@ -1,0 +1,47 @@
+{
+  "paleoftheancients:MagicTuningFork": {
+    "NAME": "",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      ""
+    ]
+  },
+
+  "paleoftheancients:Timepiece": {
+    "NAME": "钟表",
+    "FLAVOR": "上面没有了时针。字母TE刻在它的背面",
+    "DESCRIPTIONS": [
+      "为了你的敌人让指针倒转一次。战斗结束后，恢复一半你丢失的生命。",
+      "右键点击：？？？"
+    ]
+  },
+  "paleoftheancients:SoulOfTheVixen": {
+    "NAME": "火狐之魂",
+    "FLAVOR": "激情燃烧。",
+    "DESCRIPTIONS": [
+      "每当你攻击时，给予敌人 1 层 #rpaleoftheancients:灼伤 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheDefect": {
+    "NAME": "故障核心",
+    "FLAVOR": "01000010 01100001 01101100 01100001 01101110 01100011 01100101",
+    "DESCRIPTIONS": [
+      "每场战斗的前 2 张 #b能力牌 打出 3 次。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheShowman": {
+    "NAME": "表演艺术的精髓",
+    "FLAVOR": "如果你仔细看，我的袖子里确实有东西。",
+    "DESCRIPTIONS": [
+      "每当你 #r消耗 一张牌时，打出它的 #b复制品 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheThorton": {
+    "NAME": "索顿·约翰逊名片",
+    "FLAVOR": "那家伙在这里干什么？",
+    "DESCRIPTIONS": [
+      "确认你是 NL #y“索顿·约翰逊” 。",
+      "索顿？"
+    ]
+  }
+}

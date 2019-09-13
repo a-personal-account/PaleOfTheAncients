@@ -2,21 +2,15 @@ package paleoftheancients.savefields;
 
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
-import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.StartActSubscriber;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
-import paleoftheancients.PaleMod;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BreadCrumbs implements CustomSavable<Map<Integer, String>>,
         PostInitializeSubscriber,
-        EditStringsSubscriber,
         StartActSubscriber {
 
     private Map<Integer, String> breadCrumbs = new HashMap<>();
@@ -34,36 +28,6 @@ public class BreadCrumbs implements CustomSavable<Map<Integer, String>>,
         BaseMod.addSaveField("ActLikeIt:breadCrumbs", bc);
 
         ElitesSlain.initialize(); //Doing this means I don't have to subscribe ElitesSlain to BaseMod.
-    }
-
-
-    private void loadLocStrings(String language) {
-        BaseMod.loadCustomStringsFile(EventStrings.class, PaleMod.MOD_ID + "/localization/" + language + "/events.json");
-        BaseMod.loadCustomStringsFile(ScoreBonusStrings.class, PaleMod.MOD_ID + "/localization/" + language + "/score_bonuses.json");
-    }
-
-
-
-    private String languageSupport() {
-        switch (Settings.language) {
-            default:
-                return "eng";
-        }
-    }
-
-    @Override
-    public void receiveEditStrings() {
-        String language = languageSupport();
-
-        // Load english first to avoid crashing if translation doesn't exist for something. Blatantly stolen from Vex.
-        loadLocStrings("eng");
-        if(!Settings.language.equals("eng")) {
-            try {
-                loadLocStrings(language);
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-        }
     }
 
     @Override

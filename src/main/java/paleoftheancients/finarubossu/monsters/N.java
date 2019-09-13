@@ -74,6 +74,7 @@ public class N extends AbstractMonster {
     public N() {
         super(NAME, ID, 1200, 0, 30, (1920 - 1534) * 2 - 20, 800 - 230 + 20, null, 0, 0);
 
+        this.type = EnemyType.BOSS;
         this.drawX = 1534.0F * Settings.scale;
         this.drawY = 280.0F * Settings.scale;
         this.dialogX = -this.hb.width / 2;

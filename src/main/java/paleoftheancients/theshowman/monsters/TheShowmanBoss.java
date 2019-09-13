@@ -94,7 +94,7 @@ public class TheShowmanBoss extends CustomMonster {
         this.dialogX = (-30.0F * Settings.scale);
         this.dialogY = (100.0F * Settings.scale);
 
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
 
         this.flipHorizontal = true;
         this.stage = null;

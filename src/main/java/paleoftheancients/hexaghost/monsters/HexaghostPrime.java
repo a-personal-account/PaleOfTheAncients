@@ -21,6 +21,7 @@ public class HexaghostPrime extends CustomMonster {
     public HexaghostPrime() {
         super("", ID, 1200, 20.0F, 0.0F, 150.0F, 0.0F, PaleMod.assetPath("images/misc/emptypixel.png"));
         this.drawY += 180F;
+        this.type = EnemyType.BOSS;
     }
 
     @Override

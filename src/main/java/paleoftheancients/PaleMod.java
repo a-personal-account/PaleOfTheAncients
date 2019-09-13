@@ -180,6 +180,8 @@ public class PaleMod implements
     private Settings.GameLanguage languageSupport()
     {
         switch (Settings.language) {
+            case ZHS:
+                return Settings.language;
             default:
                 return Settings.GameLanguage.ENG;
         }

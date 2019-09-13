@@ -1,0 +1,16 @@
+{
+  "paleoftheancients:BurnKeyword": {
+    "PROPER_NAME": "灼伤",
+    "NAMES": [
+      "灼伤"
+    ],
+    "DESCRIPTION": "被灼伤的单位被攻击时额外收到 #r灼伤 层数的伤害。 NL 当 #r灼伤 层数 超过4的倍数时，给 1 层  #b虚弱 。 NL 对于敌人， #r灼伤 会在每回合结束时减半。"
+  },
+  "paleoftheancients:StackedKeyword": {
+    "PROPER_NAME": "堆叠",
+    "NAMES": [
+      "堆叠"
+    ],
+    "DESCRIPTION": "随抽牌堆数量减少的数值。"
+  }
+}

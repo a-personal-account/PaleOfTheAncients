@@ -1,0 +1,173 @@
+{
+  "paleoftheancients:DonuDeca": {
+    "NAME": "甜圈八体"
+  },
+
+
+  "paleoftheancients:TheDefect": {
+    "DIALOG": [
+      "充能成功。 NL 准备 #y暴风雨 。",
+      "紧急情况。 NL 加载模块 “回响”。",
+      "能源补充。 NL 加载模块 “回响”。",
+      "充能进行中。 NL 重路由分配资源。",
+      "到达临界充能。 NL 开始再吸收。",
+      "能量接近最大。。 NL 批准动态释放。",
+      "01010011 01101000 01101001 01110100"
+    ]
+  },
+
+
+  "paleoftheancients:lightningorb": {
+    "DIALOG": [
+      "#y被动： 在回合结束时，造成 #b",
+      " 点伤害。 NL #y激发：造成 #b",
+      " 点伤害。 NL #y攻击 充能球会将它释放！"
+    ]
+  },
+  "paleoftheancients:frostorb": {
+    "DIALOG": [
+      "#y被动： 在回合结束时，获得 #b",
+      " 点 #y格挡 。 NL #y激发：获得 #b",
+      " 点 #y格挡 。 NL #y攻击 充能球会将它释放！"
+    ]
+  },
+  "paleoftheancients:darkorb": {
+    "DIALOG": [
+      "#y被动： 在回合结束时，将这个充能球的伤害提高 #b",
+      " 。 NL #y激发： 对你造成 #b",
+      " 点伤害。 NL #y攻击 充能球会将它释放！"
+    ]
+  },
+  "paleoftheancients:plasmaorb": {
+    "DIALOG": [
+      "#y被动：  在回合开始时，本回合获得 #r",
+      " 点力量。 NL #y被动： 本回合获得 #r",
+      " 点力量。 NL #y攻击 充能球会将它释放！"
+    ]
+  },
+
+
+  "paleoftheancients:TheVixenBoss": {
+    "MOVES": [
+      "虚伪空间",
+      "协同爆发",
+      "精神崩溃",
+      "晴空",
+      "忍耐",
+      "精神光线",
+      "空元气",
+      "虚张声势",
+      "过热",
+      "太阳光束",
+      "火焰轮",
+      "余烬",
+      "火焰喷射",
+      "火焰漩涡",
+      "火焰驱进",
+      "恢复精力",
+      "火焰",
+      "替身",
+      "地狱超速",
+      "奋斗"
+    ],
+    "NAME": "长尾火狐"
+  },
+
+
+  "paleoftheancients:TheShowmanBoss": {
+    "MOVES": [
+      "第二幕"
+    ],
+    "NAME": "表演家",
+    "DIALOG": [
+      "你知道这些花了多少钱吗！？",
+      "请不要那样做。",
+      "不，不，不！",
+      "这不行！",
+      "节目现在进入第二幕！",
+      "别担心，我的朋友。我的袖子上还有很多花招！",
+      "在这个美妙的时刻，我将向你展示我的特长！",
+      "我们的节目到此结束。谢谢，再见~",
+      "你真是个了不起的观众！",
+      "我希望你和我一样喜欢这个。再见~"
+    ]
+  },
+  "paleoftheancients:ShowmanStage": {
+    "NAME": "表演家的舞台"
+  },
+
+  "paleoftheancients:IronCluck": {
+    "NAME": "铁甲战鸡",
+    "DIALOG": [
+      "@鸡鸣@"
+    ]
+  },
+
+  "paleoftheancients:BardBoss": {
+    "NAME": "吟游诗人",
+    "MOVES": [
+      "奏鸣曲",
+      "狂想曲",
+      "沉默术",
+      "狂野之舞",
+      "华彩",
+      "吸取生命",
+      "返场"
+    ]
+  },
+
+  "paleoftheancients:TheSilent": {
+    "DIALOG": [
+      "抓到你了！",
+      "@冲啊@",
+      "我的抽牌堆是空的……",
+
+      "回到塔底……",
+      "@啊@",
+      "又来了……",
+      "应该选蜥蜴尾巴……",
+      "@坏灭！@",
+      "你好涅奥，我的老朋友……"
+    ]
+  },
+
+  "paleoftheancients:Thorton": {
+    "NAME": "索顿·约翰逊",
+    "MOVES": [
+      "股票暴跌",
+      "现金缓冲",
+      "现金狂欢",
+      "硬币护盾",
+      "硬币撞击",
+      "投资",
+      "信用卡",
+      "ROI",
+      "掷硬币",
+      "机遇",
+      "降职",
+      "逃跑"
+    ]
+  },
+
+  "paleoftheancients:N": {
+    "NAME": "复仇先民",
+    "DIALOG": [
+      "~往好处想~ NL ~随波逐流，想点甜言蜜语……~",
+      "~一切如我所愿~",
+      "~死亡，重生~ NL ~不要试图违抗使命~",
+      "~这些揭示并不能让你获得救赎。~ ~投降吧！~",
+      "@你会服从的，傀儡！@",
+      "@我不会被你这样的人拒绝！@",
+      "@我会报仇的！@"
+    ]
+  },
+  "paleoftheancients:EyeOfSlumber": {
+    "NAME": "沉睡之眼"
+  },
+  "paleoftheancients:EyeOfDisremembrance": {
+    "NAME": "忘却之眼"
+  },
+  "paleoftheancients:EyeOfRebirth": {
+    "NAME": "重生之眼"
+  }
+}

@@ -67,6 +67,7 @@ public class IronCluck extends CustomMonster {
     public IronCluck(float scaling) {
         super(NAME, ID, 650, 0.0F, -20.0F, 220.0F, 220.0F, (String)null, -125.0F, 20.0F);
 
+        this.type = EnemyType.BOSS;
         this.moves = new HashMap<>();
         this.moves.put(BARRICADE, new EnemyMoveInfo(BARRICADE, Intent.DEFEND_BUFF, -1, 0, false));
         this.moves.put(BODYSLAM, new EnemyMoveInfo(BODYSLAM, Intent.ATTACK, 0, 0, false));

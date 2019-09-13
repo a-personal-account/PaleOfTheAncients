@@ -1,0 +1,66 @@
+{
+  "paleoftheancients:AttackUpSmall": {
+    "NAME": "攻击提升",
+    "DESCRIPTION": "获得 !M! 点 力量 。"
+  },
+  "paleoftheancients:DefenseUpSmall": {
+    "NAME": "防御提升",
+    "DESCRIPTION": "获得 !M! 层 金属化 。"
+  },
+  "paleoftheancients:DivineProtection": {
+    "NAME": "圣佑术",
+    "DESCRIPTION": "获得 !M! 层 无实体 。"
+  },
+  "paleoftheancients:Draw": {
+    "NAME": "抽牌",
+    "DESCRIPTION": "玩家在 !M! 个回合少抽 1 张牌。"
+  },
+  "paleoftheancients:Artifact": {
+    "NAME": "人工制品",
+    "DESCRIPTION": "获得 !M! 层 人工制品 。"
+  },
+  "paleoftheancients:WeakenSmall": {
+    "NAME": "虚弱",
+    "DESCRIPTION": "给予 !M! 层 虚弱 。"
+  },
+  "paleoftheancients:VulnerabilitySmall": {
+    "NAME": "易伤",
+    "DESCRIPTION": "给予 !M! 层 易伤 。"
+  },
+  "paleoftheancients:InspireSmall": {
+    "NAME": "激励（小）",
+    "DESCRIPTION": "获得 50 激励 !M! 次。"
+  },
+  "paleoftheancients:InspireLarge": {
+    "NAME": "激励（大）",
+    "DESCRIPTION": "获得 100 激励 !M! 次。"
+  },
+  "paleoftheancients:DamageSmall": {
+    "NAME": "伤害（小）",
+    "DESCRIPTION": "造成 !M! 点伤害。"
+  },
+  "paleoftheancients:DamageMedium": {
+    "NAME": "伤害（中）",
+    "DESCRIPTION": "造成 !M! 点伤害。"
+  },
+  "paleoftheancients:DamageLarge": {
+    "NAME": "伤害（大）",
+    "DESCRIPTION": "造成 !M! 点伤害。"
+  },
+  "paleoftheancients:BlockSmall": {
+    "NAME": "格挡（小）",
+    "DESCRIPTION": "获得 !M! 点 格挡 。"
+  },
+  "paleoftheancients:BlockMedium": {
+    "NAME": "格挡（中）",
+    "DESCRIPTION": "获得 !M! 点 格挡 。"
+  },
+  "paleoftheancients:BlockLarge": {
+    "NAME": "格挡（大）",
+    "DESCRIPTION": "获得 !M! 点 格挡 。"
+  },
+  "paleoftheancients:Cacophony": {
+    "NAME": "不和谐",
+    "DESCRIPTION": "跳过玩家的下一回合。"
+  }
+}
