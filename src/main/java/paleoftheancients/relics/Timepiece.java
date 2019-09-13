@@ -14,7 +14,9 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
 import paleoftheancients.finarubossu.monsters.N;
+import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
 import paleoftheancients.rooms.DejaVuRoom;
+import paleoftheancients.savefields.ElitesSlain;
 
 public class Timepiece extends CustomRelic implements ClickableRelic {
     public static final String ID = PaleMod.makeID("Timepiece");
@@ -44,6 +46,11 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
             }
         }
         AbstractDungeon.getCurrRoom().rewards.clear();
+
+        if(AbstractDungeon.id == PaleOfTheAncients.ID) {
+            AbstractRoomUpdateIncrementElitesPatch.Insert(null);
+            ElitesSlain.getKilledElites().put(AbstractDungeon.actNum, ElitesSlain.getKilledElites().get(AbstractDungeon.actNum) - 2);
+        }
     }
 
     @Override

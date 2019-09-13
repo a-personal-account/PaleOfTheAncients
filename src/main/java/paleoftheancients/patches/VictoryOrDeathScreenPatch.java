@@ -1,9 +1,5 @@
 package paleoftheancients.patches;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.CustomDungeon;
-import paleoftheancients.savefields.BreadCrumbs;
-import paleoftheancients.savefields.ElitesSlain;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -18,6 +14,10 @@ import com.megacrit.cardcrawl.screens.GameOverStat;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.CustomDungeon;
+import paleoftheancients.savefields.BreadCrumbs;
+import paleoftheancients.savefields.ElitesSlain;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -98,12 +98,15 @@ public class VictoryOrDeathScreenPatch {
 
                 }
             } else if(customact) {
+                if(!elitesKilled.containsKey(i) || elitesKilled.get(i) == 0) {
+                    continue;
+                }
                 if(CustomDungeon.dungeons.containsKey(breadcrumbs.get(i))) {
                     localizedString = parts[0] + CustomDungeon.dungeons.get(breadcrumbs.get(i)).name + parts[2];
                 } else {
                     localizedString = parts[0] + parts[1] + " " + i + parts[2];
                 }
-                num = elitesKilled.containsKey(i) ? elitesKilled.get(i) : 0;
+                num = elitesKilled.get(i);
             } else {
                 continue;
             }

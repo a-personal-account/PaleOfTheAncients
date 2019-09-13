@@ -72,8 +72,8 @@ public class WokeCultist extends Cultist {
         if(this.halfDead) {
             rebirth();
         } else if(this.reborn) {
+            this.useFastAttackAnimation();
             this.wokeone.takeTurn();
-            this.wokeone.createIntent();
             AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
         } else {
             super.takeTurn();
@@ -85,7 +85,8 @@ public class WokeCultist extends Cultist {
         if(this.reborn) {
             EnemyMoveInfo info = (EnemyMoveInfo) ReflectionHacks.getPrivate(this.wokeone, AbstractMonster.class, "move");
             this.setMove(info.nextMove, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-            this.createIntent();
+            this.wokeone.createIntent();
+            //this.createIntent();
         } else {
             super.getMove(num);
         }
