@@ -412,15 +412,21 @@ public class TheShowmanBoss extends CustomMonster {
             card.isGlowing = true;
         }
         this.resetOrbPositions();
+        boolean attacking = false;
         for(int i = 0; i < this.hand.size(); i++) {
             AbstractShowmanCard c = (AbstractShowmanCard) this.hand.group.get(i);
             if(c.isGlowing) {
                 this.cards.get(i).setMove((byte)0, c.intent, c.damage, c.multiplier, c.multiplier > 0);
+                if(c.baseDamage > 0) {
+                    attacking = true;
+                }
             } else {
                 this.cards.get(i).setMove((byte)0, Intent.NONE);
             }
             this.cards.get(i).createIntent();
         }
+        this.setMove((byte)0, Intent.NONE, attacking ? 1 : -1);
+        this.createIntent();
         return bestCombo;
     }
 

@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
+import paleoftheancients.finarubossu.monsters.Eye;
 
 import java.util.ArrayList;
 
@@ -71,7 +72,7 @@ public class GazeThree extends AbstractGazePower {
         if(AbstractDungeon.ascensionLevel >= 4) {
             this.description += DESCRIPTIONS[1] + this.strength + DESCRIPTIONS[2];
         }
-        this.description += DESCRIPTIONS[3] + this.demonform + DESCRIPTIONS[4];
+        this.description += DESCRIPTIONS[3] + Eye.demonform + DESCRIPTIONS[4];
     }
 
     static {

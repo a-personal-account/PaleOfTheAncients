@@ -1,26 +1,22 @@
 package paleoftheancients.slimeboss.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.slimeboss.actions.ReallocateSlimeUnityAction;
-import paleoftheancients.slimeboss.powers.SlimeSplitPower;
-import paleoftheancients.slimeboss.powers.SlimeUnityPower;
-import paleoftheancients.thevixen.cards.status.BossBurn;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
-import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_L;
 import com.megacrit.cardcrawl.monsters.exordium.AcidSlime_M;
+import paleoftheancients.PaleMod;
+import paleoftheancients.slimeboss.actions.ReallocateSlimeUnityAction;
+import paleoftheancients.thevixen.cards.status.BossBurn;
 
 public class AcidSlimest_L extends AcidSlime_L implements WeirdSlimeThing {
     public static String ID = PaleMod.makeID("AcidSlimest_L");
@@ -31,8 +27,11 @@ public class AcidSlimest_L extends AcidSlime_L implements WeirdSlimeThing {
         this.id = ID;
         this.suicided = false;
         this.height = this.hb.height;
-        SlimeBossest.applyInvincible(this);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SlimeSplitPower(this, SlimeBossest.SPLIT_AMOUNT / 2), SlimeBossest.SPLIT_AMOUNT / 2));
+        this.usePreBattleAction();
+    }
+
+    public void usePreBattleAction() {
+        SlimeHelper.usePreBattleAction(this);
     }
 
     @Override
@@ -47,19 +46,13 @@ public class AcidSlimest_L extends AcidSlime_L implements WeirdSlimeThing {
                 break;
 
             case 3:
-                AbstractMonster mo;
                 float x = (float)ReflectionHacks.getPrivate(this, AcidSlime_L.class, "saveX");
                 float y = (float)ReflectionHacks.getPrivate(this, AcidSlime_L.class, "saveY");
                 AbstractDungeon.actionManager.addToBottom(new CannotLoseAction());
-                AbstractDungeon.actionManager.addToBottom(new AnimateShakeAction(this, 1.0F, 0.1F));
-                AbstractDungeon.actionManager.addToBottom(new HideHealthBarAction(this));
-                AbstractDungeon.actionManager.addToBottom(new SuicideAction(this, false));
-                AbstractDungeon.actionManager.addToBottom(new WaitAction(1.0F));
-                AbstractDungeon.actionManager.addToBottom(new SFXAction("SLIME_SPLIT"));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(mo = new AcidSlime_M(x - 134.0F, y + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth), false, AbstractDungeon.getCurrRoom().monsters.monsters.size()));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, this, new SlimeUnityPower(mo, this)));
-                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(mo = new AcidSlime_M(x + 134.0F, y + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth), false, AbstractDungeon.getCurrRoom().monsters.monsters.size()));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, this, new SlimeUnityPower(mo, this)));
+                SlimeHelper.splitShake(this);
+                SlimeHelper.spawnEnemies(this,
+                        new AcidSlime_M(x - 134.0F, y + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth),
+                        new AcidSlime_M(x + 134.0F, y + MathUtils.random(-4.0F, 4.0F), 0, this.currentHealth));
                 AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
                 this.suicided = true;
                 break;

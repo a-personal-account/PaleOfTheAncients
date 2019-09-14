@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import paleoftheancients.finarubossu.monsters.Eye;
 
 public class GazeOne extends AbstractGazePower {
     public static final String POWER_ID = PaleMod.makeID("GazeOne");
@@ -54,7 +55,7 @@ public class GazeOne extends AbstractGazePower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.energy + DESCRIPTIONS[1] + this.demonform + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + this.energy + DESCRIPTIONS[1] + Eye.demonform + DESCRIPTIONS[2];
     }
 
     static {

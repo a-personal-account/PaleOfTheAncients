@@ -1,11 +1,7 @@
 package paleoftheancients.slimeboss.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.slimeboss.monsters.SlimeBossest;
-import paleoftheancients.slimeboss.monsters.WeirdSlimeThing;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,6 +10,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.slimeboss.monsters.WeirdSlimeThing;
 
 
 public class SlimeUnityPower extends AbstractPower {
@@ -48,6 +46,10 @@ public class SlimeUnityPower extends AbstractPower {
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
+        return damageAmount;
+    }
+    @Override
+    public void onDeath() {
         AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
             @Override
             public void update() {
@@ -59,12 +61,7 @@ public class SlimeUnityPower extends AbstractPower {
                 }
                 InvinciblePower ip = (InvinciblePower)boss.getPower(InvinciblePower.POWER_ID);
                 if(ip != null) {
-                    ip.amount = SlimeBossest.getInvincibleValue(boss, true);
-                    if(ip.amount == boss.maxHealth) {
-                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(boss, owner, ip));
-                    } else {
-                        ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", ip.amount);
-                    }
+                    ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", boss.maxHealth);
                 }
                 if(boss instanceof WeirdSlimeThing) {
                     boss.hb.height = ((WeirdSlimeThing)boss).getHeight();
@@ -73,7 +70,6 @@ public class SlimeUnityPower extends AbstractPower {
                 boss.useShakeAnimation(1.2F);
             }
         });
-        return damageAmount;
     }
 
     static {

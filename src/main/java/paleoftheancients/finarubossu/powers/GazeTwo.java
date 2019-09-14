@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import paleoftheancients.PaleMod;
+import paleoftheancients.finarubossu.monsters.Eye;
 
 public class GazeTwo extends AbstractGazePower {
     public static final String POWER_ID = PaleMod.makeID("GazeTwo");
@@ -55,7 +56,7 @@ public class GazeTwo extends AbstractGazePower {
         } else {
             this.description += DESCRIPTIONS[1];
         }
-        this.description += DESCRIPTIONS[4] + this.demonform + DESCRIPTIONS[5];
+        this.description += DESCRIPTIONS[4] + Eye.demonform + DESCRIPTIONS[5];
     }
 
     static {
