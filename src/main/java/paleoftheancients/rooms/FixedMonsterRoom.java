@@ -1,18 +1,16 @@
 package paleoftheancients.rooms;
 
 import basemod.BaseMod;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
-import paleoftheancients.savefields.ElitesSlain;
 
 public class FixedMonsterRoom extends MonsterRoom {
     private String encounterID;
 
     public FixedMonsterRoom(String encounterID, String mapImg, String mapOutlineImg) {
         this.encounterID = encounterID;
-        this.setMapImg(ImageMaster.loadImage(mapImg), ImageMaster.loadImage(mapOutlineImg));
+        this.setMapImg(AssetLoader.loadImage(mapImg), AssetLoader.loadImage(mapOutlineImg));
     }
 
     @Override

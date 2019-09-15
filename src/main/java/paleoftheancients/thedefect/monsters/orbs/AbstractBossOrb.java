@@ -54,6 +54,8 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     public TheDefectBoss owner;
     public boolean addedThisTurn;
 
+    public boolean evoked = false;
+
     public AbstractBossOrb(TheDefectBoss owner, String name, String id) {
         super(name, id, 1000, 0.0F, -0F, 96F, 96F, (String)null, 0.0F, 0.0F);
 
@@ -96,7 +98,7 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     protected void getMove(int num) {}
 
     public void damage(DamageInfo info) {
-        if(info.type == DamageInfo.DamageType.NORMAL || info.output > 5) {
+        if((info.type == DamageInfo.DamageType.NORMAL || info.output > 5) && !this.evoked) {
             AbstractDungeon.actionManager.addToTop(new SuicideAction(this));
             AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this.owner));
         }
@@ -112,7 +114,8 @@ public abstract class AbstractBossOrb extends AbstractMonster {
 
     @Override
     public void die(boolean adjustPower) {
-        if(!(this instanceof EmptyOrbSlot)) {
+        if(!(this instanceof EmptyOrbSlot) && !this.evoked) {
+            this.evoked = true;
             this.evoke(AbstractDungeon.player);
             this.removeFromRoom();
 

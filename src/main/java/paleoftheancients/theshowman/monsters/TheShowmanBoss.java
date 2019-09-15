@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -45,6 +46,7 @@ import paleoftheancients.theshowman.ui.MonsterDiscardPilePanel;
 import paleoftheancients.theshowman.ui.MonsterDrawPilePanel;
 import paleoftheancients.theshowman.ui.MonsterEnergyPanel;
 import paleoftheancients.theshowman.ui.MonsterExhaustPanel;
+import paleoftheancients.thevixen.actions.AttackAnimationAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,6 +62,7 @@ public class TheShowmanBoss extends CustomMonster {
     public CardGroup exhaustpile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     public CardGroup discardpile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     public CardGroup hand = new CardGroup(CardGroup.CardGroupType.HAND);
+    private ArrayList<AbstractShowmanCard> toUse = new ArrayList<>();
 
     public MonsterSoulGroup soulGroup;
 
@@ -164,32 +167,22 @@ public class TheShowmanBoss extends CustomMonster {
     public void takeTurn() {
         this.tempenergy = 0;
 
-        int hasTrigger = -1;
-        ArrayList<AbstractShowmanCard> toUse = new ArrayList<>();
-        for (int i = this.hand.size() - 1; i >= 0; i--) {
-            AbstractCard card = this.hand.group.get(i);
-            if (card.isGlowing) {
-                toUse.add((AbstractShowmanCard) card);
-
-                if (((AbstractShowmanCard) card).exhaustTrigger) {
-                    hasTrigger = toUse.size() - 1;
-                }
-            }
-        }
         ArrayList<AbstractCard> residue = new ArrayList<>();
         residue.addAll(this.hand.group);
         residue.removeAll(toUse);
 
-        if (toUse.size() >= this.cardUse && hasTrigger > -1 && this.cardUse - 1 != hasTrigger) {
-            AbstractShowmanCard tmp;
-            tmp = toUse.get(hasTrigger);
-            toUse.set(hasTrigger, toUse.get(this.cardUse - 1));
-            toUse.set(this.cardUse - 1, tmp);
-        }
-        boolean useAttackAnimation = false;
+        final TheShowmanBoss dis = this;
         for (int i = 0; i < toUse.size(); i++) {
             AbstractShowmanCard card = toUse.get(i);
-            useAttackAnimation |= card.baseDamage > 0;
+            if(card.baseDamage > 0) {
+                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        this.isDone = true;
+                        ((ShowmanAnimation) dis.animation).attack();
+                    }
+                });
+            }
             card.use(residue, AbstractDungeon.player, this);
             this.hand.removeCard(card);
             if(card.purgeOnUse) {
@@ -201,10 +194,7 @@ public class TheShowmanBoss extends CustomMonster {
             } else {
                 AbstractDungeon.actionManager.addToBottom(new DiscardShowmanCardAction(this, card));
             }
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(2F));
-        }
-        if(useAttackAnimation) {
-            ((ShowmanAnimation) this.animation).attack();
+            AbstractDungeon.actionManager.addToBottom(new WaitAction(1F));
         }
 
         this.turncounter++;
@@ -387,7 +377,6 @@ public class TheShowmanBoss extends CustomMonster {
             byrdHits = AbstractDungeon.player.getPower(FlightPower.POWER_ID).amount;
         }
 
-        ArrayList<AbstractShowmanCard> bestCombo = new ArrayList<>();
         ArrayList<AbstractShowmanCard> usedCards;
         int bestpriority = -1;
         int curcardprio;
@@ -404,30 +393,68 @@ public class TheShowmanBoss extends CustomMonster {
                 usedCards = recur(usedCards, exhausted, (AbstractShowmanCard) card, this.curenergy, priority, byrdHits);
                 if (priority[0] > bestpriority) {
                     bestpriority = priority[0];
-                    bestCombo = usedCards;
+                    this.toUse = usedCards;
                 }
             }
         }
-        for(final AbstractShowmanCard card : bestCombo) {
-            card.isGlowing = true;
+
+        for(final AbstractCard card : this.hand.group) {
+            ((AbstractShowmanCard) card).willExhaust = false;
         }
-        this.resetOrbPositions();
+        this.changeOrderForExhaustTrigger();
         boolean attacking = false;
+        ArrayList<AbstractCard> residue = new ArrayList<>();
+        residue.addAll(this.hand.group);
+        residue.removeAll(this.toUse);
+        for(final AbstractShowmanCard card : this.toUse) {
+            card.isGlowing = true;
+            card.willExhaust |= card.exhaust;
+            if(card instanceof AbstractShowmanExhaustingCard) {
+                ((AbstractShowmanExhaustingCard) card).highestExhaustPriority(residue);
+                ((AbstractShowmanCard)((AbstractShowmanExhaustingCard) card).toExhaust).willExhaust = true;
+            }
+            if(card.baseDamage > 0) {
+                attacking = true;
+            }
+        }
+        this.setMove((byte)0, Intent.NONE, attacking ? 1 : -1);
+        this.createIntent();
+
+        this.resetOrbPositions();
         for(int i = 0; i < this.hand.size(); i++) {
             AbstractShowmanCard c = (AbstractShowmanCard) this.hand.group.get(i);
             if(c.isGlowing) {
                 this.cards.get(i).setMove((byte)0, c.intent, c.damage, c.multiplier, c.multiplier > 0);
-                if(c.baseDamage > 0) {
-                    attacking = true;
-                }
             } else {
                 this.cards.get(i).setMove((byte)0, Intent.NONE);
             }
             this.cards.get(i).createIntent();
         }
-        this.setMove((byte)0, Intent.NONE, attacking ? 1 : -1);
-        this.createIntent();
-        return bestCombo;
+        return this.toUse;
+    }
+
+    private void changeOrderForExhaustTrigger() {
+        int hasTrigger = -1;
+
+        for(int i = 0; i < toUse.size(); i++) {
+            if (toUse.get(i).exhaustTrigger) {
+                hasTrigger = i;
+                break;
+            }
+        }
+
+        if (toUse.size() >= this.cardUse) {
+            if(hasTrigger > -1) {
+                AbstractShowmanCard tmp = toUse.get(hasTrigger);
+                tmp.willExhaust = true;
+                if (this.cardUse - 1 != hasTrigger) {
+                    toUse.set(hasTrigger, toUse.get(this.cardUse - 1));
+                    toUse.set(this.cardUse - 1, tmp);
+                }
+            } else {
+                toUse.get(this.cardUse - 1).willExhaust = true;
+            }
+        }
     }
 
     private ArrayList<AbstractShowmanCard> recur(ArrayList<AbstractShowmanCard> checked, ArrayList<AbstractShowmanCard> exhausted, AbstractShowmanCard currentCard, int energy, int[] priority, int byrdHits) {

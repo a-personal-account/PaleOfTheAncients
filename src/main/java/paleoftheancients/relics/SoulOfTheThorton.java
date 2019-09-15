@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class SoulOfTheThorton extends CustomRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheThorton");
@@ -17,7 +18,7 @@ public class SoulOfTheThorton extends CustomRelic {
     private boolean triggered = false;
 
     public SoulOfTheThorton() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/thorton.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/thorton.png")), TIER, SOUND);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/thorton.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/thorton.png")), TIER, SOUND);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class SpireWaifu extends TheCollector {
     public SpireWaifu() {
         super();
         this.id = ID;
-        this.setHp(this.maxHealth * 3);
+        this.setHp(this.maxHealth * 2);
         this.hyperbeamcounter = 0;
     }
 
@@ -125,7 +125,25 @@ public class SpireWaifu extends TheCollector {
             }
         }
         if(bronzeorbs < 2 && !this.isDead) {
-            AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new BronzeOrbThing(MathUtils.random(-500F, -100F), 300 + MathUtils.random(-60F, 30F), MathUtils.random(0, 1)), true));
+            AbstractMonster bronzeorb = new BronzeOrbThing(0, 0, MathUtils.random(0, 1));
+            do {
+                boolean overlapping = false;
+                bronzeorb.drawX = Settings.WIDTH * 0.75F + MathUtils.random(-500F, -100F) * Settings.scale;
+                bronzeorb.drawY = AbstractDungeon.floorY + (300 + MathUtils.random(-60F, 30F)) * Settings.scale;
+                bronzeorb.hb.move(bronzeorb.drawX, bronzeorb.drawY + bronzeorb.hb.height / 2);
+
+                for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    if(!mo.isDeadOrEscaped() && mo.hb.intersects(bronzeorb.hb)) {
+                        overlapping = true;
+                        break;
+                    }
+                }
+
+                if(!overlapping) {
+                    break;
+                }
+            } while(true);
+            AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(bronzeorb, true));
         }
 
         hyperbeamcounter--;

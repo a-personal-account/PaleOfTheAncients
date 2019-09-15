@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.thevixen.powers.BurnPower;
 
 public class SoulOfTheVixen extends CustomRelic {
@@ -17,7 +17,7 @@ public class SoulOfTheVixen extends CustomRelic {
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
     public SoulOfTheVixen() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/vixen.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/vixen.png")), TIER, SOUND);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/vixen.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/vixen.png")), TIER, SOUND);
     }
 
     @Override

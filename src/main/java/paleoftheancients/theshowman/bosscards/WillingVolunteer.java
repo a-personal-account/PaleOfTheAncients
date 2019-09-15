@@ -2,9 +2,6 @@ package paleoftheancients.theshowman.bosscards;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import paleoftheancients.PaleMod;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
-import paleoftheancients.theshowman.powers.VolunteeringPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
+import paleoftheancients.theshowman.powers.VolunteeringPower;
 import paleoftheancients.theshowman.vfx.WillingVolunteerVFX;
 
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ public class WillingVolunteer extends AbstractShowmanCard implements NonStackabl
 
     public WillingVolunteer(TheShowmanBoss owner) {
         super(ID, NAME, assetPath(IMG_PATH), COST, DESCRIPTION, TYPE, RARITY, TARGET, owner, AbstractMonster.Intent.DEBUFF);
-        this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = 1;
     }
 

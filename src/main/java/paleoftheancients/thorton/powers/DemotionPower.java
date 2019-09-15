@@ -3,10 +3,10 @@ package paleoftheancients.thorton.powers;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bard.powers.SilencedPower;
+import paleoftheancients.helpers.AssetLoader;
 
 public class DemotionPower extends SilencedPower {
     public static final String POWER_ID = PaleMod.makeID("DemotionPower");
@@ -17,8 +17,8 @@ public class DemotionPower extends SilencedPower {
         super(owner, -1, false);
         name = NAME;
         ID = POWER_ID;
-        this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(PaleMod.assetPath("images/thorton/powers/LoseFocus_84.png")), 0, 0, 84, 84);
-        this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(PaleMod.assetPath("images/thorton/powers/LoseFocus_32.png")), 0, 0, 32, 32);
+        this.region128 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/thorton/powers/LoseFocus_84.png")), 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/thorton/powers/LoseFocus_32.png")), 0, 0, 32, 32);
     }
 
 

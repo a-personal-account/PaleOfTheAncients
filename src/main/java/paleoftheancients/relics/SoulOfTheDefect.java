@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class SoulOfTheDefect extends CustomRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheDefect");
@@ -18,7 +18,7 @@ public class SoulOfTheDefect extends CustomRelic {
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
     public SoulOfTheDefect() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/defect.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/defect.png")), TIER, SOUND);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/defect.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/defect.png")), TIER, SOUND);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package paleoftheancients.theshowman.bosscards;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -10,6 +13,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.ExhaustBlurEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
@@ -22,13 +27,13 @@ public abstract class AbstractShowmanCard extends CustomCard {
     private float baseHeight;
 
     public boolean selected;
-    public AbstractCard exhaustsCard;
     public int multiplier;
     protected int exhaustPriority;
-    public AbstractCard toExhaust;
     public AbstractMonster.Intent intent;
     protected TheShowmanBoss owner;
     public boolean exhaustTrigger;
+    public boolean willExhaust = false;
+    private float particleTimer = 0F;
 
     public AbstractShowmanCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target, TheShowmanBoss owner, AbstractMonster.Intent intent) {
         super(id, name, img, cost, rawDescription, type, TheShowmanBoss.Enums.PALE_COLOR_PURPLE, rarity, target);
@@ -70,6 +75,29 @@ public abstract class AbstractShowmanCard extends CustomCard {
             this.drawScale = MathHelper.cardScaleLerpSnap(this.drawScale, this.targetDrawScale);
             if(Math.abs(this.drawScale - this.targetDrawScale) < 0.05F) {
                 //this.drawScale = this.targetDrawScale;
+            }
+        }
+
+        if(this.willExhaust) {
+            this.particleTimer -= Gdx.graphics.getDeltaTime();
+            if(this.particleTimer <= 0F) {
+                AbstractGameEffect age = new ExhaustBlurEffect(this.current_x, this.current_y);
+                if(!this.hb.hovered) {
+                    TextureAtlas.AtlasRegion atlas = (TextureAtlas.AtlasRegion) ReflectionHacks.getPrivate(age, ExhaustBlurEffect.class, "img");
+                    float x = (float) ReflectionHacks.getPrivate(age, ExhaustBlurEffect.class, "x");
+                    float y = (float) ReflectionHacks.getPrivate(age, ExhaustBlurEffect.class, "y");
+
+                    x -= (x + atlas.packedWidth / 2F - this.current_x) * (1 - this.drawScale);
+                    y -= (y + atlas.packedHeight / 2F - this.current_y) * (1 - this.drawScale);
+
+                    ReflectionHacks.setPrivate(age, ExhaustBlurEffect.class, "x", x);
+                    ReflectionHacks.setPrivate(age, ExhaustBlurEffect.class, "y", y);
+
+                    float targetScale = (float) ReflectionHacks.getPrivate(age, ExhaustBlurEffect.class, "targetScale");
+                    ReflectionHacks.setPrivate(age, ExhaustBlurEffect.class, "targetScale", targetScale * this.drawScale);
+                }
+                AbstractDungeon.effectList.add(age);
+                this.particleTimer = 0.1F;
             }
         }
     }
@@ -149,9 +177,5 @@ public abstract class AbstractShowmanCard extends CustomCard {
         }
 
         return priority;
-    }
-
-    public int getExhaustPriority() {
-        return this.exhaustPriority;
     }
 }

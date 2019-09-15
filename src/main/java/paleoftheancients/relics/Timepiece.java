@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -14,6 +13,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
 import paleoftheancients.finarubossu.monsters.N;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
 import paleoftheancients.rooms.DejaVuRoom;
 import paleoftheancients.savefields.ElitesSlain;
@@ -25,7 +25,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
     private static final LandingSound SOUND = LandingSound.CLINK;
 
     public Timepiece() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/timepiece.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/timepiece.png")), TIER, SOUND);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/timepiece.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/timepiece.png")), TIER, SOUND);
     }
 
     public void onTrigger() {

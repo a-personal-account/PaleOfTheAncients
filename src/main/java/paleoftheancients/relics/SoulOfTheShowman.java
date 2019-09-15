@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class SoulOfTheShowman extends CustomRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheShowman");
@@ -17,7 +17,7 @@ public class SoulOfTheShowman extends CustomRelic {
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
     public SoulOfTheShowman() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/relics/showman.png")), ImageMaster.loadImage(PaleMod.assetPath("images/relics/outline/showman.png")), TIER, SOUND);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/showman.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/showman.png")), TIER, SOUND);
     }
 
     @Override
