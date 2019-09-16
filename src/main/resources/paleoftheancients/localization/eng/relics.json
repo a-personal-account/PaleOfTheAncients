@@ -37,10 +37,10 @@
     ]
   },
   "paleoftheancients:SoulOfTheThorton": {
-    "NAME": "Businesscard of Thorton Johnson",
+    "NAME": "Businesscard of Thorton Minutepen",
     "FLAVOR": "What was that guy even doing here?",
     "DESCRIPTIONS": [
-      "Identifies you as NL #y\"Thorton #yJohnson\".",
+      "Identifies you as NL #y\"Thorton #yMinutepen\". NL #bBank #bManager.",
       "the Thorton?"
     ]
   }

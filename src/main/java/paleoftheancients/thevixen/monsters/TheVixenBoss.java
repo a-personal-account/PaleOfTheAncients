@@ -65,7 +65,7 @@ public class TheVixenBoss extends CustomMonster {
     private static final byte SWAGGER_CONST = 7;
     private static final byte OVERHEAT_CONST = 8;
 
-    private static final byte SOLARBEAM_CONST = 9;
+    public static final byte SOLARBEAM_CONST = 9;
     private static final byte FLAMEWHEEL_CONST = 10;
     private static final byte EMBER_CONST = 11;
     private static final byte FLAMETHROWER_CONST = 12;
@@ -504,7 +504,7 @@ public class TheVixenBoss extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new AttackAnimationAction(this));
                 AbstractDungeon.effectList.add(new SwaggerEffect(this));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, tmp, AbstractGameAction.AttackEffect.SMASH));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new ConfusionPower(AbstractDungeon.player)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new ConfusionPower(AbstractDungeon.player, true)));
                 AbstractDungeon.actionManager.addToBottom(new ApplyTempGainStrengthPowerAction(AbstractDungeon.player, this, SWAGGER_STRENGTH));
                 break;
             case SUNNYDAY_CONST: //Replaced by refresh in this iteration

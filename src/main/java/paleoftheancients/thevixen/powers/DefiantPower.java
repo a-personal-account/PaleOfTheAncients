@@ -1,16 +1,19 @@
 package paleoftheancients.thevixen.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thevixen.hooks.OnReceivePower;
-import paleoftheancients.thevixen.vfx.DefiantFlameVFX;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.hooks.OnReceivePower;
+import paleoftheancients.thevixen.monsters.TheVixenBoss;
+import paleoftheancients.thevixen.vfx.DefiantFlameVFX;
 
 
 public class DefiantPower extends AbstractTheVixenPower implements OnReceivePower {
@@ -56,6 +59,15 @@ public class DefiantPower extends AbstractTheVixenPower implements OnReceivePowe
                 this.dfv.end();
                 this.dfv = null;
             }
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    this.isDone = true;
+                    if(((AbstractMonster) owner).nextMove == TheVixenBoss.SOLARBEAM_CONST) {
+                        ((TheVixenBoss) owner).calcDamage(TheVixenBoss.SOLARBEAM_CONST, true);
+                    }
+                }
+            });
         }
     }
 

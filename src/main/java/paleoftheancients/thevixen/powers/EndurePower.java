@@ -1,7 +1,5 @@
 package paleoftheancients.thevixen.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thevixen.monsters.TheVixenBoss;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BufferPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.monsters.TheVixenBoss;
 
 
 public class EndurePower extends AbstractTheVixenPower {
@@ -23,6 +23,7 @@ public class EndurePower extends AbstractTheVixenPower {
     public static final String IMG = "endure.png";
 
     private static int sunnycount = 10;
+    private boolean triggered = false;
 
     public EndurePower(AbstractCreature owner) {
         super(IMG);
@@ -39,7 +40,7 @@ public class EndurePower extends AbstractTheVixenPower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + sunnycount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + sunnycount + DESCRIPTIONS[2];
     }
 
 
@@ -47,15 +48,17 @@ public class EndurePower extends AbstractTheVixenPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(!this.owner.hasPower(BufferPower.POWER_ID) && !this.owner.hasPower(SubstitutePower.POWER_ID) && damageAmount >= this.owner.currentHealth) {
             damageAmount = this.owner.currentHealth - 1;
+            if(!triggered) {
+                triggered = true;
+                AbstractPower sun = this.owner.getPower(SunnyDayPower.POWER_ID);
+                if (sun != null) {
+                    AbstractDungeon.actionManager.addToTop(new HealAction(this.owner, this.owner, sun.amount * sunnycount));
+                }
 
-            AbstractPower sun = this.owner.getPower(SunnyDayPower.POWER_ID);
-            if(sun != null) {
-                AbstractDungeon.actionManager.addToBottom(new HealAction(this.owner, this.owner, sun.amount * sunnycount));
-            }
-
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, info.owner, this));
-            if(this.owner instanceof TheVixenBoss) {
-                ((TheVixenBoss)this.owner).oneHP = true;
+                AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, info.owner, this));
+                if (this.owner instanceof TheVixenBoss) {
+                    ((TheVixenBoss) this.owner).oneHP = true;
+                }
             }
         }
         return damageAmount;

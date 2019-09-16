@@ -32,6 +32,8 @@ public class SoulOfTheVixen extends CustomRelic {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, AbstractDungeon.player, new BurnPower(target, 1), 1));
+        if(info.type == DamageInfo.DamageType.NORMAL) {
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, AbstractDungeon.player, new BurnPower(target, 1), 1));
+        }
     }
 }
