@@ -137,7 +137,9 @@ public class TheShowmanBoss extends CustomMonster {
         if(AbstractDungeon.ascensionLevel >= 19) {
             this.handsize++;
         }
-        AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheShowman.ID).makeCopy()));
+        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheShowman.ID).makeCopy()));
+        }
     }
 
     public void resetOrbPositions() {

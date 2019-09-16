@@ -266,7 +266,9 @@ public class TheDefectBoss extends AbstractMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new OrbReactivePower(this)));
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this, this, new KineticBarrierPower(this, STARTINGORBSLOTS - 1), STARTINGORBSLOTS - 1));
 
-        AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheDefect.ID).makeCopy()));
+        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheDefect.ID).makeCopy()));
+        }
     }
 
     @Override

@@ -105,7 +105,9 @@ public class Thorton extends CustomMonster {
                 AbstractDungeon.getCurrRoom().rewards.remove(i);
             }
         }
-        AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheThorton.ID).makeCopy()));
+        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheThorton.ID).makeCopy()));
+        }
     }
 
     @Override

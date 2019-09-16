@@ -369,7 +369,9 @@ public class TheVixenBoss extends CustomMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DefiantPower(this, defiant), defiant));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GutsPower(this, 5), 5));
 
-        AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheVixen.ID).makeCopy()));
+        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheVixen.ID).makeCopy()));
+        }
     }
 
     public void takeTurn() {
