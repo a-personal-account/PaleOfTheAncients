@@ -54,7 +54,7 @@ public class ColumbifyPower extends DummyColumbifyPower {
     @Override
     public void onRemove() {
         if(removeFlight && this.owner.hasPower(FlightPower.POWER_ID)) {
-            this.owner.powers.remove(this.owner.getPower(FlightPower.POWER_ID));
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, FlightPower.POWER_ID));
         }
         byrd = null;
         if(handsize > -1) {

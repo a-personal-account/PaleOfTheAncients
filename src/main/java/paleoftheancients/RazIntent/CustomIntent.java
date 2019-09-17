@@ -3,9 +3,9 @@ package paleoftheancients.RazIntent;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.helpers.AssetLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,22 +24,22 @@ public class CustomIntent {
         this(intent, header, display, tip, null);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, Texture display, String tip) {
-        this(intent, header, display, ImageMaster.loadImage(tip), null);
+        this(intent, header, display, AssetLoader.loadImage(tip), null);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, String display, Texture tip) {
-        this(intent, header, ImageMaster.loadImage(display), tip, null);
+        this(intent, header, AssetLoader.loadImage(display), tip, null);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, Texture display, Texture tip) {
         this(intent, header, display, tip, null);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, String display, String tip, String simpledescription) {
-        this(intent, header, ImageMaster.loadImage(display), ImageMaster.loadImage(tip), simpledescription);
+        this(intent, header, AssetLoader.loadImage(display), AssetLoader.loadImage(tip), simpledescription);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, Texture display, String tip, String simpledescription) {
-        this(intent, header, display, ImageMaster.loadImage(tip), simpledescription);
+        this(intent, header, display, AssetLoader.loadImage(tip), simpledescription);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, String display, Texture tip, String simpledescription) {
-        this(intent, header, ImageMaster.loadImage(display), tip, simpledescription);
+        this(intent, header, AssetLoader.loadImage(display), tip, simpledescription);
     }
     public CustomIntent(AbstractMonster.Intent intent, String header, Texture display, Texture tip, String simpledescription) {
         this.header = header;
