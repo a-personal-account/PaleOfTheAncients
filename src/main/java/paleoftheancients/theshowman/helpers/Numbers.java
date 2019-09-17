@@ -35,6 +35,9 @@ public class Numbers {
         for(; n > 0; n /= 10) {
             digits.add(n % 10);
         }
+        if(digits.isEmpty()) {
+            digits.add(0);
+        }
         Texture[] result = new Texture[digits.size()];
         for(int i = 0; i < result.length; i++) {
             result[i] = getNum(digits.get(digits.size() - 1));

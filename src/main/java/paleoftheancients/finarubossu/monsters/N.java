@@ -159,6 +159,9 @@ public class N extends AbstractMonster {
         this.halfDead = true;
 
         AbstractDungeon.actionManager.addToBottom(new TalkAction(this, markofthebloom ? DIALOG[3] : DIALOG[MathUtils.random(0, 2)]));
+        if(Settings.isEndless) {
+            AbstractDungeon.getCurrRoom().rewardAllowed = true;
+        }
     }
 
     @Override

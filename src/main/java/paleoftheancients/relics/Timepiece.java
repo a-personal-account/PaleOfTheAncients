@@ -30,7 +30,6 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
 
     public void onTrigger() {
         this.flash();
-        AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         int healAmt = AbstractDungeon.player.maxHealth;
         if (healAmt < 1) {
             healAmt = 1;
@@ -39,12 +38,13 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
         AbstractDungeon.player.heal(healAmt, true);
         this.setCounter(this.counter - 1);
 
-        AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
         for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if(mo.id != N.ID && !(mo instanceof Eye) && !mo.isDeadOrEscaped()) {
-                AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
+            if(mo.id != N.ID && !(mo instanceof Eye) && (!mo.isDeadOrEscaped() || mo.halfDead)) {
+                AbstractDungeon.actionManager.addToTop(new SuicideAction(mo));
             }
         }
+        AbstractDungeon.actionManager.addToTop(new CanLoseAction());
+        AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         AbstractDungeon.getCurrRoom().rewards.clear();
 
         if(AbstractDungeon.id == PaleOfTheAncients.ID) {

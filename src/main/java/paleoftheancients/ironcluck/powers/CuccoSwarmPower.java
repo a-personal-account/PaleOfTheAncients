@@ -1,8 +1,6 @@
 package paleoftheancients.ironcluck.powers;
 
-import paleoftheancients.NRPower;
-import paleoftheancients.PaleMod;
-import paleoftheancients.ironcluck.monsters.IronCluck;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,6 +10,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import paleoftheancients.NRPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.ironcluck.monsters.IronCluck;
 
 public class CuccoSwarmPower extends NRPower {
     public static final String POWER_ID = PaleMod.makeID("CuccoSwarmPower");
@@ -47,10 +48,16 @@ public class CuccoSwarmPower extends NRPower {
         if(info.owner != this.owner && damageAmount > 0 && this.amount > 0) {
             this.amount -= damageAmount;
             if(this.amount <= 0) {
-                AbstractPower p = this.owner.getPower(GainStrengthPower.POWER_ID);
-                if(p != null) {
-                    p.atEndOfTurn(true);
-                }
+                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        this.isDone = true;
+                        AbstractPower p = owner.getPower(GainStrengthPower.POWER_ID);
+                        if(p != null) {
+                            p.atEndOfTurn(true);
+                        }
+                    }
+                });
                 AbstractDungeon.actionManager.addToBottom(new ChangeStateAction((AbstractMonster) this.owner, IronCluck.COMMENCE_CHICKENS));
             }
             this.updateDescription();

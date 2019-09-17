@@ -67,6 +67,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1854380319/TheShowman.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>thorton</groupId>
+            <artifactId>thorton</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/1783016812/thorton.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

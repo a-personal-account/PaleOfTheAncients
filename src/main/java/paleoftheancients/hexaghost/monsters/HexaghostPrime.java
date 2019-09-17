@@ -78,6 +78,6 @@ public class HexaghostPrime extends CustomMonster {
             familiar.hideHealthBar();
         }
 
-        //this.onBossVictoryLogic();
+        this.onBossVictoryLogic();
     }
 }
