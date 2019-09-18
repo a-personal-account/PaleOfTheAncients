@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import paleoftheancients.PaleMod;
 
@@ -38,9 +38,7 @@ public class PaleScene extends AbstractScene {
     @Override
     public void update() {
         if (this.particles.size() < 60) {
-            DeathScreenFloatyEffect dsfe;
-            this.particles.add(dsfe = new DeathScreenFloatyEffect());
-            AbstractDungeon.effectList.add(dsfe);
+            this.particles.add(new DeathScreenFloatyEffect());
         }
 
         for(int i = this.particles.size() - 1; i >= 0; i--) {
@@ -74,11 +72,20 @@ public class PaleScene extends AbstractScene {
         sb.setColor(this.color);
         sb.draw(filledPixel, 0F, 0F, Settings.WIDTH / 2F, Settings.HEIGHT / 2F, Settings.WIDTH, Settings.HEIGHT, 1F, 1F, 0, 0, 0, 1, 1, false, false);
         sb.setColor(Color.WHITE);
+        for(final AbstractGameEffect age : this.particles) {
+            if(age.renderBehind) {
+                age.render(sb);
+            }
+        }
     }
 
     @Override
-    public void renderCombatRoomFg(SpriteBatch spriteBatch) {
-
+    public void renderCombatRoomFg(SpriteBatch sb) {
+        for(final AbstractGameEffect age : this.particles) {
+            if(!age.renderBehind) {
+                age.render(sb);
+            }
+        }
     }
 
     @Override
