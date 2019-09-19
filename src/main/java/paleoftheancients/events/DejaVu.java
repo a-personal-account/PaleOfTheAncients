@@ -1,12 +1,5 @@
 package paleoftheancients.events;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.finarubossu.vfx.RestoreCardEffect;
-import paleoftheancients.finarubossu.vfx.RestoreRelicsVFX;
-import paleoftheancients.helpers.FakeDeathScreen;
-import paleoftheancients.helpers.PreloadNpc;
-import paleoftheancients.relics.Timepiece;
-import paleoftheancients.scenes.PreloadBottomScene;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -43,6 +36,14 @@ import com.megacrit.cardcrawl.vfx.ObtainKeyEffect;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import com.megacrit.cardcrawl.vfx.scene.LevelTransitionTextOverlayEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.finarubossu.vfx.RestoreCardEffect;
+import paleoftheancients.finarubossu.vfx.RestoreRelicsVFX;
+import paleoftheancients.helpers.FakeDeathScreen;
+import paleoftheancients.helpers.PreloadNpc;
+import paleoftheancients.relics.Timepiece;
+import paleoftheancients.scenes.PreloadBottomScene;
+import paleoftheancients.vfx.TimepieceTrigger;
 
 import java.util.ArrayList;
 
@@ -219,6 +220,8 @@ public class DejaVu extends AbstractEvent {
 
         AbstractDungeon.floorNum = floornum;
         this.roomEventText.clear();
+
+        AbstractDungeon.effectList.add(new TimepieceTrigger(AbstractDungeon.player, false));
     }
 
     private void restorePlayer() {

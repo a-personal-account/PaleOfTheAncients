@@ -2,13 +2,14 @@ package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
@@ -17,6 +18,9 @@ import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
 import paleoftheancients.rooms.DejaVuRoom;
 import paleoftheancients.savefields.ElitesSlain;
+import paleoftheancients.vfx.TimepieceTrigger;
+
+import java.util.ArrayList;
 
 public class Timepiece extends CustomRelic implements ClickableRelic {
     public static final String ID = PaleMod.makeID("Timepiece");
@@ -35,16 +39,23 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
             healAmt = 1;
         }
 
-        AbstractDungeon.player.heal(healAmt, true);
+        AbstractDungeon.player.heal(healAmt, false);
         this.setCounter(this.counter - 1);
 
+        ArrayList<AbstractMonster> affected = new ArrayList<>();
         for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if(mo.id != N.ID && !(mo instanceof Eye) && (!mo.isDeadOrEscaped() || mo.halfDead)) {
                 AbstractDungeon.actionManager.addToTop(new SuicideAction(mo));
+                affected.add(mo);
             }
         }
+
+        AbstractDungeon.actionManager.addToTop(new VFXAction(new TimepieceTrigger(AbstractDungeon.player, false), 5.5F));
+        for(final AbstractMonster mo : affected) {
+            AbstractDungeon.actionManager.addToTop(new VFXAction(new TimepieceTrigger(mo, true)));
+        }
         AbstractDungeon.actionManager.addToTop(new CanLoseAction());
-        AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        AbstractDungeon.actionManager.addToTop(new VFXAction(new TimeWarpTurnEndEffect(), 1F));
         AbstractDungeon.getCurrRoom().rewards.clear();
 
         if(AbstractDungeon.id == PaleOfTheAncients.ID) {
