@@ -3,19 +3,24 @@ package paleoftheancients.finarubossu.powers;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.NRPower;
+import paleoftheancients.finarubossu.monsters.Eye;
 
 import java.util.ArrayList;
 
 public abstract class AbstractGazePower extends NRPower {
     public static PowerType POWER_TYPE = PowerType.BUFF;
     public static final String IMG = "neoweye.png";
+    protected int demonform;
 
     protected int onCardNumber;
 
@@ -30,6 +35,7 @@ public abstract class AbstractGazePower extends NRPower {
         this.onCardNumber = onCardNumber;
         this.amount = 0;
 
+        demonform = AbstractDungeon.ascensionLevel >= 19 ? 3 : 2;
     }
 
     @Override
@@ -49,6 +55,15 @@ public abstract class AbstractGazePower extends NRPower {
     @Override
     public void atEndOfRound() {
         this.amount = 0;
+    }
+
+    @Override
+    public void onDeath() {
+        for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Eye && !mo.isDeadOrEscaped() && !mo.halfDead) {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, this.owner, new RitualPower(mo, demonform), demonform));
+            }
+        }
     }
 
     @Override

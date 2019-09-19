@@ -1,8 +1,5 @@
 package paleoftheancients.donudeca.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.donudeca.powers.FormShiftPower;
-import paleoftheancients.donudeca.powers.LifestealPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -16,6 +13,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.donudeca.powers.FormShiftPower;
+import paleoftheancients.donudeca.powers.LifestealPower;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -125,8 +125,6 @@ public class DonuDeca extends AbstractMonster {
         DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         info.applyPowers(this, AbstractDungeon.player);
 
-        //debug
-        info.output = 1;
         switch(this.nextMove) {
             case VOID_ATTACK:
                 AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "ATTACK"));
@@ -186,6 +184,7 @@ public class DonuDeca extends AbstractMonster {
 
             case FORM_ATTACK:
                 if(mode == Mode.Deca) {
+                    mode = Mode.Donu;
                     this.toggleAnimation();
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new AngerPower(this, 1), 1));
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new PainfulStabsPower(this)));
@@ -197,6 +196,7 @@ public class DonuDeca extends AbstractMonster {
                 break;
             case FORM_DEFEND:
                 if(mode == Mode.Donu) {
+                    mode = Mode.Deca;
                     this.toggleAnimation();
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MetallicizePower(this, 10), 10));
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ThornsPower(this, 3), 3));

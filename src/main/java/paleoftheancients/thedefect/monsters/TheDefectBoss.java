@@ -242,6 +242,8 @@ public class TheDefectBoss extends AbstractMonster {
         this.intents.put(METEORSTRIKE_CONST, Intent.ATTACK_BUFF);
         this.damagevalues.put(METEORSTRIKE_CONST, this.meteorstrike);
 
+        this.intents.put(CHAOS_CONST, Intent.UNKNOWN);
+
         this.loadAnimation("images/characters/defect/idle/skeleton.atlas", "images/characters/defect/idle/skeleton.json", 1.0F);
         TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -399,6 +401,12 @@ public class TheDefectBoss extends AbstractMonster {
 
                 break;
 
+            case CHAOS_CONST:
+                for(int i = 0; i < 3; i++) {
+                    this.addOrb(AbstractBossOrb.getRandomOrb(this, true));
+                }
+                break;
+
 
             default:
                 logger.info("ERROR: Default Take Turn was called on " + this.name);
@@ -553,8 +561,11 @@ public class TheDefectBoss extends AbstractMonster {
                     }
                 }
             }
-
-            move = possibilities.get(AbstractDungeon.cardRandomRng.random(possibilities.size() - 1));
+            if(!possibilities.isEmpty()) {
+                move = possibilities.get(AbstractDungeon.cardRandomRng.random(possibilities.size() - 1));
+            } else {
+                move = CHAOS_CONST;
+            }
 
             switch(move) {
                 case BARRAGE_CONST:
@@ -660,6 +671,9 @@ public class TheDefectBoss extends AbstractMonster {
 
         while(var1.hasNext()) {
             AbstractMonster m = (AbstractMonster)var1.next();
+            if(m instanceof AbstractBossOrb) {
+                ((AbstractBossOrb) m).evoked = true;
+            }
             if (!m.isDead && !m.isDying) {
                 AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
                 AbstractDungeon.actionManager.addToTop(new SuicideAction(m));

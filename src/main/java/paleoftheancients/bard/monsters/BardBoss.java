@@ -223,7 +223,7 @@ public class BardBoss extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        AbstractDungeon.actionManager.addToBottom(new SuicideAction(notequeue));
+        AbstractDungeon.actionManager.addToTop(new SuicideAction(notequeue));
         super.die(triggerRelics);
     }
 

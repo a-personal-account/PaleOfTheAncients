@@ -55,10 +55,7 @@ public class EyeOfSlumber extends Eye {
     }
 
     @Override
-    public void takeTurn() {
-        if(this.nextMove == Byte.MIN_VALUE) {
-            return;
-        }
+    public void takeEyeTurn() {
         DamageInfo info = null;
         if(this.moves.containsKey(this.nextMove)) {
             info = new DamageInfo(this, this.moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);

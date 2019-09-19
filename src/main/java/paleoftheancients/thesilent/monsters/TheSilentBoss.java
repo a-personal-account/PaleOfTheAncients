@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -261,7 +262,7 @@ public class TheSilentBoss extends CustomMonster {
 
 
             case WRAITHFORM_CONST:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new IntangiblePower(this, this.wraith), this.wraith));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new IntangiblePlayerPower(this, this.wraith + 1), this.wraith + 1));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new NotWraithFormPower(this, -1), -1));
                 this.wraith = 0;
                 break;

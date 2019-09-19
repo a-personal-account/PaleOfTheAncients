@@ -1,12 +1,14 @@
 package paleoftheancients.bard.monsters;
 
 import paleoftheancients.PaleMod;
+import paleoftheancients.bard.actions.PerformAllMelodiesAction;
 import paleoftheancients.bard.actions.RemoveNoteFromQueueAction;
 import paleoftheancients.bard.actions.SelectMelodyAction;
 import paleoftheancients.bard.helpers.MelodyManager;
 import paleoftheancients.bard.hooks.OnNoteQueuedHook;
 import paleoftheancients.bard.melodies.AbstractMelody;
 import paleoftheancients.bard.notes.AbstractNote;
+import paleoftheancients.bard.powers.SonataPower;
 import paleoftheancients.bard.ui.MelodiesPanel;
 import paleoftheancients.bard.ui.NotesPanel;
 import basemod.abstracts.CustomMonster;
@@ -56,7 +58,11 @@ public class NoteQueue extends CustomMonster {
     @Override
     public void takeTurn() {
         if(this.owner.nextMove != BardBoss.RHAPSODY) {
-            AbstractDungeon.actionManager.addToBottom(new SelectMelodyAction(this));
+            if(this.owner.hasPower(SonataPower.POWER_ID)) {
+                AbstractDungeon.actionManager.addToBottom(new PerformAllMelodiesAction(this));
+            } else {
+                AbstractDungeon.actionManager.addToBottom(new SelectMelodyAction(this));
+            }
         }
     }
 

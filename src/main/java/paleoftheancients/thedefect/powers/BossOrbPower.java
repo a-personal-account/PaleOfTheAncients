@@ -1,5 +1,6 @@
 package paleoftheancients.thedefect.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.thedefect.monsters.orbs.AbstractBossOrb;
 import basemod.ReflectionHacks;
@@ -13,7 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 
-public class BossOrbPower extends AbstractPower implements InvisiblePower {
+public class BossOrbPower extends AbstractPower implements InvisiblePower, OnReceivePowerPower {
     public static final String POWER_ID = PaleMod.makeID("BossOrbPower");
     private static final PowerStrings powerStrings;
     public static final String NAME;
@@ -55,5 +56,10 @@ public class BossOrbPower extends AbstractPower implements InvisiblePower {
         powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
         NAME = powerStrings.NAME;
         DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    }
+
+    @Override
+    public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature, AbstractCreature abstractCreature1) {
+        return false;
     }
 }

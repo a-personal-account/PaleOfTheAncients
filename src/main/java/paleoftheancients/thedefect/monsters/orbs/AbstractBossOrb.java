@@ -137,13 +137,13 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     }
 
 
-    public static AbstractBossOrb getRandomOrb(TheDefectBoss tdb, boolean useCardRng) {
+    public static AbstractBossOrb getRandomOrb(TheDefectBoss tdb, boolean useMonsterRng) {
         ArrayList<AbstractBossOrb> orbs = new ArrayList();
         orbs.add(new Lightning(tdb));
         orbs.add(new Frost(tdb));
         orbs.add(new Dark(tdb));
         orbs.add(new Plasma(tdb));
-        return useCardRng ? (AbstractBossOrb)orbs.get(AbstractDungeon.cardRandomRng.random(orbs.size() - 1)) : (AbstractBossOrb)orbs.get(MathUtils.random(orbs.size() - 1));
+        return useMonsterRng ? orbs.get(AbstractDungeon.monsterRng.random(orbs.size() - 1)) : orbs.get(MathUtils.random(orbs.size() - 1));
     }
 
     public void onStartOfTurn() {
