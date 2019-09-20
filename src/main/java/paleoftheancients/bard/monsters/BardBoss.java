@@ -188,7 +188,7 @@ public class BardBoss extends CustomMonster {
 
     @Override
     public void getMove(int num) {
-        if(this.currentHealth < this.maxHealth / 2 && !this.hasPower(SonataPower.POWER_ID)) {
+        if((this.currentHealth < this.maxHealth / 2 || this.turnCounter >= 16) && !this.hasPower(SonataPower.POWER_ID)) {
             this.setMoveShortcut(SONATA);
         } else {
             if(turnCounter % 5 == 4) {

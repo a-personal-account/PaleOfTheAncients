@@ -369,9 +369,6 @@ public class TheVixenBoss extends CustomMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DefiantPower(this, defiant), defiant));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GutsPower(this, 5), 5));
 
-        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheVixen.ID).makeCopy()));
-        }
     }
 
     public void takeTurn() {
@@ -751,6 +748,7 @@ public class TheVixenBoss extends CustomMonster {
     }
 
     public void die() {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheVixen.ID);
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         ++this.deathTimer;

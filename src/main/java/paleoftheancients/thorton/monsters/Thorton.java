@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.relics.SoulOfTheThorton;
 import paleoftheancients.thorton.powers.DemotionPower;
 
@@ -104,9 +105,6 @@ public class Thorton extends CustomMonster {
             if(AbstractDungeon.getCurrRoom().rewards.get(i).type == RewardItem.RewardType.GOLD) {
                 AbstractDungeon.getCurrRoom().rewards.remove(i);
             }
-        }
-        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheThorton.ID).makeCopy()));
         }
     }
 
@@ -224,6 +222,7 @@ public class Thorton extends CustomMonster {
 
     @Override
     public void die() {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheThorton.ID);
         if(this.gold > 0) {
             RewardItem ri = new RewardItem();
             ri.type = RewardItem.RewardType.GOLD;

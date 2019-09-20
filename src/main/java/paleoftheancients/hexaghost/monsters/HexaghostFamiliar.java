@@ -6,11 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.exordium.Hexaghost;
 import com.megacrit.cardcrawl.monsters.exordium.HexaghostOrb;
+import com.megacrit.cardcrawl.powers.CorpseExplosionPower;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,9 @@ public class HexaghostFamiliar extends Hexaghost {
     public void die() {
         AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
         this.owner.damage(new DamageInfo(this, this.maxHealth, DamageInfo.DamageType.HP_LOSS));
+
+        PaleOfTheAncients.deathTriggers(this);
+        AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this, this, CorpseExplosionPower.POWER_ID));
 
         if(this.intent != Intent.UNKNOWN) {
             int prevOrbActiveCount = (int) ReflectionHacks.getPrivate(this, Hexaghost.class, "orbActiveCount");

@@ -268,9 +268,6 @@ public class TheDefectBoss extends AbstractMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new OrbReactivePower(this)));
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this, this, new KineticBarrierPower(this, STARTINGORBSLOTS - 1), STARTINGORBSLOTS - 1));
 
-        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheDefect.ID).makeCopy()));
-        }
     }
 
     @Override
@@ -659,6 +656,7 @@ public class TheDefectBoss extends AbstractMonster {
 
 
     public void die() {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheDefect.ID);
         PaleOfTheAncients.resumeMainMusic();
         AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[6]));
         this.useFastShakeAnimation(5.0F);

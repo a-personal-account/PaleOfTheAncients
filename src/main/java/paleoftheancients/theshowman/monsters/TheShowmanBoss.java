@@ -137,9 +137,6 @@ public class TheShowmanBoss extends CustomMonster {
         if(AbstractDungeon.ascensionLevel >= 19) {
             this.handsize++;
         }
-        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(SoulOfTheShowman.ID).makeCopy()));
-        }
     }
 
     public void resetOrbPositions() {
@@ -331,6 +328,7 @@ public class TheShowmanBoss extends CustomMonster {
 
     @Override
     public void die() {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheShowman.ID);
         AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3F, DIALOG[MathUtils.random(7, 9)], this.isPlayer));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);

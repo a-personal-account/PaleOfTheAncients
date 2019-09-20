@@ -4,10 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapGenerator;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import paleoftheancients.PaleMod;
@@ -262,5 +267,28 @@ public class PaleOfTheAncients extends CustomDungeon {
         CardCrawlGame.music.silenceTempBgmInstantly();
         AbstractDungeon.scene.fadeInAmbiance();
         CardCrawlGame.music.unsilenceBGM();
+    }
+
+    public static void deathTriggers(AbstractMonster mo) {
+        for(int i = mo.powers.size() - 1; i >= 0; i--) {
+            AbstractPower pow = mo.powers.get(i);
+            pow.onDeath();
+        }
+        for(final AbstractRelic relic : AbstractDungeon.player.relics) {
+            relic.onMonsterDeath(mo);
+        }
+    }
+
+    public static void addRewardRelic(String relicID) {
+        boolean found = false;
+        for(final RewardItem ri : AbstractDungeon.getCurrRoom().rewards) {
+            if(ri.type == RewardItem.RewardType.RELIC && ri.relic != null && ri.relic.relicId.equals(relicID)) {
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(relicID).makeCopy()));
+        }
     }
 }

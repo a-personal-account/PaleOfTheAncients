@@ -18,10 +18,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.UnawakenedPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import com.megacrit.cardcrawl.vfx.AwakenedWingParticle;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.wokeone.powers.PrematureAwakening;
 import paleoftheancients.wokeone.vfx.CultistWingParticle;
 
@@ -140,6 +142,8 @@ public class WokeCultist extends Cultist {
             this.setMove((byte)255, Intent.UNKNOWN);
             this.createIntent();
             this.halfDead = true;
+
+            PaleOfTheAncients.deathTriggers(this);
         } else {
             super.die();
         }

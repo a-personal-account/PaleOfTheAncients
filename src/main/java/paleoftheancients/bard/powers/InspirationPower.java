@@ -1,8 +1,10 @@
 package paleoftheancients.bard.powers;
 
+import basemod.BaseMod;
 import basemod.interfaces.CloneablePowerInterface;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,13 +13,13 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import paleoftheancients.PaleMod;
 
-import java.util.Iterator;
-
 public class InspirationPower extends AbstractBardTwoAmountPower implements NonStackablePower, CloneablePowerInterface {
     public static final String POWER_ID = PaleMod.makeID("Inspiration");
     private static final PowerStrings powerStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
+    private boolean reduceThisTurn = false;
+    private boolean justApplied = true;
 
     public InspirationPower(AbstractCreature owner, int cards, int percent) {
         this.name = NAME;
@@ -34,46 +36,41 @@ public class InspirationPower extends AbstractBardTwoAmountPower implements NonS
     public void updateDescription() {
         this.name = NAME + " " + this.amount2;
         if (this.amount == 1) {
-            this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[4] + this.amount2 + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[4]  + DESCRIPTIONS[5] + DESCRIPTIONS[7] + this.amount2 + DESCRIPTIONS[8];
         } else {
-            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3] + DESCRIPTIONS[4] + this.amount2 + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3] + DESCRIPTIONS[4] + DESCRIPTIONS[6] + DESCRIPTIONS[7]  + this.amount2 + DESCRIPTIONS[8];
         }
 
     }
 
-    public int onAttackToChangeDamage(DamageInfo info, int damageAmount) {
-        if (this == this.owner.getPower(this.ID) && info.type == DamageInfo.DamageType.NORMAL) {
-            float additiveDamage = 0.0F;
-            Iterator var4 = this.owner.powers.iterator();
-
-            while(var4.hasNext()) {
-                AbstractPower p = (AbstractPower)var4.next();
-                if (p instanceof InspirationPower) {
-                    additiveDamage += damageAmount * ((float)((InspirationPower)p).amount2 / 100.0F);
-                }
-            }
-
-            return damageAmount + (int)additiveDamage;
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (!this.justApplied && type == DamageInfo.DamageType.NORMAL) {
+            return damage * (1 + this.amount2 / 100F);
         } else {
-            return damageAmount;
+            return damage;
         }
     }
-
-    public static int calcBlock(AbstractCreature owner, int baseBlock) {
-        float additiveBlock = 0.0F;
-        for(final AbstractPower pow : owner.powers) {
-            if(pow instanceof InspirationPower) {
-                additiveBlock += baseBlock * ((float)((InspirationPower)pow).amount2 / 100.0F);
-            }
+    @Override
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        if (info.type == DamageInfo.DamageType.NORMAL) {
+            this.reduceThisTurn = true;
         }
-        return baseBlock + (int)additiveBlock;
     }
-    public static void reduceAllStacks(AbstractCreature owner) {
-        for(final AbstractPower pow : owner.powers) {
-            if(pow instanceof InspirationPower) {
-                AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(owner, owner, pow, 1));
+    @Override
+    public void atEndOfRound() {
+        if(!this.justApplied && this.reduceThisTurn) {
+            BaseMod.logger.error("------------- " + this.amount2 + "% / " + this.amount);
+            if(this.amount <= 1) {
+                BaseMod.logger.error("REMOVING");
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            } else {
+                AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
             }
+        } else {
+            this.justApplied = false;
         }
+        this.reduceThisTurn = false;
     }
 
     public boolean isStackable(AbstractPower power) {

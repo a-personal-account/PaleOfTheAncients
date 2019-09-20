@@ -21,7 +21,7 @@ public class InspireLargeMelody extends AbstractMelody {
     }
 
     public void play(AbstractCreature source) {
-        this.addToBottom(new ApplyPowerAction(source, source, new InspirationPower(AbstractDungeon.player, this.magicNumber, 100), this.magicNumber));
+        this.addToBottom(new ApplyPowerAction(source, source, new InspirationPower(source, this.magicNumber, 100), this.magicNumber));
     }
 
     public AbstractMelody makeCopy() {
