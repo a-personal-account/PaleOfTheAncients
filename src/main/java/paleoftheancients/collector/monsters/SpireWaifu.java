@@ -163,7 +163,7 @@ public class SpireWaifu extends TheCollector {
     }
 
     @Override
-    public void die() {
+    public void die(boolean triggerRelics) {
         for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!m.isDead && !m.isDying) {
                 AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
@@ -171,7 +171,7 @@ public class SpireWaifu extends TheCollector {
                 AbstractDungeon.actionManager.addToTop(new VFXAction(m, new InflameEffect(m), 0.2F));
             }
         }
-        this.die(true);
+        this.die(triggerRelics);
     }
 
     @Override

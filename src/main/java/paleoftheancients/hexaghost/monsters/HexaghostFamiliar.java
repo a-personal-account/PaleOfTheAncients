@@ -54,25 +54,33 @@ public class HexaghostFamiliar extends Hexaghost {
 
     @Override
     public void die() {
-        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
-        this.owner.damage(new DamageInfo(this, this.maxHealth, DamageInfo.DamageType.HP_LOSS));
+        this.die(true);
+    }
+    @Override
+    public void die(boolean triggerRelics) {
+        if(this.owner.currentHealth > 0) {
+            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
+            this.owner.damage(new DamageInfo(this, this.maxHealth, DamageInfo.DamageType.HP_LOSS));
 
-        PaleOfTheAncients.deathTriggers(this);
-        AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this, this, CorpseExplosionPower.POWER_ID));
+            PaleOfTheAncients.deathTriggers(this);
+            AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this, this, CorpseExplosionPower.POWER_ID));
 
-        if(this.intent != Intent.UNKNOWN) {
-            int prevOrbActiveCount = (int) ReflectionHacks.getPrivate(this, Hexaghost.class, "orbActiveCount");
-            ArrayList<HexaghostOrb> grargh = (ArrayList<HexaghostOrb>) ReflectionHacks.getPrivate(this, Hexaghost.class, "orbs");
-            for (int i = grargh.size() - 1, deactivated = deactivateOnDeath; i >= 0 && deactivated > 0; i--) {
-                if (grargh.get(i).activated) {
-                    deactivated--;
-                    prevOrbActiveCount--;
-                    grargh.get(i).deactivate();
+            if (this.intent != Intent.UNKNOWN) {
+                int prevOrbActiveCount = (int) ReflectionHacks.getPrivate(this, Hexaghost.class, "orbActiveCount");
+                ArrayList<HexaghostOrb> grargh = (ArrayList<HexaghostOrb>) ReflectionHacks.getPrivate(this, Hexaghost.class, "orbs");
+                for (int i = grargh.size() - 1, deactivated = deactivateOnDeath; i >= 0 && deactivated > 0; i--) {
+                    if (grargh.get(i).activated) {
+                        deactivated--;
+                        prevOrbActiveCount--;
+                        grargh.get(i).deactivate();
+                    }
                 }
+                ReflectionHacks.setPrivate(this, Hexaghost.class, "orbActiveCount", prevOrbActiveCount);
+                this.getMove(0);
+                this.createIntent();
             }
-            ReflectionHacks.setPrivate(this, Hexaghost.class, "orbActiveCount", prevOrbActiveCount);
-            this.getMove(0);
-            this.createIntent();
+        } else {
+            super.die(triggerRelics);
         }
     }
 

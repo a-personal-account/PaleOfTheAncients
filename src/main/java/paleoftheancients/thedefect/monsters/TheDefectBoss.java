@@ -31,7 +31,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.DataDisk;
 import com.megacrit.cardcrawl.relics.Inserter;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import org.apache.logging.log4j.LogManager;
@@ -655,15 +654,13 @@ public class TheDefectBoss extends AbstractMonster {
     }
 
 
-    public void die() {
+    public void die(boolean triggerRelics) {
         PaleOfTheAncients.addRewardRelic(SoulOfTheDefect.ID);
         PaleOfTheAncients.resumeMainMusic();
         AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[6]));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         ++this.deathTimer;
-        super.die();
-        this.onBossVictoryLogic();
 
         Iterator var1 = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
 
@@ -672,11 +669,13 @@ public class TheDefectBoss extends AbstractMonster {
             if(m instanceof AbstractBossOrb) {
                 ((AbstractBossOrb) m).evoked = true;
             }
-            if (!m.isDead && !m.isDying) {
+            if (!m.isDead && !m.isDying && m != this) {
                 AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
                 AbstractDungeon.actionManager.addToTop(new SuicideAction(m));
             }
         }
+        super.die(triggerRelics);
+        this.onBossVictoryLogic();
     }
 
 

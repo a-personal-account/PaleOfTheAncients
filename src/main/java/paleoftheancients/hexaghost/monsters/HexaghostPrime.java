@@ -1,7 +1,5 @@
 package paleoftheancients.hexaghost.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.hexaghost.powers.HexaghostPower;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -9,6 +7,8 @@ import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.hexaghost.powers.HexaghostPower;
 
 import java.util.ArrayList;
 
@@ -68,10 +68,10 @@ public class HexaghostPrime extends CustomMonster {
     }
 
     @Override
-    public void die() {
+    public void die(boolean triggerRelics) {
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
-        super.die();
+        super.die(triggerRelics);
 
         for(final HexaghostFamiliar familiar : familiars) {
             familiar.die(true);

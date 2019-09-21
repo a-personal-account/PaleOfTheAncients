@@ -114,17 +114,19 @@ public abstract class AbstractBossOrb extends AbstractMonster {
 
     @Override
     public void die(boolean adjustPower) {
-        if(!(this instanceof EmptyOrbSlot) && !this.evoked) {
-            this.evoked = true;
-            this.evoke(AbstractDungeon.player);
+        if(!(this instanceof EmptyOrbSlot)) {
             this.removeFromRoom();
+            if(!this.evoked) {
+                this.evoked = true;
+                this.evoke(AbstractDungeon.player);
 
-            AbstractDungeon.actionManager.addToTop(new DefectRemoveOrbAction(this));
+                AbstractDungeon.actionManager.addToTop(new DefectRemoveOrbAction(this));
 
-            if (this.owner.hasPower(DivertingPowerPower.POWER_ID)) {
-                AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, DivertingPowerPower.POWER_ID, 1));
-            } else {
-                AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new KineticBarrierPower(this.owner, 1), 1));
+                if (this.owner.hasPower(DivertingPowerPower.POWER_ID)) {
+                    AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, DivertingPowerPower.POWER_ID, 1));
+                } else {
+                    AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new KineticBarrierPower(this.owner, 1), 1));
+                }
             }
         }
     }
@@ -146,12 +148,6 @@ public abstract class AbstractBossOrb extends AbstractMonster {
         return useMonsterRng ? orbs.get(AbstractDungeon.monsterRng.random(orbs.size() - 1)) : orbs.get(MathUtils.random(orbs.size() - 1));
     }
 
-    public void onStartOfTurn() {
-    }
-
-    public void onEndOfTurn() {
-    }
-
     public void applyFocus() {
         AbstractPower power = this.owner.getPower("Focus");
         if (power != null) {
@@ -162,15 +158,6 @@ public abstract class AbstractBossOrb extends AbstractMonster {
             this.evokeAmount = this.baseEvokeAmount;
         }
         this.updateDescription();
-    }
-
-    public static int applyLockOn(AbstractCreature target, int dmg) {
-        int retVal = dmg;
-        if (target.hasPower(LockOnPower.POWER_ID)) {
-            retVal = (int)((float)dmg * 1.5F);
-        }
-
-        return retVal;
     }
 
     public void update() {
@@ -233,7 +220,6 @@ public abstract class AbstractBossOrb extends AbstractMonster {
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.hb.cX + NUM_X_OFFSET, this.hb.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.hb.cX + NUM_X_OFFSET, this.hb.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
         }
-
     }
 
     public abstract void playChannelSFX();

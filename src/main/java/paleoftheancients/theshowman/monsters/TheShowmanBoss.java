@@ -20,13 +20,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import paleoftheancients.PaleMod;
@@ -46,7 +44,6 @@ import paleoftheancients.theshowman.ui.MonsterDiscardPilePanel;
 import paleoftheancients.theshowman.ui.MonsterDrawPilePanel;
 import paleoftheancients.theshowman.ui.MonsterEnergyPanel;
 import paleoftheancients.theshowman.ui.MonsterExhaustPanel;
-import paleoftheancients.thevixen.actions.AttackAnimationAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -327,16 +324,15 @@ public class TheShowmanBoss extends CustomMonster {
     }
 
     @Override
-    public void die() {
+    public void die(boolean triggerRelics) {
         PaleOfTheAncients.addRewardRelic(SoulOfTheShowman.ID);
         AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3F, DIALOG[MathUtils.random(7, 9)], this.isPlayer));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         PaleOfTheAncients.resumeMainMusic();
-        super.die();
-        for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
-        }
+        super.die(triggerRelics);
+
+        AbstractDungeon.actionManager.addToBottom(new SuicideAction(stage));
     }
 
     @Override

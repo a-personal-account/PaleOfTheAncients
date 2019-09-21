@@ -1,6 +1,5 @@
 package paleoftheancients.bard.powers;
 
-import basemod.BaseMod;
 import basemod.interfaces.CloneablePowerInterface;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -60,9 +59,7 @@ public class InspirationPower extends AbstractBardTwoAmountPower implements NonS
     @Override
     public void atEndOfRound() {
         if(!this.justApplied && this.reduceThisTurn) {
-            BaseMod.logger.error("------------- " + this.amount2 + "% / " + this.amount);
             if(this.amount <= 1) {
-                BaseMod.logger.error("REMOVING");
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             } else {
                 AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
