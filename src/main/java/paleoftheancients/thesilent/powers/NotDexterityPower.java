@@ -1,7 +1,9 @@
 package paleoftheancients.thesilent.powers;
 
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import paleoftheancients.PaleMod;
 
@@ -30,14 +32,19 @@ public class NotDexterityPower extends AbstractSilentPower {
     }
 
 
-    public void reducePower(int reduceAmount) {
-        this.fontScale = 8.0F;
-        this.amount -= reduceAmount;
+    public void stackPower(int stackAmount) {
+        this.amount += stackAmount;
+        if (this.amount == 0) {
+            AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        }
+
+        if (this.amount >= 999) {
+            this.amount = 999;
+        }
 
         if (this.amount <= -999) {
             this.amount = -999;
         }
-
     }
 
     @Override

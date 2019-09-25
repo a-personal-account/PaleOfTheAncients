@@ -332,7 +332,9 @@ public class TheShowmanBoss extends CustomMonster {
         PaleOfTheAncients.resumeMainMusic();
         super.die(triggerRelics);
 
-        AbstractDungeon.actionManager.addToBottom(new SuicideAction(stage));
+        if(stage != null) {
+            AbstractDungeon.actionManager.addToBottom(new SuicideAction(stage));
+        }
     }
 
     @Override

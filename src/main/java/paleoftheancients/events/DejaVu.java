@@ -221,7 +221,7 @@ public class DejaVu extends AbstractEvent {
         AbstractDungeon.floorNum = floornum;
         this.roomEventText.clear();
 
-        AbstractDungeon.effectList.add(new TimepieceTrigger(AbstractDungeon.player, false));
+        AbstractDungeon.effectList.add(new TimepieceTrigger(AbstractDungeon.player, false, false));
     }
 
     private void restorePlayer() {

@@ -62,6 +62,7 @@ public class SlimeUnityPower extends AbstractPower {
                 InvinciblePower ip = (InvinciblePower)boss.getPower(InvinciblePower.POWER_ID);
                 if(ip != null) {
                     ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", boss.maxHealth);
+                    ip.atStartOfTurn();
                 }
                 if(boss instanceof WeirdSlimeThing) {
                     boss.hb.height = ((WeirdSlimeThing)boss).getHeight();

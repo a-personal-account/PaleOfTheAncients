@@ -22,11 +22,17 @@ public class TimepieceTrigger extends AbstractGameEffect {
     private Color color;
     private float minutePhase, phaseVelocity = 0F;
 
+    private boolean healvfx;
+
     public TimepieceTrigger(AbstractCreature target, boolean forward) {
+        this(target, forward, true);
+    }
+    public TimepieceTrigger(AbstractCreature target, boolean forward, boolean healvfx) {
         this.renderBehind = false;
         this.duration = 5F;
         this.target = target;
         this.forward = (forward ? -1 : 1);
+        this.healvfx = healvfx;
         this.color = Color.WHITE.cpy().sub(0 ,0, 0, 1F);
 
         if(clockface == null) {
@@ -46,7 +52,7 @@ public class TimepieceTrigger extends AbstractGameEffect {
     public void update() {
         phaseVelocity += 0.2F * this.forward;
         float phaseIncrease = Gdx.graphics.getDeltaTime() * phaseVelocity;
-        if(Math.abs(minutePhase) % (Math.PI * 2) > Math.abs(minutePhase + phaseIncrease) % (Math.PI * 2)) {
+        if(healvfx && Math.abs(minutePhase) % (Math.PI * 2) > Math.abs(minutePhase + phaseIncrease) % (Math.PI * 2)) {
             if(forward < 0) {
                 AbstractDungeon.effectsQueue.add(new StrikeEffect(this.target, this.target.hb.cX, this.target.hb.cY, 0));
                 AbstractDungeon.effectsQueue.add(new DamageNumberEffect(this.target, this.target.hb.cX, this.target.hb.cY, MathUtils.random(20, 4000)));

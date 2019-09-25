@@ -56,7 +56,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
         }
         AbstractDungeon.actionManager.addToTop(new CanLoseAction());
         AbstractDungeon.actionManager.addToTop(new VFXAction(new TimeWarpTurnEndEffect(), 1F));
-        AbstractDungeon.getCurrRoom().rewards.clear();
+        AbstractDungeon.getCurrRoom().rewardAllowed = false;
 
         if(AbstractDungeon.id == PaleOfTheAncients.ID) {
             AbstractRoomUpdateIncrementElitesPatch.Insert(null);
