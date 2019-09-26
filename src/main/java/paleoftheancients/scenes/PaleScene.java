@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class PaleScene extends AbstractScene {
         particles = new ArrayList<>();
         this.ambianceName = "AMBIANCE_BEYOND";
         this.fadeInAmbiance();
-        this.filledPixel = ImageMaster.loadImage(PaleMod.assetPath("images/misc/filledpixel.png"));
+        this.filledPixel = AssetLoader.loadImage(PaleMod.assetPath("images/misc/filledpixel.png"));
         this.color = Color.DARK_GRAY.cpy();
         this.possibilities = new Color[]{this.color, Color.CYAN, Color.OLIVE, Color.PURPLE, Color.GOLD};
         this.color.a = 0F;

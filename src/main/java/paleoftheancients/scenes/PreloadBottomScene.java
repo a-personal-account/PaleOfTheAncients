@@ -1,6 +1,5 @@
 package paleoftheancients.scenes;
 
-import paleoftheancients.bard.helpers.AssetLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -14,6 +13,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.vfx.scene.*;
+import paleoftheancients.helpers.AssetLoader;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -57,7 +57,7 @@ public class PreloadBottomScene extends AbstractScene {
     public PreloadBottomScene() {
         super(null);
 
-        this.atlas = AssetLoader.loader.loadAtlas(atlasUrl);
+        this.atlas = AssetLoader.loadAtlas(atlasUrl);
         this.bg = this.atlas.findRegion("bg");
         this.campfireBg = this.atlas.findRegion("campfire");
         this.campfireGlow = this.atlas.findRegion("mod/campfireGlow");

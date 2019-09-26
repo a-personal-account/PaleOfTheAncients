@@ -1,15 +1,15 @@
 package paleoftheancients.bard.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.bard.helpers.AssetLoader;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class AbstractBardTwoAmountPower extends TwoAmountPower {
     private TextureAtlas powerAtlas;
 
     public AbstractBardTwoAmountPower() {
-        this.powerAtlas = AssetLoader.loader.loadAtlas(PaleMod.assetPath("images/bard/powers/powers.atlas"));
+        this.powerAtlas = AssetLoader.loadAtlas(PaleMod.assetPath("images/bard/powers/powers.atlas"));
     }
 
     protected void loadRegion(String fileName) {

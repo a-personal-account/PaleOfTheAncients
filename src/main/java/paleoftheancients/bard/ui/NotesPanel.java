@@ -1,13 +1,5 @@
 package paleoftheancients.bard.ui;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.bard.actions.PerformAllMelodiesAction;
-import paleoftheancients.bard.actions.SelectMelodyAction;
-import paleoftheancients.bard.helpers.AssetLoader;
-import paleoftheancients.bard.monsters.NoteQueue;
-import paleoftheancients.bard.notes.AbstractNote;
-import paleoftheancients.bard.notes.WildCardNote;
-import paleoftheancients.bard.powers.SonataPower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,6 +14,14 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import paleoftheancients.PaleMod;
+import paleoftheancients.bard.actions.PerformAllMelodiesAction;
+import paleoftheancients.bard.actions.SelectMelodyAction;
+import paleoftheancients.bard.monsters.NoteQueue;
+import paleoftheancients.bard.notes.AbstractNote;
+import paleoftheancients.bard.notes.WildCardNote;
+import paleoftheancients.bard.powers.SonataPower;
+import paleoftheancients.helpers.AssetLoader;
 
 import java.util.Iterator;
 
@@ -42,7 +42,7 @@ public class NotesPanel {
 
     public NotesPanel(NoteQueue nq) {
         this.noteQueue = nq;
-        this.noteAtlas = AssetLoader.loader.loadAtlas(PaleMod.assetPath("images/bard/notes/notes.atlas"));
+        this.noteAtlas = AssetLoader.NoteAtlas();
     }
 
     public float getX() {

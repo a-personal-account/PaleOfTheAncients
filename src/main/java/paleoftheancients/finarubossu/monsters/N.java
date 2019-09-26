@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -29,11 +28,11 @@ import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import com.megacrit.cardcrawl.vfx.CollectorStakeEffect;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import paleoftheancients.PaleMod;
-import paleoftheancients.bard.helpers.AssetLoader;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
 import paleoftheancients.finarubossu.powers.*;
 import paleoftheancients.finarubossu.vfx.BackgroundMonster;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.thevixen.cards.status.BossBurn;
 import paleoftheancients.thevixen.helpers.RandomPoint;
 
@@ -108,7 +107,7 @@ public class N extends AbstractMonster {
 
     @Override
     protected void loadAnimation(String atlasUrl, String skeletonUrl, float scale) {
-        this.atlas = AssetLoader.loader.loadAtlas(atlasUrl);
+        this.atlas = AssetLoader.loadAtlas(atlasUrl);
         SkeletonJson json = new SkeletonJson(this.atlas);
 
         json.setScale(Settings.scale / scale);
@@ -129,7 +128,7 @@ public class N extends AbstractMonster {
     public void usePreBattleAction() {
         PaleOfTheAncients.playTempMusicInstantly(PaleMod.makeID("undyne"));
 
-        this.emptypixel = ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
+        this.emptypixel = AssetLoader.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
 
         boolean markofthebloom = AbstractDungeon.player.hasRelic(MarkOfTheBloom.ID);
         if(markofthebloom) {

@@ -1,15 +1,15 @@
 package paleoftheancients.bard.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.bard.helpers.AssetLoader;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class AbstractBardPower extends AbstractPower {
     private TextureAtlas powerAtlas;
 
     public AbstractBardPower() {
-        this.powerAtlas = AssetLoader.loader.loadAtlas(PaleMod.assetPath("images/bard/powers/powers.atlas"));
+        this.powerAtlas = AssetLoader.loadAtlas(PaleMod.assetPath("images/bard/powers/powers.atlas"));
     }
 
     protected void loadRegion(String fileName) {

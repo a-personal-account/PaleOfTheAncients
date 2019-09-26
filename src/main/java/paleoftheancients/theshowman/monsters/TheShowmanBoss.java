@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -29,6 +28,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.relics.SoulOfTheShowman;
 import paleoftheancients.theshowman.actions.DiscardShowmanCardAction;
 import paleoftheancients.theshowman.actions.DiscardShowmanHandAction;
@@ -113,7 +113,7 @@ public class TheShowmanBoss extends CustomMonster {
 
 
         cards = new ArrayList<>();
-        emptypixel = ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
+        emptypixel = AssetLoader.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
 
         this.exhaustPanel = new MonsterExhaustPanel(this);
         this.discardPilePanel = new MonsterDiscardPilePanel(this);

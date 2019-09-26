@@ -1,6 +1,5 @@
 package paleoftheancients.helpers;
 
-import paleoftheancients.bard.helpers.AssetLoader;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -17,7 +16,7 @@ public class PreloadNpc extends AnimatedNpc {
 
     @SpireOverride
     protected void loadAnimation(String atlasUrl, String skeletonUrl, float scale) {
-        TextureAtlas atlas = AssetLoader.loader.loadAtlas(atlasUrl);
+        TextureAtlas atlas = AssetLoader.loadAtlas(atlasUrl);
         ReflectionHacks.setPrivate(this, AnimatedNpc.class, "atlas", atlas);
         SkeletonJson json = new SkeletonJson(atlas);
         json.setScale(Settings.scale / scale);

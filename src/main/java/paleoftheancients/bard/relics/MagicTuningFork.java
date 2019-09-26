@@ -1,15 +1,15 @@
 package paleoftheancients.bard.relics;
 
-import paleoftheancients.PaleMod;
 import basemod.abstracts.CustomRelic;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 
 public class MagicTuningFork extends CustomRelic {
     public static final String ID = PaleMod.makeID("MagicTuningFork");
 
     public MagicTuningFork() {
-        super(ID, ImageMaster.loadImage(PaleMod.assetPath("images/bard/relics/magicTuningFork.png")), AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.MAGICAL);
+        super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/bard/relics/magicTuningFork.png")), AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.MAGICAL);
     }
 
     @Override

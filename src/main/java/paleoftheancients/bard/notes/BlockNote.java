@@ -1,10 +1,10 @@
 package paleoftheancients.bard.notes;
 
-import paleoftheancients.bard.helpers.AssetLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import paleoftheancients.helpers.AssetLoader;
 
 public class BlockNote extends AbstractNote {
     @SpireEnum(

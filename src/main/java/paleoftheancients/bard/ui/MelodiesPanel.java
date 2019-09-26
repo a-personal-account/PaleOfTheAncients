@@ -1,9 +1,5 @@
 package paleoftheancients.bard.ui;
 
-import paleoftheancients.bard.helpers.AssetLoader;
-import paleoftheancients.bard.helpers.MelodyManager;
-import paleoftheancients.bard.melodies.AbstractMelody;
-import paleoftheancients.bard.monsters.NoteQueue;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,6 +11,10 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.HitboxListener;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import paleoftheancients.bard.helpers.MelodyManager;
+import paleoftheancients.bard.melodies.AbstractMelody;
+import paleoftheancients.bard.monsters.NoteQueue;
+import paleoftheancients.helpers.AssetLoader;
 
 import java.util.ArrayList;
 import java.util.List;

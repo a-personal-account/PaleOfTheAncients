@@ -1,12 +1,12 @@
 package paleoftheancients.bard.notes;
 
-import paleoftheancients.bard.helpers.AssetLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import paleoftheancients.helpers.AssetLoader;
 
 public class AttackNote extends AbstractNote {
     @SpireEnum(

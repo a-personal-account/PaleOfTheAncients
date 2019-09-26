@@ -3,10 +3,10 @@ package paleoftheancients.rooms;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.screens.DefaultPaleVictoryScreen;
 import paleoftheancients.screens.PaleVictoryScreen;
 import paleoftheancients.screens.ShowmanVictoryScreen;
@@ -21,7 +21,7 @@ public class PaleVictoryRoom extends AbstractRoom {
         if(AbstractDungeon.player.masterDeck.findCardById("theShowman:Columbify") != null) {
             Cards.preload();
             this.screen = new ShowmanVictoryScreen();
-            this.monsters = new MonsterGroup(new DummyMonster(0, 0, 0, 0, ImageMaster.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"))));
+            this.monsters = new MonsterGroup(new DummyMonster(0, 0, 0, 0, AssetLoader.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"))));
         } else {
             this.screen = new DefaultPaleVictoryScreen();
         }

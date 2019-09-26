@@ -59,4 +59,7 @@ public class DummyMonster extends AbstractMonster {
         SpireSuper.call(dmg);
         Settings.isEndless = before;
     }
+
+    @Override
+    public void dispose() {}
 }
