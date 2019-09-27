@@ -20,7 +20,6 @@ import paleoftheancients.thevixen.cards.status.BossBurn;
 
 public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
     public static String ID = PaleMod.makeID("SlimeBossest");
-    public static int INVINCIBLE_DIVIDER = 3;
     public static int SPLIT_AMOUNT = 2;
     private boolean suicided;
     private float height;
@@ -84,7 +83,6 @@ public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
     public static boolean reform(final AbstractMonster mo) {
         if(mo.hasPower(SlimeSplitPower.POWER_ID)) {
             AbstractPower p = mo.getPower(SlimeSplitPower.POWER_ID);
-            SlimeBossest sb = new SlimeBossest();
             if(p.amount == 1) {
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(mo, mo, p));
             } else {
@@ -100,6 +98,7 @@ public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
                     ip.amount = 0;
                     ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", 0);
                     mo.hb.height = 0;
+                    mo.halfDead = true;
                 }
             }
             return false;

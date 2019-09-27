@@ -9,15 +9,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.exordium.GoldenIdolEvent;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 
 public class ShowmanStage extends CustomMonster {
 
@@ -82,6 +79,7 @@ public class ShowmanStage extends CustomMonster {
         this.crumblingVelocity = 3F;
         this.leftRotVelocity = MathUtils.random(10F, 30F);
         this.rightRotVelocity = MathUtils.random(-30F, -10F);
+        PaleOfTheAncients.deathTriggers(this);
     }
 
     public void setStage() {
@@ -103,6 +101,7 @@ public class ShowmanStage extends CustomMonster {
         this.showHealthBar();
         this.healthBarUpdatedEvent();
         this.crumblingY = 0F;
+        this.powers.clear();
     }
 
     @Override

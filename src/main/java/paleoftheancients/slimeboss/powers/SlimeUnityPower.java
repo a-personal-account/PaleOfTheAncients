@@ -55,7 +55,7 @@ public class SlimeUnityPower extends AbstractPower {
             public void update() {
                 this.isDone = true;
                 for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    if(!mo.isDeadOrEscaped() && mo.hasPower(ID) && ((SlimeUnityPower)mo.getPower(ID)).boss == boss) {
+                    if(mo != owner && !mo.isDeadOrEscaped() && mo.hasPower(ID) && ((SlimeUnityPower)mo.getPower(ID)).boss == boss) {
                         return;
                     }
                 }
@@ -67,6 +67,7 @@ public class SlimeUnityPower extends AbstractPower {
                 if(boss instanceof WeirdSlimeThing) {
                     boss.hb.height = ((WeirdSlimeThing)boss).getHeight();
                 }
+                boss.halfDead = false;
                 boss.showHealthBar();
                 boss.useShakeAnimation(1.2F);
             }
