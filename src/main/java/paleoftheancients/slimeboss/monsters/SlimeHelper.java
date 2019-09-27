@@ -1,15 +1,17 @@
 package paleoftheancients.slimeboss.monsters;
 
+import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
+import paleoftheancients.slimeboss.actions.SlimeZombieAction;
 import paleoftheancients.slimeboss.powers.SlimeSplitPower;
 import paleoftheancients.slimeboss.powers.SlimeUnityPower;
 
@@ -37,5 +39,46 @@ public class SlimeHelper {
         AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo, false));
         AbstractDungeon.actionManager.addToBottom(new WaitAction(1.0F));
         AbstractDungeon.actionManager.addToBottom(new SFXAction("SLIME_SPLIT"));
+    }
+
+    public static void zombieCheck(AbstractMonster mo) {
+        if(mo.halfDead) {
+            mo.halfDead = false;
+            AbstractDungeon.actionManager.addToBottom(new SlimeZombieAction(mo));
+        }
+    }
+
+
+    public static boolean reform(final AbstractMonster mo) {
+        if(mo.hasPower(SlimeSplitPower.POWER_ID)) {
+            AbstractPower p = mo.getPower(SlimeSplitPower.POWER_ID);
+            if(p.amount <= 1) {
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(mo, mo, p));
+            } else {
+                AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(mo, mo, p, 1));
+            }
+            AbstractDungeon.actionManager.addToBottom(new HealAction(mo, mo, mo.maxHealth));
+            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(mo));
+
+            if(((WeirdSlimeThing)mo).getSuicided()) {
+                ((WeirdSlimeThing)mo).resetSuicided();
+                InvinciblePower ip = (InvinciblePower) mo.getPower(InvinciblePower.POWER_ID);
+                if(ip != null) {
+                    ip.amount = 0;
+                    ReflectionHacks.setPrivate(ip, InvinciblePower.class, "maxAmt", 0);
+                    mo.hb.height = 0;
+                    AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            this.isDone = true;
+                            mo.halfDead = true;
+                        }
+                    });
+                }
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 }

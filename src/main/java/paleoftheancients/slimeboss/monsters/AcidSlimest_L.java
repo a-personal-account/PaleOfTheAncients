@@ -60,11 +60,16 @@ public class AcidSlimest_L extends AcidSlime_L implements WeirdSlimeThing {
             default:
                 super.takeTurn();
         }
+        SlimeHelper.zombieCheck(this);
     }
 
     @Override
+    public void die() {
+        die(true);
+    }
+    @Override
     public void die(boolean triggerRelics) {
-        if(SlimeBossest.reform(this)) {
+        if(SlimeHelper.reform(this)) {
             super.die(triggerRelics);
 
             AbstractDungeon.actionManager.addToBottom(new ReallocateSlimeUnityAction(this));
