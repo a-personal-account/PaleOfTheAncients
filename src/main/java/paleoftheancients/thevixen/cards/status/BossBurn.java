@@ -1,7 +1,5 @@
 package paleoftheancients.thevixen.cards.status;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thevixen.actions.SetPlayerBurnAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.RunicPyramid;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.actions.SetPlayerBurnAction;
 
 public class BossBurn extends AbstractCard {
     public static final String ID = PaleMod.makeID("BossBurn");
@@ -31,11 +31,14 @@ public class BossBurn extends AbstractCard {
     }
     public BossBurn(int timesUpgraded) {
         super(ID, NAME, IMG_PATH, COST, getBaseDescription(), TYPE, CardColor.CURSE, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 1 + timesUpgraded;
-        this.timesUpgraded = timesUpgraded;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
         if(this.timesUpgraded > 0) {
-            this.name = NAME + "+" + this.timesUpgraded;
+            if(this.timesUpgraded > 1) {
+                this.upgradeMagicNumber(timesUpgraded - 1);
+                this.timesUpgraded = timesUpgraded - 1;
+            }
+            this.upgrade();
         }
     }
 
