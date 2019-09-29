@@ -75,6 +75,10 @@ public class TimepieceTrigger extends AbstractGameEffect {
                 color.a -= Gdx.graphics.getDeltaTime();
             } else {
                 this.isDone = true;
+                if(this.healvfx && !AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+                    this.target.showHealthBar();
+                    this.target.healthBarUpdatedEvent();
+                }
             }
         }
     }
