@@ -15,11 +15,39 @@
       "Right-Click: ???"
     ]
   },
+  "paleoftheancients:BlurryLens": {
+    "NAME": "Blurry Lens",
+    "FLAVOR": "Everything looks strangely flawed through it.",
+    "DESCRIPTIONS": [
+      "Right-Click: ", "Do the Blurred Aspect!"
+    ]
+  },
   "paleoftheancients:SoulOfTheVixen": {
     "NAME": "Soul of the Vixen",
     "FLAVOR": "Burns with fiery passion.",
     "DESCRIPTIONS": [
       "Whenever you attack, inflict 1 #rpaleoftheancients:Burn."
+    ]
+  },
+  "paleoftheancients:SoulOfTheHexaghost": {
+    "NAME": "Hexaghost Pyroplasm",
+    "FLAVOR": "Big enough payoff to be giddy. Too many cards to play to remember it exists when it kicks in.",
+    "DESCRIPTIONS": [
+      "Every 36th card played is played 6 times."
+    ]
+  },
+  "paleoftheancients:SoulOfTheIroncluck": {
+    "NAME": "Helmet...thing?",
+    "FLAVOR": "Some modifications seem to have been made.",
+    "DESCRIPTIONS": [
+      "Whenever you gain Block, draw a card. At the end of your turn, exhaust all non-Attack cards in your hand."
+    ]
+  },
+  "paleoftheancients:SoulOfTheSilent": {
+    "NAME": "Garrote of the Silent",
+    "FLAVOR": "Looks like it was never used.",
+    "DESCRIPTIONS": [
+      "Whenever you deal damage, that enemy loses 2 HP for every card you play this turn."
     ]
   },
   "paleoftheancients:SoulOfTheDefect": {

@@ -1,5 +1,6 @@
 package paleoftheancients.dungeons;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapGenerator;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -25,7 +27,6 @@ import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.rooms.*;
 import paleoftheancients.scenes.PaleScene;
-import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
@@ -115,7 +116,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));
-        toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));
+        //toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/hexaghost.png"), PaleMod.assetPath("images/ui/map/hexaghostOutline.png"), HexaghostPrime.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/vixen.png"), PaleMod.assetPath("images/ui/map/vixenOutline.png"), TheVixenBoss.ID));
 
@@ -289,6 +290,15 @@ public class PaleOfTheAncients extends CustomDungeon {
         }
         if(!found) {
             AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(relicID).makeCopy()));
+        }
+    }
+
+    public static void addEventMonster(String id, AbstractMonster mo) {
+        for(int i = 1; i <= 3; i++) {
+            BaseMod.addMonster(id + i, () -> mo);
+            BaseMod.addMonsterEncounter(ID, new MonsterInfo(id + i, 1F));
+            BaseMod.addStrongMonsterEncounter(ID, new MonsterInfo(id + i, 1F));
+            BaseMod.addEliteEncounter(ID, new MonsterInfo(id + i, 1F));
         }
     }
 }

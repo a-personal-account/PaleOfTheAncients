@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import paleoftheancients.RazIntent.CustomIntent;
@@ -34,6 +33,7 @@ import paleoftheancients.donudeca.monsters.Donuer;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.N;
 import paleoftheancients.guardian.monsters.Guardianest;
+import paleoftheancients.helpers.BASlime;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.relics.*;
@@ -128,12 +128,8 @@ public class PaleMod implements
 
         BaseMod.addMonster(SpireWaifu.ID, () -> new SpireWaifu());
 
-        for(int i = 1; i <= 3; i++) {
-            BaseMod.addMonster(Thorton.ID + i, () -> new Thorton());
-            BaseMod.addMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
-            BaseMod.addStrongMonsterEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
-            BaseMod.addEliteEncounter(PaleOfTheAncients.ID, new MonsterInfo(Thorton.ID + i, 1F));
-        }
+        PaleOfTheAncients.addEventMonster(Thorton.ID, new Thorton());
+        PaleOfTheAncients.addEventMonster(BASlime.ID, new BASlime());
 
         BaseMod.addBoss(PaleOfTheAncients.ID, N.ID, assetPath("images/misc/emptypixel.png"), assetPath("images/misc/emptypixel.png"));
 
@@ -168,6 +164,10 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheDefect(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShowman(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheThorton(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheSilent(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheIroncluck(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheHexaghost(), RelicType.SHARED);
+        BaseMod.addRelic(new BlurryLens(), RelicType.SHARED);
     }
 
 

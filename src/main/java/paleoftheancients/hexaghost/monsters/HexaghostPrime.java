@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.hexaghost.powers.HexaghostPower;
+import paleoftheancients.relics.SoulOfTheHexaghost;
 
 import java.util.ArrayList;
 
@@ -69,6 +71,7 @@ public class HexaghostPrime extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheHexaghost.ID);
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         super.die(triggerRelics);

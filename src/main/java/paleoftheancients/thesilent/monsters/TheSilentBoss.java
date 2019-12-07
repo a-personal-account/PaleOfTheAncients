@@ -20,12 +20,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.relics.SoulOfTheSilent;
 import paleoftheancients.thesilent.actions.NotBouncingFlaskAction;
 import paleoftheancients.thesilent.powers.*;
 
@@ -386,6 +387,7 @@ public class TheSilentBoss extends CustomMonster {
     }
 
     public void die() {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheSilent.ID);
         AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[(int)(Math.random() * 6) + 3]));
         super.die();
     }

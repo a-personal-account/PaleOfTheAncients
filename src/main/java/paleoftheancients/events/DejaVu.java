@@ -68,6 +68,7 @@ public class DejaVu extends AbstractEvent {
     private ArrayList<AbstractPotion> potions;
     private int potionslots;
     private Texture playerimg;
+    private int relicPage;
 
     private ArrayList<AbstractGameEffect> age;
 
@@ -158,6 +159,9 @@ public class DejaVu extends AbstractEvent {
         floornum = AbstractDungeon.floorNum;
         AbstractDungeon.floorNum = 0;
 
+        relicPage = AbstractRelic.relicPage;
+        AbstractRelic.relicPage = 0;
+
         cards = AbstractDungeon.player.masterDeck;
         AbstractDungeon.player.masterDeck = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
         for(final String s : AbstractDungeon.player.getStartingDeck()) {
@@ -227,6 +231,7 @@ public class DejaVu extends AbstractEvent {
     private void restorePlayer() {
         AbstractGameEffect tmp;
         AbstractDungeon.player.relics = relics;
+        AbstractRelic.relicPage = relicPage;
         AbstractDungeon.effectsQueue.add(tmp = new RestoreRelicsVFX());
         age.add(tmp);
         AbstractDungeon.player.blights = blights;

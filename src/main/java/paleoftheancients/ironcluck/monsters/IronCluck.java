@@ -1,13 +1,5 @@
 package paleoftheancients.ironcluck.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.ironcluck.powers.ChickenBarrierPower;
-import paleoftheancients.ironcluck.powers.ChickenBurnPower;
-import paleoftheancients.ironcluck.powers.ConditionalShackles;
-import paleoftheancients.ironcluck.powers.CuccoSwarmPower;
-import paleoftheancients.ironcluck.vfx.CuccoSwarmEffect;
-import paleoftheancients.thevixen.helpers.RandomPoint;
-import paleoftheancients.thevixen.vfx.RandomAnimatedSlashEffect;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.Loader;
@@ -29,6 +21,16 @@ import com.megacrit.cardcrawl.relics.RedSkull;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.ironcluck.powers.ChickenBarrierPower;
+import paleoftheancients.ironcluck.powers.ChickenBurnPower;
+import paleoftheancients.ironcluck.powers.ConditionalShackles;
+import paleoftheancients.ironcluck.powers.CuccoSwarmPower;
+import paleoftheancients.ironcluck.vfx.CuccoSwarmEffect;
+import paleoftheancients.relics.SoulOfTheIroncluck;
+import paleoftheancients.thevixen.helpers.RandomPoint;
+import paleoftheancients.thevixen.vfx.RandomAnimatedSlashEffect;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,6 +97,10 @@ public class IronCluck extends CustomMonster {
         this.moveHistory.add(BARRICADE);
 
         this.stateData.setMix("Hit" + this.animationsuffix, "Idle" + this.animationsuffix, 0.1F);
+    }
+
+    public static boolean cowboyClad() {
+        return Loader.isModLoaded("cowboy-ironclad");
     }
 
     @Override
@@ -245,6 +251,11 @@ public class IronCluck extends CustomMonster {
         this.setMove(MOVES[next], next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
     }
 
+    @Override
+    public void die(boolean triggerRelics) {
+        PaleOfTheAncients.addRewardRelic(SoulOfTheIroncluck.ID);
+        super.die(triggerRelics);
+    }
 
     @Override
     public void damage(DamageInfo info) {
