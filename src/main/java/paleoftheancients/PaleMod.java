@@ -41,7 +41,6 @@ import paleoftheancients.savefields.BreadCrumbs;
 import paleoftheancients.savefields.ElitesSlain;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
-import paleoftheancients.theshowman.bosscards.SpeechCard;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.intent.*;
@@ -59,7 +58,6 @@ public class PaleMod implements
         PostInitializeSubscriber,
         EditKeywordsSubscriber,
         AddAudioSubscriber,
-        EditCardsSubscriber,
         EditStringsSubscriber,
         EditRelicsSubscriber {
     public static final Logger logger = LogManager.getLogger(PaleMod.class.getSimpleName());
@@ -168,13 +166,6 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheIroncluck(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheHexaghost(), RelicType.SHARED);
         BaseMod.addRelic(new BlurryLens(), RelicType.SHARED);
-    }
-
-
-    @Override
-    public void receiveEditCards() {
-        //To prevent Crashes
-        BaseMod.addCard(new SpeechCard(null));
     }
 
     private Settings.GameLanguage languageSupport()

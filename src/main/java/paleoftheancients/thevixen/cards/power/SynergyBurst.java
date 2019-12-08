@@ -1,4 +1,4 @@
-package thevixen.cards.power;
+package paleoftheancients.thevixen.cards.power;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
