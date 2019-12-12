@@ -47,6 +47,13 @@
             <systemPath>${Steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>actlikeit</groupId>
+            <artifactId>actlikeit</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/common/SlayTheSpire/mods/actlikeit.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>com.evacipated.cardcrawl.mod.bard</groupId>
             <artifactId>bard</artifactId>
             <version>1.0.0</version>
@@ -77,7 +84,23 @@
     </dependencies>
 
     <build>
-        <finalName>paleoftheancients</finalName>
+        <finalName>${artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>ModTheSpire.json</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>ModTheSpire.json</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

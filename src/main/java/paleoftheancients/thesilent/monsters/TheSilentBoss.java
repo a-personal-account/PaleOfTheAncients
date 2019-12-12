@@ -387,7 +387,7 @@ public class TheSilentBoss extends CustomMonster {
     }
 
     public void die() {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheSilent.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheSilent.ID);
         AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[(int)(Math.random() * 6) + 3]));
         super.die();
     }

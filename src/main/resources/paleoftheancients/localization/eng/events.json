@@ -13,9 +13,7 @@
       "As soon as you touch it, the space around you twists into dark, fog-covered nothingness..."
     ],
     "OPTIONS": [
-      "[Pick up the Object] #yReject #yyour #yFate",
-      "[Ignore the Object] #yApproach #ythe #yHeart",
-      "Continue"
+      "Pick up the Object"
     ]
   },
 

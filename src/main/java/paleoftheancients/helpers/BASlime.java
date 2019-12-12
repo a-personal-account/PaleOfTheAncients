@@ -1,9 +1,9 @@
 package paleoftheancients.helpers;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.exordium.ApologySlime;
 import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.relics.BlurryLens;
 
 public class BASlime extends ApologySlime {
@@ -17,7 +17,7 @@ public class BASlime extends ApologySlime {
 
     @Override
     public void die(boolean triggerRelics) {
-        PaleOfTheAncients.addRewardRelic(BlurryLens.ID);
+        CustomDungeon.addRelicReward(BlurryLens.ID);
         super.die(triggerRelics);
     }
 }

@@ -655,7 +655,7 @@ public class TheDefectBoss extends AbstractMonster {
 
 
     public void die(boolean triggerRelics) {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheDefect.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheDefect.ID);
         PaleOfTheAncients.resumeMainMusic();
         AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[6]));
         this.useFastShakeAnimation(5.0F);

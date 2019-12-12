@@ -1,11 +1,11 @@
 {
-  "modid": "paleoftheancients",
-  "name": "Pale of the Ancients",
+  "modid": "${project.artifactId}",
+  "name": "${project.name}",
   "author_list": ["Razash"],
   "credits": "Kiooeht - the Bard, GK - the Ironcluck and finding ALL the bugs, ComingVirus, DontStealMyKidneys, Left Click - The Showman, Vex - occassionally having good ideas. The Modding discord - Finding all the broken things. Rita-B for providing a ZHS translation. Blurred Aspect for doing what Blurred Aspect does best.",
   "description": "I made an act. You access it by picking the top option in the event following the act 3 boss (keys not required).",
-  "version": "0.7.1",
-  "sts_version": "07-17-2019",
-  "mts_version": "3.8.3",
-  "dependencies": ["basemod", "stslib"]
+  "version": "${project.version}",
+  "sts_version": "${SlayTheSpire.version}",
+  "mts_version": "${ModTheSpire.version}",
+  "dependencies": ["basemod", "stslib", "actlikeit"]
 }

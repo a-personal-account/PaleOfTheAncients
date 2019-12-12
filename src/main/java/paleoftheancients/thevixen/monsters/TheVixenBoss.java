@@ -748,7 +748,7 @@ public class TheVixenBoss extends CustomMonster {
     }
 
     public void die() {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheVixen.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheVixen.ID);
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         ++this.deathTimer;

@@ -1,5 +1,6 @@
 package paleoftheancients;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import basemod.helpers.RelicType;
@@ -14,7 +15,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -93,7 +93,7 @@ public class PaleMod implements
 
         int before = AbstractDungeon.floorNum;
         AbstractDungeon.floorNum = 5;
-        (new PaleOfTheAncients()).addAct(TheEnding.ID);
+        CustomDungeon.addAct(CustomDungeon.THEENDING, new PaleOfTheAncients());
         AbstractDungeon.floorNum = before;
 
 

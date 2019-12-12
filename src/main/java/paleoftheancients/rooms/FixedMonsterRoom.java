@@ -1,9 +1,9 @@
 package paleoftheancients.rooms;
 
+import actlikeit.patches.AbstractRoomUpdateIncrementElitesPatch;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
 
 public class FixedMonsterRoom extends MonsterRoom {
     private String encounterID;
