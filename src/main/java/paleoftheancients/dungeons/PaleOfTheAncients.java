@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.MarkOfTheBloom;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
@@ -174,15 +173,13 @@ public class PaleOfTheAncients extends CustomDungeon {
     }
 
     @Override
-    public boolean Ending() {
+    public void Ending() {
         CardCrawlGame.music.fadeOutBGM();
         MapRoomNode node = new MapRoomNode(3, 4);
         node.room = new PaleVictoryRoom();
         AbstractDungeon.nextRoom = node;
         AbstractDungeon.closeCurrentScreen();
         AbstractDungeon.nextRoomTransitionStart();
-
-        return true;
     }
 
     private void connectNode(MapRoomNode src, MapRoomNode dst) {
