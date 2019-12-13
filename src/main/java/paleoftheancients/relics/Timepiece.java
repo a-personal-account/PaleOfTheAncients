@@ -2,9 +2,12 @@ package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnPlayerDeathRelic;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,7 +25,7 @@ import paleoftheancients.vfx.TimepieceTrigger;
 
 import java.util.ArrayList;
 
-public class Timepiece extends CustomRelic implements ClickableRelic {
+public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDeathRelic {
     public static final String ID = PaleMod.makeID("Timepiece");
 
     private static final AbstractRelic.RelicTier TIER = RelicTier.SPECIAL;
@@ -117,5 +120,14 @@ public class Timepiece extends CustomRelic implements ClickableRelic {
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
         this.initializeTips();
+    }
+
+    @Override
+    public boolean onPlayerDeath(AbstractPlayer abstractPlayer, DamageInfo damageInfo) {
+        if(this.counter > -2) {
+            onTrigger();
+            return false;
+        }
+        return true;
     }
 }
