@@ -86,14 +86,7 @@
   "paleoftheancients:GutsPower": {
     "NAME": "Guts",
     "DESCRIPTIONS": [
-      "At the end of your turn, gain #bBlock equal to twice the cumulative duration of your #ydebuffs. NL This counts as a #ydebuff."
-    ]
-  },
-  "TheVixenMod:FlameBodyPower": {
-    "NAME": "Flame Body",
-    "DESCRIPTIONS": [
-      "Whenever you are attacked, the attacker receives a Burn of #b",
-      " next turn."
+      "At the end of your turn, gain 2 #bBlock for each #ydebuffstack. NL This counts as a #ydebuff."
     ]
   },
   "paleoftheancients:EndurePower": {
@@ -202,7 +195,7 @@
   "paleoftheancients:HexaghostPower": {
     "NAME": "Rekindling",
     "DESCRIPTIONS": [
-      "Upon death, #rrevives itself. NL #rRevival damages the #rmain #rhealthbar and consumes up to #b2 #yflames (affects behaviour)."
+      "Upon death, immediately #rrevives itself. NL #rRevival damages the #rmain #rhealthbar and consumes up to #b2 #yflames (affects intent)."
     ]
   },
 
@@ -210,15 +203,6 @@
     "NAME": "Linked",
     "DESCRIPTIONS": [
       "Both Guardians share the damage they take. NL Upon shifting into #bDefense #bMode, loses half its #rStrength. NL When this #rGuardian is damaged, the other guardian increases its #yform #yshift counter by the amount of damage taken."
-    ]
-  },
-
-  "paleoftheancients:EnergyWarpPower": {
-    "NAME": "Galvanized Time Warp",
-    "DESCRIPTIONS": [
-      "After you spend #b",
-      " [E] , ends your turn and gains #b",
-      " #yStrength. NL Amount of [E] required decreases by #r1 each time the counter reaches 0 (until a minimum of #b4)."
     ]
   },
 
@@ -244,7 +228,7 @@
   "paleoftheancients:CuccoSwarmPower": {
     "NAME": "Power of Chicken",
     "DESCRIPTIONS": [
-      "After sustaining #r", " damage in one turn, resets temporary #rStrength #rloss and changes intent to deal #r"," basedamage #r"," times."
+      "After taking #r", " damage in one turn, regains #rlost #rStrength and changes intent to deal #r"," basedamage #r"," times."
     ]
   },
 
@@ -338,10 +322,27 @@
     ]
   },
 
+  "paleoftheancients:PositionPower": {
+    "NAME": "Spell Card Rules",
+    "DESCRIPTIONS": ["You are in lane #b", ". Whenever you play a #ySkill, move #yUp #b1 lane. Whenever you play an #yAttack, move #yDown #b1 lane."]
+  },
+  "paleoftheancients:MonsterPositionPower": {
+    "NAME": "Spell Card Rules",
+    "DESCRIPTIONS": ["This projectile is in lane #b", ". It will reach you in #b", " turns,", " turn,", " dealing damage if you are in the same lane as it."]
+  },
+  "paleoftheancients:HakureiShrineMaidenPower": {
+    "NAME": "Hakurei Shrine Maiden",
+    "DESCRIPTIONS": ["At the end of her turn, summon up to #b"," #yYin-Yang #yOrbs. If there are no #yYin-Yang #yOrbs alive, summon #b"," instead."]
+  },
+  "paleoftheancients:SealedPower": {
+    "NAME": "Sealed",
+    "DESCRIPTIONS": ["At the start of your turn, discard #b", " card.", " cards."]
+  },
+
   "paleoftheancients:GazeOne": {
     "NAME": "Gaze of the closing Eyes",
     "DESCRIPTIONS": [
-      "The first card you play each turn causes its adjacent cards to cost #b"
+      "After playing the first card each turn its adjacent cards cost #b"
     ," more [E] until end of turn. NL Upon death, all other eyes start gaining #b"
     ," #rStrength every turn."
     ]
@@ -360,10 +361,10 @@
   "paleoftheancients:GazeThree": {
     "NAME": "Gaze of the reborn Heart",
     "DESCRIPTIONS": [
-      "The third card you play each turn causes ",
+      "After playing the third card each turn, ",
       "all enemies gain #b",
       " #rStrength and ",
-      "you to shuffle a random card from your starterdeck into your discard pile. NL Upon death, all other eyes start gaining #b",
+      "shuffle a random card from your starterdeck into your discard pile. NL Upon death, all other eyes start gaining #b",
       " #rStrength every turn."
     ]
   },

@@ -36,6 +36,7 @@ import paleoftheancients.guardian.monsters.Guardianest;
 import paleoftheancients.helpers.BASlime;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
+import paleoftheancients.reimu.monsters.Reimu;
 import paleoftheancients.relics.*;
 import paleoftheancients.savefields.BreadCrumbs;
 import paleoftheancients.savefields.ElitesSlain;
@@ -103,6 +104,7 @@ public class PaleMod implements
         BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());
         BaseMod.addMonster(TheDefectBoss.ID, () -> new TheDefectBoss());
         BaseMod.addMonster(TheSilentBoss.ID, () -> new TheSilentBoss());
+        BaseMod.addMonster(Reimu.ID, () -> new Reimu());
 
         BaseMod.addMonster(N.ID, () -> new N());
 
@@ -148,10 +150,17 @@ public class PaleMod implements
     @Override
     public void receiveAddAudio() {
         BaseMod.addAudio(MOD_ID + ":vixencry", assetPath("/sfx/braix.wav"));
+
         BaseMod.addAudio(MOD_ID + ":cluck", assetPath("/sfx/cluck.ogg"));
         BaseMod.addAudio(MOD_ID + ":cuccostart", assetPath("/sfx/OOT_6amRooster.wav"));
         BaseMod.addAudio(MOD_ID + ":cucco1", assetPath("/sfx/OOT_Cucco1.wav"));
         BaseMod.addAudio(MOD_ID + ":cucco2", assetPath("/sfx/OOT_Cucco2.wav"));
+
+        BaseMod.addAudio(MOD_ID + ":touhou_powerup", assetPath("/sfx/touhou_powerup.ogg"));
+        BaseMod.addAudio(MOD_ID + ":touhou_spellcard", assetPath("/sfx/touhou_spellcard.ogg"));
+        BaseMod.addAudio(MOD_ID + ":touhou_attack", assetPath("/sfx/touhou_attack.ogg"));
+        BaseMod.addAudio(MOD_ID + ":touhou_death", assetPath("/sfx/touhou_death.ogg"));
+        BaseMod.addAudio(MOD_ID + ":touhou_defeat", assetPath("/sfx/touhou_defeat.ogg"));
     }
 
     @Override

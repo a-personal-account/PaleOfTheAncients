@@ -19,7 +19,7 @@
     "NAME": "火狐之魂",
     "FLAVOR": "激情燃烧。",
     "DESCRIPTIONS": [
-      "每当你攻击时，给予敌人 1 层 #rpaleoftheancients:灼伤 。"
+      "每当你攻击时，给予敌人 2 层 #rpaleoftheancients:灼伤 。"
     ]
   },
   "paleoftheancients:SoulOfTheDefect": {

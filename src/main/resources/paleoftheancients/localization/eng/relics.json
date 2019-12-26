@@ -26,7 +26,7 @@
     "NAME": "Soul of the Vixen",
     "FLAVOR": "Burns with fiery passion.",
     "DESCRIPTIONS": [
-      "Whenever you attack, inflict 1 #rpaleoftheancients:Burn."
+      "Whenever you attack, inflict 2 #rpaleoftheancients:Burn."
     ]
   },
   "paleoftheancients:SoulOfTheHexaghost": {
@@ -40,7 +40,7 @@
     "NAME": "Helmet...thing?",
     "FLAVOR": "Some modifications seem to have been made.",
     "DESCRIPTIONS": [
-      "Whenever you gain Block, draw a card. At the end of your turn, exhaust all non-Attack cards in your hand."
+      "Whenever you gain Block, draw a card. Whenever you draw a Status card, gain [E] ."
     ]
   },
   "paleoftheancients:SoulOfTheSilent": {

@@ -3,7 +3,7 @@ package paleoftheancients.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -41,16 +41,9 @@ public class SoulOfTheIroncluck extends CustomRelic {
     }
 
     @Override
-    public void onPlayerEndTurn() {
-        boolean found = false;
-        for(final AbstractCard c : AbstractDungeon.player.hand.group) {
-            if(c.type != AbstractCard.CardType.ATTACK) {
-                found = true;
-                AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
-            }
-        }
-        if(found) {
-            this.flash();
+    public void onCardDraw(AbstractCard card) {
+        if(card.type.equals(AbstractCard.CardType.STATUS)) {
+            AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
         }
     }
 }

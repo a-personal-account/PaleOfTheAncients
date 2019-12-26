@@ -1,5 +1,6 @@
 package paleoftheancients.bard.melodies;
 
+import com.megacrit.cardcrawl.powers.BlurPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bard.powers.StunPlayerPower;
 import basemod.abstracts.CustomCard;
@@ -32,6 +33,7 @@ public class Cacophony extends AbstractMelody {
         this.addToBottom(new TalkAction(source, "@" + doot + "@", 1f, 2f));
         this.addToBottom(new VFXAction(source, new ShockWaveEffect(source.hb.cX, source.hb.cY, Color.WHITE.cpy(), ShockWaveEffect.ShockWaveType.NORMAL), Settings.FAST_MODE ? 0.3f : 1.5f));
         this.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StunPlayerPower()));
+        this.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BlurPower(AbstractDungeon.player, 1)));
     }
 
     public AbstractMelody makeCopy() {

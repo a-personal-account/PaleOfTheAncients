@@ -78,6 +78,10 @@ public class Recollection extends AbstractImageEvent {
         imageEventText.setDialogOption(OPTIONS[0]);
 
         markOfTheBloom = (byte)(AbstractDungeon.player.hasRelic(MarkOfTheBloom.ID) ? 2 : 0);
+
+        if(AbstractDungeon.isPlayerInDungeon() && AbstractDungeon.player.exhaustPile != null) {
+            AbstractDungeon.player.exhaustPile.clear();
+        }
     }
 
     private void addToPossibilities(boolean doit, int descindex, int maxHpIncrease, String imagePath, String... relics) {
@@ -101,7 +105,13 @@ public class Recollection extends AbstractImageEvent {
     protected void buttonEffect(int buttonPressed) {
         if(!possibilities.isEmpty()) {
             if (buttonPressed < possibilities.get(0).size()) {
-                RelicLibrary.getRelic(possibilities.get(0).get(buttonPressed)).makeCopy().instantObtain();
+                String relic_id = possibilities.get(0).get(buttonPressed);
+                RelicLibrary.getRelic(relic_id).makeCopy().instantObtain();
+                AbstractDungeon.commonRelicPool.remove(relic_id);
+                AbstractDungeon.uncommonRelicPool.remove(relic_id);
+                AbstractDungeon.rareRelicPool.remove(relic_id);
+                AbstractDungeon.bossRelicPool.remove(relic_id);
+                AbstractDungeon.shopRelicPool.remove(relic_id);
             } else if (!possibilities.get(0).isEmpty()) {
                 AbstractDungeon.player.increaseMaxHp(maxHpIncrease(possibilities.get(0).maxHpIncrease), false);
             }

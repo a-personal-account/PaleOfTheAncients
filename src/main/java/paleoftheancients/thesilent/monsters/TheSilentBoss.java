@@ -188,6 +188,18 @@ public class TheSilentBoss extends CustomMonster {
         this.flipHorizontal = true;
     }
 
+    @Override
+    public void usePreBattleAction() {
+        int fumes = 1;
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            fumes++;
+        }
+        if(AbstractDungeon.ascensionLevel >= 9) {
+            fumes++;
+        }
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CorrosiveFumesPower(this, fumes), fumes));
+    }
+
     public void takeTurn() {
         DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         if(info.base > -1) {
