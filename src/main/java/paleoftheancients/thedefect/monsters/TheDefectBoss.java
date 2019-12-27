@@ -43,7 +43,7 @@ import paleoftheancients.thedefect.monsters.orbs.*;
 import paleoftheancients.thedefect.powers.KineticBarrierPower;
 import paleoftheancients.thedefect.powers.NotEchoPower;
 import paleoftheancients.thedefect.powers.OrbReactivePower;
-import thedefect.vfx.RainbowCopyPaste;
+import paleoftheancients.thedefect.vfx.RainbowCopyPaste;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package thevixen.vfx;
+package paleoftheancients.thevixen.vfx;
 
 import paleoftheancients.thevixen.vfx.SparkleEffect;
 import com.badlogic.gdx.Gdx;

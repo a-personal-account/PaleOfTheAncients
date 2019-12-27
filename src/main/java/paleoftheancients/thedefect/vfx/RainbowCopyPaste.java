@@ -1,4 +1,4 @@
-package thedefect.vfx;
+package paleoftheancients.thedefect.vfx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

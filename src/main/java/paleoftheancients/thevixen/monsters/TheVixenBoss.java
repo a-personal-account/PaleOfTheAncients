@@ -45,7 +45,7 @@ import paleoftheancients.thevixen.vfx.FireSpinEffect;
 import paleoftheancients.thevixen.vfx.RefreshEffect;
 import paleoftheancients.thevixen.vfx.SwaggerEffect;
 import paleoftheancients.thevixen.vfx.TrickRoomEffect;
-import thevixen.vfx.ShinyEffect;
+import paleoftheancients.thevixen.vfx.ShinyEffect;
 
 import java.util.ArrayList;
 import java.util.HashMap;

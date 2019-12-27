@@ -1,4 +1,4 @@
-package thedefect.vfx;
+package paleoftheancients.thedefect.vfx;
 
 import paleoftheancients.thedefect.monsters.orbs.AbstractBossOrb;
 import com.badlogic.gdx.Gdx;

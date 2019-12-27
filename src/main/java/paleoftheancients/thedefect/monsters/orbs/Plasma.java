@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
-import thedefect.vfx.OrbFlareCopyPaste;
+import paleoftheancients.thedefect.vfx.OrbFlareCopyPaste;
 
 public class Plasma extends AbstractBossOrb {
     private static final MonsterStrings monsterStrings;

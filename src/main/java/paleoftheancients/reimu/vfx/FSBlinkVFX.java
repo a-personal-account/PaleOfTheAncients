@@ -17,31 +17,22 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.reimu.actions.DelayActionAction;
 import paleoftheancients.reimu.monsters.Reimu;
 
-public class FSBlinkVFX extends AbstractGameEffect {
+public class FSBlinkVFX extends AbstractDamagingVFX {
     private static final String path = "images/reimu/vfx/fantasyorb.png";
     private Texture orb;
     private int orbwidth, orbheight;
 
-    private Reimu source;
-    private AbstractCreature target;
-    private DamageInfo info;
-    private int num;
-    private DelayActionAction delay = null;
     private float distance;
     private float x, y;
 
     public FSBlinkVFX(AbstractCreature target, Reimu source, DamageInfo info, int num) {
+        super(target, info, num);
+
         this.orb = AssetLoader.loadImage(PaleMod.assetPath(path));
         this.orbwidth = orb.getWidth();
         this.orbheight = orb.getHeight();
-
-        this.target = target;
-        this.source = source;
-        this.info = info;
-        this.num = num;
 
         this.rotation = MathUtils.random(6.3F);
 
@@ -70,7 +61,7 @@ public class FSBlinkVFX extends AbstractGameEffect {
                     if (num-- > 0) {
                         setDelay();
                     } else {
-                        delay.end();
+                        endDelay();
                         this.color.a -= Gdx.graphics.getDeltaTime();
                     }
                     AbstractDungeon.actionManager.addToTop(new DamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
@@ -115,13 +106,5 @@ public class FSBlinkVFX extends AbstractGameEffect {
         try {
             AssetLoader.unLoad(PaleMod.assetPath(path));
         } catch (GdxRuntimeException ex) {}
-    }
-
-    private void setDelay() {
-        if(this.delay != null) {
-            this.delay.end();
-        }
-        this.delay = new DelayActionAction();
-        AbstractDungeon.actionManager.addToTop(this.delay);
     }
 }

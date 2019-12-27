@@ -163,7 +163,7 @@ public class Reimu extends CustomMonster {
             }
         }
 
-        //AbstractDungeon.effectList.add(new FantasySealVFX(AbstractDungeon.player, this, new DamageInfo(this, 1), 8));
+        AbstractDungeon.effectList.add(new FantasySealVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 1));
     }
 
     @Override
@@ -212,6 +212,7 @@ public class Reimu extends CustomMonster {
         SpellCardBackgroundVFX.disposeAll();
         FSBlinkVFX.disposeAll();
         FantasySealVFX.disposeAll();
+        HakureiBarrierVFX.disposeAll();
     }
 
     public void runAnim(ReimuAnimation animation) {

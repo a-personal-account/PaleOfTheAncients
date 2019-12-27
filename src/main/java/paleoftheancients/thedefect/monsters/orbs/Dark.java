@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.thedefect.actions.DarkBossOrbEvocationAction;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
-import thedefect.vfx.OrbFlareCopyPaste;
+import paleoftheancients.thedefect.vfx.OrbFlareCopyPaste;
 
 public class Dark extends AbstractBossOrb {
     private static final MonsterStrings monsterStrings;
