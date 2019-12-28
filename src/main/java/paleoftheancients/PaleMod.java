@@ -163,6 +163,7 @@ public class PaleMod implements
         BaseMod.addAudio(MOD_ID + ":touhou_defeat", assetPath("/sfx/touhou_defeat.ogg"));
         BaseMod.addAudio(MOD_ID + ":touhou_shot", assetPath("/sfx/touhou_shot.ogg"));
         BaseMod.addAudio(MOD_ID + ":touhou_seal", assetPath("/sfx/touhou_seal.ogg"));
+        BaseMod.addAudio(MOD_ID + ":touhou_border", assetPath("/sfx/touhou_border.ogg"));
     }
 
     @Override

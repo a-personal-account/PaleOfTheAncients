@@ -33,7 +33,7 @@ public class Reimu extends CustomMonster {
 
     public static final String Deathbomb = "Deathbomb";
 
-    private static final int HP = 6;//250;
+    private static final int HP = 250;
 
     public static final float orbOffset = 225.0F * Settings.scale;
     public ArrayList[][] orbs = new ArrayList[3][3];
@@ -163,7 +163,7 @@ public class Reimu extends CustomMonster {
             }
         }
 
-        AbstractDungeon.effectList.add(new FantasySealVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 1));
+        AbstractDungeon.effectList.add(new NeedleAttackVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
     }
 
     @Override
@@ -213,6 +213,7 @@ public class Reimu extends CustomMonster {
         FSBlinkVFX.disposeAll();
         FantasySealVFX.disposeAll();
         HakureiBarrierVFX.disposeAll();
+        NeedleAttackVFX.disposeAll();
     }
 
     public void runAnim(ReimuAnimation animation) {
