@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class Needle extends AbstractGameEffect {
@@ -15,24 +15,24 @@ public class Needle extends AbstractGameEffect {
     public float x, y;
     private float vX, vY, targetX;
 
-    public Needle(Texture tex, AbstractCreature target, float x, float y) {
+    public Needle(Texture tex, Hitbox target, float x, float y) {
         this(tex, target, x, y, MathUtils.random(0.3F));
     }
-    public Needle(Texture tex, AbstractCreature target, float x, float y, float delay) {
+    public Needle(Texture tex, Hitbox target, float x, float y, float delay) {
         this.needle = tex;
 
         this.width = needle.getWidth();
         this.height = needle.getHeight();
 
-        float offsetX = MathUtils.random(-target.hb.width, target.hb.width) / 6F;
-        float offsetY = MathUtils.random(-target.hb.height, target.hb.height) / 6F;
+        float offsetX = MathUtils.random(-target.width, target.width) / 6F;
+        float offsetY = MathUtils.random(-target.height, target.height) / 6F;
 
-        targetX = target.hb.cX + offsetX;
+        targetX = target.cX + offsetX;
         this.x = x + offsetX;
         this.y = y + offsetY;
 
-        rotation = (float)Math.atan((target.hb.cX - x) / (target.hb.cY - y));
-        if(target.hb.cY < y) {
+        rotation = (float)Math.atan((target.cX - x) / (target.cY - y));
+        if(target.cY < y) {
             rotation += Math.PI;
         }
         vX = (float)Math.sin(rotation) * 2000 * Settings.scale;

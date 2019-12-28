@@ -36,7 +36,7 @@ public class NeedleAttackVFX extends AbstractDamagingVFX {
         if(needles == null) {
             needles = new ArrayList<>();
             for(int i = info.output * num / 4; i >= 0; i--) {
-                Needle n = new Needle(needleimage, target, source.hb.x, source.hb.cY);
+                Needle n = new Needle(needleimage, target.hb, source.hb.x, source.hb.cY);
                 needles.add(n);
                 AbstractDungeon.effectsQueue.add(n);
             }
