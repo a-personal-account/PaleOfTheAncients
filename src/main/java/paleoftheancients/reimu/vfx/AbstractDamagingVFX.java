@@ -1,9 +1,12 @@
 package paleoftheancients.reimu.vfx;
 
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.actions.DelayActionAction;
 
 public abstract class AbstractDamagingVFX extends AbstractGameEffect {
@@ -30,5 +33,11 @@ public abstract class AbstractDamagingVFX extends AbstractGameEffect {
     }
     protected void endDelay() {
         this.delay.end();
+    }
+
+    public static void disposeTry(String path) {
+        try {
+            AssetLoader.unLoad(PaleMod.assetPath(path));
+        } catch (GdxRuntimeException ex) {}
     }
 }

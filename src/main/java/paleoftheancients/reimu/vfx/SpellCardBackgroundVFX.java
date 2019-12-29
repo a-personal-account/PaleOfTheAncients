@@ -1,12 +1,10 @@
 package paleoftheancients.reimu.vfx;
 
-import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.PaleMod;
@@ -76,11 +74,7 @@ public class SpellCardBackgroundVFX extends AbstractGameEffect {
     public void dispose() {}
 
     public static void disposeAll() {
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(rotatingpath));
-        } catch (GdxRuntimeException ex) {}
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(staticpath));
-        } catch (GdxRuntimeException ex) {}
+        AbstractDamagingVFX.disposeTry(PaleMod.assetPath(rotatingpath));
+        AbstractDamagingVFX.disposeTry(PaleMod.assetPath(staticpath));
     }
 }

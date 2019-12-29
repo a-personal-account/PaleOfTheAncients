@@ -5,9 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
@@ -118,13 +116,9 @@ public class SpellCardDeclarationVFX extends AbstractGameEffect {
     public void dispose() {}
 
     public static void disposeAll() {
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(textpath));
-        } catch (GdxRuntimeException ex) {}
+        AbstractDamagingVFX.disposeTry(PaleMod.assetPath(textpath));
         for(int i = 1; i < 5; i++) {
-            try {
-                AssetLoader.unLoad(PaleMod.assetPath(reimupath + i + ".png"));
-            } catch (GdxRuntimeException ex) {}
+            AbstractDamagingVFX.disposeTry(PaleMod.assetPath(reimupath + i + ".png"));
         }
     }
 }

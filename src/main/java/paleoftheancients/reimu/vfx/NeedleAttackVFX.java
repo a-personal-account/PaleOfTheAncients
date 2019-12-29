@@ -2,31 +2,31 @@ package paleoftheancients.reimu.vfx;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import paleoftheancients.PaleMod;
-import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.reimu.monsters.Reimu;
 
 import java.util.ArrayList;
 
-public class NeedleAttackVFX extends AbstractDamagingVFX {
-    private static final String path = "images/reimu/vfx/needle_regular.png";
+public abstract class NeedleAttackVFX extends AbstractDamagingVFX {
     private Texture needleimage;
 
-    private Reimu source;
     private ArrayList<Needle> needles;
 
-    public NeedleAttackVFX(AbstractCreature target, Reimu source, DamageInfo info, int num) {
-        super(target, info, num);
-        needleimage = AssetLoader.loadImage(PaleMod.assetPath(path));
+    private float startX, startY;
+    private int needlecount;
 
-        this.source = source;
+    public NeedleAttackVFX(Texture tex, float scale, AbstractCreature target, float startX, float startY, DamageInfo info, int num, int needlecount) {
+        super(target, info, num);
+        needleimage = tex;
+
+        this.startX = startX;
+        this.startY = startY;
+
+        this.scale = scale;
+        this.needlecount = needlecount;
 
         this.setDelay();
     }
@@ -35,8 +35,8 @@ public class NeedleAttackVFX extends AbstractDamagingVFX {
     public void update() {
         if(needles == null) {
             needles = new ArrayList<>();
-            for(int i = info.output * num / 4; i >= 0; i--) {
-                Needle n = new Needle(needleimage, target.hb, source.hb.x, source.hb.cY);
+            for(int i = needlecount; i >= 0; i--) {
+                Needle n = new Needle(needleimage, scale, target.hb, startX, startY);
                 needles.add(n);
                 AbstractDungeon.effectsQueue.add(n);
             }
@@ -45,9 +45,9 @@ public class NeedleAttackVFX extends AbstractDamagingVFX {
                 Needle n = needles.get(i);
                 if(n.isDone) {
                     needles.remove(i);
+                    needleFinished(n);
                     if(needles.isEmpty()) {
                         this.isDone = true;
-                        AbstractDungeon.effectsQueue.add(new FlashAtkImgEffect(n.x, n.y, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                     }
                     if(delay != null) {
                         endDelay();
@@ -61,6 +61,8 @@ public class NeedleAttackVFX extends AbstractDamagingVFX {
         }
     }
 
+    protected abstract void needleFinished(Needle n);
+
     @Override
     public void render(SpriteBatch sb) {
 
@@ -69,12 +71,5 @@ public class NeedleAttackVFX extends AbstractDamagingVFX {
     @Override
     public void dispose() {
 
-    }
-
-
-    public static void disposeAll() {
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(path));
-        } catch (GdxRuntimeException ex) {}
     }
 }

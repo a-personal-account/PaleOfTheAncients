@@ -34,6 +34,12 @@
     ]
   },
 
+  "paleoftheancients:PocketFactoryPower": {
+    "NAME": "Pocket Factory",
+    "DESCRIPTIONS": [
+      "End of turn, if there are less than #b"," #yBronze #yOrbs, create a #yBronze #yOrb."
+    ]
+  },
 
   "paleoftheancients:PrematureAwakening": {
     "NAME": "Premature Awakening",

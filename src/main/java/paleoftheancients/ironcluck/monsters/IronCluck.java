@@ -73,12 +73,12 @@ public class IronCluck extends CustomMonster {
         this.moves = new HashMap<>();
         this.moves.put(BARRICADE, new EnemyMoveInfo(BARRICADE, Intent.DEFEND_BUFF, -1, 0, false));
         this.moves.put(BODYSLAM, new EnemyMoveInfo(BODYSLAM, Intent.ATTACK, 0, 0, false));
-        this.moves.put(SWORDBOOMERANG, new EnemyMoveInfo(SWORDBOOMERANG, Intent.ATTACK, 6, 3, true));
+        this.moves.put(SWORDBOOMERANG, new EnemyMoveInfo(SWORDBOOMERANG, Intent.ATTACK, calcAscensionNumber(6.4F), calcAscensionNumber(2.6F), true));
         this.moves.put(IMPERVIOUS, new EnemyMoveInfo(IMPERVIOUS, Intent.DEFEND, -1, 0, false));
         this.moves.put(LIMITBREAK, new EnemyMoveInfo(LIMITBREAK, Intent.BUFF, -1, 0, false));
-        this.moves.put(HEMOKINESIS, new EnemyMoveInfo(HEMOKINESIS, Intent.ATTACK, 25, 0, false));
+        this.moves.put(HEMOKINESIS, new EnemyMoveInfo(HEMOKINESIS, Intent.ATTACK, calcAscensionNumber(25), 0, false));
         this.moves.put(DISARM, new EnemyMoveInfo(DISARM, Intent.STRONG_DEBUFF, -1, 0, false));
-        this.moves.put(IMMOLATE, new EnemyMoveInfo(IMMOLATE, Intent.ATTACK, 30, 0, false));
+        this.moves.put(IMMOLATE, new EnemyMoveInfo(IMMOLATE, Intent.ATTACK, calcAscensionNumber(30), 0, false));
         this.moves.put(FLAMEBARRIER, new EnemyMoveInfo(FLAMEBARRIER, Intent.DEFEND_BUFF, -1, 0, false));
 
         this.moves.put(CUCCOSWARM, new EnemyMoveInfo(CUCCOSWARM, Intent.ATTACK, CUCCO_DMG, CUCCO_COUNT, true));
@@ -125,17 +125,17 @@ public class IronCluck extends CustomMonster {
         switch(this.nextMove) {
             case BARRICADE:
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BarricadePower(this)));
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, 15));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(30)));
                 turnCounter--;
                 break;
             case IMPERVIOUS:
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, 45));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(45)));
                 turnCounter--;
                 break;
             case FLAMEBARRIER:
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new FlameBarrierEffect(this.hb.cX, this.hb.cY)));
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, 25));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ChickenBarrierPower(this, 4), 4));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(40)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ChickenBarrierPower(this, calcAscensionNumber(4)), calcAscensionNumber(4)));
                 turnCounter--;
                 break;
             case BODYSLAM:
@@ -175,12 +175,14 @@ public class IronCluck extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, 15));
                 break;
             case DISARM:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, -3), -3));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, calcAscensionNumber(-3)), calcAscensionNumber(-3)));
                 break;
             case IMMOLATE:
                 this.useFastAttackAnimation();
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.FIRE));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ChickenBurnPower(this, 2), 2));
+                if(AbstractDungeon.ascensionLevel < 9) {
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ChickenBurnPower(this, 2), 2));
+                }
                 break;
             case SWORDBOOMERANG:
                 this.useFastAttackAnimation();
@@ -309,5 +311,16 @@ public class IronCluck extends CustomMonster {
 
     public void setRotation(float rotation) {
         this.skeleton.getRootBone().setRotation(rotation + (float)Math.PI * 3 / 2);
+    }
+
+    public int calcAscensionNumber(float base) {
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            base *= 1.35F;
+        } else if(AbstractDungeon.ascensionLevel >= 9) {
+            base *= 1.20F;
+        } else if(AbstractDungeon.ascensionLevel >= 4) {
+            base *= 1.15F;
+        }
+        return Math.round(base);
     }
 }

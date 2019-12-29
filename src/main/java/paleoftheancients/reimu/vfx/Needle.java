@@ -15,14 +15,16 @@ public class Needle extends AbstractGameEffect {
     public float x, y;
     private float vX, vY, targetX;
 
-    public Needle(Texture tex, Hitbox target, float x, float y) {
-        this(tex, target, x, y, MathUtils.random(0.3F));
+    public Needle(Texture tex, float scale, Hitbox target, float x, float y) {
+        this(tex, scale, target, x, y, MathUtils.random(0.3F));
     }
-    public Needle(Texture tex, Hitbox target, float x, float y, float delay) {
+    public Needle(Texture tex, float scale, Hitbox target, float x, float y, float delay) {
         this.needle = tex;
 
         this.width = needle.getWidth();
         this.height = needle.getHeight();
+
+        this.scale = scale;
 
         float offsetX = MathUtils.random(-target.width, target.width) / 6F;
         float offsetY = MathUtils.random(-target.height, target.height) / 6F;
@@ -76,5 +78,9 @@ public class Needle extends AbstractGameEffect {
     @Override
     public void dispose() {
 
+    }
+
+    public float getRotation() {
+        return rotation;
     }
 }

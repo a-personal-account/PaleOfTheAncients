@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import paleoftheancients.PaleMod;
 
-import java.util.ArrayList;
-
 public class Cards {
     public static final String[] IMG = new String[] {
             PaleMod.assetPath("images/TheShowman/vfx/cards/card_back_mk2.png"),
@@ -33,7 +31,7 @@ public class Cards {
         return nums[n];
     }
     public static int size() {
-        return nums.length;
+        return IMG.length;
     }
 
     public static void dispose() {

@@ -163,7 +163,8 @@ public class Reimu extends CustomMonster {
             }
         }
 
-        AbstractDungeon.effectList.add(new NeedleAttackVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
+        AbstractDungeon.effectList.add(new HakureiAmuletVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
+        //AbstractDungeon.effectList.add(new FantasySealVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
     }
 
     @Override
@@ -213,7 +214,9 @@ public class Reimu extends CustomMonster {
         FSBlinkVFX.disposeAll();
         FantasySealVFX.disposeAll();
         HakureiBarrierVFX.disposeAll();
-        NeedleAttackVFX.disposeAll();
+        BasicNeedleVFX.disposeAll();
+        ExterminationVFX.disposeAll();
+        HakureiAmuletVFX.disposeAll();
     }
 
     public void runAnim(ReimuAnimation animation) {

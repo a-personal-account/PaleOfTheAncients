@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -121,8 +120,6 @@ public class EvilSealingCircleVFX extends AbstractDamagingVFX {
 
 
     public static void disposeAll() {
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(path));
-        } catch (GdxRuntimeException ex) {}
+        AbstractDamagingVFX.disposeTry(PaleMod.assetPath(path));
     }
 }

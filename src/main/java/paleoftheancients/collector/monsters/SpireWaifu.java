@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.collector.powers.PocketFactoryPower;
 import paleoftheancients.collector.vfx.BloodyChair;
 
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class SpireWaifu extends TheCollector {
     @Override
     public void usePreBattleAction() {
         AbstractDungeon.effectList.add(new BloodyChair());
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new PocketFactoryPower(this, AbstractDungeon.ascensionLevel >= 19 ? 3 : 2)));
     }
 
     @Override
@@ -117,34 +119,6 @@ public class SpireWaifu extends TheCollector {
 
         ReflectionHacks.setPrivate(this, TheCollector.class, "turnsTaken",
                 (int)ReflectionHacks.getPrivate(this, TheCollector.class, "turnsTaken") + 1);
-
-        int bronzeorbs = 0;
-        for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if(m.id == BronzeOrbThing.ID && !m.isDeadOrEscaped()) {
-                bronzeorbs++;
-            }
-        }
-        if(bronzeorbs < 2 && !this.isDead) {
-            AbstractMonster bronzeorb = new BronzeOrbThing(0, 0, MathUtils.random(0, 1));
-            do {
-                boolean overlapping = false;
-                bronzeorb.drawX = Settings.WIDTH * 0.75F + MathUtils.random(-500F, -100F) * Settings.scale;
-                bronzeorb.drawY = AbstractDungeon.floorY + (300 + MathUtils.random(-60F, 30F)) * Settings.scale;
-                bronzeorb.hb.move(bronzeorb.drawX, bronzeorb.drawY + bronzeorb.hb.height / 2);
-
-                for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    if(!mo.isDeadOrEscaped() && mo.hb.intersects(bronzeorb.hb)) {
-                        overlapping = true;
-                        break;
-                    }
-                }
-
-                if(!overlapping) {
-                    break;
-                }
-            } while(true);
-            AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(bronzeorb, true));
-        }
 
         hyperbeamcounter--;
 

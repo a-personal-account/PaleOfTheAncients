@@ -1,20 +1,16 @@
 package paleoftheancients.reimu.vfx;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.monsters.Reimu;
@@ -22,7 +18,7 @@ import paleoftheancients.reimu.monsters.Reimu;
 import java.util.ArrayList;
 
 public class FantasySealVFX extends AbstractDamagingVFX {
-    private static final String path = "images/reimu/vfx/fantasyseal.png";
+    public static final String path = "images/reimu/vfx/fantasyseal.png";
     private Texture orb;
     private int orbwidth, orbheight;
     private float targetScale;
@@ -108,13 +104,12 @@ public class FantasySealVFX extends AbstractDamagingVFX {
         private float scale, phase, curvedistance, targetX, targetY, startingrads, endrads;
         public float x, y;
         private float[] rotation;
-        public Color color;
         private boolean shrinking;
 
         public Seal() {
             this.scale = 0F;
             this.rotation = new float[3];
-            for(int i = 0; i < this.rotation.length; i++) { MathUtils.random(360F); }
+            for(int i = 0; i < this.rotation.length; i++) { this.rotation[i] = MathUtils.random(360F); }
 
             curvedistance = MathUtils.random(source.hb.height * 0.5F, source.hb.height * 5F);
             if(MathUtils.randomBoolean()) { curvedistance *= -1; }
@@ -135,7 +130,6 @@ public class FantasySealVFX extends AbstractDamagingVFX {
             }
             shrinking = false;
 
-            this.color = new Color(MathUtils.random(0.7F, 1F), MathUtils.random(0.7F, 1F), MathUtils.random(0.8F, 1F), 0.9F);
         }
 
         public boolean update() {
@@ -159,19 +153,6 @@ public class FantasySealVFX extends AbstractDamagingVFX {
                     }
                 }
             }
-
-            /*
-            if(endrads > phase) {
-                this.phase += Gdx.graphics.getDeltaTime();
-                if (this.phase > endrads) {
-                    return true;
-                }
-            } else {
-                this.phase -= Gdx.graphics.getDeltaTime();
-                if (this.phase < endrads) {
-                    return true;
-                }
-            }*/
 
             if(this.scale < targetScale) {
                 this.scale += Gdx.graphics.getDeltaTime() * targetScale;
@@ -201,8 +182,6 @@ public class FantasySealVFX extends AbstractDamagingVFX {
 
 
     public static void disposeAll() {
-        try {
-            AssetLoader.unLoad(PaleMod.assetPath(path));
-        } catch (GdxRuntimeException ex) {}
+        AbstractDamagingVFX.disposeTry(PaleMod.assetPath(path));
     }
 }
