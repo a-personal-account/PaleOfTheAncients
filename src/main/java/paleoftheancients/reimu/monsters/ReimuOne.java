@@ -16,7 +16,7 @@ import paleoftheancients.reimu.powers.SealedPower;
 public class ReimuOne extends ReimuPhase {
     private static final byte FIRSTTURN = Byte.MAX_VALUE;
 
-    private static final byte EVILSEALINGCIRCLE = 0;
+    private static final byte SEAL = 0;
     private static final byte BASICBLOCK = 1;
     private static final byte BASICATTACK = 2;
     private static final byte DEBUFFATTACK = 3;
@@ -28,7 +28,7 @@ public class ReimuOne extends ReimuPhase {
 
     public ReimuOne() {
         this.moves.put(FIRSTTURN, new ReimuMoveInfo(FIRSTTURN, AbstractMonster.Intent.UNKNOWN, -1, 0, false, ReimuAnimation.Spellcall));
-        this.moves.put(EVILSEALINGCIRCLE, new ReimuMoveInfo(EVILSEALINGCIRCLE, Intent.STRONG_DEBUFF, -1, 0, false, ReimuAnimation.Spellcall));
+        this.moves.put(SEAL, new ReimuMoveInfo(SEAL, Intent.STRONG_DEBUFF, -1, 0, false, ReimuAnimation.Spellcall));
         this.moves.put(BASICATTACK, new ReimuMoveInfo(BASICATTACK, Intent.ATTACK, calcAscensionNumber(28), 0, false, ReimuAnimation.Closeattack, calcAscensionNumber(1.3F)));
         this.moves.put(DEBUFFATTACK, new ReimuMoveInfo(DEBUFFATTACK, Intent.ATTACK_DEBUFF, calcAscensionNumber(23), 0, false, ReimuAnimation.Closeattack, calcAscensionNumber(1.3F)));
         this.moves.put(BASICBLOCK, new ReimuMoveInfo(BASICBLOCK, Intent.DEFEND_DEBUFF, -1, calcAscensionNumber(30), false, ReimuAnimation.Guard, calcAscensionNumber(2F)));
@@ -61,9 +61,10 @@ public class ReimuOne extends ReimuPhase {
                 }
                 break;
             }
-            case EVILSEALINGCIRCLE: {
+            case SEAL: {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new SealedPower(AbstractDungeon.player, 1), 1));
                 reimu.turnsSinceBomb = -1;
+                reimu.rui.useBomb();
                 break;
             }
         }
@@ -75,9 +76,9 @@ public class ReimuOne extends ReimuPhase {
             reimu.setMove(Reimu.MOVES[0], FIRSTTURN, Intent.UNKNOWN);
             this.firstMove = false;
         } else {
-            if (reimu.turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff()) { //use this every few turns until player has max stacks of the debuff
-                reimu.setMoveShortcut(EVILSEALINGCIRCLE, 0);
-            } else if (reimu.lastMove(EVILSEALINGCIRCLE) && reimu.lastMoveBefore(BASICBLOCK)) { //can't not attack for more than 2 turns
+            if (reimu.turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff() && reimu.rui.bombs > 0) { //use this every few turns until player has max stacks of the debuff
+                reimu.setMoveShortcut(SEAL, 0);
+            } else if (reimu.lastMove(SEAL) && reimu.lastMoveBefore(BASICBLOCK)) { //can't not attack for more than 2 turns
                 if (num % 2 == 0) {
                     reimu.setMoveShortcut(DEBUFFATTACK);
                 } else {

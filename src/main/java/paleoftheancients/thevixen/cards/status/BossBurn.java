@@ -1,5 +1,7 @@
 package paleoftheancients.thevixen.cards.status;
 
+import basemod.BaseMod;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -44,7 +46,7 @@ public class BossBurn extends AbstractCard {
 
     @Override
     public AbstractCard makeStatEquivalentCopy() {
-        SetPlayerBurnAction.addToBottom();
+        //SetPlayerBurnAction.addToBottom();
         return super.makeStatEquivalentCopy();
     }
 

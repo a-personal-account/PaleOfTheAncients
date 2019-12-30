@@ -64,7 +64,7 @@
       "The next card with a Sunny effect you play is enhanced.",
       "The next #b",
       " cards with a Sunny effect you play are enhanced.",
-      "Some attacks will consume a stack of this and have #radditional #reffects. NL At the end of their turn, they gain #rStrength equal to the amount of their #rSunny #rDay for #b1 turn."
+      "Some attacks will consume a stack of this and have #radditional #reffects."
     ]
   },
   "paleoftheancients:SynergyBurstPower": {
@@ -115,14 +115,7 @@
   "paleoftheancients:ConfusionPower": {
     "NAME": "Confuzzled",
     "DESCRIPTIONS": [
-      "Whenever this enemy deals damage, they take damage equal to half the inflicted damage. NL Wears off at the end of their turn."
-    ]
-  },
-  "paleoftheancients:DazzlingPower": {
-    "NAME": "Dazzling",
-    "DESCRIPTIONS": [
-      "Whenever the #rSunny effect of a card is triggered, gain #b",
-      " Block."
+      "Whenever you deal damage, you hit yourself in confusion for 50% of that."
     ]
   },
   "paleoftheancients:ReverseVulnerablePower": {
@@ -140,12 +133,6 @@
     "DESCRIPTIONS": [
       "End of turn, gain up to #b",
       " #rSunny #rDay, one for every #rdebuff unrelated to Strength you were inflicted with this turn."
-    ]
-  },
-  "paleoftheancients:WishPower": {
-    "NAME": "Wish",
-    "DESCRIPTIONS": [
-      "At the start of your next turn, heal for half the HP you lost this turn."
     ]
   },
   "paleoftheancients:BossFacadePower": {
@@ -334,7 +321,7 @@
   },
   "paleoftheancients:MonsterPositionPower": {
     "NAME": "Spell Card Rules",
-    "DESCRIPTIONS": ["This projectile is in lane #b", ". It will reach you in #b", " turns,", " turn,", " dealing damage if you are in the same lane as it."]
+    "DESCRIPTIONS": ["This orb is in lane #b", "."]
   },
   "paleoftheancients:HakureiShrineMaidenPower": {
     "NAME": "Hakurei Shrine Maiden",
@@ -343,6 +330,24 @@
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",
     "DESCRIPTIONS": ["At the start of your turn, discard #b", " card.", " cards."]
+  },
+  "paleoftheancients:ShotTypeBasePower": {
+    "NAME": "Limited Range",
+    "DESCRIPTIONS": [
+      "Will only deal damage to you if you are directly in front of it"
+    ]
+  },
+  "paleoftheancients:ShotTypeAmuletPower": {
+    "NAME": "Shottype: Homing Amulet",
+    "DESCRIPTIONS": [
+      "Will only deal damage to you if you were directly in front of it at some point this turn."
+    ]
+  },
+  "paleoftheancients:ShotTypeNeedlePower": {
+    "NAME": "Shottype: Persuasion Needle",
+    "DESCRIPTIONS": [
+      "Will only deal damage to you if you are in the same lane."
+    ]
   },
 
   "paleoftheancients:GazeOne": {

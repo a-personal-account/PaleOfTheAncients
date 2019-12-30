@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.reimu.monsters.Reimu;
 
 public class BasicNeedleVFX extends NeedleAttackVFX {
     private static final String path = "images/reimu/vfx/needle_regular.png";
 
-    public BasicNeedleVFX(AbstractCreature target, Reimu reimu, DamageInfo info, int num) {
-        super(AssetLoader.loadImage(PaleMod.assetPath(path)), Settings.scale, target, reimu.hb.x, reimu.hb.cY, info, num, info.output * num / 4);
+    public BasicNeedleVFX(AbstractCreature target, AbstractCreature source, DamageInfo info, int num) {
+        super(AssetLoader.loadImage(PaleMod.assetPath(path)), Settings.scale, target, source.hb.x, source.hb.cY, info, num, info.output * num / 4);
     }
 
     @Override

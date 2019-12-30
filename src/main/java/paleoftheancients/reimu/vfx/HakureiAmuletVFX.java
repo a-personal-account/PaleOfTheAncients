@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.reimu.monsters.Reimu;
 
 import java.util.ArrayList;
 
@@ -23,15 +22,15 @@ public class HakureiAmuletVFX extends AbstractDamagingVFX {
     private Texture image;
     private int imagewidth, imageheight;
 
-    private Reimu source;
+    private AbstractCreature source;
     private boolean finished;
 
     private ArrayList<Seal> seals = new ArrayList<>();
 
-    public HakureiAmuletVFX(AbstractCreature target, Reimu source, DamageInfo info, int num) {
+    public HakureiAmuletVFX(AbstractCreature target, AbstractCreature source, DamageInfo info, int num) {
         this(target, source, info, num, 8);
     }
-    public HakureiAmuletVFX(AbstractCreature target, Reimu source, DamageInfo info, int num, int amuletcount) {
+    public HakureiAmuletVFX(AbstractCreature target, AbstractCreature source, DamageInfo info, int num, int amuletcount) {
         super(target, info, num);
         this.image = AssetLoader.loadImage(PaleMod.assetPath(path));
         this.imagewidth = image.getWidth();

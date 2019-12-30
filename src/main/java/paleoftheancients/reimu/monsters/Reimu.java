@@ -106,7 +106,24 @@ public class Reimu extends CustomMonster {
             runAnim(rmi.animation);
         }
 
-        phase.takeTurn(this, rmi, info);
+        if(this.halfDead) {
+            this.halfDead = false;
+            this.isDying = false;
+            this.isDead = false;
+            this.maxHealth *= 1.5F;
+            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
+            phase.die();
+            CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.25F);
+            if(spellcircle == null) {
+                spellcircle = new SpellCircleVFX(this);
+                AbstractDungeon.effectList.add(spellcircle);
+            }
+            lockAnimation = false;
+            runAnim(ReimuAnimation.DizzyEnd);
+        } else {
+            phase.takeTurn(this, rmi, info);
+        }
 
         turnsSinceBomb++;
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -180,20 +197,16 @@ public class Reimu extends CustomMonster {
             }
             runAnim(ReimuAnimation.Defeat, ReimuAnimation.None);
             AbstractDungeon.effectList.add(new TouhouDeathVFX(this));
-        }
-        super.die(!revival && triggerRelics);
-        if(revival) {
-            runAnim(ReimuAnimation.Guardbreak);
-            this.isDying = false;
-            this.maxHealth *= 1.5F;
-            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
-            phase.die();
-            CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.15F);
-            if(spellcircle == null) {
-                spellcircle = new SpellCircleVFX(this);
-                AbstractDungeon.effectList.add(spellcircle);
-            }
+            CardCrawlGame.sound.playV(PaleMod.makeID("touhou_defeat"), 0.25F);
+            super.die(triggerRelics);
+        } else {
+            lockAnimation = false;
+            runAnim(ReimuAnimation.Guardbreak, ReimuAnimation.Dizzy);
+            this.halfDead = true;
+            lockAnimation = true;
+            this.setMove(MOVES[rui.extralives], (byte)0, Intent.UNKNOWN);
+            this.createIntent();
+            CardCrawlGame.sound.playV(PaleMod.makeID("touhou_death"), 0.25F);
         }
     }
 
@@ -268,6 +281,10 @@ public class Reimu extends CustomMonster {
         Hitlow,
         SpellA,
         SpellA_Loop,
-        SpellA_End
+        SpellA_End,
+        Flipkick,
+        Kick,
+        Dizzy,
+        DizzyEnd
     }
 }

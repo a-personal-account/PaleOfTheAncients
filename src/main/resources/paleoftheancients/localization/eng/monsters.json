@@ -106,12 +106,17 @@
   "paleoftheancients:Reimu": {
     "MOVES": [
       "Yin-Yang Treasured Orbs",
-      "Great Duplex Barrier",
-      "Evil-Sealing Circle"
+      "Shot type \"Persuasion Needle\"",
+      "Shot type \"Homing Amulet\"",
+      "Spirit Sign \"Fantasy Seal -Concentrate-\"",
+      "Migrating Spirit \"Fantasy Seal -Marred-\"",
+      "Divine Spirit \"Fantasy Seal -Blink-\"",
+      "Dream Sign \"Evil-Sealing Circle\"",
+      "Divine Arts \"Omnidirectional Oni-Binding Circle\"",
+      "Great Barrier \"Hakurei Danmaku Barrier\""
     ],
     "NAME": "Shrine Maiden of Paradise",
     "DIALOG": [
-      "Another day, another incident."
     ]
 
   },

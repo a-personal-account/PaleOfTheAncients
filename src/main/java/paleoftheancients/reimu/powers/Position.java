@@ -4,11 +4,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.monsters.Reimu;
+import paleoftheancients.reimu.monsters.YinYangOrb;
 
 public class Position extends AbstractPower {
 
@@ -40,11 +43,13 @@ public class Position extends AbstractPower {
 
     @Override
     public void onAfterCardPlayed(AbstractCard card) {
+        boolean changed = false;
         if (card.type == AbstractCard.CardType.ATTACK) {
             if (amount > 1) {
                 this.flash();
                 amount--;
                 owner.drawY -= movement;
+                changed = true;
             }
         }
         if (card.type == AbstractCard.CardType.SKILL) {
@@ -52,15 +57,43 @@ public class Position extends AbstractPower {
                 this.flash();
                 amount++;
                 owner.drawY += movement;
+                changed = true;
             }
         }
         updateDescription();
+        if(changed) {
+            atStartOfTurn();
+        }
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if(mo.id.equals(YinYangOrb.ID) && !mo.isDeadOrEscaped() && mo.getIntentBaseDmg() > -1) {
+                ShotTypeAmuletPower st = (ShotTypeAmuletPower)mo.getPower(ShotTypeAmuletPower.POWER_ID);
+                if(st != null) {
+                    if(this.amount == ((YinYangOrb)mo).position) {
+                        st.homing = true;
+                        return; //Only one orb can be right in front of you, right?
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void onRemove() {
         super.onRemove();
         owner.drawY = originalY;
+    }
+
+    public static int playerPosition() {
+        int playerPosition = 1;
+        AbstractPower ap = AbstractDungeon.player.getPower(Position.POWER_ID);
+        if(ap != null) {
+            playerPosition = ap.amount;
+        }
+        return playerPosition;
     }
 
     @Override

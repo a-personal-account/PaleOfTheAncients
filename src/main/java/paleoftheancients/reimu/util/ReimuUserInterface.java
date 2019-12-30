@@ -52,6 +52,10 @@ public class ReimuUserInterface {
         }
     }
 
+    public void useBomb() {
+        bombs = Math.max(bombs - 1, 0);
+    }
+
     public void dispose() {
         lifeimage.dispose();
         bombimage.dispose();

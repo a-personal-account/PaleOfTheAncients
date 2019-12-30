@@ -89,13 +89,6 @@
       "在你的回合结束时，获得等于 #y负面效果 层数之和两倍的 #b格挡 。 NL 本效果被视为 #y负面效果 。"
     ]
   },
-  "TheVixenMod:FlameBodyPower": {
-    "NAME": "火焰身躯",
-    "DESCRIPTIONS": [
-      "每当你被攻击时，下 #b",
-      " 回合攻击者获得一张灼伤。"
-    ]
-  },
   "paleoftheancients:EndurePower": {
     "NAME": "忍耐",
     "DESCRIPTIONS": [
@@ -119,13 +112,6 @@
       "每当这名敌人造成伤害，他们受到等于一半的反伤。 NL 回合结束时消失。"
     ]
   },
-  "paleoftheancients:DazzlingPower": {
-    "NAME": "耀眼的",
-    "DESCRIPTIONS": [
-      "每当一张牌出发 #r艳阳 效果 时，获得 #b",
-      " 点格挡。"
-    ]
-  },
   "paleoftheancients:ReverseVulnerablePower": {
     "NAME": "过滤",
     "DESCRIPTIONS": [
@@ -141,12 +127,6 @@
     "DESCRIPTIONS": [
       "回合结束时，最多获得 #b",
       " 层 #r艳阳天 ， one for every #rdebuff unrelated to Strength you were inflicted with this turn."
-    ]
-  },
-  "paleoftheancients:WishPower": {
-    "NAME": "Wish",
-    "DESCRIPTIONS": [
-      "你的下一回合开始时，回复本回合失去生命的一半。"
     ]
   },
   "paleoftheancients:BossFacadePower": {
