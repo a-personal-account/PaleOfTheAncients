@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
@@ -68,13 +67,15 @@ public class Position extends AbstractPower {
 
     @Override
     public void atStartOfTurn() {
-        for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if(mo.id.equals(YinYangOrb.ID) && !mo.isDeadOrEscaped() && mo.getIntentBaseDmg() > -1) {
-                ShotTypeAmuletPower st = (ShotTypeAmuletPower)mo.getPower(ShotTypeAmuletPower.POWER_ID);
-                if(st != null) {
-                    if(this.amount == ((YinYangOrb)mo).position) {
+        Reimu reimu = (Reimu) AbstractDungeon.getCurrRoom().monsters.getMonster(Reimu.ID);
+        if(reimu != null && reimu.rui.extralives == 1) {
+            for(int i = 0; i < 2; i++) {
+                YinYangOrb orb = reimu.orbs[i][amount - 1];
+                if (orb != null) {
+                    ShotTypeAmuletPower st = (ShotTypeAmuletPower) orb.getPower(ShotTypeAmuletPower.POWER_ID);
+                    if (st != null) {
                         st.homing = true;
-                        return; //Only one orb can be right in front of you, right?
+                        orb.reverse();
                     }
                 }
             }

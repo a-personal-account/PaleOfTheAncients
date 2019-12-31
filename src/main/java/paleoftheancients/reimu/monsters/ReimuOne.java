@@ -1,7 +1,6 @@
 package paleoftheancients.reimu.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
@@ -12,6 +11,8 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import paleoftheancients.reimu.monsters.Reimu.ReimuAnimation;
 import paleoftheancients.reimu.powers.SealedPower;
+import paleoftheancients.reimu.powers.ShotTypeAmuletPower;
+import paleoftheancients.reimu.powers.ShotTypeBasePower;
 
 public class ReimuOne extends ReimuPhase {
     private static final byte FIRSTTURN = Byte.MAX_VALUE;
@@ -29,8 +30,8 @@ public class ReimuOne extends ReimuPhase {
     public ReimuOne() {
         this.moves.put(FIRSTTURN, new ReimuMoveInfo(FIRSTTURN, AbstractMonster.Intent.UNKNOWN, -1, 0, false, ReimuAnimation.Spellcall));
         this.moves.put(SEAL, new ReimuMoveInfo(SEAL, Intent.STRONG_DEBUFF, -1, 0, false, ReimuAnimation.Spellcall));
-        this.moves.put(BASICATTACK, new ReimuMoveInfo(BASICATTACK, Intent.ATTACK, calcAscensionNumber(28), 0, false, ReimuAnimation.Closeattack, calcAscensionNumber(1.3F)));
-        this.moves.put(DEBUFFATTACK, new ReimuMoveInfo(DEBUFFATTACK, Intent.ATTACK_DEBUFF, calcAscensionNumber(23), 0, false, ReimuAnimation.Closeattack, calcAscensionNumber(1.3F)));
+        this.moves.put(BASICATTACK, new ReimuMoveInfo(BASICATTACK, Intent.ATTACK, calcAscensionNumber(28), 0, false, ReimuAnimation.CloseAttack, calcAscensionNumber(1.3F)));
+        this.moves.put(DEBUFFATTACK, new ReimuMoveInfo(DEBUFFATTACK, Intent.ATTACK_DEBUFF, calcAscensionNumber(23), 0, false, ReimuAnimation.Kick, calcAscensionNumber(2.3F)));
         this.moves.put(BASICBLOCK, new ReimuMoveInfo(BASICBLOCK, Intent.DEFEND_DEBUFF, -1, calcAscensionNumber(30), false, ReimuAnimation.Guard, calcAscensionNumber(2F)));
     }
 
@@ -38,7 +39,6 @@ public class ReimuOne extends ReimuPhase {
     public void takeTurn(Reimu reimu, ReimuMoveInfo rmi, DamageInfo info) {
         switch (reimu.nextMove) {
             case FIRSTTURN: {
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(reimu, Reimu.DIALOG[0]));
                 break;
             }
             case BASICATTACK: {
@@ -48,7 +48,6 @@ public class ReimuOne extends ReimuPhase {
             }
             case DEBUFFATTACK: {
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Dazed(), rmi.magicNumber));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new WeakPower(AbstractDungeon.player, rmi.magicNumber, true), rmi.magicNumber));
                 break;
             }
@@ -77,7 +76,7 @@ public class ReimuOne extends ReimuPhase {
             this.firstMove = false;
         } else {
             if (reimu.turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff() && reimu.rui.bombs > 0) { //use this every few turns until player has max stacks of the debuff
-                reimu.setMoveShortcut(SEAL, 0);
+                reimu.setMoveShortcut(SEAL);
             } else if (reimu.lastMove(SEAL) && reimu.lastMoveBefore(BASICBLOCK)) { //can't not attack for more than 2 turns
                 if (num % 2 == 0) {
                     reimu.setMoveShortcut(DEBUFFATTACK);
@@ -128,7 +127,9 @@ public class ReimuOne extends ReimuPhase {
     }
 
     @Override
-    public void die() {
+    public void die(Reimu reimu) {
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, SealedPower.POWER_ID));
+        reimu.phase = new ReimuTwo();
+        reassignShottype(ShotTypeBasePower.POWER_ID, new ShotTypeAmuletPower(null));
     }
 }

@@ -1,7 +1,8 @@
 package paleoftheancients.reimu.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,15 +39,18 @@ public class SealedPower extends AbstractPower {
     @Override
     public void atStartOfTurnPostDraw() {
         this.flash();
-        AbstractDungeon.actionManager.addToBottom(new DiscardAction(this.owner, this.owner, this.amount, false));
+        AbstractDungeon.actionManager.addToBottom(new LoseEnergyAction(1));
+        AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.owner, this.owner, this.amount, false));
     }
 
     @Override
     public void updateDescription() {
+        this.description = DESCRIPTIONS[0] + this.amount;
         if (this.amount == 1) {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+            this.description += DESCRIPTIONS[1];
         } else {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+            this.description += DESCRIPTIONS[2];
         }
+        this.description += DESCRIPTIONS[3];
     }
 }

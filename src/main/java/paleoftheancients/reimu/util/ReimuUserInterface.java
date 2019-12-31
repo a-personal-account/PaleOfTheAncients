@@ -33,14 +33,6 @@ public class ReimuUserInterface {
         bombheight = bombimage.getHeight() * this.scale;
     }
 
-    public boolean justAFleshWound() {
-        if(--this.extralives >= 0) {
-            this.bombs = 3;
-            return true;
-        }
-        return false;
-    }
-
     public void render(SpriteBatch sb, Reimu reimu) {
         sb.setColor(Color.WHITE);
         float leftBorder = reimu.drawX - reimu.hb.width / 2F;

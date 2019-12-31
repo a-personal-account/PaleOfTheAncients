@@ -6,1122 +6,261 @@ filter: Linear,Linear
 repeat: none
 intro/gohei
   rotate: false
-  xy: 2709, 1731
+  xy: 905, 2213
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
-spell_A/spella_14
+kick/kick_09
   rotate: false
-  xy: 2065, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-hithigh/hithigh_05
-  rotate: false
-  xy: 2465, 2313
-  size: 188, 194
-  orig: 188, 194
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_09
-  rotate: false
-  xy: 1549, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_08
-  rotate: false
-  xy: 565, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-intro/intro_11
-  rotate: false
-  xy: 3613, 517
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-hitlow/hitlow_05
-  rotate: false
-  xy: 3661, 2338
-  size: 208, 199
-  orig: 208, 199
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_05
-  rotate: false
-  xy: 2983, 1950
+  xy: 3677, 1772
   size: 272, 192
   orig: 272, 192
-  offset: 0, 0
-  index: -1
-idle/idle_05
-  rotate: false
-  xy: 2271, 2119
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-kick/kick_05
-  rotate: false
-  xy: 2435, 1925
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_04
-  rotate: false
-  xy: 3871, 976
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_02
-  rotate: false
-  xy: 2581, 1285
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-intro/intro_15
-  rotate: false
-  xy: 1033, 1285
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_L03
-  rotate: false
-  xy: 2581, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_15
-  rotate: false
-  xy: 517, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_03
-  rotate: false
-  xy: 3871, 1215
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-idle/idle_01
-  rotate: false
-  xy: 1, 2122
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_12
-  rotate: false
-  xy: 3613, 259
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_01
-  rotate: false
-  xy: 3877, 1
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-spell_A/spella_19
-  rotate: false
-  xy: 2065, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-idle/idle_04
-  rotate: false
-  xy: 719, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-spell_A/spella_01
-  rotate: false
-  xy: 2839, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_03
-  rotate: false
-  xy: 2323, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-kick/kick_08
-  rotate: false
-  xy: 2161, 1731
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-spell_A/spella_02
-  rotate: false
-  xy: 1033, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_05
-  rotate: false
-  xy: 517, 1285
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-guard/guard_04
-  rotate: false
-  xy: 1, 1285
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_08
-  rotate: false
-  xy: 3355, 1732
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-spell_A/spella_08
-  rotate: false
-  xy: 1291, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_04
-  rotate: false
-  xy: 2821, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-idle/idle_07
-  rotate: false
-  xy: 2465, 2119
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_05
-  rotate: false
-  xy: 3871, 737
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-intro/intro_12
-  rotate: false
-  xy: 1291, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-defeat/defeat_09
-  rotate: false
-  xy: 2983, 2338
-  size: 256, 200
-  orig: 256, 200
-  offset: 0, 0
-  index: -1
-idle/idle_06
-  rotate: false
-  xy: 913, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-spell_A/spella_E03
-  rotate: false
-  xy: 2839, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_07
-  rotate: false
-  xy: 1, 1543
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_03
-  rotate: false
-  xy: 1807, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_01
-  rotate: false
-  xy: 517, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_05
-  rotate: false
-  xy: 2065, 1508
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-hitlow/hitlow_01
-  rotate: false
-  xy: 3451, 2338
-  size: 208, 199
-  orig: 208, 199
-  offset: 0, 0
-  index: -1
-idle/idle_11
-  rotate: false
-  xy: 1495, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_06
-  rotate: false
-  xy: 3871, 498
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-intro/intro_03
-  rotate: false
-  xy: 775, 1285
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-kick/kick_10
-  rotate: false
-  xy: 2709, 2332
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_07
-  rotate: false
-  xy: 517, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-kick/kick_06
-  rotate: false
-  xy: 1613, 1543
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_05
-  rotate: false
-  xy: 847, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-intro/intro_07
-  rotate: false
-  xy: 1033, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_01
-  rotate: false
-  xy: 2581, 1508
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-guard/guard_03
-  rotate: false
-  xy: 3355, 1033
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_09
-  rotate: false
-  xy: 1411, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_01
-  rotate: false
-  xy: 3805, 2144
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-defeat/defeat_04
-  rotate: false
-  xy: 517, 1737
-  size: 200, 195
-  orig: 200, 195
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_06
-  rotate: false
-  xy: 2323, 1285
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-spell_A/spella_L06
-  rotate: false
-  xy: 3619, 1
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_02
-  rotate: false
-  xy: 3613, 1732
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-intro/intro_04
-  rotate: false
-  xy: 1807, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_E02
-  rotate: false
-  xy: 1291, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-intro/intro_01
-  rotate: false
-  xy: 3355, 259
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-idle/idle_12
-  rotate: false
-  xy: 1107, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-idle/idle_13
-  rotate: false
-  xy: 2077, 2119
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-kick/kick_02
-  rotate: false
-  xy: 1887, 1731
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_09
-  rotate: false
-  xy: 1339, 1543
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-idle/idle_02
-  rotate: false
-  xy: 1689, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-kick/kick_07
-  rotate: false
-  xy: 2435, 1731
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_06
-  rotate: false
-  xy: 2839, 1508
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-hitlow/hitlow_02
-  rotate: false
-  xy: 3871, 1454
-  size: 208, 199
-  orig: 208, 199
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_08
-  rotate: false
-  xy: 259, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-defeat/defeat_06
-  rotate: false
-  xy: 3645, 2539
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_08
-  rotate: false
-  xy: 2983, 2144
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_02
-  rotate: false
-  xy: 2581, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-intro/intro_10
-  rotate: false
-  xy: 775, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_02
-  rotate: false
-  xy: 1975, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-spell_A/spella_L04
-  rotate: false
-  xy: 1, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_04
-  rotate: false
-  xy: 3097, 1732
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-spell_A/spella_07
-  rotate: false
-  xy: 1033, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-kick/kick_01
-  rotate: false
-  xy: 3257, 2144
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_07
-  rotate: false
-  xy: 3097, 775
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_05
-  rotate: false
-  xy: 3613, 1514
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_04
-  rotate: false
-  xy: 791, 1543
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-defeat/defeat_02
-  rotate: false
-  xy: 203, 1761
-  size: 200, 195
-  orig: 200, 195
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_end_02
-  rotate: false
-  xy: 3613, 1291
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-hithigh/hithigh_02
-  rotate: false
-  xy: 195, 2155
-  size: 188, 194
-  orig: 188, 194
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_end_01
-  rotate: false
-  xy: 3355, 1291
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_02
-  rotate: false
-  xy: 2065, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-idle/idle_03
-  rotate: false
-  xy: 2077, 1925
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-intro/intro_06
-  rotate: false
-  xy: 1807, 1285
-  size: 256, 256
-  orig: 256, 256
   offset: 0, 0
   index: -1
 hitlow/hitlow_04
   rotate: false
-  xy: 3241, 2338
+  xy: 1761, 2404
   size: 208, 199
   orig: 208, 199
   offset: 0, 0
   index: -1
-defeat/defeat_03
-  rotate: false
-  xy: 1, 1925
-  size: 200, 195
-  orig: 200, 195
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_end_04
-  rotate: false
-  xy: 2839, 1285
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-spell_A/spella_10
-  rotate: false
-  xy: 1549, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_end_03
-  rotate: false
-  xy: 2323, 1508
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_10
-  rotate: false
-  xy: 259, 1543
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-defeat/defeat_01
-  rotate: false
-  xy: 203, 1958
-  size: 200, 195
-  orig: 200, 195
-  offset: 0, 0
-  index: -1
-intro/intro_02
-  rotate: false
-  xy: 3103, 1
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_07
-  rotate: false
-  xy: 2709, 1944
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_03
-  rotate: false
-  xy: 2709, 2138
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-idle/idle_08
-  rotate: false
-  xy: 1883, 1925
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_11
-  rotate: false
-  xy: 1, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-defeat/defeat_07
-  rotate: false
-  xy: 3241, 2539
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_11
-  rotate: false
-  xy: 775, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_16
-  rotate: false
-  xy: 2581, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_11
-  rotate: false
-  xy: 3613, 1033
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_13
-  rotate: false
-  xy: 3613, 775
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_06
-  rotate: false
-  xy: 2323, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-guardbreak/guardbreak_02
-  rotate: false
-  xy: 3871, 259
-  size: 192, 237
-  orig: 192, 237
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_10
-  rotate: false
-  xy: 1291, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_10
-  rotate: false
-  xy: 1693, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-intro/intro_13
-  rotate: false
-  xy: 3871, 2338
-  size: 128, 320
-  orig: 128, 320
-  offset: 0, 0
-  index: -1
-spell_A/spella_E01
-  rotate: false
-  xy: 1807, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-hithigh/hithigh_01
-  rotate: false
-  xy: 719, 1931
-  size: 188, 194
-  orig: 188, 194
-  offset: 0, 0
-  index: -1
-spell_A/spella_18
-  rotate: false
-  xy: 1, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-guard/guard_01
-  rotate: false
-  xy: 1033, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-kick/kick_03
-  rotate: false
-  xy: 3805, 1950
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-kick/kick_09
-  rotate: false
-  xy: 3531, 2144
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-kick/kick_04
-  rotate: false
-  xy: 517, 1543
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-idle/idle_09
-  rotate: false
-  xy: 1301, 1737
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_04
-  rotate: false
-  xy: 1807, 253
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_03
-  rotate: false
-  xy: 3097, 1033
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_08
-  rotate: false
-  xy: 2839, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_04
-  rotate: false
-  xy: 3097, 1291
-  size: 256, 221
-  orig: 256, 221
-  offset: 0, 0
-  index: -1
-hitlow/hitlow_03
-  rotate: false
-  xy: 3871, 1655
-  size: 208, 199
-  orig: 208, 199
-  offset: 0, 0
-  index: -1
-forwardoccult/forwardoccult_02
-  rotate: false
-  xy: 3531, 1950
-  size: 272, 192
-  orig: 272, 192
-  offset: 0, 0
-  index: -1
-defeat/defeat_08
-  rotate: false
-  xy: 3443, 2539
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-defeat/defeat_05
-  rotate: false
-  xy: 3847, 2660
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-intro/intro_09
-  rotate: false
-  xy: 1, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_01
-  rotate: false
-  xy: 3097, 517
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spell_A/spella_L01
-  rotate: false
-  xy: 3361, 1
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-flipkick/flipkick_06
+flipkick/flipkick_12
   rotate: false
   xy: 259, 769
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-flipkick/flipkick_05
+guard/guard_04
   rotate: false
-  xy: 2839, 1027
+  xy: 775, 511
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-flipkick/flipkick_04
+flipkick/flipkick_01
   rotate: false
-  xy: 3355, 517
+  xy: 1549, 769
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-forwardoccult/forwardoccult_10
+defeat/defeat_06
   rotate: false
-  xy: 1065, 1543
-  size: 272, 192
-  orig: 272, 192
+  xy: 623, 2439
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
-spellcall/spellcall_06
+flipkick/flipkick_08
   rotate: false
-  xy: 1549, 1027
+  xy: 3613, 1033
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-hithigh/hithigh_03
+dizzy/dizzy_02
   rotate: false
-  xy: 195, 2351
-  size: 188, 194
-  orig: 188, 194
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_05
-  rotate: false
-  xy: 775, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_07
-  rotate: false
-  xy: 2539, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-hithigh/hithigh_04
-  rotate: false
-  xy: 405, 2119
-  size: 188, 194
-  orig: 188, 194
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_01
-  rotate: false
-  xy: 2839, 1726
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-spell_A/spella_L02
-  rotate: false
-  xy: 1549, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-intro/intro_08
-  rotate: false
-  xy: 259, 1027
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-spellcall/spellcall_12
-  rotate: false
-  xy: 259, 511
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dashattack/dashattack_09
-  rotate: false
-  xy: 3355, 1514
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-spell_A/spella_04
-  rotate: false
-  xy: 517, 769
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-closeattack/closeattack_03
-  rotate: false
-  xy: 2257, 1
-  size: 280, 250
-  orig: 280, 250
-  offset: 0, 0
-  index: -1
-intro/intro_14
-  rotate: false
-  xy: 259, 1285
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
-dizzy/dizzy_03
-  rotate: false
-  xy: 2065, 1285
+  xy: 2065, 1543
   size: 256, 221
   orig: 256, 221
   offset: 0, 0
   index: -1
-idle/idle_10
+hitlow/hitlow_01
   rotate: false
-  xy: 1, 2316
-  size: 192, 192
-  orig: 192, 192
+  xy: 1551, 2404
+  size: 208, 199
+  orig: 208, 199
   offset: 0, 0
   index: -1
-spell_A/spella_L05
+magic_forwardB/magicforwardb_14
   rotate: false
-  xy: 1291, 1285
+  xy: 905, 2372
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+spell_A/spella_13
+  rotate: false
+  xy: 3613, 259
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-intro/intro_05
+magic_forwardB/magicforwardb_12
   rotate: false
-  xy: 2065, 253
+  xy: 1855, 2178
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_03
+  rotate: false
+  xy: 1033, 253
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-spell_A/spella_09
+spell_A/spella_04
   rotate: false
-  xy: 2323, 769
+  xy: 2323, 1027
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-closeattack/closeattack_11
+closeattack/closeattack_01
   rotate: false
-  xy: 283, 1
+  xy: 847, 1
   size: 280, 250
   orig: 280, 250
   offset: 0, 0
   index: -1
-spell_A/spella_17
+magic_forwardB/magicforwardb_02
   rotate: false
-  xy: 3355, 775
+  xy: 3871, 937
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+defeat/defeat_01
+  rotate: false
+  xy: 1027, 2824
+  size: 200, 195
+  orig: 200, 195
+  offset: 0, 0
+  index: -1
+spell_A/spella_05
+  rotate: false
+  xy: 3097, 1033
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-forwardoccult/forwardoccult_06
+defeat/defeat_07
   rotate: false
-  xy: 3257, 1950
-  size: 272, 192
-  orig: 272, 192
+  xy: 421, 2439
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
-guard/guard_02
+intro/intro_01
   rotate: false
-  xy: 2581, 253
+  xy: 1291, 253
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-flipkick/flipkick_09
+intro/intro_02
+  rotate: false
+  xy: 2839, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_06
+  rotate: false
+  xy: 1291, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+defeat/defeat_08
+  rotate: false
+  xy: 2181, 2587
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_07
+  rotate: false
+  xy: 1, 2213
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_07
+  rotate: false
+  xy: 565, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+spell_A/spella_L03
   rotate: false
   xy: 3097, 259
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-spellcall/spellcall_10
+magic_forwardB/magicforwardb_05
   rotate: false
-  xy: 1549, 1285
+  xy: 3871, 711
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_end_04
+  rotate: false
+  xy: 1807, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_06
+  rotate: false
+  xy: 1357, 2619
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+spell_A/spella_15
+  rotate: false
+  xy: 3355, 517
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-closeattack/closeattack_06
+idle/idle_13
   rotate: false
-  xy: 1129, 1
-  size: 280, 250
-  orig: 280, 250
+  xy: 389, 2835
+  size: 192, 192
+  orig: 192, 192
   offset: 0, 0
   index: -1
-dashattack/dashattack_03
+intro/intro_08
   rotate: false
-  xy: 3097, 1514
-  size: 256, 216
-  orig: 256, 216
-  offset: 0, 0
-  index: -1
-spell_A/spella_13
-  rotate: false
-  xy: 2323, 1027
+  xy: 1291, 1027
   size: 256, 256
   orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_08
+  rotate: false
+  xy: 1, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_01
+  rotate: false
+  xy: 195, 3028
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_02
+  rotate: false
+  xy: 259, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_08
+  rotate: false
+  xy: 549, 2019
+  size: 272, 192
+  orig: 272, 192
   offset: 0, 0
   index: -1
 spell_A/spella_12
@@ -1131,10 +270,1067 @@ spell_A/spella_12
   orig: 256, 256
   offset: 0, 0
   index: -1
-closeattack/closeattack_01
+idle/idle_06
+  rotate: false
+  xy: 1, 3028
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+intro/intro_09
+  rotate: false
+  xy: 2581, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_10
+  rotate: false
+  xy: 517, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+kick/kick_10
+  rotate: false
+  xy: 1, 2019
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+defeat/defeat_04
+  rotate: false
+  xy: 825, 3194
+  size: 200, 195
+  orig: 200, 195
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_11
+  rotate: false
+  xy: 2539, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_10
+  rotate: false
+  xy: 2855, 1966
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+intro/intro_13
+  rotate: false
+  xy: 2501, 2348
+  size: 128, 320
+  orig: 128, 320
+  offset: 0, 0
+  index: -1
+spell_A/spella_19
+  rotate: false
+  xy: 2065, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+hithigh/hithigh_02
+  rotate: false
+  xy: 571, 3223
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+spell_A/spella_11
+  rotate: false
+  xy: 1807, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_08
+  rotate: false
+  xy: 3871, 1163
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_13
+  rotate: false
+  xy: 1629, 2178
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+spell_A/spella_L06
+  rotate: false
+  xy: 3613, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_07
+  rotate: false
+  xy: 2065, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_11
+  rotate: false
+  xy: 3103, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_03
+  rotate: false
+  xy: 3355, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_02
+  rotate: false
+  xy: 1033, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+defeat/defeat_05
+  rotate: false
+  xy: 825, 2598
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_05
+  rotate: false
+  xy: 3403, 1772
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+spell_A/spella_02
+  rotate: false
+  xy: 3355, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+hitlow/hitlow_05
+  rotate: false
+  xy: 1, 2439
+  size: 208, 199
+  orig: 208, 199
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_04
+  rotate: false
+  xy: 259, 1801
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+spell_A/spella_09
+  rotate: false
+  xy: 1033, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_10
+  rotate: false
+  xy: 2257, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+spell_A/spella_17
+  rotate: false
+  xy: 1807, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_07
+  rotate: false
+  xy: 2855, 1772
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+intro/intro_12
+  rotate: false
+  xy: 2581, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_E02
+  rotate: false
+  xy: 2839, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_08
+  rotate: false
+  xy: 583, 3029
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_05
+  rotate: false
+  xy: 259, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_09
+  rotate: false
+  xy: 2113, 1984
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_08
+  rotate: false
+  xy: 2065, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_07
+  rotate: false
+  xy: 1, 1801
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+idle/idle_10
+  rotate: false
+  xy: 389, 2641
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_16
+  rotate: false
+  xy: 2081, 2178
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_11
+  rotate: false
+  xy: 1131, 2372
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+hithigh/hithigh_01
+  rotate: false
+  xy: 381, 3223
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+hitlow/hitlow_02
+  rotate: false
+  xy: 211, 2439
+  size: 208, 199
+  orig: 208, 199
+  offset: 0, 0
+  index: -1
+idle/idle_12
+  rotate: false
+  xy: 1, 2834
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_06
+  rotate: false
+  xy: 3355, 1549
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_05
+  rotate: false
+  xy: 2323, 1766
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_11
+  rotate: false
+  xy: 775, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_07
+  rotate: false
+  xy: 583, 2641
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+intro/intro_14
+  rotate: false
+  xy: 1, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_04
+  rotate: false
+  xy: 775, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_18
+  rotate: false
+  xy: 2323, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_08
+  rotate: false
+  xy: 1975, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_03
+  rotate: false
+  xy: 679, 2213
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_05
+  rotate: false
+  xy: 1291, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+guard/guard_01
+  rotate: false
+  xy: 1807, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_04
+  rotate: false
+  xy: 2323, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_10
+  rotate: false
+  xy: 2581, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_05
+  rotate: false
+  xy: 583, 2835
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+spell_A/spella_L04
+  rotate: false
+  xy: 3355, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+hithigh/hithigh_04
+  rotate: false
+  xy: 1, 3418
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_06
+  rotate: false
+  xy: 283, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_05
+  rotate: false
+  xy: 775, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_08
+  rotate: false
+  xy: 1291, 1766
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_01
+  rotate: false
+  xy: 2307, 2348
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+intro/intro_07
+  rotate: false
+  xy: 1033, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_03
+  rotate: false
+  xy: 195, 2640
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_10
+  rotate: false
+  xy: 1807, 1766
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+spell_A/spella_07
+  rotate: false
+  xy: 2839, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+guard/guard_02
+  rotate: false
+  xy: 1549, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_end_01
+  rotate: false
+  xy: 2839, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_15
+  rotate: false
+  xy: 227, 2213
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_09
+  rotate: false
+  xy: 1, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_01
+  rotate: false
+  xy: 2581, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_04
+  rotate: false
+  xy: 1357, 2380
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_09
+  rotate: false
+  xy: 3871, 485
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_05
+  rotate: false
+  xy: 2661, 2154
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+kick/kick_08
+  rotate: false
+  xy: 3129, 1966
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_06
+  rotate: false
+  xy: 775, 1801
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_04
+  rotate: false
+  xy: 1693, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_02
+  rotate: false
+  xy: 2065, 1766
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_05
+  rotate: false
+  xy: 3097, 1549
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+idle/idle_11
+  rotate: false
+  xy: 1, 2640
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_01
+  rotate: false
+  xy: 3355, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_E01
+  rotate: false
+  xy: 1549, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_02
+  rotate: false
+  xy: 1033, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_02
+  rotate: false
+  xy: 1565, 1984
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_07
+  rotate: false
+  xy: 1291, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_03
+  rotate: false
+  xy: 517, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_04
+  rotate: false
+  xy: 1027, 3021
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+hithigh/hithigh_03
+  rotate: false
+  xy: 191, 3222
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_13
+  rotate: false
+  xy: 1, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_09
+  rotate: false
+  xy: 1549, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_06
+  rotate: false
+  xy: 3097, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_10
+  rotate: false
+  xy: 517, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_04
+  rotate: false
+  xy: 2581, 1766
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_02
+  rotate: false
+  xy: 3877, 1
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+intro/intro_11
+  rotate: false
+  xy: 1033, 1543
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_16
+  rotate: false
+  xy: 1549, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+hitlow/hitlow_03
+  rotate: false
+  xy: 1971, 2404
+  size: 208, 199
+  orig: 208, 199
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_end_03
+  rotate: false
+  xy: 3613, 1549
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+kick/kick_07
+  rotate: false
+  xy: 3677, 1966
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+spell_A/spella_06
+  rotate: false
+  xy: 3097, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+intro/intro_05
+  rotate: false
+  xy: 3097, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+kick/kick_02
+  rotate: false
+  xy: 2387, 2154
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+intro/intro_15
+  rotate: false
+  xy: 259, 1543
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_01
+  rotate: false
+  xy: 3871, 1389
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+flipkick/flipkick_03
+  rotate: false
+  xy: 517, 1543
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+kick/kick_06
+  rotate: false
+  xy: 2581, 1960
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_03
+  rotate: false
+  xy: 1033, 1801
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_09
+  rotate: false
+  xy: 2065, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_end_02
+  rotate: false
+  xy: 1291, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+spell_A/spella_L01
+  rotate: false
+  xy: 2323, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_11
+  rotate: false
+  xy: 517, 511
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+hithigh/hithigh_05
+  rotate: false
+  xy: 1, 3222
+  size: 188, 194
+  orig: 188, 194
+  offset: 0, 0
+  index: -1
+guardbreak/guardbreak_03
+  rotate: false
+  xy: 1357, 2858
+  size: 192, 237
+  orig: 192, 237
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_06
+  rotate: false
+  xy: 3403, 1966
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_09
+  rotate: false
+  xy: 517, 1801
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_09
+  rotate: false
+  xy: 1129, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_12
+  rotate: false
+  xy: 3613, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dashattack/dashattack_01
+  rotate: false
+  xy: 1549, 1766
+  size: 256, 216
+  orig: 256, 216
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_05
+  rotate: false
+  xy: 2821, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+kick/kick_03
+  rotate: false
+  xy: 1097, 2178
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+defeat/defeat_03
+  rotate: false
+  xy: 825, 2800
+  size: 200, 195
+  orig: 200, 195
+  offset: 0, 0
+  index: -1
+kick/kick_04
+  rotate: false
+  xy: 1839, 1984
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_08
+  rotate: false
+  xy: 517, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+intro/intro_10
+  rotate: false
+  xy: 2839, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+intro/intro_03
+  rotate: false
+  xy: 2839, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+kick/kick_05
+  rotate: false
+  xy: 823, 2019
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_06
+  rotate: false
+  xy: 3871, 259
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_01
+  rotate: false
+  xy: 1807, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_10
+  rotate: false
+  xy: 2323, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_02
   rotate: false
   xy: 1, 1
   size: 280, 250
   orig: 280, 250
+  offset: 0, 0
+  index: -1
+spell_A/spella_L02
+  rotate: false
+  xy: 2581, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_14
+  rotate: false
+  xy: 259, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+dizzy/dizzy_03
+  rotate: false
+  xy: 1549, 1543
+  size: 256, 221
+  orig: 256, 221
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_10
+  rotate: false
+  xy: 453, 2213
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_07
+  rotate: false
+  xy: 259, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_04
+  rotate: false
+  xy: 1807, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+magic_forwardB/magicforwardb_04
+  rotate: false
+  xy: 1131, 2598
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+idle/idle_02
+  rotate: false
+  xy: 195, 2834
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+kick/kick_01
+  rotate: false
+  xy: 1291, 1984
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+magic_upB/magicupb_12
+  rotate: false
+  xy: 3361, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+defeat/defeat_09
+  rotate: false
+  xy: 1371, 2178
+  size: 256, 200
+  orig: 256, 200
+  offset: 0, 0
+  index: -1
+closeattack/closeattack_03
+  rotate: false
+  xy: 1411, 1
+  size: 280, 250
+  orig: 280, 250
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_04
+  rotate: false
+  xy: 2065, 253
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_E03
+  rotate: false
+  xy: 2323, 769
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+idle/idle_09
+  rotate: false
+  xy: 389, 3029
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+spell_A/spella_L05
+  rotate: false
+  xy: 1, 1027
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_03
+  rotate: false
+  xy: 275, 2019
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+forwardoccult/forwardoccult_01
+  rotate: false
+  xy: 3129, 1772
+  size: 272, 192
+  orig: 272, 192
+  offset: 0, 0
+  index: -1
+spellcall/spellcall_06
+  rotate: false
+  xy: 3613, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+intro/intro_04
+  rotate: false
+  xy: 775, 1543
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+spell_A/spella_01
+  rotate: false
+  xy: 2581, 1285
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+defeat/defeat_02
+  rotate: false
+  xy: 825, 2997
+  size: 200, 195
+  orig: 200, 195
+  offset: 0, 0
+  index: -1
+intro/intro_06
+  rotate: false
+  xy: 3619, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+guard/guard_03
+  rotate: false
+  xy: 1, 1543
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: -1

@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BufferPower;
 import paleoftheancients.PaleMod;
+import paleoftheancients.reimu.actions.DamagingAction;
+import paleoftheancients.reimu.actions.PersuasionNeedleAction;
 import paleoftheancients.reimu.actions.YinYangMoveAction;
 import paleoftheancients.reimu.powers.*;
-import paleoftheancients.reimu.vfx.BasicNeedleVFX;
 import paleoftheancients.reimu.vfx.HakureiAmuletVFX;
 
 public class YinYangOrb extends CustomMonster {
@@ -23,7 +25,7 @@ public class YinYangOrb extends CustomMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private static final int HP = 50;
     private static final int HP_VARIANCE = 10;
-    private static final byte MOVE = 1;
+    public static final byte MOVE = 1;
     private static final byte ATTACK = 2;
     public int delay;
     public int position;
@@ -34,7 +36,7 @@ public class YinYangOrb extends CustomMonster {
         super(NAME, ID, HP, 0.0F, 0.0F, 140.0F, 120.0F, null, x, y);
 
         this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.atlas"), PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.json"), 0.6F);
-        this.state.setAnimation(0, "Reverse", true);
+        forward();
 
         this.type = EnemyType.NORMAL;
 
@@ -57,18 +59,17 @@ public class YinYangOrb extends CustomMonster {
                 p = new ShotTypeBasePower(this);
                 break;
         }
-        if(master.rui.extralives < 2) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p));
-        }
+
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p));
     }
 
     private void move() {
-        master.orbs[delay - 1][position - 1].remove(this);
+        master.orbs[delay - 1][position - 1] = null;
         AbstractDungeon.actionManager.addToBottom(new VFXAction(new YinYangMoveAction(this, this.drawX, this.drawX - movement)));
         delay--;
         if (delay > 0) {
             AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this, this, MonsterPosition.POWER_ID, 1));
-            master.orbs[delay - 1][position - 1].add(this);
+            master.orbs[delay - 1][position - 1] = this;
         }
     }
 
@@ -76,7 +77,7 @@ public class YinYangOrb extends CustomMonster {
     public void die(boolean triggerRelics) {
         super.die(false);
         if (delay > 0) {
-            master.orbs[delay - 1][position - 1].remove(this);
+            master.orbs[delay - 1][position - 1] = null;
         }
     }
 
@@ -88,7 +89,7 @@ public class YinYangOrb extends CustomMonster {
                 break;
             case ATTACK:
                 switch(master.rui.extralives) {
-                    case 0:
+                    case 2:
                         if(Position.playerPosition() == this.position) {
                             AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY, true));
                         }
@@ -96,44 +97,46 @@ public class YinYangOrb extends CustomMonster {
                     case 1: {
                         ShotTypeAmuletPower stp = (ShotTypeAmuletPower)getPower(ShotTypeAmuletPower.POWER_ID);
                         if(stp == null || stp.homing) {
-                            AbstractDungeon.actionManager.addToBottom(new VFXAction(new HakureiAmuletVFX(AbstractDungeon.player, this, this.damage.get(0), 1)));
+                            AbstractDungeon.actionManager.addToBottom(new DamagingAction(() -> new HakureiAmuletVFX(AbstractDungeon.player, this, this.damage.get(0), 1, 3)));
                         }
                         break;
                     }
-                    case 2:
+                    case 0:
                         if(Position.playerPosition() == this.position) {
-                            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BasicNeedleVFX(AbstractDungeon.player, this, this.damage.get(0), 1)));
+                            AbstractDungeon.actionManager.addToBottom(new PersuasionNeedleAction(AbstractDungeon.player, this, this.damage.get(0), 1));
                         }
                         break;
                 }
                 move();
-                if(delay < 1) {
-                    AbstractDungeon.actionManager.addToBottom(new SuicideAction(this));
-                }
                 break;
+        }
+        if(delay < 1) {
+            AbstractDungeon.actionManager.addToBottom(new SuicideAction(this));
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(int num) {
-        boolean set = false;
-        switch(master.rui.extralives) {
-            case 2:
-            case 1:
-                if (delay <= 1) {
-                    set = true;
-                    this.setMove(ATTACK, Intent.ATTACK, this.damage.get(0).base);
-                }
-                break;
-
-            case 0:
-                set = true;
-                this.setMove(ATTACK, Intent.ATTACK, this.damage.get(0).base);
-                break;
-        }
-        if(!set) {
+        if(3 - delay >= master.rui.extralives) {
+            this.setMove(ATTACK, Intent.ATTACK, this.damage.get(0).base);
+        } else {
             this.setMove(MOVE, Intent.NONE); //Setting intent to none makes their turn go by much faster
         }
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if(this.currentHealth <= 0) {
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(master, this, new BufferPower(master, 1), 1));
+        }
+    }
+
+    public void forward() {
+        this.state.setAnimation(0, "Reverse", true);
+    }
+    public void reverse() {
+        this.state.setAnimation(0, "Idle", true);
     }
 }

@@ -2,14 +2,15 @@ package paleoftheancients.reimu.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.monsters.Reimu;
@@ -39,7 +40,7 @@ public class DeathBombPower extends AbstractPower {
     }
 
     @Override
-    public int onLoseHp(int damageAmount) {
+    public int onAttacked(DamageInfo info, int damageAmount) {
         if(!triggered && damageAmount >= this.owner.currentHealth) {
             damageAmount = 0;
             AbstractDungeon.actionManager.addToTop(new ChangeStateAction((AbstractMonster) this.owner, Reimu.Deathbomb));
@@ -50,7 +51,10 @@ public class DeathBombPower extends AbstractPower {
 
     @Override
     public void atEndOfRound() {
-        triggered = false;
+        if(triggered) {
+            triggered = false;
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, InvinciblePower.POWER_ID));
+        }
         if(((Reimu) this.owner).rui.bombs <= 0) {
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
@@ -58,6 +62,6 @@ public class DeathBombPower extends AbstractPower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0];
     }
 }

@@ -17,12 +17,12 @@ import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.reimu.actions.PersuasionNeedleAction;
+import paleoftheancients.reimu.powers.DeathBombPower;
 import paleoftheancients.reimu.powers.HakureiShrineMaidenPower;
 import paleoftheancients.reimu.powers.Position;
 import paleoftheancients.reimu.util.ReimuUserInterface;
 import paleoftheancients.reimu.vfx.*;
-
-import java.util.ArrayList;
 
 public class Reimu extends CustomMonster {
     public static final String ID = PaleMod.makeID("Reimu");
@@ -33,10 +33,10 @@ public class Reimu extends CustomMonster {
 
     public static final String Deathbomb = "Deathbomb";
 
-    private static final int HP = 250;
+    private static final int HP = 4;//250;
 
     public static final float orbOffset = 225.0F * Settings.scale;
-    public ArrayList[][] orbs = new ArrayList[3][3];
+    public YinYangOrb[][] orbs = new YinYangOrb[3][3];
 
     public ReimuUserInterface rui;
     public int turnsSinceBomb;
@@ -65,7 +65,7 @@ public class Reimu extends CustomMonster {
 
         for(int i = 0; i < orbs.length; i++) {
             for (int j = 0; j < orbs[i].length; j++) {
-                orbs[i][j] = new ArrayList<AbstractMonster>();
+                orbs[i][j] = null;
             }
         }
 
@@ -89,7 +89,9 @@ public class Reimu extends CustomMonster {
         int counter = 0;
         for (int i = 0; i < orbs.length; i++) {
             for (int j = 0; j < orbs[i].length; j++) {
-                counter += orbs[i][j].size();
+                if(orbs[i][j] != null) {
+                    counter++;
+                }
             }
         }
         return counter;
@@ -107,20 +109,39 @@ public class Reimu extends CustomMonster {
         }
 
         if(this.halfDead) {
+            //Arise, Shrine Maiden!
             this.halfDead = false;
             this.isDying = false;
             this.isDead = false;
             this.maxHealth *= 1.5F;
             AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
-            phase.die();
+            phase.die(this);
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.25F);
             if(spellcircle == null) {
                 spellcircle = new SpellCircleVFX(this);
                 AbstractDungeon.effectList.add(spellcircle);
             }
+
+            //Return to idle
             lockAnimation = false;
-            runAnim(ReimuAnimation.DizzyEnd);
+            runAnim(ReimuAnimation.DizzyEnd, ReimuAnimation.Spellcall, ReimuAnimation.Idle);
+
+            //Decrement lives and reset bombs
+            rui.bombs = 3;
+            rui.extralives--;
+            if(!this.hasPower(DeathBombPower.POWER_ID)) {
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DeathBombPower(this)));
+            }
+
+            //Refresh the intent because every Death, one further column starts attacking
+            int playerPosition = Position.playerPosition() - 1;
+            for(int i = 1; i <= 2 - rui.extralives; i++) {
+                if(orbs[i][playerPosition] != null) {
+                    orbs[i][playerPosition].getMove(0);
+                    orbs[i][playerPosition].createIntent();
+                }
+            }
         } else {
             phase.takeTurn(this, rmi, info);
         }
@@ -179,16 +200,11 @@ public class Reimu extends CustomMonster {
                 runAnim(ReimuAnimation.Guard);
             }
         }
-
-        AbstractDungeon.effectList.add(new HakureiAmuletVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
-        //AbstractDungeon.effectList.add(new FantasySealVFX(AbstractDungeon.player, this, new DamageInfo(this, 0), 5));
     }
 
     @Override
     public void die(boolean triggerRelics) {
-        boolean revival = rui.justAFleshWound();
-
-        if(!revival) {
+        if(rui.extralives <= 0) {
             AbstractDungeon.getCurrRoom().cannotLose = false;
             for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if(!mo.isDeadOrEscaped()) {
@@ -204,7 +220,7 @@ public class Reimu extends CustomMonster {
             runAnim(ReimuAnimation.Guardbreak, ReimuAnimation.Dizzy);
             this.halfDead = true;
             lockAnimation = true;
-            this.setMove(MOVES[rui.extralives], (byte)0, Intent.UNKNOWN);
+            this.setMove(MOVES[rui.extralives], (byte)0, Intent.BUFF);
             this.createIntent();
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_death"), 0.25F);
         }
@@ -227,7 +243,7 @@ public class Reimu extends CustomMonster {
         FSBlinkVFX.disposeAll();
         FantasySealVFX.disposeAll();
         HakureiBarrierVFX.disposeAll();
-        BasicNeedleVFX.disposeAll();
+        PersuasionNeedleAction.disposeAll();
         ExterminationVFX.disposeAll();
         HakureiAmuletVFX.disposeAll();
     }
@@ -235,11 +251,13 @@ public class Reimu extends CustomMonster {
     public void runAnim(ReimuAnimation animation) {
         runAnim(animation, ReimuAnimation.Idle);
     }
-    public void runAnim(ReimuAnimation animation, ReimuAnimation followUp) {
+    public void runAnim(ReimuAnimation... animation) {
         if(!lockAnimation) {
-            this.state.setAnimation(0, animation.name(), false);
-            if (followUp != ReimuAnimation.None) {
-                this.state.addAnimation(0, followUp.name(), true, 0.0F);
+            this.state.setAnimation(0, animation[0].name(), false);
+            if (animation[1] != ReimuAnimation.None) {
+                for(int i = 1; i < animation.length; i++) {
+                    this.state.addAnimation(0, animation[i].name(), i == animation.length - 1, 0.0F);
+                }
             }
         }
     }
@@ -274,7 +292,7 @@ public class Reimu extends CustomMonster {
         Idle,
         Defeat,
         Spellcall,
-        Closeattack,
+        CloseAttack,
         Guard,
         Guardbreak,
         Hithigh,
@@ -285,6 +303,8 @@ public class Reimu extends CustomMonster {
         Flipkick,
         Kick,
         Dizzy,
-        DizzyEnd
+        DizzyEnd,
+        MagicUp,
+        MagicForward
     }
 }

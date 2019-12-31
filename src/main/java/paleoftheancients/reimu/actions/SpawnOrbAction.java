@@ -32,7 +32,7 @@ public class SpawnOrbAction extends AbstractGameAction {
         int i = column - 1;
         ArrayList<Integer> emptySpots = new ArrayList<>();
         for (int j = 0; j < reimu.orbs[i].length; j++) {
-            if (reimu.orbs[i][j].isEmpty()) {
+            if (reimu.orbs[i][j] == null) {
                 emptySpots.add(j);
             }
         }
@@ -44,8 +44,8 @@ public class SpawnOrbAction extends AbstractGameAction {
             float x = -reimu.orbOffset * (4 - delay);
             float y = reimu.orbOffset * (position - 1);
             AbstractMonster orb = new YinYangOrb(x, y, type, position, delay, reimu);
-            reimu.orbs[delay - 1][position - 1].add(orb);
-            AbstractDungeon.actionManager.addToTop(new SpawnMonsterAction(orb, true));
+            reimu.orbs[delay - 1][position - 1] = (YinYangOrb) orb;
+            AbstractDungeon.actionManager.addToTop(new SpawnMonsterAction(orb, false));
         }
 
         this.isDone = true;

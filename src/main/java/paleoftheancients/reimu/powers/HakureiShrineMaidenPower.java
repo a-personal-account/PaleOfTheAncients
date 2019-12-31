@@ -50,6 +50,6 @@ public class HakureiShrineMaidenPower extends AbstractPower {
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + (amount * 2) + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + (amount * 3) + DESCRIPTIONS[2];
     }
 }

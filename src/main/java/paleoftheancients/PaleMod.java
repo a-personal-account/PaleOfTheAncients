@@ -149,21 +149,21 @@ public class PaleMod implements
 
     @Override
     public void receiveAddAudio() {
-        BaseMod.addAudio(MOD_ID + ":vixencry", assetPath("/sfx/braix.wav"));
+        BaseMod.addAudio(makeID("vixencry"), assetPath("/sfx/braix.wav"));
 
-        BaseMod.addAudio(MOD_ID + ":cluck", assetPath("/sfx/cluck.ogg"));
-        BaseMod.addAudio(MOD_ID + ":cuccostart", assetPath("/sfx/OOT_6amRooster.wav"));
-        BaseMod.addAudio(MOD_ID + ":cucco1", assetPath("/sfx/OOT_Cucco1.wav"));
-        BaseMod.addAudio(MOD_ID + ":cucco2", assetPath("/sfx/OOT_Cucco2.wav"));
+        BaseMod.addAudio(makeID("cluck"), assetPath("/sfx/cluck.ogg"));
+        BaseMod.addAudio(makeID("cuccostart"), assetPath("/sfx/OOT_6amRooster.wav"));
+        BaseMod.addAudio(makeID("cucco1"), assetPath("/sfx/OOT_Cucco1.wav"));
+        BaseMod.addAudio(makeID("cucco2"), assetPath("/sfx/OOT_Cucco2.wav"));
 
-        BaseMod.addAudio(MOD_ID + ":touhou_powerup", assetPath("/sfx/touhou_powerup.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_spellcard", assetPath("/sfx/touhou_spellcard.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_attack", assetPath("/sfx/touhou_attack.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_death", assetPath("/sfx/touhou_death.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_defeat", assetPath("/sfx/touhou_defeat.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_shot", assetPath("/sfx/touhou_shot.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_seal", assetPath("/sfx/touhou_seal.ogg"));
-        BaseMod.addAudio(MOD_ID + ":touhou_border", assetPath("/sfx/touhou_border.ogg"));
+        BaseMod.addAudio(makeID("touhou_powerup"), assetPath("/sfx/touhou_powerup.ogg"));
+        BaseMod.addAudio(makeID("touhou_spellcard"), assetPath("/sfx/touhou_spellcard.ogg"));
+        BaseMod.addAudio(makeID("touhou_attack"), assetPath("/sfx/touhou_attack.ogg"));
+        BaseMod.addAudio(makeID("touhou_death"), assetPath("/sfx/touhou_death.ogg"));
+        BaseMod.addAudio(makeID("touhou_defeat"), assetPath("/sfx/touhou_defeat.ogg"));
+        BaseMod.addAudio(makeID("touhou_shot"), assetPath("/sfx/touhou_shot.ogg"));
+        BaseMod.addAudio(makeID("touhou_seal"), assetPath("/sfx/touhou_seal.ogg"));
+        BaseMod.addAudio(makeID("touhou_border"), assetPath("/sfx/touhou_border.ogg"));
     }
 
     @Override
