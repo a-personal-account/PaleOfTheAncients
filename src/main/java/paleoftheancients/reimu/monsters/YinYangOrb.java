@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BufferPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.reimu.actions.DamagingAction;
 import paleoftheancients.reimu.actions.PersuasionNeedleAction;
@@ -129,7 +128,7 @@ public class YinYangOrb extends CustomMonster {
     public void damage(DamageInfo info) {
         super.damage(info);
         if(this.currentHealth <= 0) {
-            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(master, this, new BufferPower(master, 1), 1));
+            master.rui.getBombFragment();
         }
     }
 

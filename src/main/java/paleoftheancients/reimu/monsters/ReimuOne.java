@@ -26,6 +26,7 @@ public class ReimuOne extends ReimuPhase {
     private static final int MAX_DEBUFF = 3;
 
     private boolean firstMove = true;
+    private int turnsSinceBomb;
 
     public ReimuOne() {
         this.moves.put(FIRSTTURN, new ReimuMoveInfo(FIRSTTURN, AbstractMonster.Intent.UNKNOWN, -1, 0, false, ReimuAnimation.Spellcall));
@@ -33,6 +34,7 @@ public class ReimuOne extends ReimuPhase {
         this.moves.put(BASICATTACK, new ReimuMoveInfo(BASICATTACK, Intent.ATTACK, calcAscensionNumber(28), 0, false, ReimuAnimation.CloseAttack, calcAscensionNumber(1.3F)));
         this.moves.put(DEBUFFATTACK, new ReimuMoveInfo(DEBUFFATTACK, Intent.ATTACK_DEBUFF, calcAscensionNumber(23), 0, false, ReimuAnimation.Kick, calcAscensionNumber(2.3F)));
         this.moves.put(BASICBLOCK, new ReimuMoveInfo(BASICBLOCK, Intent.DEFEND_DEBUFF, -1, calcAscensionNumber(30), false, ReimuAnimation.Guard, calcAscensionNumber(2F)));
+        this.turnsSinceBomb = 0;
     }
 
     @Override
@@ -62,11 +64,12 @@ public class ReimuOne extends ReimuPhase {
             }
             case SEAL: {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new SealedPower(AbstractDungeon.player, 1), 1));
-                reimu.turnsSinceBomb = -1;
-                reimu.rui.useBomb();
+                turnsSinceBomb = -1;
+                reimu.rui.bombs--;
                 break;
             }
         }
+        turnsSinceBomb++;
     }
 
     @Override
@@ -75,7 +78,7 @@ public class ReimuOne extends ReimuPhase {
             reimu.setMove(Reimu.MOVES[0], FIRSTTURN, Intent.UNKNOWN);
             this.firstMove = false;
         } else {
-            if (reimu.turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff() && reimu.rui.bombs > 0) { //use this every few turns until player has max stacks of the debuff
+            if (turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff() && reimu.rui.bombs > 0) { //use this every few turns until player has max stacks of the debuff
                 reimu.setMoveShortcut(SEAL);
             } else if (reimu.lastMove(SEAL) && reimu.lastMoveBefore(BASICBLOCK)) { //can't not attack for more than 2 turns
                 if (num % 2 == 0) {

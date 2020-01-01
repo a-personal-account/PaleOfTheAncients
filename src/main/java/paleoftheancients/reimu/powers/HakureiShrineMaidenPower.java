@@ -19,12 +19,11 @@ public class HakureiShrineMaidenPower extends AbstractPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public HakureiShrineMaidenPower(AbstractCreature owner, int amount) {
+    public HakureiShrineMaidenPower(AbstractCreature owner) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
-        this.amount = amount;
 
         type = PowerType.BUFF;
         isTurnBased = false;
@@ -43,13 +42,21 @@ public class HakureiShrineMaidenPower extends AbstractPower {
             AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
             AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
         } else {
-            AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
+            if(AbstractDungeon.ascensionLevel >= 9) {
+                AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
+            }
             AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + (amount * 3) + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0];
+        description += (AbstractDungeon.ascensionLevel >= 9 ? 4 : 2);
+        description += DESCRIPTIONS[1] + (6) + DESCRIPTIONS[2];
+        description += (AbstractDungeon.ascensionLevel >= 19 ? 2 : 1);
+        description += DESCRIPTIONS[3];
+        description += DESCRIPTIONS[AbstractDungeon.ascensionLevel >= 19 ? 5 : 4];
+        description += DESCRIPTIONS[6];
     }
 }

@@ -4,6 +4,8 @@ import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -33,16 +35,14 @@ public class Reimu extends CustomMonster {
 
     public static final String Deathbomb = "Deathbomb";
 
-    private static final int HP = 4;//250;
+    private static final int HP = 250;
 
     public static final float orbOffset = 225.0F * Settings.scale;
     public YinYangOrb[][] orbs = new YinYangOrb[3][3];
 
     public ReimuUserInterface rui;
-    public int turnsSinceBomb;
     public ReimuPhase phase;
 
-    public boolean deathbombing = false;
     private boolean lockAnimation;
     private BarrierVFX barrier = null;
     private SpellCircleVFX spellcircle = null;
@@ -53,6 +53,10 @@ public class Reimu extends CustomMonster {
 
     public Reimu(final float x, final float y) {
         super(Reimu.NAME, ID, HP, -5.0F, 0, 340.0f, 300.0f, null, x, y);
+
+        if(AbstractDungeon.ascensionLevel >= 9) {
+            setHp((int) (this.maxHealth * 1.2F));
+        }
 
         this.flipHorizontal = true;
         this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/Reimu/Reimu.atlas"), PaleMod.assetPath("images/reimu/monsters/Reimu/Reimu.json"), 0.6F);
@@ -69,9 +73,8 @@ public class Reimu extends CustomMonster {
             }
         }
 
-        this.turnsSinceBomb = 0;
         this.phase = new ReimuOne();
-        this.rui = new ReimuUserInterface();
+        this.rui = new ReimuUserInterface(this);
         this.lockAnimation = false;
 
         this.setHp(phase.calcAscensionNumber(this.maxHealth));
@@ -81,7 +84,7 @@ public class Reimu extends CustomMonster {
     public void usePreBattleAction() {
         PaleOfTheAncients.playTempMusic(PaleMod.makeID("finaldream"));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new Position(AbstractDungeon.player, 1)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new HakureiShrineMaidenPower(this, 2)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new HakureiShrineMaidenPower(this)));
         AbstractDungeon.actionManager.addToBottom(new CannotLoseAction());
     }
 
@@ -146,7 +149,6 @@ public class Reimu extends CustomMonster {
             phase.takeTurn(this, rmi, info);
         }
 
-        turnsSinceBomb++;
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
@@ -204,6 +206,7 @@ public class Reimu extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
+        this.halfDead = true;
         if(rui.extralives <= 0) {
             AbstractDungeon.getCurrRoom().cannotLose = false;
             for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
@@ -211,14 +214,21 @@ public class Reimu extends CustomMonster {
                     AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
                 }
             }
-            runAnim(ReimuAnimation.Defeat, ReimuAnimation.None);
-            AbstractDungeon.effectList.add(new TouhouDeathVFX(this));
-            CardCrawlGame.sound.playV(PaleMod.makeID("touhou_defeat"), 0.25F);
-            super.die(triggerRelics);
+            spellcircle.end();
+            lockAnimation = true;
+            this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new TouhouDeathVFX(this), 1.5F));
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    PaleOfTheAncients.resumeMainMusic();
+                    delayedDie(triggerRelics);
+                    this.isDone = true;
+                }
+            });
         } else {
             lockAnimation = false;
             runAnim(ReimuAnimation.Guardbreak, ReimuAnimation.Dizzy);
-            this.halfDead = true;
             lockAnimation = true;
             this.setMove(MOVES[rui.extralives], (byte)0, Intent.BUFF);
             this.createIntent();
@@ -226,11 +236,21 @@ public class Reimu extends CustomMonster {
         }
     }
 
+    private void delayedDie(boolean triggerRelics) {
+        super.die(triggerRelics);
+    }
+
+    @Override
+    public void update() {
+        rui.update();
+        super.update();
+    }
+
     @Override
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
         super.render(sb);
-        rui.render(sb, this);
+        rui.render(sb);
     }
 
     @Override
@@ -271,8 +291,13 @@ public class Reimu extends CustomMonster {
         runAnim(ReimuAnimation.SpellA_End);
     }
     public void startSpellAnimation() {
-        barrier = new BarrierVFX(this);
-        AbstractDungeon.effectList.add(barrier);
+        this.startSpellAnimation(true);
+    }
+    public void startSpellAnimation(boolean withBarrier) {
+        if(withBarrier) {
+            barrier = new BarrierVFX(this);
+            AbstractDungeon.effectList.add(barrier);
+        }
         runAnim(ReimuAnimation.SpellA, ReimuAnimation.SpellA_Loop);
         lockAnimation = true;
     }
@@ -305,6 +330,8 @@ public class Reimu extends CustomMonster {
         Dizzy,
         DizzyEnd,
         MagicUp,
-        MagicForward
+        MagicForward,
+        ForwardOccult,
+        DashAttack
     }
 }

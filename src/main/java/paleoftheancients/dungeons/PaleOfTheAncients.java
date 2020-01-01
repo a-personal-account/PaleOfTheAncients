@@ -25,6 +25,7 @@ import paleoftheancients.events.Recollection;
 import paleoftheancients.guardian.monsters.Guardianest;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
+import paleoftheancients.reimu.monsters.Reimu;
 import paleoftheancients.rooms.*;
 import paleoftheancients.scenes.PaleScene;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
@@ -120,6 +121,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         //toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/hexaghost.png"), PaleMod.assetPath("images/ui/map/hexaghostOutline.png"), HexaghostPrime.ID));
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/vixen.png"), PaleMod.assetPath("images/ui/map/vixenOutline.png"), TheVixenBoss.ID));
+        toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/reimu.png"), PaleMod.assetPath("images/ui/map/reimuOutline.png"), Reimu.ID));
 
         map = new ArrayList();
 

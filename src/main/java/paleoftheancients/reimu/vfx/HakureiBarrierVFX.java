@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.VampireDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -109,7 +108,7 @@ public class HakureiBarrierVFX extends AbstractDamagingVFX {
 
                         boolean stillActive = true;
                         for(; num > 0; num--) {
-                            AbstractDungeon.actionManager.addToTop(new VampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
+                            AbstractDungeon.actionManager.addToTop(new FastVampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
                             if(stillActive) {
                                 stillActive = false;
                                 AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {

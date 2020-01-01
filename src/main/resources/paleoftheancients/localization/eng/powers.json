@@ -37,7 +37,7 @@
   "paleoftheancients:PocketFactoryPower": {
     "NAME": "Pocket Factory",
     "DESCRIPTIONS": [
-      "End of turn, if there are less than #b"," #yBronze #yOrbs, create a #yBronze #yOrb."
+      "End of turn, if there are less than #b"," #yBronze #yOrbs present, create a #yBronze #yOrb."
     ]
   },
 
@@ -325,11 +325,18 @@
   },
   "paleoftheancients:HakureiShrineMaidenPower": {
     "NAME": "Hakurei Shrine Maiden",
-    "DESCRIPTIONS": ["At the end of her turn, summon up to #b"," #yYin-Yang #yOrbs. If there are no #yYin-Yang #yOrbs alive, summon #b"," instead. Whenever a Yin-Yang Orb is destroyed through damage, gain #b1 #yBuffer."]
+    "DESCRIPTIONS": [
+      "At the end of her turn, summon up to #b",
+      " #yYin-Yang #yOrbs. If there are no #yYin-Yang #yOrbs alive, summon #b",
+      " instead. NL Whenever the player destroys a #yYin-Yang #yOrb, gain #b",
+      " #yBomb #y",
+      "Fragment",
+      "Fragments",
+      ". NL #b5 #yFragments = #b1 #yBomb"]
   },
   "paleoftheancients:DeathBombPower": {
     "NAME": "Quick Reflexes",
-    "DESCRIPTIONS": ["If Reimu would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect. NL No, I will not tell you what that means."]
+    "DESCRIPTIONS": ["If Reimu would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
   },
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",

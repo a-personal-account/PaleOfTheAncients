@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -63,7 +62,7 @@ public class FSBlinkVFX extends AbstractDamagingVFX {
                         endDelay();
                         this.color.a -= Gdx.graphics.getDeltaTime();
                     }
-                    AbstractDungeon.actionManager.addToTop(new DamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
+                    AbstractDungeon.actionManager.addToTop(new FastVampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
                     AbstractGameEffect age = new FlashAtkImgEffect(target.hb.cX, target.hb.cY, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                     ReflectionHacks.setPrivate(age, AbstractGameEffect.class, "color", new Color(MathUtils.random(1F), MathUtils.random(1F), MathUtils.random(1F), 1F));
                     AbstractDungeon.effectsQueue.add(age);

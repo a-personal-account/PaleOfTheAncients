@@ -16,6 +16,7 @@ public class SpellCircleVFX extends AbstractGameEffect {
     private Reimu reimu;
     private Texture circle;
     private int circlewidth, circleheight;
+    private boolean ending;
 
     private final float spacing = 1.3F;
 
@@ -38,8 +39,15 @@ public class SpellCircleVFX extends AbstractGameEffect {
     public void update() {
         this.rotation += Gdx.graphics.getDeltaTime() * 50;
 
-        if (this.color.a < 0.7F) {
-            this.color.a += Gdx.graphics.getDeltaTime() * 2;
+        if(!ending) {
+            if (this.color.a < 0.7F) {
+                this.color.a += Gdx.graphics.getDeltaTime() * 2;
+            }
+        } else {
+            this.color.a -= Gdx.graphics.getDeltaTime() * 2;
+            if(this.color.a <= 0F) {
+                this.isDone = true;
+            }
         }
     }
 
@@ -55,5 +63,9 @@ public class SpellCircleVFX extends AbstractGameEffect {
     @Override
     public void dispose() {
         this.circle.dispose();
+    }
+
+    public void end() {
+        this.ending = true;
     }
 }

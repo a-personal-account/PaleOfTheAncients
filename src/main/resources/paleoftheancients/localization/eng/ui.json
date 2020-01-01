@@ -100,5 +100,14 @@
       "Discardpile",
       "Exhaustpile"
     ]
+  },
+
+  "paleoftheancients:ReimuUserInterface": {
+    "TEXT": [
+      "Extra Lives",
+      "Bombs",
+      "She has a life. NL You do not.",
+      "These are required for and subsequently used up in certain attacks."
+    ]
   }
 }
