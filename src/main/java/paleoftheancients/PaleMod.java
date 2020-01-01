@@ -197,12 +197,10 @@ public class PaleMod implements
 
         BaseMod.loadCustomStringsFile(EventStrings.class, assetPath(path + "events.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class, assetPath(path + "ui.json"));
-        //BaseMod.loadCustomStringsFile(PotionStrings.class, assetPath(path + "potions.json"));
         BaseMod.loadCustomStringsFile(CardStrings.class, assetPath(path + "cards.json"));
         BaseMod.loadCustomStringsFile(MonsterStrings.class, assetPath(path + "monsters.json"));
         BaseMod.loadCustomStringsFile(PowerStrings.class, assetPath(path + "powers.json"));
         BaseMod.loadCustomStringsFile(RelicStrings.class, assetPath(path + "relics.json"));
-        BaseMod.loadCustomStringsFile(ScoreBonusStrings.class, assetPath(path + "score_bonuses.json"));
         BaseMod.loadCustomStringsFile(CharacterStrings.class, assetPath(path + "characters.json"));
     }
 

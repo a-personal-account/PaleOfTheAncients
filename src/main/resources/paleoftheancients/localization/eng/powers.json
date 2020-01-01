@@ -3,14 +3,14 @@
     "NAME": "Kinetic Barrier",
     "DESCRIPTIONS": [
       "Decreases damage taken by #b",
-      "%."
+      "%. NL Changes based on number of orbs."
     ]
   },
   "paleoftheancients:DivertingPowerPower": {
     "NAME": "Diverting Power",
     "DESCRIPTIONS": [
       "Increases damage taken by #b",
-      "%."
+      "%. NL Changes based on number of orbs."
     ]
   },
   "paleoftheancients:NotEchoPower": {

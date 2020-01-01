@@ -11,11 +11,12 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 public class RestoreRelicsVFX extends AbstractGameEffect {
     private boolean[] relicDone;
     public RestoreRelicsVFX() {
+        this.duration = 5F;
         for(final AbstractRelic relic : AbstractDungeon.player.relics) {
             relic.targetX = relic.currentX;
             relic.targetY = relic.currentY;
-            relic.currentX = Settings.WIDTH / 2 + MathUtils.random(-0.25F, 0.25F) * Settings.WIDTH;
-            relic.currentY = Settings.HEIGHT / 2 + MathUtils.random(-0.25F, 0.25F) * Settings.HEIGHT;
+            relic.currentX = Settings.WIDTH / 2F + MathUtils.random(-0.25F, 0.25F) * Settings.WIDTH;
+            relic.currentY = Settings.HEIGHT / 2F + MathUtils.random(-0.25F, 0.25F) * Settings.HEIGHT;
             relic.isDone = true;
         }
         this.relicDone = new boolean[AbstractDungeon.player.relics.size()];
@@ -50,6 +51,10 @@ public class RestoreRelicsVFX extends AbstractGameEffect {
                 }
                 this.isDone &= this.relicDone[i];
             }
+        }
+        this.duration -= Gdx.graphics.getDeltaTime();
+        if(this.duration <= 0F) {
+            this.isDone = true;
         }
     }
 
