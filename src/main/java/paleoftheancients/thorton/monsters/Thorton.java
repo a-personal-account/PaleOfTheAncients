@@ -222,7 +222,7 @@ public class Thorton extends CustomMonster {
 
     @Override
     public void die() {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheThorton.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheThorton.ID);
         if(this.gold > 0) {
             RewardItem ri = new RewardItem();
             ri.type = RewardItem.RewardType.GOLD;

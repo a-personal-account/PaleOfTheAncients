@@ -18,9 +18,7 @@ import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
 import paleoftheancients.finarubossu.monsters.N;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.patches.AbstractRoomUpdateIncrementElitesPatch;
 import paleoftheancients.rooms.DejaVuRoom;
-import paleoftheancients.savefields.ElitesSlain;
 import paleoftheancients.vfx.TimepieceTrigger;
 
 import java.util.ArrayList;
@@ -60,11 +58,6 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
         AbstractDungeon.actionManager.addToTop(new CanLoseAction());
         AbstractDungeon.actionManager.addToTop(new VFXAction(new TimeWarpTurnEndEffect(), 1F));
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
-
-        if(AbstractDungeon.id == PaleOfTheAncients.ID) {
-            AbstractRoomUpdateIncrementElitesPatch.Insert(null);
-            ElitesSlain.getKilledElites().put(AbstractDungeon.actNum, ElitesSlain.getKilledElites().get(AbstractDungeon.actNum) - 2);
-        }
     }
 
     @Override

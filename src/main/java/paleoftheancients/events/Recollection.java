@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.shrines.Duplicator;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.*;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.relics.Timepiece;
 import vexMod.relics.*;
 
 import java.util.ArrayList;
@@ -84,6 +86,17 @@ public class Recollection extends AbstractImageEvent {
         }
     }
 
+    @Override
+    public void onEnterRoom() {
+        if(AbstractDungeon.player.hasRelic(Timepiece.ID)) {
+            AbstractRelic timepiece = AbstractDungeon.player.getRelic(Timepiece.ID);
+            ((Timepiece) timepiece).reset();
+            timepiece.flash();
+        } else {
+            (new Timepiece()).instantObtain();
+        }
+    }
+
     private void addToPossibilities(boolean doit, int descindex, int maxHpIncrease, String imagePath, String... relics) {
         if(doit) {
             DescriptedList<String> tmp = new DescriptedList<>();
@@ -123,7 +136,7 @@ public class Recollection extends AbstractImageEvent {
             imageEventText.updateBodyText(possibilities.get(0).description, DialogWord.AppearEffect.FADE_IN);
             for (final String relicid : possibilities.get(0)) {
                 AbstractRelic relic = RelicLibrary.getRelic(relicid);
-                imageEventText.setDialogOption('[' + OPTIONS[1] + GetForked.Format(relic.name, "#y", "") + ']', relic);
+                imageEventText.setDialogOption('[' + OPTIONS[1] + FontHelper.colorString(relic.name, "y") + ']', relic);
             }
             if(possibilities.get(0).maxHpIncrease > 0) {
                 imageEventText.setDialogOption('[' + OPTIONS[2] + maxHpIncrease(possibilities.get(0).maxHpIncrease) + OPTIONS[3] + ']' + OPTIONS[4]);
@@ -133,7 +146,7 @@ public class Recollection extends AbstractImageEvent {
             imageEventText.loadImage(possibilities.get(0).imagePath);
         } else if(markOfTheBloom == 2) {
             imageEventText.updateBodyText(DESCRIPTIONS[DESCRIPTIONS.length - 2], DialogWord.AppearEffect.FADE_IN);
-            imageEventText.setDialogOption("[" + OPTIONS[7] + GetForked.Format(RelicLibrary.getRelic(MarkOfTheBloom.ID).name, " #r", "") + "] " + OPTIONS[5]);
+            imageEventText.setDialogOption("[" + OPTIONS[7] + FontHelper.colorString(RelicLibrary.getRelic(MarkOfTheBloom.ID).name, "r") + "] " + OPTIONS[5]);
             imageEventText.setDialogOption('[' + OPTIONS[8] + "] "  + OPTIONS[6]);
             markOfTheBloom--;
             imageEventText.loadImage("images/events/mindBloom.jpg");

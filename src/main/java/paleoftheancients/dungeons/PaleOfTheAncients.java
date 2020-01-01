@@ -1,11 +1,12 @@
 package paleoftheancients.dungeons;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapGenerator;
@@ -14,9 +15,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.scenes.AbstractScene;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bard.monsters.BardBoss;
 import paleoftheancients.collector.monsters.SpireWaifu;
@@ -40,11 +41,12 @@ public class PaleOfTheAncients extends CustomDungeon {
     public static final String ID = PaleMod.makeID("PaleOfTheAncients");
 
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    private static final EventStrings forkStrings = CardCrawlGame.languagePack.getEventString(PaleMod.makeID("ForkInTheRoad"));
     public static final String[] TEXT = uiStrings.TEXT;
     public static final String NAME = TEXT[0];
 
     public PaleOfTheAncients() {
-        super(new PaleScene(), NAME, ID);
+        super(NAME, ID);
         this.onEnterEvent(Recollection.class);
         this.addTempMusic(PaleMod.makeID("undyne"), PaleMod.assetPath("music/undertale_undyne.ogg"));
         this.addTempMusic(PaleMod.makeID("dragonsnest"), PaleMod.assetPath("music/pokken-dragonsnest_loop.ogg"));
@@ -59,6 +61,31 @@ public class PaleOfTheAncients extends CustomDungeon {
 
     public PaleOfTheAncients(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
+    }
+
+    @Override
+    public AbstractScene DungeonScene() {
+        return new PaleScene();
+    }
+
+    @Override
+    public String getAfterSelectText() {
+        return forkStrings.DESCRIPTIONS[forkStrings.DESCRIPTIONS.length - 1];
+    }
+    @Override
+    public String getOptionText() {
+        return forkStrings.OPTIONS[0];
+    }
+    @Override
+    public String getBodyText() {
+        return forkStrings.DESCRIPTIONS[forkStrings.DESCRIPTIONS.length - 2].replace(" NL", "");
+    }
+
+    private String Format(String subject, String prefix, String suffix) {
+        subject = subject.replaceAll("(?<!\\sNL)(?!\\sNL)\\s+", suffix + ' ' + prefix);
+        subject = subject.replaceAll("NL\\s+", "NL " + prefix);
+        subject = subject.replaceAll("\\s+NL", suffix + " NL");
+        return prefix + subject + suffix;
     }
 
     @Override
@@ -146,6 +173,16 @@ public class PaleOfTheAncients extends CustomDungeon {
 
         firstRoomChosen = false;
         fadeIn();
+    }
+
+    @Override
+    public void Ending() {
+        CardCrawlGame.music.fadeOutBGM();
+        MapRoomNode node = new MapRoomNode(3, 4);
+        node.room = new PaleVictoryRoom();
+        AbstractDungeon.nextRoom = node;
+        AbstractDungeon.closeCurrentScreen();
+        AbstractDungeon.nextRoomTransitionStart();
     }
 
     private void connectNode(MapRoomNode src, MapRoomNode dst) {
@@ -255,24 +292,6 @@ public class PaleOfTheAncients extends CustomDungeon {
         }
     }
 
-    public static void playTempMusic(String key) {
-        CardCrawlGame.music.silenceTempBgmInstantly();
-        CardCrawlGame.music.silenceBGM();
-        AbstractDungeon.scene.fadeOutAmbiance();
-        CardCrawlGame.music.playTempBGM(key);
-    }
-    public static void playTempMusicInstantly(String key) {
-        CardCrawlGame.music.silenceTempBgmInstantly();
-        CardCrawlGame.music.silenceBGMInstantly();
-        AbstractDungeon.scene.fadeOutAmbiance();
-        CardCrawlGame.music.playTempBgmInstantly(key);
-    }
-    public static void resumeMainMusic() {
-        CardCrawlGame.music.silenceTempBgmInstantly();
-        AbstractDungeon.scene.fadeInAmbiance();
-        CardCrawlGame.music.unsilenceBGM();
-    }
-
     public static void deathTriggers(AbstractMonster mo) {
         for(int i = mo.powers.size() - 1; i >= 0; i--) {
             AbstractPower pow = mo.powers.get(i);
@@ -280,19 +299,6 @@ public class PaleOfTheAncients extends CustomDungeon {
         }
         for(final AbstractRelic relic : AbstractDungeon.player.relics) {
             relic.onMonsterDeath(mo);
-        }
-    }
-
-    public static void addRewardRelic(String relicID) {
-        boolean found = false;
-        for(final RewardItem ri : AbstractDungeon.getCurrRoom().rewards) {
-            if(ri.type == RewardItem.RewardType.RELIC && ri.relic != null && ri.relic.relicId.equals(relicID)) {
-                found = true;
-                break;
-            }
-        }
-        if(!found) {
-            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(relicID).makeCopy()));
         }
     }
 

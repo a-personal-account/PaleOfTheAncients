@@ -255,7 +255,7 @@ public class IronCluck extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheIroncluck.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheIroncluck.ID);
         super.die(triggerRelics);
     }
 

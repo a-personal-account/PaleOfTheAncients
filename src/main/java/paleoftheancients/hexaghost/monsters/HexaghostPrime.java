@@ -71,7 +71,7 @@ public class HexaghostPrime extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheHexaghost.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheHexaghost.ID);
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
         super.die(triggerRelics);

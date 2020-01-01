@@ -325,7 +325,7 @@ public class TheShowmanBoss extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        PaleOfTheAncients.addRewardRelic(SoulOfTheShowman.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheShowman.ID);
         AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3F, DIALOG[MathUtils.random(7, 9)], this.isPlayer));
         this.useFastShakeAnimation(5.0F);
         CardCrawlGame.screenShake.rumble(4.0F);
