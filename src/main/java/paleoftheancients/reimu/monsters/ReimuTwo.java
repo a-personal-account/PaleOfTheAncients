@@ -20,7 +20,7 @@ import paleoftheancients.reimu.vfx.FSBlinkVFX;
 import paleoftheancients.reimu.vfx.FantasySealVFX;
 import paleoftheancients.reimu.vfx.HakureiAmuletVFX;
 
-public class ReimuTwo extends ReimuRazPhase {
+public class ReimuTwo extends ReimuPhase {
     private static final byte FANTASYSEAL = 0;
     private static final byte FSBLINK = 1;
     private static final byte AMULET = 2;

@@ -23,8 +23,8 @@
     ]
   },
   "paleoftheancients:SoulOfTheVixen": {
-    "NAME": "Soul of the Vixen",
-    "FLAVOR": "Burns with fiery passion.",
+    "NAME": "Fire of the Vixen",
+    "FLAVOR": "Burns with passion.",
     "DESCRIPTIONS": [
       "Whenever you attack, inflict 2 #rpaleoftheancients:Burn."
     ]
@@ -70,6 +70,13 @@
     "DESCRIPTIONS": [
       "Identifies you as NL #y\"Thorton #yMinutepen\". NL #bBank #bManager.",
       "the Thorton?"
+    ]
+  },
+  "paleoftheancients:SoulOfTheShrineMaiden": {
+    "NAME": "Youkai Huntress' Zeal",
+    "FLAVOR": "Born from a lifetime of hunting demons and sweeping floors.",
+    "DESCRIPTIONS": [
+      "If you lost HP last turn, gain [E] . NL Whenever you #yBlock damage, gain that much #rStrength until the end of your turn."
     ]
   }
 }

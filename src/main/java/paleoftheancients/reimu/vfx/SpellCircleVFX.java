@@ -19,6 +19,7 @@ public class SpellCircleVFX extends AbstractGameEffect {
     private boolean ending;
 
     private final float spacing = 1.3F;
+    private float r, g, b;
 
     public SpellCircleVFX(Reimu reimu) {
         this.reimu = reimu;
@@ -31,6 +32,9 @@ public class SpellCircleVFX extends AbstractGameEffect {
 
         this.color = Color.SKY.cpy();
         this.color.a = 0F;
+        r = this.color.r;
+        g = this.color.g;
+        b = this.color.b;
 
         this.renderBehind = true;
     }
@@ -42,6 +46,15 @@ public class SpellCircleVFX extends AbstractGameEffect {
         if(!ending) {
             if (this.color.a < 0.7F) {
                 this.color.a += Gdx.graphics.getDeltaTime() * 2;
+            }
+            if(r != this.color.r) {
+                this.color.r = attuneColor(r, this.color.r);
+            }
+            if(g != this.color.g) {
+                this.color.g = attuneColor(g, this.color.g);
+            }
+            if(b != this.color.b) {
+                this.color.b = attuneColor(b, this.color.b);
             }
         } else {
             this.color.a -= Gdx.graphics.getDeltaTime() * 2;
@@ -67,5 +80,25 @@ public class SpellCircleVFX extends AbstractGameEffect {
 
     public void end() {
         this.ending = true;
+    }
+    public void changeColor(float r, float g, float b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    private float attuneColor(float target, float current) {
+        if(target < current) {
+            current -= Gdx.graphics.getDeltaTime();
+            if(target > current) {
+                current = target;
+            }
+        } else {
+            current += Gdx.graphics.getDeltaTime();
+            if(target < current) {
+                current = target;
+            }
+        }
+        return current;
     }
 }

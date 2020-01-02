@@ -46,13 +46,13 @@ public class SpellCardBackgroundVFX extends AbstractGameEffect {
         if(!this.ending) {
             if (this.color.a < 1F) {
                 this.color.a += Gdx.graphics.getDeltaTime();
-            } else {
-                this.color.a = 1F;
+                if(this.color.a > 1F) {
+                    this.color.a = 1F;
+                }
             }
         } else {
-            if (this.color.a > 0F) {
-                this.color.a -= Gdx.graphics.getDeltaTime();
-            } else {
+            this.color.a -= Gdx.graphics.getDeltaTime();
+            if (this.color.a <= 0F) {
                 this.isDone = true;
             }
         }

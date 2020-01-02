@@ -1,5 +1,6 @@
 package paleoftheancients.reimu.monsters;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -15,34 +16,30 @@ import paleoftheancients.reimu.powers.ShotTypeAmuletPower;
 import paleoftheancients.reimu.powers.ShotTypeBasePower;
 
 public class ReimuOne extends ReimuPhase {
-    private static final byte FIRSTTURN = Byte.MAX_VALUE;
+    private static final byte FIRSTTURN = 4;
 
     private static final byte SEAL = 0;
     private static final byte BASICBLOCK = 1;
     private static final byte BASICATTACK = 2;
     private static final byte DEBUFFATTACK = 3;
 
-    private static final int DEBUFF_COUNTER_THESHOLD = 3;
-    private static final int MAX_DEBUFF = 3;
-
-    private boolean firstMove = true;
-    private int turnsSinceBomb;
-
     public ReimuOne() {
         this.moves.put(FIRSTTURN, new ReimuMoveInfo(FIRSTTURN, AbstractMonster.Intent.UNKNOWN, -1, 0, false, ReimuAnimation.Spellcall));
         this.moves.put(SEAL, new ReimuMoveInfo(SEAL, Intent.STRONG_DEBUFF, -1, 0, false, ReimuAnimation.Spellcall));
         this.moves.put(BASICATTACK, new ReimuMoveInfo(BASICATTACK, Intent.ATTACK, calcAscensionNumber(28), 0, false, ReimuAnimation.CloseAttack, calcAscensionNumber(1.3F)));
         this.moves.put(DEBUFFATTACK, new ReimuMoveInfo(DEBUFFATTACK, Intent.ATTACK_DEBUFF, calcAscensionNumber(23), 0, false, ReimuAnimation.Kick, calcAscensionNumber(2.3F)));
-        this.moves.put(BASICBLOCK, new ReimuMoveInfo(BASICBLOCK, Intent.DEFEND_DEBUFF, -1, calcAscensionNumber(30), false, ReimuAnimation.Guard, calcAscensionNumber(2F)));
-        this.turnsSinceBomb = 0;
+        this.moves.put(BASICBLOCK, new ReimuMoveInfo(BASICBLOCK, Intent.DEFEND_DEBUFF, -1, calcAscensionNumber(30), false, ReimuAnimation.MagicForward, calcAscensionNumber(2F)));
+        cycletracker.clear();
+        cycletracker.add(FIRSTTURN);
     }
 
     @Override
     public void takeTurn(Reimu reimu, ReimuMoveInfo rmi, DamageInfo info) {
         switch (reimu.nextMove) {
-            case FIRSTTURN: {
+            case FIRSTTURN:
+                resetCycleTracker();
+                cycletracker.remove(MathUtils.random(cycletracker.size() - 1));
                 break;
-            }
             case BASICATTACK: {
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Dazed(), rmi.magicNumber));
@@ -64,70 +61,34 @@ public class ReimuOne extends ReimuPhase {
             }
             case SEAL: {
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new SealedPower(AbstractDungeon.player, 1), 1));
-                turnsSinceBomb = -1;
                 reimu.rui.bombs--;
                 break;
             }
         }
-        turnsSinceBomb++;
     }
 
     @Override
-    public void getMove(Reimu reimu, final int num) {
-        if (this.firstMove) {
-            reimu.setMove(Reimu.MOVES[0], FIRSTTURN, Intent.UNKNOWN);
-            this.firstMove = false;
-        } else {
-            if (turnsSinceBomb >= DEBUFF_COUNTER_THESHOLD && canMegaDebuff() && reimu.rui.bombs > 0) { //use this every few turns until player has max stacks of the debuff
-                reimu.setMoveShortcut(SEAL);
-            } else if (reimu.lastMove(SEAL) && reimu.lastMoveBefore(BASICBLOCK)) { //can't not attack for more than 2 turns
-                if (num % 2 == 0) {
-                    reimu.setMoveShortcut(DEBUFFATTACK);
-                } else {
-                    reimu.setMoveShortcut(BASICATTACK);
-                }
-            } else if (num < 34) {
-                if (!reimu.lastMove(BASICATTACK)) {
-                    reimu.setMoveShortcut(BASICATTACK);
-                } else {
-                    if (num % 2 == 0) {
-                        reimu.setMoveShortcut(BASICBLOCK);
-                    } else {
-                        reimu.setMoveShortcut(DEBUFFATTACK);
-                    }
-                }
-            } else if (num < 67) {
-                if (!reimu.lastMove(DEBUFFATTACK)) {
-                    reimu.setMoveShortcut(DEBUFFATTACK);
-                } else {
-                    if (num % 2 == 0) {
-                        reimu.setMoveShortcut(BASICATTACK);
-                    } else {
-                        reimu.setMoveShortcut(BASICBLOCK);
-                    }
-                }
-            } else if (num < 100) {
-                if (!reimu.lastMove(BASICBLOCK)) {
-                    reimu.setMoveShortcut(BASICBLOCK);
-                } else {
-                    if (num % 2 == 0) {
-                        reimu.setMoveShortcut(DEBUFFATTACK);
-                    } else {
-                        reimu.setMoveShortcut(BASICATTACK);
-                    }
-                }
-            }
-        }
+    public void getMove(Reimu reimu, int num) {
+        getMoveFromCycletracker(reimu, 0);
     }
 
-    private boolean canMegaDebuff() {
-        if (AbstractDungeon.player.hasPower(SealedPower.POWER_ID)) {
-            if (AbstractDungeon.player.getPower(SealedPower.POWER_ID).amount >= MAX_DEBUFF) {
-                return false;
-            }
-        }
-        return true;
+    @Override
+    protected void setBombIntent(Reimu reimu) {
+        reimu.setMoveShortcut(SEAL);
     }
+    @Override
+    protected void resetCycleTracker() {
+        cycletracker.add(BASICATTACK);
+        cycletracker.add(BASICBLOCK);
+        cycletracker.add(DEBUFFATTACK);
+    }
+
+    public void getMoveFromCycletracker(Reimu reimu) {
+        getMoveFromCycletracker(reimu, 0);
+    }
+
+    @Override
+    protected void useBombSkill(Reimu reimu) {}
 
     @Override
     public void die(Reimu reimu) {

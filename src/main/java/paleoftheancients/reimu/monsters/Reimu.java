@@ -1,5 +1,6 @@
 package paleoftheancients.reimu.monsters;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,11 +21,11 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.reimu.actions.PersuasionNeedleAction;
-import paleoftheancients.reimu.powers.DeathBombPower;
 import paleoftheancients.reimu.powers.HakureiShrineMaidenPower;
 import paleoftheancients.reimu.powers.Position;
 import paleoftheancients.reimu.util.ReimuUserInterface;
 import paleoftheancients.reimu.vfx.*;
+import paleoftheancients.relics.SoulOfTheShrineMaiden;
 
 public class Reimu extends CustomMonster {
     public static final String ID = PaleMod.makeID("Reimu");
@@ -131,11 +132,9 @@ public class Reimu extends CustomMonster {
             runAnim(ReimuAnimation.DizzyEnd, ReimuAnimation.Spellcall, ReimuAnimation.Idle);
 
             //Decrement lives and reset bombs
-            rui.bombs = 3;
             rui.extralives--;
-            if(!this.hasPower(DeathBombPower.POWER_ID)) {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DeathBombPower(this)));
-            }
+            rui.bombs = 0;
+            rui.addBomb(3);
 
             //Refresh the intent because every Death, one further column starts attacking
             int playerPosition = Position.playerPosition() - 1;
@@ -145,6 +144,18 @@ public class Reimu extends CustomMonster {
                     orbs[i][playerPosition].createIntent();
                 }
             }
+        } else if(this.nextMove == ReimuPhase.BOMBREFILL) {
+            rui.addBomb();
+
+            for(final YinYangOrb[] orbarray : this.orbs) {
+                for(final YinYangOrb orb : orbarray) {
+                    if(orb != null) {
+                        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(orb, this, 20));
+                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(orb, this, new StrengthPower(orb, 10), 10));
+                    }
+                }
+            }
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, rui.extralives + 1), rui.extralives + 1));
         } else {
             phase.takeTurn(this, rmi, info);
         }
@@ -217,6 +228,7 @@ public class Reimu extends CustomMonster {
             spellcircle.end();
             lockAnimation = true;
             this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
+            CustomDungeon.addRelicReward(SoulOfTheShrineMaiden.ID);
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new TouhouDeathVFX(this), 1.5F));
             AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                 @Override
@@ -233,6 +245,10 @@ public class Reimu extends CustomMonster {
             this.setMove(MOVES[rui.extralives], (byte)0, Intent.BUFF);
             this.createIntent();
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_death"), 0.25F);
+            if(spellcircle != null) {
+                spellcircle.end();
+                spellcircle = null;
+            }
         }
     }
 

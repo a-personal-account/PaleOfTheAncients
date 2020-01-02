@@ -22,7 +22,7 @@ import paleoftheancients.reimu.vfx.EvilSealingCircleVFX;
 import paleoftheancients.reimu.vfx.ExterminationVFX;
 import paleoftheancients.reimu.vfx.HakureiBarrierVFX;
 
-public class ReimuThree extends ReimuRazPhase {
+public class ReimuThree extends ReimuPhase {
     private static final byte EVILSEALINGCIRCLE = 0;
     private static final byte HAKUREIDANMAKUBARRIER = 1;
     private static final byte PERSUASIONNEEDLE = 2;

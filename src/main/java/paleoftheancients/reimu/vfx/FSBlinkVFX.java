@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
+import paleoftheancients.reimu.actions.FastVampireDamageAction;
 import paleoftheancients.reimu.monsters.Reimu;
 
 public class FSBlinkVFX extends AbstractDamagingVFX {

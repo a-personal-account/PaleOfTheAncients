@@ -9,11 +9,11 @@
       "one that could free us all...",
       " NL NL ",
       "If you are strong enough.",
-      " NL NL A small, glittering, round object falls on the ground before you.",
+      "A small, glittering, round #yobject falls on the ground before you. Just looking at it fills you with a #ysense of #r@dread.@",
       "As soon as you touch it, the space around you twists into dark, fog-covered nothingness..."
     ],
     "OPTIONS": [
-      "Pick up the Object"
+      "Pick up the #yObject"
     ]
   },
 

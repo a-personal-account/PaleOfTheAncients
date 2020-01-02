@@ -340,7 +340,7 @@
   },
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",
-    "DESCRIPTIONS": ["At the start of your turn, exhaust #b", " card.", " cards.", " and lose [E] ."]
+    "DESCRIPTIONS": ["At the start of your turn, exhaust #b", " card", " cards", " and lose [E] ."]
   },
   "paleoftheancients:ShotTypeBasePower": {
     "NAME": "Limited Range",

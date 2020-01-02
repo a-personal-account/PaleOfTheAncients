@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
+import paleoftheancients.reimu.actions.FastVampireDamageAction;
 import paleoftheancients.reimu.monsters.Reimu;
 
 public class EvilSealingCircleVFX extends AbstractDamagingVFX {

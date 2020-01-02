@@ -1,5 +1,6 @@
 package paleoftheancients.reimu.util;
 
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -38,7 +39,7 @@ public class ReimuUserInterface {
         this.reimu = reimu;
 
         lifeimage = ImageMaster.loadImage(PaleMod.assetPath("images/reimu/ui/extralife.png"));
-        bombimage = AssetLoader.loadImage(PaleMod.assetPath("images/reimu/ui/bomb.png"));
+        bombimage = ImageMaster.loadImage(PaleMod.assetPath("images/reimu/ui/bomb.png"));
         bombfragmentimages = new Texture[4];
         for(int i = 0; i < bombfragmentimages.length; i++) {
             bombfragmentimages[i] = ImageMaster.loadImage(PaleMod.assetPath("images/reimu/ui/bomb" + (i + 1) + ".png"));
@@ -58,6 +59,9 @@ public class ReimuUserInterface {
 
         bombhitbox.update();
         liveshitbox.update();
+        if(liveshitbox.hovered) {
+            BaseMod.logger.error("-------------------------------");
+        }
     }
 
     public void render(SpriteBatch sb) {
@@ -84,10 +88,17 @@ public class ReimuUserInterface {
     public void getBombFragment() {
         if(++bombfragments > 4) {
             bombfragments -= 5;
-            bombs++;
-            if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID)) {
-                AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(reimu, reimu, new DeathBombPower(reimu)));
-            }
+            addBomb();
+        }
+    }
+
+    public void addBomb() {
+        this.addBomb(1);
+    }
+    public void addBomb(int num) {
+        bombs += num;
+        if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID)) {
+            AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(reimu, reimu, new DeathBombPower(reimu)));
         }
     }
 
