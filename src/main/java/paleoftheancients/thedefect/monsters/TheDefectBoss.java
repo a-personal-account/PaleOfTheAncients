@@ -81,8 +81,8 @@ public class TheDefectBoss extends AbstractMonster {
     public static final String NAME;
     public static final String[] MOVES;
     public static final String[] DIALOG;
-    public static final int HP = 800;
-    public static final int A_2_HP = 1200;
+    public static final int HP = 1000;
+    public static final int A_2_HP = 1300;
 
     private static final int BALLLIGHTNING = 12;
     private static final int A_4_BALLLIGHTNING = 14;

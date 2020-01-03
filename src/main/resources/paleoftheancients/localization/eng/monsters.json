@@ -21,28 +21,28 @@
     "DIALOG": [
       "#yPassive: At the end of turn, deal #b",
       " damage. NL #yEvoke: Deal #b",
-      " damage. NL #yDamaging an orb will evoke it!"
+      " damage. NL #yAttacking an orb will evoke it!"
     ]
   },
   "paleoftheancients:frostorb": {
     "DIALOG": [
       "#yPassive: At the end of turn, gain #b",
       " #yBlock. NL #yEvoke: Gain #b",
-      " #yBlock. NL #yDamaging an orb will evoke it!"
+      " #yBlock. NL #yAttacking an orb will evoke it!"
     ]
   },
   "paleoftheancients:darkorb": {
     "DIALOG": [
       "#yPassive: At the end of turn, increase this Orb's damage by #b",
       ". NL #yEvoke: Deal #b",
-      " damage to you. NL #yDamaging an orb will evoke it!"
+      " damage to you. NL #yAttacking an orb will evoke it!"
     ]
   },
   "paleoftheancients:plasmaorb": {
     "DIALOG": [
       "#yPassive: At the start of turn, gain #r",
       " Strength this turn . NL #yEvoke: Gain #r",
-      " Strength this turn. NL #yDamaging an orb will evoke it!"
+      " Strength this turn. NL #yAttacking an orb will evoke it!"
     ]
   },
 

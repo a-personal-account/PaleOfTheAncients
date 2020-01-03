@@ -1,10 +1,5 @@
 package paleoftheancients.thedefect.monsters.orbs;
 
-import paleoftheancients.thedefect.actions.DefectRemoveOrbAction;
-import paleoftheancients.thedefect.monsters.TheDefectBoss;
-import paleoftheancients.thedefect.powers.BossOrbPower;
-import paleoftheancients.thedefect.powers.DivertingPowerPower;
-import paleoftheancients.thedefect.powers.KineticBarrierPower;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,8 +17,12 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import paleoftheancients.thedefect.actions.DefectRemoveOrbAction;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import paleoftheancients.thedefect.powers.BossOrbPower;
+import paleoftheancients.thedefect.powers.DivertingPowerPower;
+import paleoftheancients.thedefect.powers.KineticBarrierPower;
 
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     public boolean evoked = false;
 
     public AbstractBossOrb(TheDefectBoss owner, String name, String id) {
-        super(name, id, 1000, 0.0F, -0F, 96F, 96F, (String)null, 0.0F, 0.0F);
+        super(name, id, 30, 0.0F, -0F, 96F, 96F, (String)null, 0.0F, 0.0F);
 
         this.c = Settings.CREAM_COLOR.cpy();
 
@@ -98,10 +97,17 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     protected void getMove(int num) {}
 
     public void damage(DamageInfo info) {
-        if((info.type == DamageInfo.DamageType.NORMAL || info.output > 5) && !this.evoked) {
-            AbstractDungeon.actionManager.addToTop(new SuicideAction(this));
-            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this.owner));
+        super.damage(info);
+        if(!this.evoked) {
+            if (this.currentHealth <= 0) {
+                killOrb();
+            }
         }
+    }
+
+    public void killOrb() {
+        AbstractDungeon.actionManager.addToBottom(new SuicideAction(this));
+        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this.owner));
     }
 
     public void evoke(AbstractCreature target) {}

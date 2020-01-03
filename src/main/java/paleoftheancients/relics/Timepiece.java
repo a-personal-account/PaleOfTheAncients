@@ -35,13 +35,8 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
 
     public void onTrigger() {
         this.flash();
-        int healAmt = AbstractDungeon.player.maxHealth;
-        if (healAmt < 1) {
-            healAmt = 1;
-        }
-
-        AbstractDungeon.player.heal(healAmt, false);
-        this.setCounter(this.counter - 1);
+        healToFull();
+        this.setCounter(-3);
 
         ArrayList<AbstractMonster> affected = new ArrayList<>();
         for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
@@ -59,10 +54,18 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
         AbstractDungeon.actionManager.addToTop(new VFXAction(new TimeWarpTurnEndEffect(), 1F));
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
     }
+    private void healToFull() {
+        int healAmt = AbstractDungeon.player.maxHealth;
+        if (healAmt < 1) {
+            healAmt = 1;
+        }
+
+        AbstractDungeon.player.heal(healAmt, false);
+    }
 
     @Override
     public void setCounter(int counter) {
-        if (counter == -2) {
+        if (counter <= -2) {
             this.usedUp();
         }
         super.setCounter(counter);
@@ -94,6 +97,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
                 AbstractDungeon.player.heal(healAmt, true);
             }
         }
+        atTurnStart();
     }
 
     @Override
@@ -117,10 +121,20 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
 
     @Override
     public boolean onPlayerDeath(AbstractPlayer abstractPlayer, DamageInfo damageInfo) {
-        if(this.counter > -2) {
-            onTrigger();
+        if(this.counter != -2) {
+            healToFull();
+            if(this.counter > -2) {
+                onTrigger();
+            }
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void atTurnStart() {
+        if(this.counter == -3) {
+            this.counter = -2;
+        }
     }
 }
