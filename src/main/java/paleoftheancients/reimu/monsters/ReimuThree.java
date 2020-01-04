@@ -31,12 +31,12 @@ public class ReimuThree extends ReimuPhase {
     private static final byte THWACK = 5;
 
     public ReimuThree() {
-        this.moves.put(EVILSEALINGCIRCLE, new ReimuMoveInfo(EVILSEALINGCIRCLE, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(16), 3, true, Reimu.ReimuAnimation.None, calcAscensionNumber(1.7F)));
-        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(4), calcAscensionNumber(15), true, Reimu.ReimuAnimation.None));
-        this.moves.put(COMBO, new ReimuMoveInfo(COMBO, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(10), 3, true, Reimu.ReimuAnimation.None, calcAscensionNumber(2F)));
-        this.moves.put(THWACK, new ReimuMoveInfo(THWACK, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(35), 1, false, Reimu.ReimuAnimation.ForwardOccult));
-        this.moves.put(EXTERMINATION, new ReimuMoveInfo(EXTERMINATION, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(11), 3, true, Reimu.ReimuAnimation.MagicUp, calcAscensionNumber(2.4F)));
-        this.moves.put(PERSUASIONNEEDLE, new ReimuMoveInfo(PERSUASIONNEEDLE, AbstractMonster.Intent.ATTACK, calcAscensionNumber(6), 7, true, Reimu.ReimuAnimation.MagicForward));
+        this.moves.put(EVILSEALINGCIRCLE, new ReimuMoveInfo(EVILSEALINGCIRCLE, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(14), 3, true, Reimu.ReimuAnimation.None, calcAscensionNumber(1.7F)));
+        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(3), calcAscensionNumber(15), true, Reimu.ReimuAnimation.None, calcAscensionNumber(150F)));
+        this.moves.put(COMBO, new ReimuMoveInfo(COMBO, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(12), 2, true, Reimu.ReimuAnimation.None, calcAscensionNumber(2F)));
+        this.moves.put(THWACK, new ReimuMoveInfo(THWACK, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(20), 1, false, Reimu.ReimuAnimation.ForwardOccult));
+        this.moves.put(EXTERMINATION, new ReimuMoveInfo(EXTERMINATION, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(8), 3, true, Reimu.ReimuAnimation.MagicUp, calcAscensionNumber(2.4F)));
+        this.moves.put(PERSUASIONNEEDLE, new ReimuMoveInfo(PERSUASIONNEEDLE, AbstractMonster.Intent.ATTACK, calcAscensionNumber(5), 6, true, Reimu.ReimuAnimation.MagicForward));
     }
 
     @Override
@@ -53,6 +53,7 @@ public class ReimuThree extends ReimuPhase {
             case HAKUREIDANMAKUBARRIER:
                 DeclareSpellcard(reimu, 3, 2);
                 AbstractDungeon.actionManager.addToBottom(new DamagingAction(() -> new HakureiBarrierVFX(AbstractDungeon.player, reimu, info, rmi.multiplier)));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(reimu, reimu, rmi.magicNumber));
                 EndSpellcard(reimu);
                 break;
 

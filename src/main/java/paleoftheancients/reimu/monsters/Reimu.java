@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -120,6 +121,7 @@ public class Reimu extends CustomMonster {
             this.maxHealth *= 1.5F;
             AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
+            AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(this));
             phase.die(this);
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.25F);
             if(spellcircle == null) {
@@ -158,6 +160,7 @@ public class Reimu extends CustomMonster {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, rui.extralives + 1), rui.extralives + 1));
         } else {
             phase.takeTurn(this, rmi, info);
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, InvinciblePower.POWER_ID));
         }
 
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -239,6 +242,7 @@ public class Reimu extends CustomMonster {
                 }
             });
         } else {
+            PaleOfTheAncients.deathTriggers(this);
             lockAnimation = false;
             runAnim(ReimuAnimation.Guardbreak, ReimuAnimation.Dizzy);
             lockAnimation = true;

@@ -29,11 +29,11 @@ public class ReimuTwo extends ReimuPhase {
     private static final byte BUFFORBS = 5;
 
     public ReimuTwo() {
-        this.moves.put(FANTASYSEAL, new ReimuMoveInfo(FANTASYSEAL, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(40), 1, false, Reimu.ReimuAnimation.None));
-        this.moves.put(FSBLINK, new ReimuMoveInfo(FSBLINK, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(7), 8, true, Reimu.ReimuAnimation.None));
-        this.moves.put(AMULET, new ReimuMoveInfo(AMULET, AbstractMonster.Intent.ATTACK, calcAscensionNumber(13), 3, true, Reimu.ReimuAnimation.MagicUp));
+        this.moves.put(FANTASYSEAL, new ReimuMoveInfo(FANTASYSEAL, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(35), 1, false, Reimu.ReimuAnimation.None));
+        this.moves.put(FSBLINK, new ReimuMoveInfo(FSBLINK, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(5), 8, true, Reimu.ReimuAnimation.None));
+        this.moves.put(AMULET, new ReimuMoveInfo(AMULET, AbstractMonster.Intent.ATTACK, calcAscensionNumber(11), 3, true, Reimu.ReimuAnimation.MagicUp));
         this.moves.put(STAB, new ReimuMoveInfo(STAB, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(25), 1, false, Reimu.ReimuAnimation.DashAttack, calcAscensionNumber(1.8F)));
-        this.moves.put(SKYCONQUERINGWINDGODKICK, new ReimuMoveInfo(SKYCONQUERINGWINDGODKICK, AbstractMonster.Intent.ATTACK, calcAscensionNumber(32), 1, false, Reimu.ReimuAnimation.Flipkick));
+        this.moves.put(SKYCONQUERINGWINDGODKICK, new ReimuMoveInfo(SKYCONQUERINGWINDGODKICK, AbstractMonster.Intent.ATTACK, calcAscensionNumber(35), 1, false, Reimu.ReimuAnimation.Flipkick));
         this.moves.put(BUFFORBS, new ReimuMoveInfo(BUFFORBS, AbstractMonster.Intent.DEFEND_BUFF, -1, -1, false, Reimu.ReimuAnimation.Spellcall, calcAscensionNumber(50)));
     }
 

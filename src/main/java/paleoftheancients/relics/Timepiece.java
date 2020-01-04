@@ -4,7 +4,6 @@ import basemod.abstracts.CustomRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnPlayerDeathRelic;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -18,6 +17,7 @@ import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.monsters.Eye;
 import paleoftheancients.finarubossu.monsters.N;
 import paleoftheancients.helpers.AssetLoader;
+import paleoftheancients.reimu.actions.FastEscapeAction;
 import paleoftheancients.rooms.DejaVuRoom;
 import paleoftheancients.vfx.TimepieceTrigger;
 
@@ -41,7 +41,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
         ArrayList<AbstractMonster> affected = new ArrayList<>();
         for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if(mo.id != N.ID && !(mo instanceof Eye) && (!mo.isDeadOrEscaped() || mo.halfDead)) {
-                AbstractDungeon.actionManager.addToTop(new SuicideAction(mo));
+                AbstractDungeon.actionManager.addToTop(new FastEscapeAction(mo));
                 affected.add(mo);
             }
         }

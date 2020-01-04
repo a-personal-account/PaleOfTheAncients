@@ -42,7 +42,7 @@ public class ShotTypeAmuletPower extends ShotTypePower {
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if(type == DamageInfo.DamageType.NORMAL) {
-            damage = damage * 3F / 4F;
+            damage = damage / 2F;
         }
         return damage;
     }

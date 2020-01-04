@@ -22,7 +22,7 @@ public class YinYangOrb extends CustomMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final int HP = 50;
+    private static final int HP = 30;
     private static final int HP_VARIANCE = 10;
     public static final byte MOVE = 1;
     private static final byte ATTACK = 2;
@@ -32,14 +32,13 @@ public class YinYangOrb extends CustomMonster {
     private Reimu master;
 
     public YinYangOrb(float x, float y, int type, int position, int delay, Reimu master) {
-        super(NAME, ID, HP, 0.0F, 0.0F, 140.0F, 120.0F, null, x, y);
+        super(NAME, ID, HP + HP_VARIANCE * type - (2 - master.rui.extralives) * 5, 0.0F, 0.0F, 140.0F, 120.0F, null, x, y);
 
-        this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.atlas"), PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.json"), 0.6F);
+        this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.atlas"), PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.json"), 0.86F);
         forward();
 
         this.type = EnemyType.NORMAL;
 
-        this.setHp(HP + HP_VARIANCE * type);
         this.damage.add(new DamageInfo(this, HP / 2 + HP_VARIANCE * (4 - type)));
 
         this.delay = delay;

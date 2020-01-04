@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.monsters.Reimu;
@@ -44,20 +43,10 @@ public class DeathBombPower extends AbstractPower {
         if(!triggered && damageAmount >= this.owner.currentHealth) {
             damageAmount = 0;
             AbstractDungeon.actionManager.addToTop(new ChangeStateAction((AbstractMonster) this.owner, Reimu.Deathbomb));
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             triggered = true;
         }
         return damageAmount;
-    }
-
-    @Override
-    public void atEndOfRound() {
-        if(triggered) {
-            triggered = false;
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, InvinciblePower.POWER_ID));
-        }
-        if(((Reimu) this.owner).rui.bombs <= 0) {
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
-        }
     }
 
     @Override
