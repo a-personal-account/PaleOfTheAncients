@@ -408,18 +408,18 @@ public class TheSilentBoss extends CustomMonster {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = TheSilent.NAMES[0];
         MOVES = new String[] {
-                Envenom.NAME,
-                BouncingFlask.NAME,
-                Neutralize.NAME,
-                MasterfulStab.NAME,
-                DodgeAndRoll.NAME,
-                NoxiousFumes.NAME,
-                Dash.NAME,
-                StormOfSteel.NAME,
-                LegSweep.NAME,
-                GrandFinale.NAME,
-                WraithForm.NAME,
-                Catalyst.NAME
+                PaleMod.getCardName(Envenom.class),
+                PaleMod.getCardName(BouncingFlask.class),
+                PaleMod.getCardName(Neutralize.class),
+                PaleMod.getCardName(MasterfulStab.class),
+                PaleMod.getCardName(DodgeAndRoll.class),
+                PaleMod.getCardName(NoxiousFumes.class),
+                PaleMod.getCardName(Dash.class),
+                PaleMod.getCardName(StormOfSteel.class),
+                PaleMod.getCardName(LegSweep.class),
+                PaleMod.getCardName(GrandFinale.class),
+                PaleMod.getCardName(WraithForm.class),
+                PaleMod.getCardName(Catalyst.class)
         };
         DIALOG = monsterStrings.DIALOG;
     }

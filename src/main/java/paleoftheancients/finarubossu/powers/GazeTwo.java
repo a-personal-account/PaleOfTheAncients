@@ -3,6 +3,7 @@ package paleoftheancients.finarubossu.powers;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -32,7 +33,7 @@ public class GazeTwo extends AbstractGazePower {
         if(card.type != AbstractCard.CardType.POWER && !card.exhaust) {
             AbstractCard tmpcard = null;
             if(AbstractDungeon.ascensionLevel >= 19) {
-                tmpcard = CardLibrary.getRandomColorSpecificCard(AbstractCard.CardColor.CURSE, AbstractDungeon.monsterRng).makeCopy();
+                tmpcard = CardLibrary.getCurse(CardLibrary.getCard(Dazed.ID), AbstractDungeon.monsterRng).makeCopy();
             } else if(AbstractDungeon.ascensionLevel >= 9) {
                 tmpcard = new Slimed();
             }

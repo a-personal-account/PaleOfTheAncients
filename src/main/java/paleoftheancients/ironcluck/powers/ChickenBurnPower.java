@@ -18,7 +18,7 @@ public class ChickenBurnPower extends AbstractPower {
         this.owner = owner;
         this.amount = amount;
 
-        this.name = Burn.NAME;
+        this.name = PaleMod.getCardName(Burn.class);
         this.ID = POWER_ID;
         this.type = PowerType.DEBUFF;
 

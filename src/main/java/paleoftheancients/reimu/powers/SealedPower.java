@@ -40,7 +40,7 @@ public class SealedPower extends AbstractPower {
     public void atStartOfTurnPostDraw() {
         this.flash();
         AbstractDungeon.actionManager.addToBottom(new LoseEnergyAction(1));
-        AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.owner, this.owner, this.amount, false));
+        AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.amount, false));
     }
 
     @Override
