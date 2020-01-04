@@ -18,11 +18,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,10 +28,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.relics.SoulOfTheVixen;
 import paleoftheancients.thevixen.TheVixenMod;
-import paleoftheancients.thevixen.actions.ApplyTempGainStrengthPowerAction;
-import paleoftheancients.thevixen.actions.AttackAnimationAction;
-import paleoftheancients.thevixen.actions.PsycrackerAction;
-import paleoftheancients.thevixen.actions.ReduceDebuffDurationAction;
+import paleoftheancients.thevixen.actions.*;
 import paleoftheancients.thevixen.cards.AbstractVixenCard;
 import paleoftheancients.thevixen.cards.attack.*;
 import paleoftheancients.thevixen.cards.status.BossBurn;
@@ -41,11 +36,7 @@ import paleoftheancients.thevixen.enums.VixenIntentEnum;
 import paleoftheancients.thevixen.helpers.BraixenAnimation;
 import paleoftheancients.thevixen.powers.ConfusionPower;
 import paleoftheancients.thevixen.powers.*;
-import paleoftheancients.thevixen.vfx.FireSpinEffect;
-import paleoftheancients.thevixen.vfx.RefreshEffect;
-import paleoftheancients.thevixen.vfx.SwaggerEffect;
-import paleoftheancients.thevixen.vfx.TrickRoomEffect;
-import paleoftheancients.thevixen.vfx.ShinyEffect;
+import paleoftheancients.thevixen.vfx.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -443,7 +434,7 @@ public class TheVixenBoss extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new FireballEffect(this.hb.cX, this.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, tmp, AbstractGameAction.AttackEffect.NONE));
                 if(removeSunny()) {
-                    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new BossBurn(), this.flamethrower_burn));
+                    AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(1, this.flamethrower_burn));
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, this.flamethrower_burn, false), this.flamethrower_burn));
                 }
                 break;
@@ -454,7 +445,7 @@ public class TheVixenBoss extends CustomMonster {
                 if(removeSunny()) {
                     count += this.ember_burn;
                 }
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new BossBurn(), count));
+                AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(0, count));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, count, false), count));
                 break;
             case FLAMEWHEEL_CONST:

@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,7 +34,7 @@ import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
 import paleoftheancients.finarubossu.powers.*;
 import paleoftheancients.finarubossu.vfx.BackgroundMonster;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.thevixen.cards.status.BossBurn;
+import paleoftheancients.thevixen.actions.ShuffleBossBurnsAction;
 import paleoftheancients.thevixen.helpers.RandomPoint;
 
 import java.util.HashMap;
@@ -248,8 +247,7 @@ public class N extends AbstractMonster {
                 AbstractDungeon.actionManager.addToBottom(new WaitAction(0.3F));
 
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.NONE));
-                AbstractCard bossburn = new BossBurn(AbstractDungeon.ascensionLevel > 4 ? 2 : 1);
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(bossburn, 1, true, true));
+                AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(AbstractDungeon.ascensionLevel > 4 ? 2 : 1));
                 break;
             }
             case NAAIIIILS: {
