@@ -18,10 +18,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bard.vfx.LifeDrainEffect;
-import paleoftheancients.thevixen.cards.status.BossBurn;
-
-import java.util.HashMap;
-import java.util.Map;
+import paleoftheancients.thevixen.actions.ShuffleBossBurnsAction;
 
 public class EyeOfSlumber extends Eye {
     public static final String ID = PaleMod.makeID("EyeOfSlumber");
@@ -94,7 +91,7 @@ public class EyeOfSlumber extends Eye {
                         CardCrawlGame.sound.play("ATTACK_FIRE");
                     }
                 });
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new BossBurn(intensity), 1));
+                AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(intensity));
                 break;
             case VOID:
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new HeartMegaDebuffEffect()));

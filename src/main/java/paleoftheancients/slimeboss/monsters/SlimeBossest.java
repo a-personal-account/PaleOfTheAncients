@@ -4,18 +4,16 @@ import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.slimeboss.powers.SlimeSplitPower;
-import paleoftheancients.thevixen.cards.status.BossBurn;
+import paleoftheancients.thevixen.actions.ShuffleBossBurnsAction;
 
 public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
     public static String ID = PaleMod.makeID("SlimeBossest");
@@ -55,10 +53,7 @@ public class SlimeBossest extends SlimeBoss implements WeirdSlimeThing {
             case 4:
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_SLIME_ATTACK"));
-                AbstractCard bossburn = new BossBurn();
-                bossburn.upgrade();
-
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(bossburn, 3));
+                AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(1, 3));
 
                 this.setMove((byte)2, Intent.UNKNOWN);
                 break;

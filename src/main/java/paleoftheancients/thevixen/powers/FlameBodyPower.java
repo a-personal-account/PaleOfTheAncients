@@ -1,13 +1,12 @@
 package paleoftheancients.thevixen.powers;
 
-import paleoftheancients.thevixen.actions.EmberEffectAction;
-import paleoftheancients.thevixen.cards.status.BossBurn;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import paleoftheancients.thevixen.actions.EmberEffectAction;
+import paleoftheancients.thevixen.actions.ShuffleBossBurnsAction;
 
 
 public class FlameBodyPower extends AbstractTheVixenPower {
@@ -37,9 +36,8 @@ public class FlameBodyPower extends AbstractTheVixenPower {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
             this.flash();
 
-            AbstractDungeon.actionManager.addToTop(new MakeTempCardInDiscardAction(new BossBurn(), 1));
+            AbstractDungeon.actionManager.addToTop(new ShuffleBossBurnsAction(0));
             AbstractDungeon.actionManager.addToTop(new EmberEffectAction(info.owner, this.amount));
-            //TODO: add actual effect here?
         }
 
         return damageAmount;

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateShakeAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_L;
 import com.megacrit.cardcrawl.monsters.exordium.SpikeSlime_M;
 import paleoftheancients.PaleMod;
 import paleoftheancients.slimeboss.actions.ReallocateSlimeUnityAction;
-import paleoftheancients.thevixen.cards.status.BossBurn;
+import paleoftheancients.thevixen.actions.ShuffleBossBurnsAction;
 
 public class SpikeSlimest_L extends SpikeSlime_L implements WeirdSlimeThing {
     public static String ID = PaleMod.makeID("SpikeSlimest_L");
@@ -42,7 +41,7 @@ public class SpikeSlimest_L extends SpikeSlime_L implements WeirdSlimeThing {
                 AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
                 AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_SLIME_ATTACK"));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, (DamageInfo)this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new BossBurn(), 2));
+                AbstractDungeon.actionManager.addToBottom(new ShuffleBossBurnsAction(0, 2));
                 AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
                 break;
 
