@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -97,11 +98,10 @@ public abstract class AbstractBossOrb extends AbstractMonster {
     protected void getMove(int num) {}
 
     public void damage(DamageInfo info) {
+        boolean evokedprior = this.evoked;
         super.damage(info);
-        if(!this.evoked) {
-            if (this.currentHealth <= 0) {
-                killOrb();
-            }
+        if(!evokedprior && this.currentHealth <= 0) {
+            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this.owner));
         }
     }
 
@@ -141,7 +141,14 @@ public abstract class AbstractBossOrb extends AbstractMonster {
         AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(this, false));
     }
     public void removeFromRoom() {
-        AbstractDungeon.getCurrRoom().monsters.monsters.remove(this);
+        final AbstractBossOrb dis = this;
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                AbstractDungeon.getCurrRoom().monsters.monsters.remove(dis);
+            }
+        });
     }
 
 

@@ -100,5 +100,13 @@
       "弃牌堆",
       "消耗堆"
     ]
+  },
+  "paleoftheancients:ReimuUserInterface": {
+    "TEXT": [
+      "残机",
+      "Bomb",
+      "死亡时会复活。",
+      "These are required for and subsequently used up in certain attacks."
+    ]
   }
 }

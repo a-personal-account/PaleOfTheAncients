@@ -49,6 +49,8 @@ public class DefectAddOrbAction extends AbstractGameAction {
                 if(!replaceOrb) {
                     //Because this is the only case where this happens.
                     AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(this.orb.owner, new FrozenCore()));
+                } else {
+                    orb.passive(AbstractDungeon.player);
                 }
 
                 return;
@@ -56,6 +58,7 @@ public class DefectAddOrbAction extends AbstractGameAction {
         }
 
         if(replaceOrb) {
+            orb.passive(AbstractDungeon.player);
             this.orb.owner.orbs.get(0).evoke(AbstractDungeon.player);
             AbstractDungeon.getCurrRoom().monsters.monsters.remove(this.orb.owner.orbs.get(0));
             this.orb.owner.orbs.remove(0);

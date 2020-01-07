@@ -132,8 +132,8 @@ public class ShowmanStage extends CustomMonster {
         super.render(sb);
         sb.setColor(this.color);
         sb.draw(this.CURTAIN_MIDDLE, 0.0F, 0.0F + this.offSetMiddleY * this.scaleMiddleHeight + crumblingY, 0.0F, 0.0F, (float)this.CURTAIN_MIDDLE.getRegionWidth(), (float)this.CURTAIN_MIDDLE.getRegionHeight(), this.scaleMiddleWidth, this.scaleMiddleHeight, 0F);
-        sb.draw(this.CURTAIN_LEFT, 0.0F + this.offSetLeftX * this.scaleLeftWidth, crumblingY, this.CURTAIN_LEFT.getRegionWidth() / 2, this.CURTAIN_LEFT.getRegionHeight() / 4, (float)this.CURTAIN_LEFT.getRegionWidth(), (float)this.CURTAIN_LEFT.getRegionHeight(), this.scaleLeftWidth, this.scaleLeftHeight, leftRotation);
-        sb.draw(this.CURTAIN_RIGHT, Settings.WIDTH - this.CURTAIN_RIGHT.getRegionWidth() * this.scaleRightWidth + this.offSetRightX * this.scaleRightWidth, crumblingY, this.CURTAIN_RIGHT.getRegionWidth() / 2, this.CURTAIN_RIGHT.getRegionHeight() / 4, (float)this.CURTAIN_RIGHT.getRegionWidth(), (float)this.CURTAIN_RIGHT.getRegionHeight(), this.scaleRightWidth, this.scaleRightHeight, rightRotation);
+        sb.draw(this.CURTAIN_LEFT, 0.0F + this.offSetLeftX * this.scaleLeftWidth, crumblingY, 0, 0, (float)this.CURTAIN_LEFT.getRegionWidth(), (float)this.CURTAIN_LEFT.getRegionHeight(), this.scaleLeftWidth, this.scaleLeftHeight, leftRotation);
+        sb.draw(this.CURTAIN_RIGHT, Settings.WIDTH - this.CURTAIN_RIGHT.getRegionWidth() * this.scaleRightWidth + this.offSetRightX * this.scaleRightWidth, crumblingY, 0, 0, (float)this.CURTAIN_RIGHT.getRegionWidth(), (float)this.CURTAIN_RIGHT.getRegionHeight(), this.scaleRightWidth, this.scaleRightHeight, rightRotation);
     }
 
     @Override
