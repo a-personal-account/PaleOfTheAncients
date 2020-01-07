@@ -44,13 +44,13 @@ public class VolunteeringPower extends AbstractShowmanPower {
 
     @Override
     public int onAttackToChangeDamage(DamageInfo info, int damageAmount) {
-        if(info.type == DamageInfo.DamageType.NORMAL) {
+        if(info.type == DamageInfo.DamageType.NORMAL && damageAmount > 0) {
+            AbstractDungeon.actionManager.addToTop(new DamageAction(this.owner, info));
             if (this.amount > 1) {
                 AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, this, 1));
             } else {
                 AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             }
-            AbstractDungeon.actionManager.addToTop(new DamageAction(this.owner, info));
             return 0;
         }
         return damageAmount;

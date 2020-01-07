@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
+import paleoftheancients.thedefect.powers.GrantStrengthNextTurnPower;
 import paleoftheancients.thedefect.vfx.OrbFlareCopyPaste;
 
 public class Plasma extends AbstractBossOrb {
@@ -82,8 +83,7 @@ public class Plasma extends AbstractBossOrb {
     }
     public void passive(AbstractCreature target) {
         AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareCopyPaste(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.0F));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.passiveAmount), this.passiveAmount));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner, new LoseStrengthPower(this.owner, this.passiveAmount), this.passiveAmount));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner, new GrantStrengthNextTurnPower(this.owner, this.passiveAmount), this.passiveAmount));
     }
 
     public void applyFocus() {

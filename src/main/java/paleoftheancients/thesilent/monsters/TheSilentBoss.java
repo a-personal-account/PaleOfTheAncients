@@ -198,6 +198,7 @@ public class TheSilentBoss extends CustomMonster {
             fumes++;
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CorrosiveFumesPower(this, fumes), fumes));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EncorrosionPower(this, this.encorrosion), this.encorrosion));
     }
 
     public void takeTurn() {
@@ -208,9 +209,6 @@ public class TheSilentBoss extends CustomMonster {
         int multiplier;
 
         switch(this.nextMove) {
-            case ENVENOM_CONST:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EncorrosionPower(this, this.encorrosion), this.encorrosion));
-                break;
 
             case NOXIOUSFUMES_CONST:
                 AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[1]));
@@ -303,9 +301,9 @@ public class TheSilentBoss extends CustomMonster {
                     move = NOXIOUSFUMES_CONST;
                     resetCycleTwo();
                 } else {
-                    if(!this.hasPower(EncorrosionPower.POWER_ID)) {
+                    if(!this.hasPower(EncorrosionPower.POWER_ID) && !cycletracker.isEmpty()) {
                         move = ENVENOM_CONST;
-                    } else if(cycletracker.size() == 0) {
+                    } else if(cycletracker.isEmpty()) {
                         resetCycleOne();
                         move = BOUNCINGFLASK_CONST;
                     } else {

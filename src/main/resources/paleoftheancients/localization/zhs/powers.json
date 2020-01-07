@@ -3,14 +3,14 @@
     "NAME": "动力学势垒",
     "DESCRIPTIONS": [
       "减少 #b",
-      "% 受到的伤害。"
+      "% 受到的伤害。 NL 充能球数量越多效果越强。"
     ]
   },
   "paleoftheancients:DivertingPowerPower": {
     "NAME": "转移功率",
     "DESCRIPTIONS": [
       "提高 #b",
-      "% 受到的伤害。"
+      "% 受到的伤害。 NL 充能球数量越多效果越强。"
     ]
   },
   "paleoftheancients:NotEchoPower": {
@@ -33,7 +33,13 @@
       "与故障机器人的电子连接。 NL 单目标的攻击也会影响故障机器人。。"
     ]
   },
-
+  
+  "paleoftheancients:PocketFactoryPower": {
+    "NAME": "移动工厂",
+    "DESCRIPTIONS": [
+      "回合结束时，如果场上少于 #b"," 个 #y铜制圆球 ，生成一个 #y铜制圆球 。"
+    ]
+  },
 
   "paleoftheancients:PrematureAwakening": {
     "NAME": "过早觉醒",
@@ -58,7 +64,7 @@
       "下 1 张有艳阳效果的牌会增强。",
       "下 #b",
       " 张有艳阳效果的牌会增强。",
-      "一些攻击将会消耗本能力的层数增加 #r额外效果 。 NL 在他们的回合结束时，他们获得等于他们 #r艳阳天 层数的 #r力量 #b1 回合。"
+      "一些攻击将会消耗本能力的层数增加 #r额外效果 。"
     ]
   },
   "paleoftheancients:SynergyBurstPower": {
@@ -93,7 +99,7 @@
     "NAME": "忍耐",
     "DESCRIPTIONS": [
       "你的生命不会低于1",
-      "。当你的生命等于1是，失去本能力，每有一层艳阳天和prepare for the final attack... ，重新获得 #b",
+      "。当你的生命等于1是，失去本能力，每有一层艳阳天并准备最终攻击……，重新获得 #b",
       " 生命。"
     ]
   },
@@ -109,7 +115,7 @@
   "paleoftheancients:ConfusionPower": {
     "NAME": "混淆",
     "DESCRIPTIONS": [
-      "每当这名敌人造成伤害，他们受到等于一半的反伤。 NL 回合结束时消失。"
+      "每当你造成伤害，你将伤害的一半攻击自己。"
     ]
   },
   "paleoftheancients:ReverseVulnerablePower": {
@@ -182,7 +188,7 @@
   "paleoftheancients:HexaghostPower": {
     "NAME": "重燃",
     "DESCRIPTIONS": [
-      "死亡时， #r复活自己。 NL #r复活 时对本体造成伤害 并最多消耗 #b2 个 #y火焰 (行为模式)。"
+      "死亡时，立即 #r复活自己。 NL #r复活 时对本体造成伤害 并最多消耗 #b2 个 #y火焰 (行为模式)。"
     ]
   },
 
@@ -198,7 +204,7 @@
     "DESCRIPTIONS": [
       "当你消耗了 #b",
       " [E] ，结束你的回合并获得 #b",
-      " 点 #y力量 。 NL Amount of [E] required decreases by #r1 each time the counter reaches 0 (直到至少 #b4 )。"
+      " 点 #y力量 。 NL 每次计数到0时失去 [E] (直到至少 #b4 )。"
     ]
   },
 
@@ -224,7 +230,7 @@
   "paleoftheancients:CuccoSwarmPower": {
     "NAME": "战鸡之力",
     "DESCRIPTIONS": [
-      "在一回合内受到 #r", " 点伤害后， 重置 #r临时失去的力量 并改变意图为造成 #r"," 基础伤害 #r"," 次。"
+      "在一回合内受到 #r", " 点伤害后，获得 #r失去的力量 并改变意图为造成 #r"," 基础伤害 #r"," 次。"
     ]
   },
 
@@ -278,7 +284,7 @@
   "paleoftheancients:DemotionPower": {
     "NAME": "降级",
     "DESCRIPTIONS": [
-      "Lack of #yadministrative #yprivileges prevent you from #bbuffing yourself or #rdebuffing others."
+      "缺乏 #y权限 是你无法给自己上 #b增益效果或给予别人 #r负面效果 。"
     ]
   },
 
@@ -317,6 +323,54 @@
       " 点。"
     ]
   },
+  
+  
+  "paleoftheancients:PositionPower": {
+    "NAME": "符卡规则",
+    "DESCRIPTIONS": ["你在 #b", "层。 NL 每当你打出一张 #y技能 ，#y向上移动一行 。 NL 每当你打出一张 #y攻击 ， #y向下移动一行。"]
+  },
+  "paleoftheancients:MonsterPositionPower": {
+    "NAME": "符卡规则",
+    "DESCRIPTIONS": ["这个阴阳玉在 #b", "层。"]
+  },
+  "paleoftheancients:HakureiShrineMaidenPower": {
+    "NAME": "乐园的巫女",
+    "DESCRIPTIONS": [
+      "在她的回合结束时，最多召唤 #b",
+      " 个 #y阴阳玉 。如果场上没有 #y阴阳玉 ，变为召唤 #b",
+      " 个。 NL 每当玩家摧毁一个 #y阴阳玉 ，获得 #b",
+      " 个 #yBomb #y",
+      "碎片",
+      "碎片",
+      "。 NL #b5 个 #y碎片 = #b1 个 #yBomb"]
+  },
+  "paleoftheancients:DeathBombPower": {
+    "NAME": "决死",
+    "DESCRIPTIONS": ["当灵梦将要死亡时，如果有 #b2 个Bomb，在下一回合前无敌并将意图变为使用 #b2个Bomb。 NL 只在至少有 #b1 个Bomb是才生效。"]
+  },
+  "paleoftheancients:SealedPower": {
+    "NAME": "Sealed",
+    "DESCRIPTIONS": ["你的回合开始时，消耗 #b", " 张牌", " 张牌", " 并失去 [E] 。"]
+  },
+  "paleoftheancients:ShotTypeBasePower": {
+    "NAME": "判定范围",
+    "DESCRIPTIONS": [
+      "只有当你在它的正前方时才会对你造成伤害"
+    ]
+  },
+  "paleoftheancients:ShotTypeAmuletPower": {
+    "NAME": "追踪护符",
+    "DESCRIPTIONS": [
+      "只有在与你相同高度且与你相同位置时才会对你造成伤害。 NL 攻击球顺时针旋转。"
+    ]
+  },
+  "paleoftheancients:ShotTypeNeedlePower": {
+    "NAME": "封魔针",
+    "DESCRIPTIONS": [
+      "只有在与你相同相同高度时才会造成伤害。"
+    ]
+  },
+
 
   "paleoftheancients:GazeOne": {
     "NAME": "紧闭之眼的凝视",

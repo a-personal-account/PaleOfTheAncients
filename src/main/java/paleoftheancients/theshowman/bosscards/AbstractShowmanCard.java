@@ -3,6 +3,7 @@ package paleoftheancients.theshowman.bosscards;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.ExhaustBlurEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.theshowman.misc.CardDisplayEffect;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public abstract class AbstractShowmanCard extends CustomCard {
     public boolean exhaustTrigger;
     public boolean willExhaust = false;
     private float particleTimer = 0F;
+
+    private CardDisplayEffect cde = null;
 
     public AbstractShowmanCard(String id, String name, String img, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target, TheShowmanBoss owner, AbstractMonster.Intent intent) {
         super(id, name, img, cost, rawDescription, type, TheShowmanBoss.Enums.PALE_COLOR_PURPLE, rarity, target);
@@ -66,9 +70,13 @@ public abstract class AbstractShowmanCard extends CustomCard {
         this.hb.move(this.current_x, this.current_y + this.baseHeight / 2);
         this.hb.update();
         if(this.hb.justHovered) {
+            AbstractDungeon.effectList.add(cde = new CardDisplayEffect(this));
             this.hb.resize(this.baseWidth / SMALL, this.baseHeight / SMALL);
             this.targetDrawScale = BIG;
         } else if(!this.hb.hovered) {
+            if(cde != null) {
+                cde.isDone = true;
+            }
             this.targetDrawScale = SMALL;
         }
         if(this.drawScale != this.targetDrawScale) {
@@ -99,6 +107,13 @@ public abstract class AbstractShowmanCard extends CustomCard {
                 AbstractDungeon.effectList.add(age);
                 this.particleTimer = 0.1F;
             }
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        if(!this.hb.hovered) {
+            super.render(sb);
         }
     }
 

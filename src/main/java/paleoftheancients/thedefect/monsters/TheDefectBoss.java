@@ -24,10 +24,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.powers.LockOnPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.DataDisk;
 import com.megacrit.cardcrawl.relics.Inserter;
@@ -292,13 +289,13 @@ public class TheDefectBoss extends AbstractMonster {
             this.useFastAttackAnimation();
         }
 
-        int energy = 0;
-        if(this.hasPower(StrengthPower.POWER_ID)) {
-            //Strength comes from plasma orbs, so it is an indicator for how much energy defect should have.
-            energy = this.getPower(StrengthPower.POWER_ID).amount / ENERGY_PER_STRENGTH;
-        }
-        if(energy < 0) {
-            energy = this.base_tempest;
+        int energy = this.base_tempest;
+        {
+            AbstractPower ap = this.getPower(StrengthPower.POWER_ID);
+            if (ap != null && ap.amount > 0) {
+                //Strength comes from plasma orbs, so it is an indicator for how much energy defect should have.
+                energy += ap.amount / ENERGY_PER_STRENGTH;
+            }
         }
         //energy from fission last turn
         energy += fissiond;

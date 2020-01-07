@@ -121,7 +121,6 @@ public class Reimu extends CustomMonster {
             this.maxHealth *= 1.5F;
             AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
-            AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(this));
             phase.die(this);
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.25F);
             if(spellcircle == null) {
@@ -253,6 +252,7 @@ public class Reimu extends CustomMonster {
                 spellcircle.end();
                 spellcircle = null;
             }
+            AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(this));
         }
     }
 

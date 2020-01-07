@@ -2,6 +2,7 @@ package paleoftheancients.ironcluck.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -23,6 +24,7 @@ import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
 import paleoftheancients.ironcluck.powers.ChickenBarrierPower;
 import paleoftheancients.ironcluck.powers.ChickenBurnPower;
 import paleoftheancients.ironcluck.powers.ConditionalShackles;
@@ -113,6 +115,7 @@ public class IronCluck extends CustomMonster {
         CardCrawlGame.sound.playA(PaleMod.makeID("cluck"), MathUtils.random(-0.2F, 0.2F));
 
         this.state.addAnimation(0, "Idle" + this.animationsuffix, true, 0.0F);
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BarricadePower(this)));
     }
 
     @Override
@@ -124,19 +127,16 @@ public class IronCluck extends CustomMonster {
         int multiplier;
         switch(this.nextMove) {
             case BARRICADE:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BarricadePower(this)));
+                AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(this, this, new BarricadePower(this)));
                 AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(30)));
-                turnCounter--;
                 break;
             case IMPERVIOUS:
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(45)));
-                turnCounter--;
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(90)));
                 break;
             case FLAMEBARRIER:
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new FlameBarrierEffect(this.hb.cX, this.hb.cY)));
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(40)));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, calcAscensionNumber(60)));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ChickenBarrierPower(this, calcAscensionNumber(4)), calcAscensionNumber(4)));
-                turnCounter--;
                 break;
             case BODYSLAM:
                 this.useFastAttackAnimation();
@@ -168,6 +168,7 @@ public class IronCluck extends CustomMonster {
                 if(strength == null && gainstrength == null) {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, STARTING_STRENGTH), STARTING_STRENGTH));
                 }
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CuccoSwarmPower(this, 50 + strength.amount)));
                 break;
             case HEMOKINESIS:
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new HemokinesisEffect(this.hb.cX, this.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
@@ -198,53 +199,41 @@ public class IronCluck extends CustomMonster {
 
     @Override
     public void getMove(int num) {
-        switch(this.nextMove) {
-            case BARRICADE:
-                this.setMoveShortcut(IMPERVIOUS);
-                break;
-            case IMPERVIOUS:
-                this.setMoveShortcut(FLAMEBARRIER);
-                break;
-            case FLAMEBARRIER:
-                this.setMove(MOVES[BODYSLAM], BODYSLAM, this.moves.get(BODYSLAM).intent, this.currentBlock);
-                this.moveHistory.remove(this.moveHistory.size() - 1);
-                break;
-
-            case BODYSLAM:
-                this.moveHistory.remove(this.moveHistory.size() - 1);
-            default:
-                if(turnCounter % 5 == 4) {
-                    this.setMoveShortcut(LIMITBREAK);
-                } else if(this.turnCounter % 7 == 6) {
-                    this.setMoveShortcut(DISARM);
-                } else {
-                    ArrayList<Byte> possibilities = new ArrayList<>();
-                    possibilities.add(BARRICADE);
-                    possibilities.add(BARRICADE);
-                    possibilities.add(HEMOKINESIS);
-                    possibilities.add(HEMOKINESIS);
-                    possibilities.add(SWORDBOOMERANG);
-                    possibilities.add(SWORDBOOMERANG);
-                    possibilities.add(SWORDBOOMERANG);
-                    possibilities.add(IMMOLATE);
-                    possibilities.add(IMMOLATE);
-                    for(int i = this.moveHistory.size() - 1, found = 0; i >= 0 && found < 2; i--) {
-                        boolean foundThisCycle = false;
-                        int before;
-                        do {
-                            before = possibilities.size();
-                            possibilities.remove(this.moveHistory.get(i));
-                            if(!foundThisCycle && possibilities.size() != before) {
-                                found++;
-                                foundThisCycle = true;
-                            }
-                        } while(before != possibilities.size());
+        if(turnCounter > 0 && !this.hasPower(BarricadePower.POWER_ID)) {
+            this.setMoveShortcut(BARRICADE);
+        } else if(turnCounter % 5 == 4) {
+            this.setMoveShortcut(LIMITBREAK);
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, CuccoSwarmPower.POWER_ID));
+        } else if(this.turnCounter % 7 == 6) {
+            this.setMoveShortcut(DISARM);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            possibilities.add(HEMOKINESIS);
+            possibilities.add(HEMOKINESIS);
+            possibilities.add(SWORDBOOMERANG);
+            possibilities.add(SWORDBOOMERANG);
+            possibilities.add(SWORDBOOMERANG);
+            possibilities.add(IMMOLATE);
+            possibilities.add(IMMOLATE);
+            possibilities.add(FLAMEBARRIER);
+            possibilities.add(FLAMEBARRIER);
+            possibilities.add(IMPERVIOUS);
+            for(int i = 0; i < this.currentBlock / 20; i++) {
+                possibilities.add(BODYSLAM);
+            }
+            for(int i = this.moveHistory.size() - 1, found = 0; i >= 0 && found < 2; i--) {
+                boolean foundThisCycle = false;
+                int before;
+                do {
+                    before = possibilities.size();
+                    possibilities.remove(this.moveHistory.get(i));
+                    if(!foundThisCycle && possibilities.size() != before) {
+                        found++;
+                        foundThisCycle = true;
                     }
-                    this.setMoveShortcut(possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1)));
-                }
-                if(!this.moveHistory.isEmpty() && this.moveHistory.get(this.moveHistory.size() - 1) == BODYSLAM) {
-                    this.moveHistory.remove(this.moveHistory.size() - 1);
-                }
+                } while(before != possibilities.size());
+            }
+            this.setMoveShortcut(possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1)));
         }
     }
 
@@ -274,7 +263,7 @@ public class IronCluck extends CustomMonster {
         }
 
         if(this.nextMove == BODYSLAM) {
-            this.setMove(BODYSLAM, this.moves.get(BODYSLAM).intent, this.currentBlock);
+            this.setMove(MOVES[BODYSLAM], BODYSLAM, this.moves.get(BODYSLAM).intent, this.currentBlock);
             this.createIntent();
         }
     }
@@ -284,9 +273,11 @@ public class IronCluck extends CustomMonster {
     public void changeState(String statename) {
         switch(statename) {
             case COMMENCE_CHICKENS:
-                EnemyMoveInfo info = this.moves.get(CUCCOSWARM);
-                this.setMove(CUCCOSWARM, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-                this.createIntent();
+                if(!this.hasPower(StunMonsterPower.POWER_ID)) {
+                    EnemyMoveInfo info = this.moves.get(CUCCOSWARM);
+                    this.setMove(CUCCOSWARM, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
+                    this.createIntent();
+                }
                 break;
         }
     }
