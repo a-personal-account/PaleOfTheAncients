@@ -7,6 +7,7 @@ import com.esotericsoftware.spine.Bone;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,7 +19,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.UnawakenedPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import com.megacrit.cardcrawl.vfx.AwakenedWingParticle;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
@@ -139,11 +139,14 @@ public class WokeCultist extends Cultist {
     @Override
     public void die() {
         if(!this.reborn) {
-            this.setMove((byte)255, Intent.UNKNOWN);
-            this.createIntent();
-            this.halfDead = true;
+            if(!this.halfDead) {
+                this.setMove((byte) 255, Intent.UNKNOWN);
+                this.createIntent();
+                this.halfDead = true;
 
-            PaleOfTheAncients.deathTriggers(this);
+                AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(this));
+                PaleOfTheAncients.deathTriggers(this);
+            }
         } else {
             super.die();
         }

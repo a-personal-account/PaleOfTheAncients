@@ -154,22 +154,23 @@ public class IronCluck extends CustomMonster {
                 }
                 break;
 
-            case LIMITBREAK:
+            case LIMITBREAK: {
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new InflameEffect(this)));
-                AbstractPower strength = this.getPower(StrengthPower.POWER_ID);
-                AbstractPower gainstrength = this.getPower(GainStrengthPower.POWER_ID);
-                if(strength != null) {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, strength.amount), strength.amount));
+                int strength = 0;
+                if(this.hasPower(StrengthPower.POWER_ID)) {
+                    strength += this.getPower(StrengthPower.POWER_ID).amount;
                 }
-                if(gainstrength != null) {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GainStrengthPower(this, gainstrength.amount), gainstrength.amount));
+                if(this.hasPower(GainStrengthPower.POWER_ID)) {
+                    strength += this.getPower(GainStrengthPower.POWER_ID).amount;
                 }
+                if (strength == 0) {
+                    strength = STARTING_STRENGTH;
+                }
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, strength), strength));
 
-                if(strength == null && gainstrength == null) {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, STARTING_STRENGTH), STARTING_STRENGTH));
-                }
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CuccoSwarmPower(this, 50 + strength.amount)));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CuccoSwarmPower(this, 50 + strength)));
                 break;
+            }
             case HEMOKINESIS:
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new HemokinesisEffect(this.hb.cX, this.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

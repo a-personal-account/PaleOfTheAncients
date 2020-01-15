@@ -1,5 +1,6 @@
 package paleoftheancients.donudeca.monsters;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.donudeca.powers.FormShiftPower;
 import paleoftheancients.donudeca.powers.LifestealPower;
+import paleoftheancients.relics.SoulOfTheShapes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -216,6 +218,12 @@ public class DonuDeca extends AbstractMonster {
             this.state.setAnimation(0, "Hit" + this.animationsuffix, false);
             this.state.addAnimation(0, "Idle" + this.animationsuffix, true, 0.0F);
         }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        CustomDungeon.addRelicReward(SoulOfTheShapes.ID);
+        super.die(triggerRelics);
     }
 
     static {

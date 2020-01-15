@@ -179,6 +179,7 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheHexaghost(), RelicType.SHARED);
         BaseMod.addRelic(new BlurryLens(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShrineMaiden(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheShapes(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

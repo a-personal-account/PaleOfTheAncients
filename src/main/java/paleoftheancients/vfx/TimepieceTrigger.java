@@ -87,12 +87,12 @@ public class TimepieceTrigger extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         sb.setColor(color);
         sb.setBlendFunction(770, 1);
-        float width = clockface.getWidth() * this.scale;
-        float height = clockface.getHeight() * this.scale;
+        float width = clockface.getWidth();
+        float height = clockface.getHeight();
         sb.draw(clockface, this.target.drawX - width / 2, this.target.hb.cY - height / 2, width / 2, height / 2, width, height, this.scale, this.scale, 0, 0, 0, clockface.getWidth(), clockface.getHeight(), false, false);
 
-        width = clockhand.getWidth() * this.scale;
-        height = clockhand.getHeight() * this.scale;
+        width = clockhand.getWidth();
+        height = clockhand.getHeight();
         sb.draw(clockhand, this.target.drawX - width / 2, this.target.hb.cY, width / 2, 0, width, height, this.scale, this.scale, (float)Math.toDegrees(minutePhase), 0, 0, clockhand.getWidth(), clockhand.getHeight(), false, false);
 
         final float hourhand = 0.9F;

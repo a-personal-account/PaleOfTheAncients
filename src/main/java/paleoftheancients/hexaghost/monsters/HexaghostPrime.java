@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
@@ -22,8 +23,14 @@ public class HexaghostPrime extends CustomMonster {
 
     public HexaghostPrime() {
         super("", ID, 1200, 20.0F, 0.0F, 150.0F, 0.0F, PaleMod.assetPath("images/misc/emptypixel.png"));
-        this.drawY += 180F;
+        this.drawY += 140F;
         this.type = EnemyType.BOSS;
+        if(AbstractDungeon.ascensionLevel >= 9) {
+            this.setHp(this.maxHealth + 300);
+        }
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            this.setHp(this.maxHealth + 300);
+        }
     }
 
     @Override
@@ -39,7 +46,7 @@ public class HexaghostPrime extends CustomMonster {
         HexaghostFamiliar tmp;
         Vector2[] points = HexaghostPositions();
         for(int i = 0; i < points.length; i++) {
-            tmp = new HexaghostFamiliar(this, this.drawX + points[i].x * 1.5F, this.drawY + points[i].y * 1.5F);
+            tmp = new HexaghostFamiliar(this, this.drawX + points[i].x * 1.3F * Settings.scale, this.drawY + points[i].y * 1.3F * Settings.scale);
             familiars.add(tmp);
             tmp.powers.add(new HexaghostPower(tmp));
         }

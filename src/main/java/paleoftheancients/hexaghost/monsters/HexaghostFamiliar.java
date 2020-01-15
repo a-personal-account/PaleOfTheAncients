@@ -59,7 +59,16 @@ public class HexaghostFamiliar extends Hexaghost {
     @Override
     public void die(boolean triggerRelics) {
         if(this.owner.currentHealth > 0) {
-            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
+            if(AbstractDungeon.ascensionLevel >= 19) {
+                this.maxHealth += 10;
+            }
+            if(AbstractDungeon.ascensionLevel >= 9) {
+                this.maxHealth += 10;
+            }
+            if(AbstractDungeon.ascensionLevel >= 4) {
+                this.maxHealth += 10;
+            }
+            AbstractDungeon.actionManager.addToTop(new HealAction(this, this, this.maxHealth));
             this.owner.damage(new DamageInfo(this, this.maxHealth, DamageInfo.DamageType.HP_LOSS));
 
             PaleOfTheAncients.deathTriggers(this);
