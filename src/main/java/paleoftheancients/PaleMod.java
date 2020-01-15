@@ -3,6 +3,7 @@ package paleoftheancients;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.ReflectionHacks;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -67,7 +68,7 @@ public class PaleMod implements
         BaseMod.subscribe(new PaleMod());
         BreadCrumbs.initialize();
         ElitesSlain.initialize();
-        Color SHOWMAN_PURPLE = CardHelper.getColor(143.0F, 109.0F, 237.0F);
+        Color SHOWMAN_PURPLE = CardHelper.getColor(143, 109, 237);
         BaseMod.addColor(TheShowmanBoss.Enums.PALE_COLOR_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, PaleMod.assetPath("images/TheShowman/512/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/1024/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/512/card_small_orb.png"));
     }
 
@@ -243,4 +244,7 @@ public class PaleMod implements
         }
     }
 
+    public static String getCardName(Class clz) {
+        return ((CardStrings) ReflectionHacks.getPrivateStatic(clz, "cardStrings")).NAME;
+    }
 }

@@ -694,21 +694,21 @@ public class TheDefectBoss extends AbstractMonster {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = Defect.NAMES[0];
         MOVES = new String[]{
-                Rainbow.NAME,
-                BallLightning.NAME,
-                Consume.NAME,
-                Darkness.NAME + '+',
-                ((CardStrings) ReflectionHacks.getPrivateStatic(LockOn.class, "cardStrings")).NAME,
-                Sunder.NAME,
-                Tempest.NAME,
-                CoreSurge.NAME,
-                MultiCast.NAME,
-                ThunderStrike.NAME,
-                EchoForm.NAME,
-                Barrage.NAME,
-                Fission.NAME + '+',
-                MeteorStrike.NAME,
-                Chaos.NAME
+                PaleMod.getCardName(Rainbow.class),
+                PaleMod.getCardName(BallLightning.class),
+                PaleMod.getCardName(Consume.class),
+                PaleMod.getCardName(Darkness.class) + '+',
+                PaleMod.getCardName(LockOn.class),
+                PaleMod.getCardName(Sunder.class),
+                PaleMod.getCardName(Tempest.class),
+                PaleMod.getCardName(CoreSurge.class),
+                PaleMod.getCardName(MultiCast.class),
+                PaleMod.getCardName(ThunderStrike.class),
+                PaleMod.getCardName(EchoForm.class),
+                PaleMod.getCardName(Barrage.class),
+                PaleMod.getCardName(Fission.class) + '+',
+                PaleMod.getCardName(MeteorStrike.class),
+                PaleMod.getCardName(Chaos.class)
         };
         DIALOG = monsterStrings.DIALOG;
     }

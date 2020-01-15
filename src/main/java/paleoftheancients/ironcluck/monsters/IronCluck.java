@@ -288,15 +288,15 @@ public class IronCluck extends CustomMonster {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
         NAME = monsterStrings.NAME;
         MOVES = new String[] {
-                Barricade.NAME,
-                BodySlam.NAME,
-                Impervious.NAME,
-                LimitBreak.NAME,
-                Hemokinesis.NAME,
-                Disarm.NAME,
-                Immolate.NAME,
-                SwordBoomerang.NAME,
-                FlameBarrier.NAME,
+                PaleMod.getCardName(Barricade.class),
+                PaleMod.getCardName(BodySlam.class),
+                PaleMod.getCardName(Impervious.class),
+                PaleMod.getCardName(LimitBreak.class),
+                PaleMod.getCardName(Hemokinesis.class),
+                PaleMod.getCardName(Disarm.class),
+                PaleMod.getCardName(Immolate.class),
+                PaleMod.getCardName(SwordBoomerang.class),
+                PaleMod.getCardName(FlameBarrier.class),
         };
         DIALOG = monsterStrings.DIALOG;
     }

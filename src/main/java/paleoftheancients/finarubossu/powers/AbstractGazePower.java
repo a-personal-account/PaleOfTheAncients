@@ -61,7 +61,7 @@ public abstract class AbstractGazePower extends NRPower {
     public void onDeath() {
         for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Eye && !mo.isDeadOrEscaped() && !mo.halfDead) {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, this.owner, new RitualPower(mo, demonform), demonform));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, this.owner, new RitualPower(mo, demonform, false), demonform));
             }
         }
     }

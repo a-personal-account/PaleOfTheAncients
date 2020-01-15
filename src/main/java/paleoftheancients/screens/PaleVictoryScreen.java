@@ -55,7 +55,7 @@ public abstract class PaleVictoryScreen {
     protected AbstractGameAction.AttackEffect[] attacks;
 
     public PaleVictoryScreen() {
-        this.font = FontHelper.deckBannerFont;
+        this.font = FontHelper.panelNameFont;
         this.x = (float) Settings.WIDTH / 2.0F;
         this.y = (float)Settings.HEIGHT / 2.0F;
         this.wordTimer = 1.0F;

@@ -1,5 +1,6 @@
 package paleoftheancients.theshowman.misc;
 
+import com.megacrit.cardcrawl.localization.CardStrings;
 import paleoftheancients.PaleMod;
 import paleoftheancients.theshowman.bosscards.AbstractShowmanCard;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
@@ -13,7 +14,7 @@ public class ShowmanDazed extends AbstractShowmanCard {
     public static final String ID = PaleMod.makeID("ShowmanDazed");
 
     public ShowmanDazed(TheShowmanBoss owner) {
-        super(ID, Dazed.NAME, (String)null, -2, Dazed.DESCRIPTION, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE, owner, AbstractMonster.Intent.NONE);
+        super(ID, PaleMod.getCardName(Dazed.class), (String)null, -2, ((CardStrings) ReflectionHacks.getPrivateStatic(Dazed.class, "cardStrings")).DESCRIPTION, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE, owner, AbstractMonster.Intent.NONE);
         this.color = CardColor.COLORLESS;
         this.isEthereal = true;
 
