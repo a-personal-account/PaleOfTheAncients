@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.reimu.actions.PersuasionNeedleAction;
+import paleoftheancients.reimu.actions.WaitOnVFXAction;
 import paleoftheancients.reimu.powers.HakureiShrineMaidenPower;
 import paleoftheancients.reimu.powers.Position;
 import paleoftheancients.reimu.util.ReimuUserInterface;
@@ -231,7 +232,7 @@ public class Reimu extends CustomMonster {
             lockAnimation = true;
             this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
             CustomDungeon.addRelicReward(SoulOfTheShrineMaiden.ID);
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new TouhouDeathVFX(this), 1.5F));
+            AbstractDungeon.actionManager.addToBottom(new WaitOnVFXAction(new TouhouDeathVFX(this)));
             AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -257,6 +258,7 @@ public class Reimu extends CustomMonster {
     }
 
     private void delayedDie(boolean triggerRelics) {
+        this.halfDead = false;
         super.die(triggerRelics);
     }
 

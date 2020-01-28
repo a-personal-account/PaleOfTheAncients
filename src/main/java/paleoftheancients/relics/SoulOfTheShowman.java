@@ -1,11 +1,9 @@
 package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
@@ -39,23 +37,7 @@ public class SoulOfTheShowman extends CustomRelic {
 
             default:
                 this.flash();
-                AbstractCard tmp = card.makeSameInstanceOf();
-                AbstractDungeon.player.limbo.addToBottom(tmp);
-                tmp.current_x = card.current_x;
-                tmp.current_y = card.current_y;
-                tmp.target_x = (float) Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-                tmp.target_y = (float)Settings.HEIGHT / 2.0F;
-                if (tmp.cost > 0) {
-                    tmp.freeToPlayOnce = true;
-                }
-
-                AbstractMonster m = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
-                if (m != null) {
-                    tmp.calculateCardDamage(m);
-                }
-
-                tmp.purgeOnUse = true;
-                AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(tmp, m, card.energyOnUse, true));
+                GameActionManager.queueExtraCard(card, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true));
                 break;
         }
     }

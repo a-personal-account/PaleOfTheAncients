@@ -1,8 +1,10 @@
 package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
@@ -34,7 +36,7 @@ public class SoulOfTheHexaghost extends CustomRelic {
             this.flash();
             this.stopPulse();
             for(int i = 1; i < 6; i++) {
-                SoulOfTheDefect.copyCard(card, action);
+                GameActionManager.queueExtraCard(card, (AbstractMonster) action.target);
             }
         } else if(counter == 35) {
             this.beginLongPulse();
