@@ -1,6 +1,5 @@
 package paleoftheancients.reimu.util;
 
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +11,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import paleoftheancients.PaleMod;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
-import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.monsters.Reimu;
 import paleoftheancients.reimu.powers.DeathBombPower;
 
@@ -59,9 +57,6 @@ public class ReimuUserInterface {
 
         bombhitbox.update();
         liveshitbox.update();
-        if(liveshitbox.hovered) {
-            BaseMod.logger.error("-------------------------------");
-        }
     }
 
     public void render(SpriteBatch sb) {

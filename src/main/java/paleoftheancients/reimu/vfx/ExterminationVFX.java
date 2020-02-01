@@ -1,6 +1,5 @@
 package paleoftheancients.reimu.vfx;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,7 +17,6 @@ public class ExterminationVFX extends NeedleAttackVFX {
 
     @Override
     protected void needleFinished(Needle n) {
-        BaseMod.logger.error(360F - n.getRotation());
         AbstractDungeon.effectsQueue.add(new ExterminationAfterVFX(n.x, n.y, 360F - n.getRotation()));
     }
 

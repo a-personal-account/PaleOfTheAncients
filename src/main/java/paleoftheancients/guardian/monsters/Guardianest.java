@@ -1,8 +1,5 @@
 package paleoftheancients.guardian.monsters;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.guardian.powers.EnemyDemonForm;
-import paleoftheancients.guardian.powers.GuardianLinkedPower;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -17,6 +14,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ModeShiftPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.guardian.powers.EnemyDemonForm;
+import paleoftheancients.guardian.powers.GuardianLinkedPower;
+import paleoftheancients.relics.SoulOfTheGuardian;
 
 public class Guardianest extends TheGuardian {
     public static String ID = PaleMod.makeID("Guardianest");
@@ -95,5 +97,11 @@ public class Guardianest extends TheGuardian {
                 }
             });
         }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        PaleOfTheAncients.addRelicReward(SoulOfTheGuardian.ID);
+        super.die(triggerRelics);
     }
 }

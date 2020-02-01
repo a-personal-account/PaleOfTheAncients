@@ -87,5 +87,19 @@
       "n #rAttack, gain 3 Dexterity this turn.",
       " #ySkill, gain 3 Strength this turn."
     ]
+  },
+  "paleoftheancients:SoulOfTheGuardian": {
+    "NAME": "Pinecone",
+    "FLAVOR": "Whenever you play a Thorn, gain 3 Skills.",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain #b1 #yThorns. Whenever you play a #ySkill, #rdouble your #yThorns. At the start of your turn, #rlose all #yThorns gained this way."
+    ]
+  },
+  "paleoftheancients:SoulOfTheWokeBloke": {
+    "NAME": "Curiousity",
+    "FLAVOR": "Hated by cardgame players all across the globe.",
+    "DESCRIPTIONS": [
+      "Whenever a #yPower is applied to you, gain #b"," #yStrength."
+    ]
   }
 }

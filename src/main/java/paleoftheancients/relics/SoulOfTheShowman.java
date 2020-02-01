@@ -36,6 +36,9 @@ public class SoulOfTheShowman extends CustomRelic {
                 break;
 
             default:
+                if(card.color == AbstractCard.CardColor.CURSE) {
+                    return;
+                }
                 this.flash();
                 GameActionManager.queueExtraCard(card, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true));
                 break;

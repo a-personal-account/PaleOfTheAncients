@@ -2,6 +2,7 @@ package paleoftheancients;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
 import basemod.ReflectionHacks;
 import basemod.helpers.RelicType;
@@ -11,12 +12,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -39,8 +43,6 @@ import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.reimu.monsters.Reimu;
 import paleoftheancients.relics.*;
-import paleoftheancients.savefields.BreadCrumbs;
-import paleoftheancients.savefields.ElitesSlain;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
@@ -54,6 +56,7 @@ import paleoftheancients.wokeone.monsters.WokeOne;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Properties;
 
 @SpireInitializer
 public class PaleMod implements
@@ -64,12 +67,18 @@ public class PaleMod implements
         EditRelicsSubscriber {
     public static final Logger logger = LogManager.getLogger(PaleMod.class.getSimpleName());
 
+    private static Properties configProperties = new Properties();
+    public static boolean skillsOnThorns = true;
+
     public static void initialize() {
         BaseMod.subscribe(new PaleMod());
-        BreadCrumbs.initialize();
-        ElitesSlain.initialize();
         Color SHOWMAN_PURPLE = CardHelper.getColor(143, 109, 237);
         BaseMod.addColor(TheShowmanBoss.Enums.PALE_COLOR_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, SHOWMAN_PURPLE, PaleMod.assetPath("images/TheShowman/512/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/512/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/1024/bg_attack_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_skill_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/bg_power_default_gray.png"), PaleMod.assetPath("images/TheShowman/1024/card_default_gray_orb.png"), PaleMod.assetPath("images/TheShowman/512/card_small_orb.png"));
+    }
+
+    public PaleMod() {
+        configProperties.setProperty("skillsOnThorns", Boolean.toString(skillsOnThorns));
+        loadConfigData();
     }
 
     public static boolean bardLoaded() {
@@ -92,6 +101,16 @@ public class PaleMod implements
         BaseMod.registerModBadge(
                 badgeTexture, "Pale of the Ancients", "Razash",
                 "It's an act 4. It probably sucks.", modPanel);
+
+        modPanel.addUIElement(new ModLabeledToggleButton(
+                CardCrawlGame.languagePack.getRelicStrings(SoulOfTheGuardian.ID).FLAVOR,
+                400.0f, 650.0f, Settings.CREAM_COLOR,
+                FontHelper.charDescFont, skillsOnThorns, modPanel,
+                label -> {},
+                button -> {
+                    skillsOnThorns = button.enabled;
+                    saveConfigData();
+                }));
 
         int before = AbstractDungeon.floorNum;
         AbstractDungeon.floorNum = 5;
@@ -181,6 +200,8 @@ public class PaleMod implements
         BaseMod.addRelic(new BlurryLens(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShrineMaiden(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShapes(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheGuardian(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheWokeBloke(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()
@@ -246,5 +267,27 @@ public class PaleMod implements
 
     public static String getCardName(Class clz) {
         return ((CardStrings) ReflectionHacks.getPrivateStatic(clz, "cardStrings")).NAME;
+    }
+
+    private void loadConfigData() {
+        try {
+            SpireConfig config = new SpireConfig(MOD_ID, "config", configProperties);
+            config.load();
+
+            skillsOnThorns = config.getBool("skillsOnThorns");
+        } catch (Exception e) {
+            e.printStackTrace();
+            saveConfigData();
+        }
+    }
+    private void saveConfigData() {
+        try {
+            SpireConfig config = new SpireConfig(MOD_ID, "config", configProperties);
+            config.setBool("skillsOnThorns", skillsOnThorns);
+
+            config.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

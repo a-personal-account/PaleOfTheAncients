@@ -1,11 +1,13 @@
 package paleoftheancients.wokeone.monsters;
 
-import paleoftheancients.PaleMod;
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.beyond.AwakenedOne;
 import com.megacrit.cardcrawl.powers.CuriosityPower;
 import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.relics.SoulOfTheWokeBloke;
 
 public class WokeOne extends AwakenedOne {
     public static final String ID = PaleMod.makeID("WokeOne");
@@ -21,6 +23,7 @@ public class WokeOne extends AwakenedOne {
 
     @Override
     public void die() {
+        CustomDungeon.addRelicReward(SoulOfTheWokeBloke.ID);
         super.die(true);
     }
 }
