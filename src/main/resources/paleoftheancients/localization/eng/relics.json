@@ -92,7 +92,7 @@
     "NAME": "Pinecone",
     "FLAVOR": "Whenever you play a Thorn, gain 3 Skills.",
     "DESCRIPTIONS": [
-      "At the start of combat, gain #b1 #yThorns. Whenever you play a #ySkill, #rdouble your #yThorns. At the start of your turn, #rlose all #yThorns gained this way."
+      "At the start of combat, gain #b"," #yThorns. Whenever you play a #ySkill, #rdouble your #yThorns. At the start of your turn, #rlose all #yThorns gained this way."
     ]
   },
   "paleoftheancients:SoulOfTheWokeBloke": {
@@ -100,6 +100,22 @@
     "FLAVOR": "Hated by cardgame players all across the globe.",
     "DESCRIPTIONS": [
       "Whenever a #yPower is applied to you, gain #b"," #yStrength."
+    ]
+  },
+  "paleoftheancients:SoulOfTheBard": {
+    "NAME": "Polished Lamp",
+    "FLAVOR": "Grants a Wish. Not to be confused with a Fish, Dish or Lish.",
+    "DESCRIPTIONS": [
+      "At the beginning of combat, choose a #yrare Attack or Skill, put it into your hand. It costs #b1 less."
+    ]
+  },
+  "paleoftheancients:SoulOfTheCollector": {
+    "NAME": "Bottled Champ",
+    "FLAVOR": "In case of CHAMP, break glass.",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose #b2 Attacks and/or Skills in your deck. When playing one of them, play the other as well.",
+      "Choose 2 cards to link.",
+      " Contains "," and "
     ]
   }
 }

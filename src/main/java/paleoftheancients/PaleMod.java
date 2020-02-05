@@ -202,6 +202,8 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheShapes(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheGuardian(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheWokeBloke(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheBard(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheCollector(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

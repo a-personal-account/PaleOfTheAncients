@@ -396,20 +396,13 @@ public class TheVixenBoss extends CustomMonster {
                 break;
             case STRUGGLE_CONST:
                 this.useFastAttackAnimation();
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, tmp, AbstractGameAction.AttackEffect.SMASH));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, tmp, AbstractGameAction.AttackEffect.NONE));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(this, new DamageInfo(this, this.maxHealth / 4, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH));
                 break;
             case CLEARSKY_CONST:
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ClearSkyPower(this, 99)));
             case SYNERGYBURST_CONST:
-                if(!this.hasPower(SynergyBurstPower.POWER_ID)) {
-                    AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningEffect(this.drawX, this.drawY), 0.1F));
-                    AbstractDungeon.actionManager.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SynergyBurstPower(this)));
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new GhostIgniteEffect(this.hb.cX, this.hb.cY), 0.4F));
-                    AbstractDungeon.actionManager.addToBottom(
-                            new ApplyPowerAction(this, this, new StrengthPower(this, this.synergyburst), this.synergyburst));
-                }
+                applySynergyBurst();
             case ENDURE_CONST:
                 if(!this.hasPower(EndurePower.POWER_ID)) {
                     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, this.endure));
@@ -773,6 +766,17 @@ public class TheVixenBoss extends CustomMonster {
         if(this.nextMove == FACADE_CONST) {
             this.setMove(MOVES[FACADE_CONST], FACADE_CONST, intents.get(FACADE_CONST), this.damagevalues.get(FACADE_CONST), ReduceDebuffDurationAction.getCommonDebuffCount(this, false) + 2, true);
             this.createIntent();
+        }
+    }
+
+    public void applySynergyBurst() {
+        if(!this.hasPower(SynergyBurstPower.POWER_ID)) {
+            AbstractDungeon.actionManager.addToTop(
+                    new ApplyPowerAction(this, this, new StrengthPower(this, this.synergyburst), this.synergyburst));
+            AbstractDungeon.actionManager.addToTop(new VFXAction(new GhostIgniteEffect(this.hb.cX, this.hb.cY), 0.4F));
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this, this, new SynergyBurstPower(this)));
+            AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningEffect(this.drawX, this.drawY), 0.1F));
+            AbstractDungeon.actionManager.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
         }
     }
 

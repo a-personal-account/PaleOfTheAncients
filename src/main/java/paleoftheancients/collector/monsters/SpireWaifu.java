@@ -26,6 +26,8 @@ import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.collector.powers.PocketFactoryPower;
 import paleoftheancients.collector.vfx.BloodyChair;
+import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.relics.SoulOfTheCollector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -138,6 +140,7 @@ public class SpireWaifu extends TheCollector {
 
     @Override
     public void die(boolean triggerRelics) {
+        PaleOfTheAncients.addRelicReward(SoulOfTheCollector.ID);
         for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!m.isDead && !m.isDying && m != this) {
                 AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));

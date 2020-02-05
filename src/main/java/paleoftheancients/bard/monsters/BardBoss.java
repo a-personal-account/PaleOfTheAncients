@@ -1,5 +1,6 @@
 package paleoftheancients.bard.monsters;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.esotericsoftware.spine.AnimationState;
@@ -27,6 +28,7 @@ import paleoftheancients.bard.melodies.AbstractMelody;
 import paleoftheancients.bard.notes.*;
 import paleoftheancients.bard.powers.*;
 import paleoftheancients.bard.vfx.LifeDrainEffect;
+import paleoftheancients.relics.SoulOfTheBard;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -223,6 +225,7 @@ public class BardBoss extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
+        CustomDungeon.addRelicReward(SoulOfTheBard.ID);
         AbstractDungeon.actionManager.addToTop(new SuicideAction(notequeue));
         super.die(triggerRelics);
     }

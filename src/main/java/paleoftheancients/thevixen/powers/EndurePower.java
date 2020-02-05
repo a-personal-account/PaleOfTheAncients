@@ -1,5 +1,6 @@
 package paleoftheancients.thevixen.powers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -57,7 +58,16 @@ public class EndurePower extends AbstractTheVixenPower {
 
                 AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, info.owner, this));
                 if (this.owner instanceof TheVixenBoss) {
-                    ((TheVixenBoss) this.owner).oneHP = true;
+                    AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            this.isDone = true;
+                            ((TheVixenBoss) owner).oneHP = true;
+                            ((TheVixenBoss) owner).rollMove();
+                            ((TheVixenBoss) owner).createIntent();
+                        }
+                    });
+                    ((TheVixenBoss) this.owner).applySynergyBurst();
                 }
             }
         }

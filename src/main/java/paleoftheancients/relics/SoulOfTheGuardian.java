@@ -22,6 +22,7 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
     private static final LandingSound SOUND = LandingSound.FLAT;
 
     private boolean fromThisRelic = true;
+    private final int THORNS = 1;
 
     public SoulOfTheGuardian() {
         super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/guardian.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/guardian.png")), TIER, SOUND);
@@ -29,7 +30,7 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
 
     @Override
     public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
+        return DESCRIPTIONS[0] + THORNS + DESCRIPTIONS[1];
     }
 
     @Override
@@ -63,7 +64,7 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
     public void atBattleStart() {
         this.flash();
         AbstractDungeon.actionManager.addToBottom(new SetFromRelicAction(true));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ThornsPower(AbstractDungeon.player, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ThornsPower(AbstractDungeon.player, THORNS), THORNS));
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {

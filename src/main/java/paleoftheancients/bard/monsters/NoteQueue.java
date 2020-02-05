@@ -57,7 +57,7 @@ public class NoteQueue extends CustomMonster {
 
     @Override
     public void takeTurn() {
-        if(this.owner.nextMove != BardBoss.RHAPSODY) {
+        if(this.owner.currentHealth >= 0 && this.owner.nextMove != BardBoss.RHAPSODY) {
             if(this.owner.hasPower(SonataPower.POWER_ID)) {
                 AbstractDungeon.actionManager.addToBottom(new PerformAllMelodiesAction(this));
             } else {
