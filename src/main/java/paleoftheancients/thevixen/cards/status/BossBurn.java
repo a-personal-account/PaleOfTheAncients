@@ -1,7 +1,5 @@
 package paleoftheancients.thevixen.cards.status;
 
-import basemod.BaseMod;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -35,8 +33,8 @@ public class BossBurn extends AbstractCard {
         super(ID, NAME, IMG_PATH, COST, getBaseDescription(), TYPE, CardColor.CURSE, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        if(this.timesUpgraded > 0) {
-            if(this.timesUpgraded > 1) {
+        if(timesUpgraded > 0) {
+            if(timesUpgraded > 1) {
                 this.upgradeMagicNumber(timesUpgraded - 1);
                 this.timesUpgraded = timesUpgraded - 1;
             }

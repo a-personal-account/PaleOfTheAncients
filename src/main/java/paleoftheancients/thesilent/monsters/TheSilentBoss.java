@@ -6,22 +6,20 @@ import com.esotericsoftware.spine.AnimationState.TrackEntry;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.characters.TheSilent;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import paleoftheancients.PaleMod;
@@ -53,13 +51,14 @@ public class TheSilentBoss extends CustomMonster {
 
     private static final byte CATALYST_CONST = 11;
 
+    private static final byte DEAD = 12;
+
     public static final String ID = PaleMod.makeID("TheSilent");
     private static final MonsterStrings monsterStrings;
     public static final String NAME;
     public static final String[] MOVES;
     public static final String[] DIALOG;
-    public static final int HP = 550;
-    public static final int A_2_HP = 600;
+
 
     private static final int CORROSION = 1;
     private static final int A_9_CORROSION = 2;
@@ -121,12 +120,12 @@ public class TheSilentBoss extends CustomMonster {
     private ArrayList<Byte> cycletracker = new ArrayList<>();
 
     public TheSilentBoss() {
-        super(NAME, ID, 550, 0.0F, -15.0F, 300.0F, 230.0F, (String)null, 0.0F, 0.0F);
+        super(NAME, ID, 530, 0.0F, -15.0F, 300.0F, 230.0F, (String)null, 0.0F, 0.0F);
         this.dialogX = -30.0F * Settings.scale;
         this.dialogY = 30.0F * Settings.scale;
         this.type = EnemyType.BOSS;
         if (AbstractDungeon.ascensionLevel >= 9) {
-            this.setHp(A_2_HP);
+            this.currentHealth /= 2;
             this.blockAmt = A_9_BLOCK_AMT;
             this.corrosion = A_9_CORROSION;
             this.encorrosion = A_9_ENCORROSION;
@@ -135,7 +134,6 @@ public class TheSilentBoss extends CustomMonster {
             this.storm_damage = A_9_STORM_DAMAGE;
             this.wraith = A_9_WRAITH;
         } else {
-            this.setHp(HP);
             this.blockAmt = BLOCK_AMT;
             this.corrosion = CORROSION;
             this.encorrosion = ENCORROSION;
@@ -180,6 +178,8 @@ public class TheSilentBoss extends CustomMonster {
         this.moves.put(GRANDFINALE_CONST, new EnemyMoveInfo(GRANDFINALE_CONST, Intent.ATTACK, this.finale, 0, false));
         this.moves.put(WRAITHFORM_CONST, new EnemyMoveInfo(WRAITHFORM_CONST, Intent.BUFF, -1, 0, false));
         this.moves.put(CATALYST_CONST, new EnemyMoveInfo(CATALYST_CONST, Intent.STRONG_DEBUFF, -1, 0, false));
+
+        this.moves.put(DEAD, new EnemyMoveInfo(DEAD, Intent.NONE, -1, 0, false));
 
         this.loadAnimation("images/characters/theSilent/idle/skeleton.atlas", "images/characters/theSilent/idle/skeleton.json", 1.0F);
         TrackEntry e = this.state.setAnimation(0, "Idle", true);
@@ -284,6 +284,22 @@ public class TheSilentBoss extends CustomMonster {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new CorrosionPower(AbstractDungeon.player, amount), amount));
                 }
                 break;
+
+
+            case DEAD: {
+                PaleNemesis pn = new PaleNemesis();
+                AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(pn, false));
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Insight(), 1));
+                AbstractPower p = this.getPower(CorrosiveFumesPower.POWER_ID);
+                if(p != null) {
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(pn, this, new CorrosiveFumesPower(pn, p.amount), p.amount));
+                }
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(pn, pn, new IntangiblePower(pn, 1), 1));
+                AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
+                this.halfDead = false;
+                super.die(false);
+                break;
+            }
         }
 
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -316,17 +332,6 @@ public class TheSilentBoss extends CustomMonster {
 
             case 1:
                 if(this.currentHealth < this.maxHealth / 2) {
-                    /*if(AbstractDungeon.ascensionLevel >= 9) {
-                        if(this.wraith == 0) {
-                            move = CATALYST_CONST;
-                            this.threshold = 2;
-                        } else {
-                            move = WRAITHFORM_CONST;
-                        }
-                    } else {
-                        this.threshold = 2;
-                        move = WRAITHFORM_CONST;
-                    }*/
                     this.threshold = 2;
                     move = WRAITHFORM_CONST;
                     break;
@@ -396,10 +401,19 @@ public class TheSilentBoss extends CustomMonster {
         }
     }
 
-    public void die() {
-        PaleOfTheAncients.addRelicReward(SoulOfTheSilent.ID);
-        AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[(int)(Math.random() * 6) + 3]));
-        super.die();
+    public void die(boolean triggerRelics) {
+        if(AbstractDungeon.ascensionLevel >= 9) {
+            this.halfDead = true;
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+            this.setMoveShortcut(DEAD);
+            this.createIntent();
+            this.dispose();
+            this.img = ImageMaster.loadImage("images/characters/theSilent/corpse.png");
+        } else {
+            PaleOfTheAncients.addRelicReward(SoulOfTheSilent.ID);
+            AbstractDungeon.actionManager.addToTop(new TalkAction(this, DIALOG[(int) (Math.random() * 6) + 3]));
+            super.die(triggerRelics);
+        }
     }
 
     static {
@@ -417,7 +431,8 @@ public class TheSilentBoss extends CustomMonster {
                 PaleMod.getCardName(LegSweep.class),
                 PaleMod.getCardName(GrandFinale.class),
                 PaleMod.getCardName(WraithForm.class),
-                PaleMod.getCardName(Catalyst.class)
+                PaleMod.getCardName(Catalyst.class),
+                ""
         };
         DIALOG = monsterStrings.DIALOG;
     }
