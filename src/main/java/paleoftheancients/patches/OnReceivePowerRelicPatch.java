@@ -18,7 +18,7 @@ public class OnReceivePowerRelicPatch {
             AbstractPower pow = (AbstractPower) ReflectionHacks.getPrivate(__instance, ApplyPowerAction.class, "powerToApply");
             for(final AbstractRelic relic : AbstractDungeon.player.relics) {
                 if(relic instanceof OnReceivePowerRelic) {
-                    relic.onTrigger();
+                    ((OnReceivePowerRelic) relic).onTrigger(pow);
                 }
             }
         }

@@ -41,7 +41,7 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(card.type == AbstractCard.CardType.SKILL) {
             AbstractPower pow = AbstractDungeon.player.getPower(ThornsPower.POWER_ID);
-            if(pow != null) {
+            if(pow != null && pow.amount < 1000000000) {
                 this.flash();
                 this.counter += pow.amount;
                 pow.amount *= 2;
@@ -75,8 +75,8 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
     }
 
     @Override
-    public void onTrigger() {
-        if(!this.fromThisRelic && PaleMod.skillsOnThorns) {
+    public void onTrigger(AbstractPower power) {
+        if(!this.fromThisRelic && PaleMod.skillsOnThorns && power.ID == ThornsPower.POWER_ID) {
             for(int i = 0; i < 3; ++i) {
                 AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.SKILL).makeCopy();
                 if (card.cost > 0) {

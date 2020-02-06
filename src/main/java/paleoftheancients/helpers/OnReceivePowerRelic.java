@@ -1,5 +1,7 @@
 package paleoftheancients.helpers;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+
 public interface OnReceivePowerRelic {
-    void onTrigger();
+    void onTrigger(AbstractPower power);
 }

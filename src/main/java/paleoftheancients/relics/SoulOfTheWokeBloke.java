@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -40,7 +41,7 @@ public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRel
     }
 
     @Override
-    public void onTrigger() {
+    public void onTrigger(AbstractPower power) {
         if(active) {
             active = false;
             this.addToTop(new AbstractGameAction() {
@@ -64,7 +65,7 @@ public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRel
             if (this.fireTimer < 0.0F) {
                 this.fireTimer = 0.1F;
                 AbstractGameEffect age = new WokeBlokeRelicEye(this.currentX, this.currentY, 0.3F * (this.hb.hovered ? 2F : 1F));
-                AbstractDungeon.effectList.add(age);
+                AbstractDungeon.topLevelEffects.add(age);
             }
         }
     }
