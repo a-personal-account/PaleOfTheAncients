@@ -3,8 +3,10 @@ package paleoftheancients.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnReceivePowerRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -14,7 +16,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.helpers.OnReceivePowerRelic;
 
 public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheWokeBloke");
@@ -41,7 +42,7 @@ public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRel
     }
 
     @Override
-    public void onTrigger(AbstractPower power) {
+    public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature) {
         if(active) {
             active = false;
             this.addToTop(new AbstractGameAction() {
@@ -53,6 +54,7 @@ public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRel
             });
             this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, STRENGTH), STRENGTH));
         }
+        return true;
     }
 
 

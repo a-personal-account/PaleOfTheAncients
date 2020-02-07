@@ -1,19 +1,20 @@
 package paleoftheancients.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.evacipated.cardcrawl.mod.stslib.relics.OnReceivePowerRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.helpers.OnReceivePowerRelic;
 
 public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheGuardian");
@@ -75,8 +76,8 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
     }
 
     @Override
-    public void onTrigger(AbstractPower power) {
-        if(!this.fromThisRelic && PaleMod.skillsOnThorns && power.ID == ThornsPower.POWER_ID) {
+    public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature) {
+        if(!this.fromThisRelic && PaleMod.skillsOnThorns && abstractPower.ID == ThornsPower.POWER_ID) {
             for(int i = 0; i < 3; ++i) {
                 AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.SKILL).makeCopy();
                 if (card.cost > 0) {
@@ -88,6 +89,7 @@ public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerReli
                 this.addToBot(new MakeTempCardInHandAction(card, 1));
             }
         }
+        return true;
     }
 
     @Override
