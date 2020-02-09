@@ -1,5 +1,7 @@
 package paleoftheancients.donudeca.monsters;
 
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.powers.watcher.EndTurnDeathPower;
 import paleoftheancients.donudeca.actions.SlideCreatureEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -48,6 +50,7 @@ public class Decaer extends Deca {
                 }
                 AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(new DonuDeca(this, donu), false));
                 AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, this, EndTurnDeathPower.POWER_ID));
                 this.spawnedthing = true;
             } else {
                 super.takeTurn();

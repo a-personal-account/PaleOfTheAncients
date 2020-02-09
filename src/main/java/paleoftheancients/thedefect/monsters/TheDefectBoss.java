@@ -1,6 +1,5 @@
 package paleoftheancients.thedefect.monsters;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -21,7 +20,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
@@ -135,7 +133,6 @@ public class TheDefectBoss extends AbstractMonster {
     private int meteorstrike;
 
 
-    private static final int STARTINGORBSLOTS = 3;
     public int maxOrbs;
     private static final int MAXORBSLOTS = 10;
     public int masterMaxOrbs;
@@ -254,6 +251,13 @@ public class TheDefectBoss extends AbstractMonster {
 
         UnlockTracker.markBossAsSeen(NAME);
 
+        int STARTINGORBSLOTS = 3;
+        if(AbstractDungeon.ascensionLevel >= 9) {
+            STARTINGORBSLOTS++;
+        }
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            STARTINGORBSLOTS++;
+        }
         this.increaseMaxOrbSlots(STARTINGORBSLOTS, false);
 
         if(AbstractDungeon.ascensionLevel >= 4) {
@@ -555,7 +559,7 @@ public class TheDefectBoss extends AbstractMonster {
                 }
             }
             if(!possibilities.isEmpty()) {
-                move = possibilities.get(AbstractDungeon.cardRandomRng.random(possibilities.size() - 1));
+                move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             } else {
                 move = CHAOS_CONST;
             }

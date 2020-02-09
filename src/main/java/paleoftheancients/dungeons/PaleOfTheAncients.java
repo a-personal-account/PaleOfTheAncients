@@ -33,6 +33,7 @@ import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
+import paleoftheancients.watcher.monsters.TheWatcher;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         this.addTempMusic(PaleMod.makeID("tellurtownautumn"), PaleMod.assetPath("music/pokken-tellurtownautumn_loop.ogg"));
         this.addTempMusic(PaleMod.makeID("phoenix"), PaleMod.assetPath("music/ffxiv-phoenix_loop.ogg"));
         this.addTempMusic(PaleMod.makeID("finaldream"), PaleMod.assetPath("music/final-dream.ogg"));
+        this.addTempMusic(PaleMod.makeID("thunderrolls"), PaleMod.assetPath("music/ffxiv-thunder_rolls.ogg"));
     }
 
     public PaleOfTheAncients(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
@@ -143,6 +145,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bard.png"), PaleMod.assetPath("images/ui/map/bardOutline.png"), BardBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
+        easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/watcher.png"), PaleMod.assetPath("images/ui/map/watcherOutline.png"), TheWatcher.ID));
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));
         //toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));

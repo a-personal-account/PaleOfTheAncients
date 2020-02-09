@@ -1,6 +1,7 @@
 package paleoftheancients.helpers;
 
 import basemod.abstracts.CustomMonster;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -62,6 +63,15 @@ public abstract class AbstractBossMonster extends CustomMonster {
             info = this.damage.get(0);
             this.damage.remove(0);
             damageInfoSet = false;
+            if(info.base > -1) {
+                this.addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        this.isDone = true;
+                        useFastAttackAnimation();
+                    }
+                });
+            }
         } else {
             info.applyPowers(this, AbstractDungeon.player);
         }
@@ -72,9 +82,19 @@ public abstract class AbstractBossMonster extends CustomMonster {
     public abstract void takeCustomTurn(DamageInfo info, int multiplier);
 
     @Override
+    public void rollMove() {
+        this.getMove(0);
+    }
+    @Override
     protected void getMove(int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>(this.moves.keySet());
-        for(int i = this.moveHistory.size() - 1, found = 0; i >= 0 && found < moves.size() - 2; i--) {
+        this.setMoveShortcut(fromPossibilities( new ArrayList<>(this.moves.keySet())));
+    }
+
+    protected byte fromPossibilities(ArrayList<Byte> possibilities) {
+        return fromPossibilities(possibilities, 2);
+    }
+    protected byte fromPossibilities(ArrayList<Byte> possibilities, int howMany) {
+        for(int i = this.moveHistory.size() - 1, found = 0; i >= 0 && found < moves.size() - howMany; i--) {
             boolean foundThisCycle = false;
             int before;
             do {
@@ -86,7 +106,7 @@ public abstract class AbstractBossMonster extends CustomMonster {
                 }
             } while(before != possibilities.size());
         }
-        this.setMoveShortcut(possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1)));
+        return possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
     }
 
     public void setMoveShortcut(byte next, String text) {
@@ -101,9 +121,21 @@ public abstract class AbstractBossMonster extends CustomMonster {
     }
     private void setDamageInfo(int baseDamage) {
         if(!damageInfoSet) {
-            this.damage.add(0, new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL));
+            this.damage.add(0, new DamageInfo(this, baseDamage, DamageInfo.DamageType.NORMAL));
             damageInfoSet = true;
         }
         this.damage.get(0).base = baseDamage;
+        applyPowers();
+    }
+
+    protected int calcAscensionNumber(float base) {
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            base *= 1.35F;
+        } else if(AbstractDungeon.ascensionLevel >= 9) {
+            base *= 1.20F;
+        } else if(AbstractDungeon.ascensionLevel >= 4) {
+            base *= 1.15F;
+        }
+        return Math.round(base);
     }
 }

@@ -67,4 +67,8 @@ public class AssetLoader {
     public static TextureAtlas NoteAtlas() {
         return loadAtlas(PaleMod.assetPath("images/bard/notes/notes.atlas"));
     }
+
+    public static Texture emptyPixel() {
+        return AssetLoader.loadImage(PaleMod.assetPath("images/misc/emptypixel.png"));
+    }
 }

@@ -117,5 +117,12 @@
       "Choose 2 cards to link.",
       " Contains "," and "
     ]
+  },
+  "paleoftheancients:SoulOfTheWatcher": {
+    "NAME": "Divine Prayer Bead",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "Whenever you draw an extra card, gain #b"," #yMantra."
+    ]
   }
 }

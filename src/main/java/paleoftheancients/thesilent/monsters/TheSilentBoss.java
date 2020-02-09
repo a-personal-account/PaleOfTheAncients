@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.EndTurnDeathPower;
 import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import paleoftheancients.PaleMod;
@@ -205,6 +206,7 @@ public class TheSilentBoss extends CustomMonster {
         DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         if(info.base > -1) {
             info.applyPowers(this, AbstractDungeon.player);
+            this.useFastAttackAnimation();
         }
         int multiplier;
 
@@ -288,6 +290,7 @@ public class TheSilentBoss extends CustomMonster {
 
             case DEAD: {
                 PaleNemesis pn = new PaleNemesis();
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, this, EndTurnDeathPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(pn, false));
                 AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Insight(), 1));
                 AbstractPower p = this.getPower(CorrosiveFumesPower.POWER_ID);

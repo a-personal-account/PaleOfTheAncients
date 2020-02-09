@@ -400,13 +400,13 @@ public class TheVixenBoss extends CustomMonster {
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(this, new DamageInfo(this, this.maxHealth / 4, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH));
                 break;
             case CLEARSKY_CONST:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ClearSkyPower(this, 99)));
+                applyClearSky();
             case SYNERGYBURST_CONST:
                 applySynergyBurst();
             case ENDURE_CONST:
                 if(!this.hasPower(EndurePower.POWER_ID)) {
                     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, this.endure));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EndurePower(this)));
+                    applyEndure();
                 }
                 break;
 
@@ -608,14 +608,11 @@ public class TheVixenBoss extends CustomMonster {
             } else {
                 move = STRUGGLE_CONST;
             }
-        } else if(false && turncounter >= 20 && !usedOverdrive) {
-            move = INFERNOOVERDRIVE_CONST;
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new EndurePower(AbstractDungeon.player)));
-        } else if((this.currentHealth / (float)this.maxHealth <= 0.3F || turncounter >= 15) && !this.hasPower(ClearSkyPower.POWER_ID)) {
+        } else if(turncounter >= 15 && !this.hasPower(ClearSkyPower.POWER_ID)) {
             move = CLEARSKY_CONST;
-        } else if((this.currentHealth / (float)this.maxHealth <= 0.5F || turncounter >= 10) && !this.hasPower(SynergyBurstPower.POWER_ID)) {
+        } else if(turncounter >= 10 && !this.hasPower(SynergyBurstPower.POWER_ID)) {
             move = SYNERGYBURST_CONST;
-        } else if((this.currentHealth / (float)this.maxHealth <= 0.75F || turncounter >= 6) && !this.hasPower(EndurePower.POWER_ID)) {
+        } else if(turncounter >= 6 && !this.hasPower(EndurePower.POWER_ID)) {
             move = ENDURE_CONST;
         } else {
             if(cycletracker.isEmpty()) {
@@ -728,6 +725,17 @@ public class TheVixenBoss extends CustomMonster {
             BraixenAnimation sa = (BraixenAnimation)this.animation;
             sa.damage();
         }
+
+        if((this.currentHealth / (float)this.maxHealth <= 0.3F) && !this.hasPower(ClearSkyPower.POWER_ID)) {
+            applyClearSky();
+        }
+        if((this.currentHealth / (float)this.maxHealth <= 0.5F) && !this.hasPower(SynergyBurstPower.POWER_ID)) {
+            applySynergyBurst();
+        }
+        if((this.currentHealth / (float)this.maxHealth <= 0.75F) && !this.hasPower(EndurePower.POWER_ID)) {
+            applyEndure();
+        }
+
         super.damage(info);
     }
 
@@ -778,6 +786,12 @@ public class TheVixenBoss extends CustomMonster {
             AbstractDungeon.actionManager.addToTop(new VFXAction(new LightningEffect(this.drawX, this.drawY), 0.1F));
             AbstractDungeon.actionManager.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
         }
+    }
+    public void applyClearSky() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new ClearSkyPower(this, 99)));
+    }
+    public void applyEndure() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EndurePower(this)));
     }
 
     @Override

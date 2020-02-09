@@ -418,5 +418,11 @@
       "每受到 #b",
       " 点伤害，本回合获得 1 点 #r力量 。"
     ]
+  },
+
+  "paleoftheancients:ReachedHeavenPower": {
+    "DESCRIPTIONS": [
+      "能够使用以暴易暴。"
+    ]
   }
 }

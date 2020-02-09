@@ -50,6 +50,9 @@ import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.intent.*;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
 import paleoftheancients.thorton.monsters.Thorton;
+import paleoftheancients.watcher.intent.BlasphemyIntent;
+import paleoftheancients.watcher.intent.PressurePointsIntent;
+import paleoftheancients.watcher.monsters.TheWatcher;
 import paleoftheancients.wokeone.monsters.WokeCultist;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -124,6 +127,7 @@ public class PaleMod implements
         BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());
         BaseMod.addMonster(TheDefectBoss.ID, () -> new TheDefectBoss());
         BaseMod.addMonster(TheSilentBoss.ID, () -> new TheSilentBoss());
+        BaseMod.addMonster(TheWatcher.ID, () -> new TheWatcher());
         BaseMod.addMonster(Reimu.ID, () -> new Reimu());
 
         BaseMod.addMonster(N.ID, () -> new N());
@@ -165,6 +169,9 @@ public class PaleMod implements
 
         CustomIntent.add(new DervishDanceIntent());
         CustomIntent.add(new FlourishIntent());
+
+        CustomIntent.add(new PressurePointsIntent());
+        CustomIntent.add(new BlasphemyIntent());
     }
 
     @Override
@@ -204,6 +211,7 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheWokeBloke(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheBard(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheCollector(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheWatcher(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

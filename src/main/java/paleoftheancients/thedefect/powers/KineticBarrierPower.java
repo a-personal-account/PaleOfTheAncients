@@ -1,7 +1,5 @@
 package paleoftheancients.thedefect.powers;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,6 +8,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thedefect.monsters.TheDefectBoss;
 
 
 public class KineticBarrierPower extends AbstractPower {
@@ -50,8 +50,9 @@ public class KineticBarrierPower extends AbstractPower {
                 return 1F / 3F;
             case 3:
                 return 0.1F;
+            default:
+                return 0F;
         }
-        return 1F;
     }
 
     @Override

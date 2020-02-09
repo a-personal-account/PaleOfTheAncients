@@ -93,6 +93,12 @@
     ]
   },
 
+  "paleoftheancients:PressurePointsIntent": {
+    "TEXT": [
+      "Intends to deal #b",
+      " damage and increase the damage of this move the next time it is used."
+    ]
+  },
 
   "paleoftheancients:MonsterPiles": {
     "TEXT": [

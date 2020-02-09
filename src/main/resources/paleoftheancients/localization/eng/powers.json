@@ -407,5 +407,11 @@
       "Every #b",
       " damage taken, gain 1 #rStrength this turn."
     ]
+  },
+
+  "paleoftheancients:ReachedHeavenPower": {
+    "DESCRIPTIONS": [
+      "Able to use #yThrough #yViolence."
+    ]
   }
 }
