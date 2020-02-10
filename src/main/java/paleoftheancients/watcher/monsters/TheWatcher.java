@@ -31,6 +31,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.helpers.AbstractBossMonster;
 import paleoftheancients.relics.SoulOfTheWatcher;
+import paleoftheancients.watcher.cards.RemoveWrath;
 import paleoftheancients.watcher.intent.WatcherIntentEnums;
 import paleoftheancients.watcher.powers.*;
 import paleoftheancients.watcher.stances.*;
@@ -65,6 +66,9 @@ public class TheWatcher extends AbstractBossMonster {
     public AbstractEnemyStance stance = null;
     private boolean bloodied = false;
     private int untilPhaseChange = 2;
+    public void incrementPhaseChangeCounter() {
+        untilPhaseChange++;
+    }
 
     public TheWatcher() {
         super(NAME, ID, 1060,0.0F, -15.0F, 240.0F, 290.0F, null, 0, 0);
@@ -99,6 +103,21 @@ public class TheWatcher extends AbstractBossMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FakeLikeWaterPower(this, AbstractDungeon.ascensionLevel >= 9 ? 14 : 10)));
         this.changeState(AbstractDungeon.ascensionLevel >= 4 ? CalmStance.STANCE_ID : NeutralStance.STANCE_ID);
         PaleOfTheAncients.playTempMusic(PaleMod.makeID("thunderrolls"));
+
+        int cardAmount = 6 - calcAscensionNumber(3);
+        this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new HandSpacePower(AbstractDungeon.player, cardAmount), cardAmount));
+        this.addToBot(new MakeTempCardInHandAction(new RemoveWrath(), cardAmount));
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                for(final AbstractCard card : AbstractDungeon.player.hand.group) {
+                    if(card.cardID == RemoveWrath.ID) {
+                        ((RemoveWrath) card).prime();
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -202,7 +221,7 @@ public class TheWatcher extends AbstractBossMonster {
 
     @Override
     public void getMove(int num) {
-        if(this.currentHealth < this.maxHealth / 2 && this.stance.ID != DivinityStance.STANCE_ID) {
+        if(this.currentHealth < this.maxHealth * 0.4F && this.stance.ID != DivinityStance.STANCE_ID) {
             setMoveShortcut(BLASPHEMY, MOVES[BLASPHEMY]);
             return;
         }

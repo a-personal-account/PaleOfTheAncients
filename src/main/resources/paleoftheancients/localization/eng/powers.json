@@ -413,5 +413,11 @@
     "DESCRIPTIONS": [
       "Able to use #yThrough #yViolence."
     ]
+  },
+  "paleoftheancients:HandSpacePower": {
+    "NAME": "Increased Handsize",
+    "DESCRIPTIONS": [
+      "#yMaximum #yHandsize is increased by #b"
+    ]
   }
 }

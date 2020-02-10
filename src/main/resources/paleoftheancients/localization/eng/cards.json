@@ -101,6 +101,11 @@
     "DESCRIPTION": "The REAL show begins now!"
   },
 
+  "paleoftheancients:RemoveWrath": {
+    "NAME": "Serenity",
+    "DESCRIPTION": "Retain Purge. NL Does nothing. NL Nice try though.",
+    "UPGRADE_DESCRIPTION": "Retain Purge. NL Enemy enters Calm and changes Intent."
+  },
 
   "paleoftheancients:Doot": {
     "NAME": "Doot"

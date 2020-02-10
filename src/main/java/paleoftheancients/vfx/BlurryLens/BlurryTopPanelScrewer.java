@@ -26,15 +26,15 @@ public class BlurryTopPanelScrewer extends BlurryLensVFX {
         AbstractDungeon.player.displayGold = MathUtils.random(AbstractDungeon.player.gold * 2);
         AbstractDungeon.floorNum = MathUtils.random(floornum * 2);
 
-        ReflectionHacks.setPrivate(AbstractDungeon.topPanel, TopPanel.class, "title", this.shuffleString(title));
-        ReflectionHacks.setPrivate(AbstractDungeon.topPanel, TopPanel.class, "name", this.shuffleString(name));
+        ReflectionHacks.setPrivate(AbstractDungeon.topPanel, TopPanel.class, "title", shuffleString(title));
+        ReflectionHacks.setPrivate(AbstractDungeon.topPanel, TopPanel.class, "name", shuffleString(name));
 
         Settings.hasRubyKey = MathUtils.randomBoolean();
         Settings.hasSapphireKey = MathUtils.randomBoolean();
         Settings.hasEmeraldKey = MathUtils.randomBoolean();
     }
 
-    private String shuffleString(String ref) {
+    public static String shuffleString(String ref) {
         StringBuilder builder = new StringBuilder();
         do {
             int rand = MathUtils.random(ref.length() - 1);
