@@ -54,9 +54,5 @@ public class HakureiShrineMaidenPower extends AbstractPower {
         description = DESCRIPTIONS[0];
         description += (AbstractDungeon.ascensionLevel >= 9 ? 4 : 2);
         description += DESCRIPTIONS[1] + (6) + DESCRIPTIONS[2];
-        description += (AbstractDungeon.ascensionLevel >= 19 ? 2 : 1);
-        description += DESCRIPTIONS[3];
-        description += DESCRIPTIONS[AbstractDungeon.ascensionLevel >= 19 ? 5 : 4];
-        description += DESCRIPTIONS[6];
     }
 }

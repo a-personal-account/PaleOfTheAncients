@@ -29,7 +29,7 @@ public class YinYangOrb extends CustomMonster {
     public int delay;
     public int position;
     private float movement = Reimu.orbOffset;
-    private Reimu master;
+    public Reimu master;
 
     public YinYangOrb(float x, float y, int type, int position, int delay, Reimu master) {
         super(NAME, ID, HP + HP_VARIANCE * type - (2 - master.rui.extralives) * 5, 0.0F, 0.0F, 140.0F, 120.0F, null, x, y);
@@ -58,7 +58,8 @@ public class YinYangOrb extends CustomMonster {
                 break;
         }
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p, -1, true));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BlockUponDeathPower(this, BlockUponDeathPower.BLOCK), 0, true));
     }
 
     private void move() {
@@ -127,7 +128,10 @@ public class YinYangOrb extends CustomMonster {
     public void damage(DamageInfo info) {
         super.damage(info);
         if(this.currentHealth <= 0) {
-            master.rui.getBombFragment();
+            AbstractPower p = this.getPower(BlockUponDeathPower.POWER_ID);
+            if(p != null) {
+                ((BlockUponDeathPower) p).onTrigger();
+            }
         }
     }
 

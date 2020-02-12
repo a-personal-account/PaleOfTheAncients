@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
 import paleoftheancients.reimu.monsters.Reimu;
@@ -92,7 +93,7 @@ public class ReimuUserInterface {
     }
     public void addBomb(int num) {
         bombs += num;
-        if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID)) {
+        if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID) && !reimu.hasPower(InvinciblePower.POWER_ID)) {
             AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(reimu, reimu, new DeathBombPower(reimu)));
         }
     }

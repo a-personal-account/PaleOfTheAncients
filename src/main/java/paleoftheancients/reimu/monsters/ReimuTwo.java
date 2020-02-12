@@ -68,7 +68,7 @@ public class ReimuTwo extends ReimuPhase {
                     for(final YinYangOrb orb : orbarray) {
                         if(orb != null) {
                             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(orb, reimu, rmi.magicNumber / 2));
-                            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(orb, reimu, new StrengthPower(orb, rmi.magicNumber / 5), rmi.magicNumber / 5));
+                            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(orb, reimu, new StrengthPower(orb, rmi.magicNumber / 5), rmi.magicNumber / 5, true));
                             AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(orb));
                         }
                     }

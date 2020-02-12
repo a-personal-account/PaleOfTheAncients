@@ -328,11 +328,8 @@
     "DESCRIPTIONS": [
       "At the end of her turn, summon up to #b",
       " #yYin-Yang #yOrbs. If there are no #yYin-Yang #yOrbs alive, summon #b",
-      " instead. NL Whenever the player destroys a #yYin-Yang #yOrb, gain #b",
-      " #yBomb #y",
-      "Fragment",
-      "Fragments",
-      ". NL #b5 #yFragments = #b1 #yBomb"]
+      " instead."
+    ]
   },
   "paleoftheancients:DeathBombPower": {
     "NAME": "Quick Reflexes",
@@ -345,7 +342,7 @@
   "paleoftheancients:ShotTypeBasePower": {
     "NAME": "Limited Range",
     "DESCRIPTIONS": [
-      "Will only deal damage to you if you are directly in front of it"
+      "Will only deal damage to you if you are directly in front of it."
     ]
   },
   "paleoftheancients:ShotTypeAmuletPower": {
@@ -358,6 +355,15 @@
     "NAME": "Shottype: Persuasion Needle",
     "DESCRIPTIONS": [
       "Will only deal damage to you if you are in the same lane."
+    ]
+  },
+  "paleoftheancients:BlockUponDeathPower": {
+    "NAME": "Divine Energy",
+    "DESCRIPTIONS": [
+      "When destroyed by the player, the player gains #b",
+      " #yBlock and #rReimu gains #b",
+      " #yBomb #y","Fragment","Fragments",
+      ". NL #b5 #yFragments = #b1 #yBomb"
     ]
   },
 
