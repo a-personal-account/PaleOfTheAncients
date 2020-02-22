@@ -22,7 +22,6 @@
       "右键： ", "模糊外表！"
     ]
   },
-  
   "paleoftheancients:SoulOfTheVixen": {
     "NAME": "火狐之焰",
     "FLAVOR": "自燃",
@@ -51,7 +50,6 @@
       "每当你造成伤害，本回合你每打出一张牌敌人失去2生命。"
     ]
   },
-  
   "paleoftheancients:SoulOfTheDefect": {
     "NAME": "故障核心",
     "FLAVOR": "01000010 01100001 01101100 01100001 01101110 01100011 01100101",
@@ -79,6 +77,52 @@
     "FLAVOR": "毕生都在退治妖怪和扫地。",
     "DESCRIPTIONS": [
       "如果你上一回合失去生命， [E] 。 NL 每当你 #y格挡 了伤害，你的回合结束前获得格挡量相等的 #r力量 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheShapes": {
+    "NAME": "混沌机",
+    "FLAVOR": "在美味与恶心之间反复横跳。",
+    "DESCRIPTIONS": [
+      "每当你打出一张牌，变换这个遗物。 NL 如果打出的是 ",
+      " #r攻击牌，本回合获得 3 点 #y敏捷 。",
+      " #y技能牌，本回合获得 3 点 #y力量 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheGuardian": {
+    "NAME": "松酮",
+    "FLAVOR": "每当你打出一张荆棘，获得三张技能牌。",
+    "DESCRIPTIONS": [
+      "每场战斗开始时，获得 #b"," 层 #y荆棘 。 每当你打出一张 #y技能牌 ， #r翻倍 你的 #y荆棘 。你的回合开始时， #r失去 翻倍的 #y荆棘 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheWokeBloke": {
+    "NAME": "好奇",
+    "FLAVOR": "被全世界的卡牌游戏玩家所厌恶。",
+    "DESCRIPTIONS": [
+      "每当你被给予一次 #y能力 ，获得 #b"," 点 #y力量 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheBard": {
+    "NAME": "神灯",
+    "FLAVOR": "许个愿。不是与鱼、菜或者是乳酪。",
+    "DESCRIPTIONS": [
+      "每场战斗开始时，选择一张 #y稀有 攻击或技能牌加入你的手牌。这张牌的耗能减少 #b1 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheCollector": {
+    "NAME": "瓶装勇士",
+    "FLAVOR": "是勇士就打破玻璃。",
+    "DESCRIPTIONS": [
+      "拾起时，选择牌组中的 #b2 张攻击或技能牌。打出其中一张时，打出另外一张。",
+      "选择2张牌链接。",
+      " 与 "," 和 "
+    ]
+  },
+  "paleoftheancients:SoulOfTheWatcher": {
+    "NAME": "神珠",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "每当你额外抽牌时，获得 #b"," 层 #y真言 。"
     ]
   }
 }

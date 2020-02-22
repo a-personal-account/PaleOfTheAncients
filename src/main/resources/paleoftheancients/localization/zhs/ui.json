@@ -93,6 +93,12 @@
     ]
   },
 
+  "paleoftheancients:PressurePointsIntent": {
+    "TEXT": [
+      "将要对你造成 #b",
+      " 点伤害并会在下次使用这个意图时提高伤害。"
+    ]
+  },
 
   "paleoftheancients:MonsterPiles": {
     "TEXT": [
@@ -101,12 +107,13 @@
       "消耗堆"
     ]
   },
+  
   "paleoftheancients:ReimuUserInterface": {
     "TEXT": [
       "残机",
       "Bomb",
       "死亡时会复活。",
-      "These are required for and subsequently used up in certain attacks."
+      "这个需要连续特定攻击。"
     ]
   }
 }

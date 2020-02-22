@@ -100,7 +100,12 @@
     "NAME": "第二幕",
     "DESCRIPTION": "真正的表演现在开始了！"
   },
-
+  
+  "paleoftheancients:RemoveWrath": {
+    "NAME": "宁静",
+    "DESCRIPTION": "保留 抹除 。 NL 四大皆空 。",
+    "UPGRADE_DESCRIPTION": "保留 抹除 。 NL 敌人进入 平静 并改变意图。"
+  },
 
   "paleoftheancients:Doot": {
     "NAME": "嘟"

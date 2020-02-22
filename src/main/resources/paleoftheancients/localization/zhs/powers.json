@@ -144,7 +144,7 @@
 
 
   "paleoftheancients:ColumbifyPower": {
-    "NAME": "Columbified",
+    "NAME": "异鸟化",
     "DESCRIPTIONS": [
       "我现在是只异鸟，不！",
       " NL 持续 #b",
@@ -196,15 +196,6 @@
     "NAME": "连接",
     "DESCRIPTIONS": [
       "守护者共享血条。 NL 当变形为 #b防御模式 时，失去它们一半的 #r力量 。 NL 当这名 #r守护者 受到伤害时，另一台守护者提高等量的 #y形态转换 数值。"
-    ]
-  },
-
-  "paleoftheancients:EnergyWarpPower": {
-    "NAME": "镀锌时间偏差",
-    "DESCRIPTIONS": [
-      "当你消耗了 #b",
-      " [E] ，结束你的回合并获得 #b",
-      " 点 #y力量 。 NL 每次计数到0时失去 [E] (直到至少 #b4 )。"
     ]
   },
 
@@ -324,7 +315,6 @@
     ]
   },
   
-  
   "paleoftheancients:PositionPower": {
     "NAME": "符卡规则",
     "DESCRIPTIONS": ["你在 #b", "层。 NL 每当你打出一张 #y技能 ，#y向上移动一行 。 NL 每当你打出一张 #y攻击 ， #y向下移动一行。"]
@@ -338,11 +328,8 @@
     "DESCRIPTIONS": [
       "在她的回合结束时，最多召唤 #b",
       " 个 #y阴阳玉 。如果场上没有 #y阴阳玉 ，变为召唤 #b",
-      " 个。 NL 每当玩家摧毁一个 #y阴阳玉 ，获得 #b",
-      " 个 #yBomb #y",
-      "碎片",
-      "碎片",
-      "。 NL #b5 个 #y碎片 = #b1 个 #yBomb"]
+      " 个。"
+	  ]
   },
   "paleoftheancients:DeathBombPower": {
     "NAME": "决死",
@@ -370,8 +357,16 @@
       "只有在与你相同相同高度时才会造成伤害。"
     ]
   },
-
-
+    "paleoftheancients:BlockUponDeathPower": {
+    "NAME": "Divine Energy",
+    "DESCRIPTIONS": [
+      "当被玩家摧毁时，玩家获得 #b",
+      " 点 #y格挡 且 #r灵梦 获得 #b",
+      " 个 #yBomb #y","碎片","碎片",
+      "。 NL #b5 个 #y碎片 = #b1 个 #yBomb"
+    ]
+  },
+  
   "paleoftheancients:GazeOne": {
     "NAME": "紧闭之眼的凝视",
     "DESCRIPTIONS": [
@@ -423,6 +418,12 @@
   "paleoftheancients:ReachedHeavenPower": {
     "DESCRIPTIONS": [
       "能够使用以暴易暴。"
+    ]
+  },
+    "paleoftheancients:HandSpacePower": {
+    "NAME": "手牌扩充",
+    "DESCRIPTIONS": [
+      "#y手牌数上限 提高 #b"
     ]
   }
 }
