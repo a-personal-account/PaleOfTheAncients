@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
@@ -15,6 +16,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
@@ -24,6 +27,7 @@ import paleoftheancients.collector.monsters.SpireWaifu;
 import paleoftheancients.donudeca.monsters.DonuDeca;
 import paleoftheancients.events.Recollection;
 import paleoftheancients.guardian.monsters.Guardianest;
+import paleoftheancients.helpers.PaleRewardItem;
 import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.reimu.monsters.Reimu;
@@ -37,6 +41,7 @@ import paleoftheancients.watcher.monsters.TheWatcher;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PaleOfTheAncients extends CustomDungeon {
     public static final String ID = PaleMod.makeID("PaleOfTheAncients");
@@ -311,6 +316,28 @@ public class PaleOfTheAncients extends CustomDungeon {
             BaseMod.addMonsterEncounter(ID, new MonsterInfo(id + i, 1F));
             BaseMod.addStrongMonsterEncounter(ID, new MonsterInfo(id + i, 1F));
             BaseMod.addEliteEncounter(ID, new MonsterInfo(id + i, 1F));
+        }
+    }
+
+    public static void addRelicReward(String relicID) {
+        if (AbstractDungeon.player.hasRelic(relicID) && !relicID.equals(Circlet.ID)) {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(Circlet.ID).makeCopy()));
+        } else {
+            boolean found = false;
+
+            Iterator var2 = AbstractDungeon.getCurrRoom().rewards.iterator();
+
+            while (var2.hasNext()) {
+                RewardItem ri = (RewardItem) var2.next();
+                if (ri.type == RewardItem.RewardType.RELIC && ri.relic != null && ri.relic.relicId.equals(relicID)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                AbstractDungeon.getCurrRoom().rewards.add(new PaleRewardItem(RelicLibrary.getRelic(relicID).makeCopy()));
+            }
         }
     }
 }

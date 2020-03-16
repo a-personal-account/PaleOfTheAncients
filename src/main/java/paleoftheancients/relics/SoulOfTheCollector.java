@@ -1,7 +1,6 @@
 package paleoftheancients.relics;
 
 import basemod.abstracts.CustomBottleRelic;
-import basemod.abstracts.CustomRelic;
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class SoulOfTheCollector extends CustomRelic implements CustomBottleRelic, CustomSavable<ArrayList<Integer>> {
+public class SoulOfTheCollector extends PaleRelic implements CustomBottleRelic, CustomSavable<ArrayList<Integer>> {
     public static final String ID = PaleMod.makeID("SoulOfTheCollector");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

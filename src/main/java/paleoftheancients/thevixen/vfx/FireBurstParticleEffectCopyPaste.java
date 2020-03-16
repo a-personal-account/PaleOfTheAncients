@@ -20,6 +20,9 @@ public class FireBurstParticleEffectCopyPaste extends AbstractGameEffect {
     private float floor;
     private float GRAVITY;
 
+    public FireBurstParticleEffectCopyPaste(Color color, float x, float y) {
+        this(color, x, y, 180.0F * Settings.scale);
+    }
     public FireBurstParticleEffectCopyPaste(Color color, float x, float y, float gravity) {
         int roll = MathUtils.random(0, 2);
         if (roll == 0) {

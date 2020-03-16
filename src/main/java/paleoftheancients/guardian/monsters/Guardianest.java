@@ -104,4 +104,6 @@ public class Guardianest extends TheGuardian {
         PaleOfTheAncients.addRelicReward(SoulOfTheGuardian.ID);
         super.die(triggerRelics);
     }
+    @Override
+    public void onBossVictoryLogic() {}
 }

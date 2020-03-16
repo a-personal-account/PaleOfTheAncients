@@ -75,4 +75,8 @@ public class Decaer extends Deca {
             }
         }
     }
+    @Override
+    public void onBossVictoryLogic() {}
+    @Override
+    public void onFinalBossVictoryLogic() {}
 }

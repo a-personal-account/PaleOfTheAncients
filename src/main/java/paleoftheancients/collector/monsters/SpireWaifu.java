@@ -139,10 +139,14 @@ public class SpireWaifu extends TheCollector {
     }
 
     @Override
+    public void die() {
+        die(true);
+    }
+    @Override
     public void die(boolean triggerRelics) {
         PaleOfTheAncients.addRelicReward(SoulOfTheCollector.ID);
         for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!m.isDead && !m.isDying && m != this) {
+            if (!m.isDead && !m.isDying && m != this && (m.id.equals(MiniChamp.ID) || m.id.equals(BronzeOrbThing.ID))) {
                 AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
                 AbstractDungeon.actionManager.addToTop(new SuicideAction(m));
                 AbstractDungeon.actionManager.addToTop(new VFXAction(m, new InflameEffect(m), 0.2F));
@@ -150,6 +154,8 @@ public class SpireWaifu extends TheCollector {
         }
         super.die(triggerRelics);
     }
+    @Override
+    public void onBossVictoryLogic() {}
 
     @Override
     public void render(SpriteBatch sb) {

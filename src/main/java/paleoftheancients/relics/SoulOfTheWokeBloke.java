@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnReceivePowerRelic;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.vfx.AwakenedEyeParticle;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRelic {
+public class SoulOfTheWokeBloke extends PaleRelic implements OnReceivePowerRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheWokeBloke");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;
@@ -64,9 +63,9 @@ public class SoulOfTheWokeBloke extends CustomRelic implements OnReceivePowerRel
         super.update();
         if (!Settings.hideRelics) {
             this.fireTimer -= Gdx.graphics.getDeltaTime();
-            if (this.fireTimer < 0.0F) {
+            if (this.fireTimer < 0.0F && AbstractDungeon.player.relics.indexOf(this) / 25 == AbstractRelic.relicPage) {
                 this.fireTimer = 0.1F;
-                AbstractGameEffect age = new WokeBlokeRelicEye(this.currentX, this.currentY, 0.3F * (this.hb.hovered ? 2F : 1F));
+                AbstractGameEffect age = new WokeBlokeRelicEye(this.currentX + (AbstractDungeon.player.relics.size() > 25 ? 32F * Settings.scale : 0F), this.currentY, 0.3F * (this.hb.hovered ? 2F : 1F));
                 AbstractDungeon.topLevelEffects.add(age);
             }
         }

@@ -73,6 +73,8 @@ public class MiniChamp extends Champ {
     public void die() {
         super.die(true);
     }
+    @Override
+    public void onBossVictoryLogic() {}
 
     @SpireOverride
     protected String getTaunt() {

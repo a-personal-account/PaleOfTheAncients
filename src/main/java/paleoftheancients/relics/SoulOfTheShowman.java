@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheShowman extends CustomRelic {
+public class SoulOfTheShowman extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheShowman");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

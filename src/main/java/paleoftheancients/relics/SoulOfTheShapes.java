@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,7 +14,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.donudeca.monsters.DonuDeca;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheShapes extends CustomRelic {
+public class SoulOfTheShapes extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheShapes");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.OnReceivePowerRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -16,7 +15,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheGuardian extends CustomRelic implements OnReceivePowerRelic {
+public class SoulOfTheGuardian extends PaleRelic implements OnReceivePowerRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheGuardian");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

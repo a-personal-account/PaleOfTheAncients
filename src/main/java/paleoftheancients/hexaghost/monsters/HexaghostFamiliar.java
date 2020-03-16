@@ -92,6 +92,8 @@ public class HexaghostFamiliar extends Hexaghost {
             super.die(triggerRelics);
         }
     }
+    @Override
+    public void onBossVictoryLogic() {}
 
     @Override
     public void render(SpriteBatch sb) {

@@ -1,5 +1,6 @@
 package paleoftheancients.thorton.monsters;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
@@ -13,14 +14,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import paleoftheancients.PaleMod;
-import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.relics.SoulOfTheThorton;
 import paleoftheancients.thorton.powers.DemotionPower;
 
@@ -222,7 +221,7 @@ public class Thorton extends CustomMonster {
 
     @Override
     public void die() {
-        PaleOfTheAncients.addRelicReward(SoulOfTheThorton.ID);
+        CustomDungeon.addRelicReward(SoulOfTheThorton.ID);
         if(this.gold > 0) {
             RewardItem ri = new RewardItem();
             ri.type = RewardItem.RewardType.GOLD;

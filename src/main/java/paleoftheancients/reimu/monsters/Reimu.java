@@ -1,12 +1,10 @@
 package paleoftheancients.reimu.monsters;
 
-import actlikeit.dungeons.CustomDungeon;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
@@ -224,14 +222,14 @@ public class Reimu extends CustomMonster {
         if(rui.extralives <= 0) {
             AbstractDungeon.getCurrRoom().cannotLose = false;
             for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if(!mo.isDeadOrEscaped()) {
+                if(!mo.isDeadOrEscaped() && mo.id.equals(YinYangOrb.ID)) {
                     AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
                 }
             }
             spellcircle.end();
             lockAnimation = true;
             this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
-            CustomDungeon.addRelicReward(SoulOfTheShrineMaiden.ID);
+            PaleOfTheAncients.addRelicReward(SoulOfTheShrineMaiden.ID);
             AbstractDungeon.actionManager.addToBottom(new WaitOnVFXAction(new TouhouDeathVFX(this)));
             AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                 @Override

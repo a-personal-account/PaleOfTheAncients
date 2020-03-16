@@ -361,7 +361,7 @@ public class TheWatcher extends AbstractBossMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        CustomDungeon.addRelicReward(SoulOfTheWatcher.ID);
+        PaleOfTheAncients.addRelicReward(SoulOfTheWatcher.ID);
         super.die(triggerRelics);
         CustomDungeon.resumeMainMusic();
     }

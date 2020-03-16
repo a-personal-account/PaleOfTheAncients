@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,7 +9,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.thevixen.powers.BurnPower;
 
-public class SoulOfTheVixen extends CustomRelic {
+public class SoulOfTheVixen extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheVixen");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

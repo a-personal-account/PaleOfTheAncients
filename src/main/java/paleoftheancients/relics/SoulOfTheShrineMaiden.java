@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,7 +8,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.thevixen.actions.ApplyTempGainStrengthPowerAction;
 
-public class SoulOfTheShrineMaiden extends CustomRelic {
+public class SoulOfTheShrineMaiden extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheShrineMaiden");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

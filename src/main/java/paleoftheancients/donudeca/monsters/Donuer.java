@@ -42,4 +42,8 @@ public class Donuer extends Donu {
             }
         }
     }
+    @Override
+    public void onBossVictoryLogic() {}
+    @Override
+    public void onFinalBossVictoryLogic() {}
 }

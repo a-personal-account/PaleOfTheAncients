@@ -32,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.helpers.AbstractBossMonster;
 import paleoftheancients.relics.SoulOfTheDefect;
 import paleoftheancients.thedefect.actions.*;
 import paleoftheancients.thedefect.monsters.orbs.*;
@@ -663,20 +664,16 @@ public class TheDefectBoss extends AbstractMonster {
         CardCrawlGame.screenShake.rumble(4.0F);
         ++this.deathTimer;
 
-        Iterator var1 = AbstractDungeon.getCurrRoom().monsters.monsters.iterator();
-
-        while(var1.hasNext()) {
-            AbstractMonster m = (AbstractMonster)var1.next();
+        for(final AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if(m instanceof AbstractBossOrb) {
                 ((AbstractBossOrb) m).evoked = true;
-            }
-            if (!m.isDead && !m.isDying && m != this) {
-                AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
-                AbstractDungeon.actionManager.addToTop(new SuicideAction(m));
+                if (!m.isDead && !m.isDying && m != this) {
+                    AbstractDungeon.actionManager.addToTop(new HideHealthBarAction(m));
+                    AbstractDungeon.actionManager.addToTop(new SuicideAction(m));
+                }
             }
         }
         super.die(triggerRelics);
-        this.onBossVictoryLogic();
     }
 
 

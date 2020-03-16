@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -11,7 +10,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 
-public class SoulOfTheIroncluck extends CustomRelic {
+public class SoulOfTheIroncluck extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheIroncluck");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

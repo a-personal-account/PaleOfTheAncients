@@ -1,22 +1,27 @@
 package paleoftheancients.donudeca.monsters;
 
-import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.green.AThousandCuts;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.donudeca.powers.FormShiftPower;
 import paleoftheancients.donudeca.powers.LifestealPower;
+import paleoftheancients.helpers.PaleRewardItem;
 import paleoftheancients.relics.SoulOfTheShapes;
 
 import java.util.ArrayList;
@@ -222,9 +227,23 @@ public class DonuDeca extends AbstractMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        CustomDungeon.addRelicReward(SoulOfTheShapes.ID);
+        if(!AbstractDungeon.player.hasRelic(SoulOfTheShapes.ID)) {
+            RewardItem[] rewards = new RewardItem[2];
+            rewards[0] = new PaleRewardItem(RelicLibrary.getRelic(SoulOfTheShapes.ID).makeCopy());
+            rewards[1] = new PaleRewardItem(RelicLibrary.getRelic(SoulOfTheShapes.ID).makeCopy());
+            rewards[1].relic.onUseCard(CardLibrary.getCard(AThousandCuts.ID), null);
+
+            rewards[0].relicLink = rewards[1];
+            rewards[1].relicLink = rewards[0];
+            AbstractDungeon.getCurrRoom().rewards.add(rewards[0]);
+            AbstractDungeon.getCurrRoom().rewards.add(rewards[1]);
+        } else {
+            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(RelicLibrary.getRelic(Circlet.ID).makeCopy()));
+        }
         super.die(triggerRelics);
     }
+    @Override
+    public void onBossVictoryLogic() {}
 
     static {
         monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);

@@ -1,13 +1,12 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bard.actions.RelicWishAction;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheBard extends CustomRelic {
+public class SoulOfTheBard extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheBard");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;

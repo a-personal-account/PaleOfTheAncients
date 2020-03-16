@@ -3,6 +3,7 @@ package paleoftheancients.reimu.util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -93,9 +94,15 @@ public class ReimuUserInterface {
     }
     public void addBomb(int num) {
         bombs += num;
-        if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID) && !reimu.hasPower(InvinciblePower.POWER_ID)) {
-            AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(reimu, reimu, new DeathBombPower(reimu)));
-        }
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                if(extralives <= 1 && !reimu.hasPower(DeathBombPower.POWER_ID) && !reimu.hasPower(InvinciblePower.POWER_ID)) {
+                    AbstractDungeon.actionManager.addToBottom(new GuaranteePowerApplicationAction(reimu, reimu, new DeathBombPower(reimu)));
+                }
+            }
+        });
     }
 
     public void dispose() {

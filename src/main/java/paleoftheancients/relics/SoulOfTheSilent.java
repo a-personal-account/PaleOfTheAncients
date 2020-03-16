@@ -1,6 +1,5 @@
 package paleoftheancients.relics;
 
-import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 
-public class SoulOfTheSilent extends CustomRelic {
+public class SoulOfTheSilent extends PaleRelic {
     public static final String ID = PaleMod.makeID("SoulOfTheSilent");
 
     private static final RelicTier TIER = RelicTier.SPECIAL;
