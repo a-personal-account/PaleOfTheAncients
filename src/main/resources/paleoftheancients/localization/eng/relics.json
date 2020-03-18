@@ -120,9 +120,25 @@
   },
   "paleoftheancients:SoulOfTheWatcher": {
     "NAME": "Divine Prayer Bead",
-    "FLAVOR": "",
+    "FLAVOR": "I can't think of any flavortext.",
     "DESCRIPTIONS": [
       "Whenever you draw an extra card, gain #b"," #yMantra."
+    ]
+  },
+  "paleoftheancients:SoulOfTheBandit": {
+    "NAME": "Fixed Dice",
+    "FLAVOR": "Did you know you can commission Vex to make STS mods for you!?",
+    "DESCRIPTIONS": [
+      ""
+    ]
+  },
+  "paleoftheancients:KeyRelic": {
+    "NAME": "Acknowledged Efforts",
+    "FLAVOR": "You tried.",
+    "DESCRIPTIONS": [
+      "Start each combat with ",", ","#b1 #yStrength", "#b1 #yDexterity", "#b1 #yFocus",
+      "heal #b2 HP", "an additional [E]", "draw #b2 additional cards",
+      "gain #b10 #yBlock"," and ","apply #b1 ","#yWeak","#yVulnerable"," to ALL enemies"
     ]
   }
 }

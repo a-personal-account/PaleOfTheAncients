@@ -2,6 +2,7 @@ package paleoftheancients.dungeons;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.BaseMod;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,6 +23,7 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import paleoftheancients.PaleMod;
+import paleoftheancients.bandit.monsters.TheBandit;
 import paleoftheancients.bard.monsters.BardBoss;
 import paleoftheancients.collector.monsters.SpireWaifu;
 import paleoftheancients.donudeca.monsters.DonuDeca;
@@ -151,6 +153,9 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/watcher.png"), PaleMod.assetPath("images/ui/map/watcherOutline.png"), TheWatcher.ID));
+        if(!Loader.isModLoaded("TheBandit") || !(AbstractDungeon.player instanceof theWario.TheBandit)) {
+            easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bandit.png"), PaleMod.assetPath("images/ui/map/banditOutline.png"), TheBandit.ID));
+        }
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));
         //toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/slime.png"), PaleMod.assetPath("images/ui/map/slimeOutline.png"), SlimeBossest.ID));

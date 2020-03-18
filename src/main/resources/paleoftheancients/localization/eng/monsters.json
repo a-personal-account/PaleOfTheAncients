@@ -167,7 +167,10 @@
     ]
   },
   "paleoftheancients:BASlime": {
-    "NAME": "Blurred Aspect"
+    "NAME": "Blurred Aspect",
+    "DIALOG": [
+      "(This is all intended, please don't ~actually~ contact me)"
+    ]
   },
 
   "paleoftheancients:N": {
@@ -190,5 +193,29 @@
   },
   "paleoftheancients:EyeOfRebirth": {
     "NAME": "Eye of Rebirth"
+  },
+
+  "paleoftheancients:TheBandit": {
+    "NAME": "The Bandit",
+    "MOVES": [
+      "Massive Party",
+      "Fabricate Friend",
+      "Awful Look",
+      "Extended Jump",
+      "Big Upgrade",
+      "Double Dash",
+      "Deadly Dash",
+      "VEEERY Long Jump",
+      "Happy Hit",
+      "F",
+      "PEPEGA"
+    ],
+    "DIALOG": [
+      "~Hello~ ~","...~",
+      "I want to play a #r@game.@",
+      "Wow, you're @slow.@",
+      "Look who's on top of the game!",
+      "You know the game quite well."
+    ]
   }
 }

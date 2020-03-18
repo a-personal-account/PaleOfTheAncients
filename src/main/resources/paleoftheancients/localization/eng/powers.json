@@ -425,5 +425,44 @@
     "DESCRIPTIONS": [
       "#yMaximum #yHandsize is increased by #b"
     ]
+  },
+
+  "paleoftheancients:BoardBoundPower": {
+    "NAME": "Board Bound",
+    "DESCRIPTIONS": [
+      "Move",
+      "Bound by the #rGame #rBoard."," NL Your cards gain a #rMove value (all cards with the same ID will share the same value). NL When you play said cards, #rMove that many #ySpaces on the board. NL (Cards without a value #rMove 1 and are then assigned one)",
+      " NL End of turn, #rTransform up to #b"," #yempty #y","Space","Spaces"," into #rRare #ySpaces."
+    ]
+  },
+  "paleoftheancients:KeyFinisherPower": {
+    "NAME": "The Key Finisher",
+    "DESCRIPTIONS": [
+      "#yPositive #ySpaces the Bandit lands on trigger #b"," more ","time","times."
+    ]
+  },
+  "paleoftheancients:ImprisonedPower": {
+    "NAME": "Imprisoned",
+    "DESCRIPTIONS": [
+      "Unable to #rmove the next turn."
+    ]
+  },
+  "paleoftheancients:EmptyMindPower": {
+    "NAME": "Empty Mind",
+    "DESCRIPTIONS": [
+      "Whenever the piece lands on an #rempty #rspace, gain #b"," #yBlock."
+    ]
+  },
+  "paleoftheancients:RacingSpeedPower": {
+    "NAME": "Racing Speeeeeeeed",
+    "DESCRIPTIONS": [
+      "Whenever a #yGo #ySpace is passed or landed on, gain #b"," #yStrength and all enemies lose #b"," #yStrength and #yDexterity."
+    ]
+  },
+  "paleoftheancients:EnergyDownNextTurnPower": {
+    "NAME": "Enervated",
+    "DESCRIPTIONS": [
+      "You have #b"," less [E] available #rnext #rturn."
+    ]
   }
 }

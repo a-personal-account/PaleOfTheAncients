@@ -115,5 +115,139 @@
       "Will revive upon death.",
       "These are required for and subsequently used up in certain attacks."
     ]
+  },
+
+  "paleoftheancients:PaleRelicReward": {
+    "TEXT": [
+      "Limitations of the Pale",
+      "Obtaining this relic will render you #runable #rto #robtain any other #yPale #yof #ythe #yAncients relics."
+    ]
+  },
+
+
+  "paleoftheancients:AbstractSpace": {
+    "TEXT": [
+      "When landed upon, ",
+      "When landed upon or #gpassed, ",
+      " and #rtransform this into an #yEmpty #ySpace."
+    ]
+  },
+  "paleoftheancients:GoSpace": {
+    "TEXT": [
+      "Go Space",
+      "Cannot be Transformed. ","you take #b", " damage and #ySpaces the Bandit activates trigger #ran #radditional #rtime."
+    ]
+  },
+  "paleoftheancients:DoomSpace": {
+    "TEXT": [
+      "Doom Space",
+      "the #yacting #yplayer takes #b"," damage"
+    ]
+  },
+  "paleoftheancients:EmptySpace": {
+    "TEXT": [
+      "Empty Space",
+      "does nothing."
+    ]
+  },
+  "paleoftheancients:JailSpace": {
+    "TEXT": [
+      "Prison Space",
+      "the #yacting #yplayer's #renemy cannot #rmove next turn."
+    ]
+  },
+  "paleoftheancients:DamageSpace": {
+    "TEXT": [
+      "Damage Space",
+      "the #yacting #yplayer's enemies take #b", " damage."
+    ]
+  },
+  "paleoftheancients:SpikeSpace": {
+    "TEXT": [
+      "Souje Space",
+      "the #yacting #yplayer takes #b", " damage."
+    ]
+  },
+  "paleoftheancients:DebilitateSpace": {
+    "TEXT": [
+      "Debilitate Space",
+      "the #yacting #yplayer's #renemy gains #b", " #yVulnerable, #yWeak and #yFrail."
+    ]
+  },
+  "paleoftheancients:BlockSpace": {
+    "TEXT": [
+      "Block Space",
+      "the #yacting #yplayer gains #b"," #yBlock."
+    ]
+  },
+  "paleoftheancients:BufferSpace": {
+    "TEXT": [
+      "Buffer Space",
+      "prevent the next time the #yacting #yplayer would lose HP"
+    ]
+  },
+  "paleoftheancients:GremlinSpace": {
+    "TEXT": [
+      "Gremlin Space",
+      "and there are less than #b"," enemies alive, summon an #rempowered #rGremlin into combat."
+    ]
+  },
+  "paleoftheancients:NobSpace": {
+    "TEXT": [
+      "Gremlin Nob Space",
+      "summon an #rempowered #rGremlin #rNob into combat"
+    ]
+  },
+  "paleoftheancients:EnergySpace": {
+    "TEXT": [
+      "Energy Space",
+      "the #yacting #yplayer drains [E] from their #renemy."
+    ]
+  },
+  "paleoftheancients:ArtifactSpace": {
+    "TEXT": [
+      "Artifact Space",
+      "the #yacting #yplayer gain1 #b1 #yArtifact"
+    ]
+  },
+  "paleoftheancients:CursedSpace": {
+    "TEXT": [
+      "Cursed Space",
+      "put ", "shuffle ",
+      " a #yCurse", " #yCurses",
+      " on top of", " into",
+      "your drawpile."
+    ]
+  },
+
+  "paleoftheancients:HappyHitIntent": {
+    "TEXT": [
+      "Happy!",
+      "Intends to #yAttack for #b",
+      " damage and activate the next ",
+      " non-empty #y","Space","Spaces"," ahead of any pieces on the board."
+    ]
+  },
+  "paleoftheancients:DeadlyDashIntent": {
+    "TEXT": [
+      "Dashing!",
+      "Intends to #yAttack for #b",
+      " damage and #rMove #b",". NL If the #rmain #rpiece lands on a #rnon-empty #ySpace, they repeat this action."
+    ]
+  },
+  "paleoftheancients:MoveAttackIntent": {
+    "TEXT": [
+      "Coming right for you!",
+      "Intends to #yAttack for #b",
+      " damage",
+      " and #rMove #b",
+      " #b"," times"
+    ]
+  },
+  "paleoftheancients:MassivePartyIntent": {
+    "TEXT": [
+      "PARTY!!!",
+      "Intends to activate #rALL #ySpaces."
+    ]
   }
 }
