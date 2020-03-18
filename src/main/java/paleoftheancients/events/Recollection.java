@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import paleoftheancients.PaleMod;
+import paleoftheancients.relics.KeyRelic;
 import paleoftheancients.relics.Timepiece;
 import vexMod.relics.*;
 
@@ -94,6 +95,9 @@ public class Recollection extends AbstractImageEvent {
             timepiece.flash();
         } else {
             (new Timepiece()).instantObtain();
+        }
+        if(!AbstractDungeon.player.hasRelic(KeyRelic.ID) && (Settings.hasSapphireKey || Settings.hasEmeraldKey || Settings.hasRubyKey)) {
+            (new KeyRelic()).instantObtain();
         }
     }
 

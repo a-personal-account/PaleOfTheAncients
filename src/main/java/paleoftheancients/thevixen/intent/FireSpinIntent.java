@@ -1,20 +1,14 @@
 package paleoftheancients.thevixen.intent;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.RazIntent.CustomIntent;
-import paleoftheancients.thevixen.TheVixenMod;
-import paleoftheancients.thevixen.enums.VixenIntentEnum;
-import paleoftheancients.thevixen.powers.SunnyDayPower;
-import paleoftheancients.thevixen.vfx.SunParticleEffect;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.TheVixenMod;
+import paleoftheancients.thevixen.enums.VixenIntentEnum;
 
-import java.util.ArrayList;
-
-public class FireSpinIntent extends CustomIntent {
+public class FireSpinIntent extends SunnyIntent {
 
     public static final String ID = PaleMod.makeID("firespin");
 
@@ -37,16 +31,6 @@ public class FireSpinIntent extends CustomIntent {
         result += TEXT[3];
 
         return result;
-    }
-
-    @Override
-    public float updateVFXInInterval(AbstractMonster mo, ArrayList<AbstractGameEffect> intentVfx) {
-        if(mo.hasPower(SunnyDayPower.POWER_ID)) {
-            AbstractGameEffect sb = new SunParticleEffect(mo.intentHb.cX, mo.intentHb.cY);
-
-            intentVfx.add(sb);
-        }
-        return 0.5F;
     }
 
     static {

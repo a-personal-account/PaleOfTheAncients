@@ -218,8 +218,8 @@ public class Reimu extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        this.halfDead = true;
         if(rui.extralives <= 0) {
+            this.halfDead = true;
             AbstractDungeon.getCurrRoom().cannotLose = false;
             for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if(!mo.isDeadOrEscaped() && mo.id.equals(YinYangOrb.ID)) {
@@ -239,7 +239,8 @@ public class Reimu extends CustomMonster {
                     this.isDone = true;
                 }
             });
-        } else {
+        } else if(!this.halfDead) {
+            this.halfDead = true;
             PaleOfTheAncients.deathTriggers(this);
             lockAnimation = false;
             runAnim(ReimuAnimation.Guardbreak, ReimuAnimation.Dizzy);

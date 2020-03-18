@@ -140,7 +140,7 @@ public class BardBoss extends CustomMonster {
                         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_WHIRLWIND"));
                     }
                     AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new CleaveEffect(), 0));
+                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new CleaveEffect(true), 0));
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.NONE, true));
                 }
                 break;

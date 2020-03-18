@@ -1,19 +1,17 @@
 package paleoftheancients.thevixen.intent;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.RazIntent.CustomIntent;
-import paleoftheancients.thevixen.TheVixenMod;
-import paleoftheancients.thevixen.enums.VixenIntentEnum;
-import paleoftheancients.thevixen.powers.SunnyDayPower;
-import paleoftheancients.thevixen.vfx.SunParticleEffect;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.thevixen.TheVixenMod;
+import paleoftheancients.thevixen.enums.VixenIntentEnum;
 
 import java.util.ArrayList;
 
-public class SolarBeamIntent extends CustomIntent {
+public class SolarBeamIntent extends SunnyIntent {
 
     public static final String ID = PaleMod.makeID("sunnyattackbig");
 
@@ -38,12 +36,12 @@ public class SolarBeamIntent extends CustomIntent {
 
     @Override
     public float updateVFXInInterval(AbstractMonster mo, ArrayList<AbstractGameEffect> intentVfx) {
-        if(mo.hasPower(SunnyDayPower.POWER_ID)) {
-            AbstractGameEffect sb = new SunParticleEffect(mo.intentHb.cX, mo.intentHb.cY);
-
-            intentVfx.add(sb);
+        int count = (int) ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
+        if (count > 1) {
+            super.updateVFXInInterval(mo, intentVfx);
+            return 1F / count;
         }
-        return 0.2F;
+        return 1.0F;
     }
 
     static {

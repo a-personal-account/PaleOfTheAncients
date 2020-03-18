@@ -1,19 +1,14 @@
 package paleoftheancients.thevixen.intent;
 
-import paleoftheancients.PaleMod;
-import paleoftheancients.RazIntent.CustomIntent;
-import paleoftheancients.thevixen.TheVixenMod;
-import paleoftheancients.thevixen.enums.VixenIntentEnum;
-import paleoftheancients.thevixen.vfx.ScytheParticleEffect;
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.PaleMod;
+import paleoftheancients.helpers.FlashingIntent;
+import paleoftheancients.thevixen.TheVixenMod;
+import paleoftheancients.thevixen.enums.VixenIntentEnum;
 
-import java.util.ArrayList;
-
-public class FacadeIntent extends CustomIntent {
+public class FacadeIntent extends FlashingIntent {
 
     public static final String ID = PaleMod.makeID("facadeintent");
 
@@ -34,19 +29,6 @@ public class FacadeIntent extends CustomIntent {
         result += TEXT[2];
 
         return result;
-    }
-
-    @Override
-    public float updateVFXInInterval(AbstractMonster mo, ArrayList<AbstractGameEffect> intentVfx) {
-        int count = (int)ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
-        if(count > 1) {
-            AbstractGameEffect sb = new ScytheParticleEffect(mo.intentHb.cX, mo.intentHb.cY);
-
-            intentVfx.add(sb);
-
-            return 1.0F / count;
-        }
-        return 0.2F;
     }
 
     static {

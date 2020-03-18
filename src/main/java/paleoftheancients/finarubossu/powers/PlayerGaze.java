@@ -45,7 +45,7 @@ public class PlayerGaze extends NRPower {
         this.owner = owner;
         this.source = source;
         this.amount = 0;
-        this.priority--;
+        this.priority = -99;
 
         this.color = Color.PURPLE.cpy();
 

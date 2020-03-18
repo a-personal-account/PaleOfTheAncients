@@ -1,31 +1,32 @@
-package paleoftheancients.thevixen.vfx;
+package paleoftheancients.helpers;
 
-import paleoftheancients.thevixen.TheVixenMod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
-public class SunParticleEffect extends AbstractGameEffect {
-    private static Texture img;
+public class FlashingIntentVFX extends AbstractGameEffect {
+    private Texture img;
     private static final int RAW_W = 64;
     private static final float DURATION = 2.0F;
     private float x;
     private float y;
     private float scale;
 
-    public SunParticleEffect(float x, float y) {
+    public FlashingIntentVFX(String tex, float x, float y) {
+        this(AssetLoader.loadImage(tex), x, y);
+    }
+    public FlashingIntentVFX(Texture tex, float x, float y) {
         this.scale = Settings.scale / 2.0F;
         this.duration = 2.0F;
         this.x = x;
         this.y = y;
-        if(img == null) {
-            img = ImageMaster.loadImage(TheVixenMod.getResourcePath("vfx/sunnyday.png"));
-        }
+
+        img = tex;
+
         this.renderBehind = false;
         this.color = new Color(1.0F, 1.0F, 1.0F, 0.0F);
     }
@@ -52,7 +53,5 @@ public class SunParticleEffect extends AbstractGameEffect {
         sb.setBlendFunction(770, 771);
     }
 
-    public void dispose() {
-
-    }
+    public void dispose() {}
 }
