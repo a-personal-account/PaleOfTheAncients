@@ -82,6 +82,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1783016812/thorton.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>TheBandit</groupId>
+            <artifactId>TheBandit</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/1897978748/TheBandit.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
