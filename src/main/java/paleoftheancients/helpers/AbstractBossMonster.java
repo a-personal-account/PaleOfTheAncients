@@ -15,6 +15,12 @@ public abstract class AbstractBossMonster extends CustomMonster {
 
     protected Map<Byte, EnemyMoveInfo> moves;
     private boolean damageInfoSet = false;
+    public EnemyMoveInfo getMoveInfo() {
+        return moves.get(this.nextMove);
+    }
+    public EnemyMoveInfo getMoveInfo(byte movecode) {
+        return moves.get(movecode);
+    }
 
     public AbstractBossMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);

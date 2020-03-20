@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -33,6 +34,12 @@ public class KeyRelic extends CustomRelic {
         super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/keyrelic.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/keyrelic.png")), TIER, SOUND);
     }
 
+    public void updateDesc() {
+        this.description = this.getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+    }
+
     @Override
     public String getUpdatedDescription() {
         StringBuilder result = new StringBuilder();
@@ -44,21 +51,21 @@ public class KeyRelic extends CustomRelic {
         if(Settings.hasSapphireKey)
             result.append(DESCRIPTIONS[4]).append(DESCRIPTIONS[1]);
 
-        if(Settings.hasRubyKey)
-            result.append(DESCRIPTIONS[5]).append(DESCRIPTIONS[1]);
         if(Settings.hasEmeraldKey) {
             result.append(DESCRIPTIONS[6]).append(DESCRIPTIONS[1]);
             result.append(DESCRIPTIONS[7]).append(DESCRIPTIONS[1]);
         }
+        if(Settings.hasRubyKey)
+            result.append(DESCRIPTIONS[5]).append(DESCRIPTIONS[1]);
         if(Settings.hasSapphireKey)
             result.append(DESCRIPTIONS[8]).append(DESCRIPTIONS[1]);
 
         if(Settings.hasRubyKey || Settings.hasSapphireKey) {
-            result.append(DESCRIPTIONS[10]).append(DESCRIPTIONS[9]);
+            result.append(DESCRIPTIONS[9].substring(1)).append(DESCRIPTIONS[10]);
             if(Settings.hasRubyKey) {
                 result.append(DESCRIPTIONS[11]);
                 if(Settings.hasSapphireKey)
-                    result.append(DESCRIPTIONS[10]);
+                    result.append(DESCRIPTIONS[9]);
             }
             if(Settings.hasSapphireKey)
                 result.append(DESCRIPTIONS[12]);
@@ -119,11 +126,11 @@ public class KeyRelic extends CustomRelic {
         sb.draw(this.img, this.currentX - 64.0F + offsetX, this.currentY - 64.0F, 64.0F, 64.0F, 128.0F, 128.0F, this.scale, this.scale, 0, 0, 0, 128, 128, false, false);
 
         if(Settings.hasRubyKey)
-            sb.draw(ImageMaster.RUBY_KEY, this.currentX + offsetX, this.currentY, 64.0F, 64.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
+            sb.draw(ImageMaster.RUBY_KEY, this.currentX - 32.0F + offsetX, this.currentY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
         if(Settings.hasEmeraldKey)
-            sb.draw(ImageMaster.EMERALD_KEY, this.currentX + offsetX, this.currentY, 64.0F, 64.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
+            sb.draw(ImageMaster.EMERALD_KEY, this.currentX - 32.0F + offsetX, this.currentY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
         if(Settings.hasSapphireKey)
-            sb.draw(ImageMaster.SAPPHIRE_KEY, this.currentX + offsetX, this.currentY, 64.0F, 64.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
+            sb.draw(ImageMaster.SAPPHIRE_KEY, this.currentX - 32.0F + offsetX, this.currentY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, this.scale, this.scale, 0, 0, 0, 64, 64, false, false);
 
         renderFlash(sb, true);
         this.hb.render(sb);

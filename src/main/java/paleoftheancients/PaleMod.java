@@ -27,6 +27,11 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import paleoftheancients.RazIntent.CustomIntent;
+import paleoftheancients.bandit.intent.DeadlyDashIntent;
+import paleoftheancients.bandit.intent.HappyHitIntent;
+import paleoftheancients.bandit.intent.MassivePartyIntent;
+import paleoftheancients.bandit.intent.MoveAttackIntent;
+import paleoftheancients.bandit.monsters.TheBandit;
 import paleoftheancients.bard.helpers.MelodyManager;
 import paleoftheancients.bard.intents.DervishDanceIntent;
 import paleoftheancients.bard.intents.FlourishIntent;
@@ -121,23 +126,24 @@ public class PaleMod implements
         AbstractDungeon.floorNum = before;
 
 
-        BaseMod.addMonster(TheShowmanBoss.ID, () -> new TheShowmanBoss());
-        BaseMod.addMonster(TheVixenBoss.ID, () -> new TheVixenBoss());
-        BaseMod.addMonster(IronCluck.ID, () -> new IronCluck());
-        BaseMod.addMonster(BardBoss.ID, () -> new BardBoss());
-        BaseMod.addMonster(TheDefectBoss.ID, () -> new TheDefectBoss());
-        BaseMod.addMonster(TheSilentBoss.ID, () -> new TheSilentBoss());
-        BaseMod.addMonster(TheWatcher.ID, () -> new TheWatcher());
-        BaseMod.addMonster(Reimu.ID, () -> new Reimu());
+        BaseMod.addMonster(TheShowmanBoss.ID, TheShowmanBoss::new);
+        BaseMod.addMonster(TheVixenBoss.ID, TheVixenBoss::new);
+        BaseMod.addMonster(IronCluck.ID, (BaseMod.GetMonster) IronCluck::new);
+        BaseMod.addMonster(BardBoss.ID, BardBoss::new);
+        BaseMod.addMonster(TheDefectBoss.ID, TheDefectBoss::new);
+        BaseMod.addMonster(TheSilentBoss.ID, TheSilentBoss::new);
+        BaseMod.addMonster(TheWatcher.ID, TheWatcher::new);
+        BaseMod.addMonster(Reimu.ID, (BaseMod.GetMonster) Reimu::new);
+        BaseMod.addMonster(TheBandit.ID, TheBandit::new);
 
-        BaseMod.addMonster(N.ID, () -> new N());
+        BaseMod.addMonster(N.ID, N::new);
 
         BaseMod.addMonster(Guardianest.ID, () -> new MonsterGroup(new AbstractMonster[]{
                 new Guardianest(true),
                 new Guardianest()
         }));
-        BaseMod.addMonster(HexaghostPrime.ID, () -> new HexaghostPrime());
-        BaseMod.addMonster(SlimeBossest.ID, () -> new SlimeBossest());
+        BaseMod.addMonster(HexaghostPrime.ID, HexaghostPrime::new);
+        BaseMod.addMonster(SlimeBossest.ID, SlimeBossest::new);
 
 
         BaseMod.addMonster(WokeOne.ID, () -> new MonsterGroup(new AbstractMonster[]{
@@ -150,7 +156,7 @@ public class PaleMod implements
                 new Donuer()
         }));
 
-        BaseMod.addMonster(SpireWaifu.ID, () -> new SpireWaifu());
+        BaseMod.addMonster(SpireWaifu.ID, SpireWaifu::new);
 
         PaleOfTheAncients.addEventMonster(Thorton.ID, new Thorton());
         PaleOfTheAncients.addEventMonster(BASlime.ID, new BASlime());
@@ -172,6 +178,11 @@ public class PaleMod implements
 
         CustomIntent.add(new PressurePointsIntent());
         CustomIntent.add(new BlasphemyIntent());
+
+        CustomIntent.add(new HappyHitIntent());
+        CustomIntent.add(new DeadlyDashIntent());
+        CustomIntent.add(new MoveAttackIntent());
+        CustomIntent.add(new MassivePartyIntent());
     }
 
     @Override
@@ -197,6 +208,7 @@ public class PaleMod implements
     public void receiveEditRelics() {
         //event relics
         BaseMod.addRelic(new Timepiece(), RelicType.SHARED);
+        BaseMod.addRelic(new KeyRelic(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheVixen(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheDefect(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheShowman(), RelicType.SHARED);
@@ -212,6 +224,7 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheBard(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheCollector(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheWatcher(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheBandit(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

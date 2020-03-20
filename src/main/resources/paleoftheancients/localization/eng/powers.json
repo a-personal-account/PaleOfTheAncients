@@ -333,7 +333,7 @@
   },
   "paleoftheancients:DeathBombPower": {
     "NAME": "Quick Reflexes",
-    "DESCRIPTIONS": ["If Reimu would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
+    "DESCRIPTIONS": ["If the Shrine Maiden would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
   },
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",
@@ -424,6 +424,45 @@
     "NAME": "Increased Handsize",
     "DESCRIPTIONS": [
       "#yMaximum #yHandsize is increased by #b"
+    ]
+  },
+
+  "paleoftheancients:BoardBoundPower": {
+    "NAME": "Board Bound",
+    "DESCRIPTIONS": [
+      "Move",
+      "Bound by the #rGame #rBoard."," NL Your cards gain a #rMove value (all cards with the same ID will share the same value). NL When you play said cards, #rMove that many #ySpaces on the board. NL (Cards without a value #rMove 1 and are then assigned one)",
+      " NL End of turn, #rTransform up to #b"," #yempty #y","Space","Spaces"," into #rRare #ySpaces."
+    ]
+  },
+  "paleoftheancients:KeyFinisherPower": {
+    "NAME": "The Key Finisher",
+    "DESCRIPTIONS": [
+      "#ySpaces game pieces #rland #ron trigger #b"," more ","time","times."
+    ]
+  },
+  "paleoftheancients:ImprisonedPower": {
+    "NAME": "Imprisoned",
+    "DESCRIPTIONS": [
+      "Unable to #rMove on the #yGame #yBoard."
+    ]
+  },
+  "paleoftheancients:EmptyMindPower": {
+    "NAME": "Empty Mind",
+    "DESCRIPTIONS": [
+      "Whenever a piece lands on an #rempty #rSpace, gain #b"," #yBlock."
+    ]
+  },
+  "paleoftheancients:RacingSpeedPower": {
+    "NAME": "Racing Speeeeeeeed",
+    "DESCRIPTIONS": [
+      "Whenever a #yGo #ySpace is passed or landed on, gain #b"," #yStrength and all enemies lose #b"," #yStrength and #yDexterity."
+    ]
+  },
+  "paleoftheancients:EnergyDownNextTurnPower": {
+    "NAME": "Enervated",
+    "DESCRIPTIONS": [
+      "You have #b"," less [E] available #rnext #rturn."
     ]
   }
 }
