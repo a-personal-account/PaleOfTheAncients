@@ -14,7 +14,7 @@ public class BlockSpace extends AbstractSpace {
 
     public BlockSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/BlockSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/BlockSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.GOOD;
     }
 

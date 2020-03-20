@@ -17,7 +17,7 @@ public class BoardMoveAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        board.move(board.owner, distance);
+        board.move(actor, distance);
         this.isDone = true;
     }
 }

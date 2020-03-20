@@ -127,9 +127,9 @@
   },
   "paleoftheancients:SoulOfTheBandit": {
     "NAME": "Fixed Dice",
-    "FLAVOR": "Did you know you can commission Vex to make STS mods for you!?",
+    "FLAVOR": "Did you know: You can commission Vex to make STS mods for you!?",
     "DESCRIPTIONS": [
-      ""
+      "Start each combat with a #b","-tile #yGame #yBoard filled with #rpositive #ySpaces. Whenever you spend [E] on a Card, #rMove that many #ySpaces."
     ]
   },
   "paleoftheancients:KeyRelic": {
@@ -137,7 +137,7 @@
     "FLAVOR": "You tried.",
     "DESCRIPTIONS": [
       "Start each combat with ",", ","#b1 #yStrength", "#b1 #yDexterity", "#b1 #yFocus",
-      "heal #b2 HP", "an additional [E]", "draw #b2 additional cards",
+      "heal #b2 HP", "an additional [E] ", "draw #b2 additional cards",
       "gain #b10 #yBlock"," and ","apply #b1 ","#yWeak","#yVulnerable"," to ALL enemies"
     ]
   }

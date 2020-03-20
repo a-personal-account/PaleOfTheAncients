@@ -20,6 +20,7 @@ import java.util.Set;
 
 public class SpawnMonsterAutoPositionAction extends AbstractGameAction {
     private static final float DURATION = 0.1F;
+    private int signum;
 
     private AbstractMonster m;
 
@@ -28,6 +29,9 @@ public class SpawnMonsterAutoPositionAction extends AbstractGameAction {
     private float intendedPosX;
 
     public SpawnMonsterAutoPositionAction(AbstractMonster m, boolean isMinion, float x) {
+        this(m, isMinion, x, -1);
+    }
+    public SpawnMonsterAutoPositionAction(AbstractMonster m, boolean isMinion, float x, int signum) {
         this.actionType = AbstractGameAction.ActionType.SPECIAL;
         this.duration = DURATION;
         this.m = m;
@@ -38,6 +42,7 @@ public class SpawnMonsterAutoPositionAction extends AbstractGameAction {
             m.addPower(new StrengthPower(m, 1));
             AbstractDungeon.onModifyPower();
         }
+        this.signum = Integer.signum(signum);
     }
 
     public void update() {
@@ -64,18 +69,24 @@ public class SpawnMonsterAutoPositionAction extends AbstractGameAction {
                     for (final AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                         if (!mo.isDeadOrEscaped() && !ineligible.contains(mo)) {
                             ineligible.add(mo);
-                            this.m.drawX = mo.hb.x - this.m.hb.width * 2F / 3F;
+                            this.m.drawX = mo.hb.cX + (this.m.hb.width * 1.5F + mo.hb.width) * signum / 2F;
                             this.m.hb.move(this.m.drawX, this.m.hb.cY);
                             changed = true;
                             break;
                         }
                     }
                     if(!changed) {
-                        this.m.drawX -= this.m.hb.width;
-                        break;
+                        if(signum > 0 && this.m.hb.x + this.m.hb.width > Settings.WIDTH) {
+                            signum *= -1;
+                            ineligible.clear();
+                        } else {
+                            this.m.drawX += this.m.hb.width * signum;
+                            break;
+                        }
                     }
                 }
             } while(overlapping);
+            this.intendedPosX = this.m.drawX;
             for (AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                 if (!mo.isDeadOrEscaped() && this.intendedPosX > mo.drawX)
                     position++;

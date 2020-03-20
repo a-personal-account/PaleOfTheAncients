@@ -333,7 +333,7 @@
   },
   "paleoftheancients:DeathBombPower": {
     "NAME": "Quick Reflexes",
-    "DESCRIPTIONS": ["If Reimu would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
+    "DESCRIPTIONS": ["If the Shrine Maiden would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
   },
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",
@@ -438,19 +438,19 @@
   "paleoftheancients:KeyFinisherPower": {
     "NAME": "The Key Finisher",
     "DESCRIPTIONS": [
-      "#yPositive #ySpaces the Bandit lands on trigger #b"," more ","time","times."
+      "#ySpaces game pieces #rland #ron trigger #b"," more ","time","times."
     ]
   },
   "paleoftheancients:ImprisonedPower": {
     "NAME": "Imprisoned",
     "DESCRIPTIONS": [
-      "Unable to #rmove the next turn."
+      "Unable to #rMove on the #yGame #yBoard."
     ]
   },
   "paleoftheancients:EmptyMindPower": {
     "NAME": "Empty Mind",
     "DESCRIPTIONS": [
-      "Whenever the piece lands on an #rempty #rspace, gain #b"," #yBlock."
+      "Whenever a piece lands on an #rempty #rSpace, gain #b"," #yBlock."
     ]
   },
   "paleoftheancients:RacingSpeedPower": {

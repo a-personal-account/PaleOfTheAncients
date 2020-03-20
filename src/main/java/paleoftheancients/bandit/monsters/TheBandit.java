@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -19,16 +19,18 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.SpotlightEffect;
 import com.megacrit.cardcrawl.vfx.combat.HeartBuffEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.actions.*;
-import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.rarespaces.DoomSpace;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.bandit.intent.EnumBuster;
 import paleoftheancients.bandit.powers.BoardBoundEnemyPower;
 import paleoftheancients.bandit.powers.BoardBoundPlayerPower;
+import paleoftheancients.bandit.powers.ImprisonedPower;
 import paleoftheancients.bandit.powers.KeyFinisherPower;
 import paleoftheancients.bandit.vfx.LeerVFX;
 import paleoftheancients.dungeons.PaleOfTheAncients;
@@ -58,14 +60,14 @@ public class TheBandit extends AbstractBossMonster {
     private final static byte PEPEGA = 10;
     private final static byte SETUPBOARD = 11;
 
-    private AbstractBoard board = null;
+    private BanditBoard board = null;
     private ArrayList<Byte> cycletracker;
-    private boolean phasetwo;
+    public boolean phasetwo;
     private int turncounter;
     public boolean displayNumbers;
 
     public TheBandit() {
-        super(NAME, ID, 20000,0.0F, -15.0F, 240.0F, 320.0F, null, 0, 0);
+        super(NAME, ID, 15000,0.0F, -15.0F, 240.0F, 320.0F, null, 0, -20);
         this.animation = new SpriterAnimation(PaleMod.assetPath("images/bandit/spriter/bandit_resized_hat.scml"));
         this.animation.setFlip(true, false);
 
@@ -105,7 +107,7 @@ public class TheBandit extends AbstractBossMonster {
         switch(this.nextMove) {
             case SETUPBOARD: {
                 addToBot(new TalkAction(this, DIALOG[2]));
-                board = new AbstractBoard(this);
+                board = new BanditBoard(this);
                 board.init();
                 addToBot(new GuaranteePowerApplicationAction(AbstractDungeon.player, this, new BoardBoundPlayerPower(AbstractDungeon.player, board)));
                 addToBot(new GuaranteePowerApplicationAction(this, this, new BoardBoundEnemyPower(this, board, calcAscensionNumber(1.4F))));
@@ -135,6 +137,8 @@ public class TheBandit extends AbstractBossMonster {
                 for(int i = 0; i < multiplier; i++) {
                     this.addToBot(new AddDroneAction(this.board, multiplier));
                 }
+                phasetwo = true;
+                this.resetCycles();
                 break;
 
             case AWFULLOOK:
@@ -203,11 +207,6 @@ public class TheBandit extends AbstractBossMonster {
                 break;
             }
         }
-        if(turncounter++ > 10 && !phasetwo) {
-            phaseTransition(3);
-        }
-
-        this.addToBot(new RollMoveAction(this));
     }
 
     @Override
@@ -216,6 +215,14 @@ public class TheBandit extends AbstractBossMonster {
             setMoveShortcut(SETUPBOARD);
             return;
         }
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                displayNumbers = true;
+            }
+        });
+
 
         if(cycletracker.isEmpty() || (AbstractDungeon.ascensionLevel >= 9 && cycletracker.size() <= 1)) {
             resetCycles();
@@ -223,9 +230,13 @@ public class TheBandit extends AbstractBossMonster {
             return;
         }
 
-        byte move = cycletracker.get(AbstractDungeon.monsterRng.random(cycletracker.size() - 1));
+        if(turncounter++ > 10 && !phasetwo) {
+            phaseTransition(3, false);
+            return;
+        }
+
+        byte move = cycletracker.remove(AbstractDungeon.monsterRng.random(cycletracker.size() - 1));
         this.setMoveShortcut(move, MOVES[move]);
-        this.displayNumbers = true;
     }
 
     private void resetCycles() {
@@ -248,15 +259,18 @@ public class TheBandit extends AbstractBossMonster {
     public void damage(DamageInfo info) {
         int curhp = this.currentHealth;
         super.damage(info);
-        if(!phasetwo && curhp * 3 > this.maxHealth * 2 && this.currentHealth * 3 <= this.maxHealth * 2) {
-            phaseTransition(4);
+        if(!phasetwo && nextMove != FABRICATEFRIEND && curhp * 3 > this.maxHealth * 2 && this.currentHealth * 3 <= this.maxHealth * 2) {
+            phaseTransition(4, true);
         }
     }
-    private void phaseTransition(int dialogue) {
-        phasetwo = true;
+    private void phaseTransition(int dialogue, boolean createIntent) {
+        if(createIntent && this.nextMove != FABRICATEFRIEND) {
+            AbstractDungeon.actionManager.addToBottom(new TextAboveCreatureAction(this, TextAboveCreatureAction.TextType.INTERRUPTED));
+        }
         this.setMoveShortcut(FABRICATEFRIEND);
-        this.createIntent();
-        this.resetCycles();
+        if(createIntent) {
+            this.createIntent();
+        }
         addToBot(new TalkAction(this, DIALOG[dialogue]));
     }
 
@@ -268,6 +282,9 @@ public class TheBandit extends AbstractBossMonster {
         return 0;
     }
     public int getDisplayMotion() {
+        if(this.hasPower(ImprisonedPower.POWER_ID)) {
+            return 0;
+        }
         EnemyMoveInfo emi = moves.get(nextMove);
         return getMotion() * (emi.isMultiDamage ? emi.multiplier : 1);
     }
@@ -284,7 +301,7 @@ public class TheBandit extends AbstractBossMonster {
     @Override
     public void die(boolean triggerRelics) {
         PaleOfTheAncients.addRelicReward(SoulOfTheBandit.ID);
-        addToBot(new TalkAction(this, DIALOG[5]));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 2.5F, DIALOG[5], false));
         super.die(triggerRelics);
     }
 

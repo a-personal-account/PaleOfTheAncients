@@ -34,9 +34,12 @@ public class MassivePartyAction extends AbstractGameAction {
         for (final AbstractSpace space : board.squareList) {
             if (!(space instanceof EmptySpace)) {
                 space.splat();
-                for(int i = 0; i < count; i++) {
+                space.uponLand(actor);
+                /*
+                for(int i = 1; i < count; i++) {
                     space.onLanded(actor);
                 }
+                 */
                 for(int j = 0; j < 3; j++) {
                     this.addPetal();
                 }

@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 
 public class BoardBoundPlayerPower extends BoardBoundPower {
 
-    public BoardBoundPlayerPower(AbstractCreature owner, AbstractBoard board) {
+    public BoardBoundPlayerPower(AbstractCreature owner, BanditBoard board) {
         super(owner, board);
         updateDescription();
     }

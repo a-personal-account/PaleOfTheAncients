@@ -2,12 +2,11 @@ package paleoftheancients.bandit.board.rarespaces;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.monsters.exordium.GremlinNob;
 import paleoftheancients.PaleMod;
-import paleoftheancients.bandit.actions.SpawnMonsterAutoPositionAction;
-import paleoftheancients.bandit.actions.SummonGremlinAction;
+import paleoftheancients.bandit.actions.SummonNobAction;
 import paleoftheancients.bandit.board.AbstractBoard;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
+import paleoftheancients.bandit.board.spaces.asymmetrical.GremlinSpace;
 import paleoftheancients.helpers.AssetLoader;
 
 public class NobSpace extends AbstractSpace {
@@ -21,13 +20,13 @@ public class NobSpace extends AbstractSpace {
     }
 
     public void onLanded(AbstractCreature actor) {
-        att(new SpawnMonsterAutoPositionAction(new GremlinNob(0F, 0F), false, SummonGremlinAction.leftMostCoordinate()));
+        att(new SummonNobAction());
     }
 
     public String getHeaderText() {
         return TEXT[0];
     }
     public String getBodyText() {
-        return TEXT[1] + BASETEXT[2];
+        return TEXT[1] + GremlinSpace.ENEMYLIMIT + TEXT[2] + BASETEXT[2];
     }
 }

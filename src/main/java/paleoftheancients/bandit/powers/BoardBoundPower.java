@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import paleoftheancients.NRPower;
 import paleoftheancients.PaleMod;
-import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
 
 public abstract class BoardBoundPower extends NRPower {
@@ -15,9 +15,9 @@ public abstract class BoardBoundPower extends NRPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    protected AbstractBoard board;
+    protected BanditBoard board;
 
-    public BoardBoundPower(AbstractCreature owner, AbstractBoard board) {
+    public BoardBoundPower(AbstractCreature owner, BanditBoard board) {
         super("banditboard.png");
         name = NAME;
         ID = POWER_ID;

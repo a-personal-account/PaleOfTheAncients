@@ -3,10 +3,11 @@ package paleoftheancients.bandit.powers;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import paleoftheancients.bandit.actions.TransformEmptySpaceAction;
 import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 
 public class BoardBoundEnemyPower extends BoardBoundPower {
 
-    public BoardBoundEnemyPower(AbstractCreature owner, AbstractBoard board, int amount) {
+    public BoardBoundEnemyPower(AbstractCreature owner, BanditBoard board, int amount) {
         super(owner, board);
         this.amount = amount;
         this.updateDescription();

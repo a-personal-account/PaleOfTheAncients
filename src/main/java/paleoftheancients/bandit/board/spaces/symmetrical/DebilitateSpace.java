@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.CollectorStakeEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.helpers.AssetLoader;
 
@@ -19,16 +20,20 @@ public class DebilitateSpace extends AbstractSpace {
 
     public DebilitateSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/WeakSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/WeakSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.GOOD;
     }
 
     public void onLanded(AbstractCreature actor) {
         AbstractCreature target;
-        if(actor == board.owner) {
-            target = AbstractDungeon.player;
+        if(board instanceof BanditBoard) {
+            if (actor == ((BanditBoard) board).owner) {
+                target = AbstractDungeon.player;
+            } else {
+                target = ((BanditBoard) board).owner;
+            }
         } else {
-            target = board.owner;
+            target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
         }
         att(new ApplyPowerAction(target, actor, new VulnerablePower(target, 1, target == AbstractDungeon.player), 1));
         att(new ApplyPowerAction(target, actor, new WeakPower(target, 1, target == AbstractDungeon.player), 1));

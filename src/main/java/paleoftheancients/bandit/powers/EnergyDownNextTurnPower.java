@@ -33,11 +33,11 @@ public class EnergyDownNextTurnPower extends AbstractPower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + 1 + DESCRIPTIONS[1];
     }
 
     public void atStartOfTurn() {
-        this.addToBot(new LoseEnergyAction(this.amount));
+        this.addToBot(new LoseEnergyAction(1));
         this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 }

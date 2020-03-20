@@ -1,5 +1,6 @@
 package paleoftheancients.bandit.board.spaces;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +16,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.actions.TransformSquareAction;
 import paleoftheancients.bandit.board.AbstractBoard;
 import paleoftheancients.bandit.board.AbstractDrone;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.spaces.symmetrical.EmptySpace;
 import paleoftheancients.finarubossu.vfx.DamageCurvy;
 import paleoftheancients.finarubossu.vfx.DamageLine;
@@ -29,6 +31,7 @@ public abstract class AbstractSpace {
         y = y2;
         hb = new Hitbox(x2, y2, 64 * Settings.scale, 64 * Settings.scale);
         hb.translate(x2, y2);
+        this.alpha = 1.0F;
     }
 
     protected int maxLines = 36;
@@ -42,7 +45,6 @@ public abstract class AbstractSpace {
     public GOODNESS goodness;
 
     public boolean hover = false;
-    public boolean superHover = false;
 
     public Hitbox hb;
 
@@ -51,7 +53,12 @@ public abstract class AbstractSpace {
     public int x;
     public int y;
 
+    private float alpha;
+
     public void render(SpriteBatch sb) {
+        Color c = Color.WHITE.cpy();
+        c.a = alpha;
+        sb.setColor(c);
         sb.draw(tex, x, y, tex.getWidth() / 2F, tex.getHeight() / 2F, tex.getWidth(), tex.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
         renderOutline(sb);
     }
@@ -85,9 +92,11 @@ public abstract class AbstractSpace {
     }
 
     public boolean droneOnThis() {
-        for (AbstractDrone r : board.droneList) {
-            if (board.squareList.get(r.position) == this)
-                return true;
+        if(board instanceof BanditBoard) {
+            for (AbstractDrone r : ((BanditBoard) board).droneList) {
+                if (board.squareList.get(r.position) == this)
+                    return true;
+            }
         }
         return false;
     }
@@ -124,6 +133,20 @@ public abstract class AbstractSpace {
             AbstractDungeon.effectList.add(new DamageLine(this.hb.cX, this.hb.cY, new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1), ((stride * i) + MathUtils.random(-stride, stride) + offset)));
             if (i % 2 == 0) {
                 AbstractDungeon.effectList.add(new DamageCurvy(this.hb.cX, this.hb.cY, new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1)));
+            }
+        }
+    }
+
+    public void updateAlpha() {
+        if(this.x + this.hb.width < board.player.location.x && this.alpha > 0F) {
+            this.alpha -= Gdx.graphics.getDeltaTime();
+            if(this.alpha < 0F) {
+                this.alpha = 0F;
+            }
+        } else if(this.x >= board.player.location.x && this.alpha < 1F) {
+            this.alpha += Gdx.graphics.getDeltaTime();
+            if(this.alpha > 1F) {
+                this.alpha = 1F;
             }
         }
     }

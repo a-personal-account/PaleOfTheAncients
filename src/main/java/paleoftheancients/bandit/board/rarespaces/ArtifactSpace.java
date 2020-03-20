@@ -14,7 +14,7 @@ public class ArtifactSpace extends AbstractSpace {
 
     public ArtifactSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/ArtifactSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/ArtifactSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.GOOD;
         this.explodeOnUse = true;
     }

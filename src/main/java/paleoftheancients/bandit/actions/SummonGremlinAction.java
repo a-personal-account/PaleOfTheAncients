@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.exordium.*;
 import paleoftheancients.bandit.board.spaces.asymmetrical.GremlinSpace;
+import paleoftheancients.bandit.monsters.TheBandit;
 
 public class SummonGremlinAction extends AbstractGameAction {
     public void update() {
@@ -21,7 +22,6 @@ public class SummonGremlinAction extends AbstractGameAction {
             return;//Don't overload the room.
         }
 
-        float offsetX = leftMostCoordinate();
         float offsetY = 0.0F;
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             offsetY = Math.min(m.drawY, offsetY);
@@ -45,13 +45,6 @@ public class SummonGremlinAction extends AbstractGameAction {
                 mo = new GremlinWizard(0, offsetY - 10.0F * Settings.scale);
                 break;
         }
-        AbstractDungeon.actionManager.addToTop(new SpawnMonsterAutoPositionAction(mo, false, offsetX - 150.0F * Settings.scale));
-    }
-    public static float leftMostCoordinate() {
-        float offsetX = 0F;
-        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            offsetX = Math.min((m.drawX - Settings.WIDTH * 0.75F) / Settings.scale, offsetX);
-        }
-        return offsetX;
+        AbstractDungeon.actionManager.addToTop(new SpawnMonsterAutoPositionAction(mo, false, AbstractDungeon.getCurrRoom().monsters.getMonster(TheBandit.ID).drawX));
     }
 }

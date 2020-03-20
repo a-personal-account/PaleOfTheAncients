@@ -21,7 +21,7 @@ public class SpikeSpace extends AbstractSpace {
 
     public SpikeSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/SpikeSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/SpikeSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.BAD;
     }
 

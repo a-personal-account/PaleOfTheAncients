@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.board.AbstractBoard;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.helpers.AssetLoader;
 
@@ -21,13 +22,13 @@ public class DamageSpace extends AbstractSpace {
 
     public DamageSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/DamageSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/DamageSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.GOOD;
     }
 
     public void onLanded(AbstractCreature actor) {
-        if(actor == board.owner) {
-            att(new DamageAction(AbstractDungeon.player, new DamageInfo(board.owner, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        if(board instanceof BanditBoard && actor == ((BanditBoard) board).owner) {
+            att(new DamageAction(AbstractDungeon.player, new DamageInfo(((BanditBoard) board).owner, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         } else {
             att(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(BASEDAMAGE, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
         }

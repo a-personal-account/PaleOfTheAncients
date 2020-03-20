@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import paleoftheancients.bandit.board.AbstractBoard;
 import paleoftheancients.bandit.board.AbstractDrone;
+import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import java.util.Set;
 public class AddDroneAction extends AbstractGameAction {
     private final float DURATION = 0.1F;
     private int count;
-    private AbstractBoard board;
+    private BanditBoard board;
 
-    public AddDroneAction(AbstractBoard board, int count) {
+    public AddDroneAction(BanditBoard board, int count) {
         this.board = board;
         this.count = count;
         this.duration = DURATION;

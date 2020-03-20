@@ -135,7 +135,8 @@
   "paleoftheancients:GoSpace": {
     "TEXT": [
       "Go Space",
-      "Cannot be Transformed. ","you take #b", " damage and #ySpaces the Bandit activates trigger #ran #radditional #rtime."
+      "Cannot be Transformed. ","you take #b", " damage and #ySpaces the Bandit #rlands #ron trigger #ran #radditional #rtime.",
+      "you deal #b"," damage to ALL enemies and #ySpaces you #rland #ron trigger #ran #radditional #rtime."
     ]
   },
   "paleoftheancients:DoomSpace": {
@@ -153,7 +154,7 @@
   "paleoftheancients:JailSpace": {
     "TEXT": [
       "Prison Space",
-      "the #yacting #yplayer's #renemy cannot #rmove next turn."
+      "the #yacting #yplayer's #renemy cannot #rmove next turn"
     ]
   },
   "paleoftheancients:DamageSpace": {
@@ -164,7 +165,7 @@
   },
   "paleoftheancients:SpikeSpace": {
     "TEXT": [
-      "Souje Space",
+      "Spike Space",
       "the #yacting #yplayer takes #b", " damage."
     ]
   },
@@ -195,7 +196,7 @@
   "paleoftheancients:NobSpace": {
     "TEXT": [
       "Gremlin Nob Space",
-      "summon an #rempowered #rGremlin #rNob into combat"
+      "and there is no #rGremlin #rNob alive, summon an #rempowered #rGremlin #rNob into combat"
     ]
   },
   "paleoftheancients:EnergySpace": {
@@ -207,7 +208,7 @@
   "paleoftheancients:ArtifactSpace": {
     "TEXT": [
       "Artifact Space",
-      "the #yacting #yplayer gain1 #b1 #yArtifact"
+      "the #yacting #yplayer gain #b1 #yArtifact"
     ]
   },
   "paleoftheancients:CursedSpace": {
@@ -216,7 +217,13 @@
       "put ", "shuffle ",
       " a #yCurse", " #yCurses",
       " on top of", " into",
-      "your drawpile."
+      " your drawpile."
+    ]
+  },
+  "paleoftheancients:StrengthSpace": {
+    "TEXT": [
+      "Strength Space",
+      "you gain #b"," #yStrength."
     ]
   },
 
@@ -247,7 +254,7 @@
   "paleoftheancients:MassivePartyIntent": {
     "TEXT": [
       "PARTY!!!",
-      "Intends to activate #rALL #ySpaces."
+      "Intends to activate ALL #ySpaces #ronce."
     ]
   }
 }

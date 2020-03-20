@@ -16,11 +16,11 @@ import paleoftheancients.helpers.AssetLoader;
 
 public class DoomSpace extends AbstractSpace {
     private static String[] TEXT = CardCrawlGame.languagePack.getUIString(PaleMod.makeID("DoomSpace")).TEXT;
-    public static int DAMAGE = 250;
+    public static int DAMAGE = 500;
 
     public DoomSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);
-        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/DeathSquare" + AbstractBoard.artStyle + ".png"));
+        this.tex = AssetLoader.loadImage(PaleMod.assetPath("images/bandit/spaces/DeathSquare" + board.artStyle + ".png"));
         this.goodness = GOODNESS.REALLYBAD;
         this.explodeOnUse = true;
     }

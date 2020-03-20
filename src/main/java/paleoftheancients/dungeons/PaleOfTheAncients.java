@@ -153,8 +153,9 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/watcher.png"), PaleMod.assetPath("images/ui/map/watcherOutline.png"), TheWatcher.ID));
+
         if(!Loader.isModLoaded("TheBandit") || !(AbstractDungeon.player instanceof theWario.TheBandit)) {
-            easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bandit.png"), PaleMod.assetPath("images/ui/map/banditOutline.png"), TheBandit.ID));
+            toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bandit.png"), PaleMod.assetPath("images/ui/map/banditOutline.png"), TheBandit.ID));
         }
 
         toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/defect.png"), PaleMod.assetPath("images/ui/map/defectOutline.png"), TheDefectBoss.ID));

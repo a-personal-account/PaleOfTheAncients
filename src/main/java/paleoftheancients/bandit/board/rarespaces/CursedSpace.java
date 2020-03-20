@@ -24,9 +24,6 @@ public class CursedSpace extends AbstractSpace {
         this.explodeOnUse = true;
 
         this.amount = 1;
-        if(AbstractDungeon.ascensionLevel >= 4) {
-            this.amount++;
-        }
         if(AbstractDungeon.ascensionLevel >= 19) {
             this.amount++;
         }
@@ -43,14 +40,15 @@ public class CursedSpace extends AbstractSpace {
         return TEXT[0];
     }
     public String getBodyText() {
-        String result = "";
-        result += TEXT[ontop ? 1 : 2];
+        StringBuilder result = new StringBuilder();
+        result.append(TEXT[ontop ? 1 : 2]);
         if(amount > 1) {
-            result += FontHelper.colorString(Integer.toString(amount), "b") + TEXT[4];
+            result.append(FontHelper.colorString(Integer.toString(amount), "b")).append(TEXT[4]);
         } else {
-            result += TEXT[3];
+            result.append(TEXT[3]);
         }
-        result += TEXT[ontop ? 5 : 6] + TEXT[7];
-        return result + BASETEXT[2];
+        result.append(TEXT[ontop ? 5 : 6]).append(TEXT[7]);
+        result.append(BASETEXT[2]);
+        return result.toString();
     }
 }
