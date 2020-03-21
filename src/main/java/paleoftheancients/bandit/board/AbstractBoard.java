@@ -194,14 +194,13 @@ public abstract class AbstractBoard {
             }
             r.position = (r.position + amount) % squareList.size();
             cursquare = squareList.get(r.position);
-            boolean splat = !(cursquare instanceof EmptySpace);
-            cursquare.uponLand(actor);
             for (int i = 1; i < count; i++) {
-                if (splat) {
-                    cursquare.splat();
-                }
                 cursquare.onLanded(actor);
             }
+            if (!(cursquare instanceof EmptySpace)) {
+                cursquare.splat();
+            }
+            cursquare.uponLand(actor);
 
             if (amount != 0) {
                 movePieces(amount, (int) cursquare.hb.cX, (int) cursquare.hb.cY, Math.min(amount / 10F, 0.66F), r);

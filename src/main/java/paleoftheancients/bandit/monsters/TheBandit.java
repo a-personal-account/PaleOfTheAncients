@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.SpotlightEffect;
@@ -31,7 +30,6 @@ import paleoftheancients.bandit.intent.EnumBuster;
 import paleoftheancients.bandit.powers.BoardBoundEnemyPower;
 import paleoftheancients.bandit.powers.BoardBoundPlayerPower;
 import paleoftheancients.bandit.powers.ImprisonedPower;
-import paleoftheancients.bandit.powers.KeyFinisherPower;
 import paleoftheancients.bandit.vfx.LeerVFX;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.finarubossu.actions.GuaranteePowerApplicationAction;
@@ -270,6 +268,8 @@ public class TheBandit extends AbstractBossMonster {
         this.setMoveShortcut(FABRICATEFRIEND);
         if(createIntent) {
             this.createIntent();
+        } else {
+            this.nextMove = FABRICATEFRIEND;
         }
         addToBot(new TalkAction(this, DIALOG[dialogue]));
     }
@@ -291,10 +291,12 @@ public class TheBandit extends AbstractBossMonster {
 
     private int getTriggerCount() {
         int count = 1;
+        /*
         AbstractPower pow = this.getPower(KeyFinisherPower.POWER_ID);
         if(pow != null) {
             count += pow.amount;
         }
+         */
         return count;
     }
 

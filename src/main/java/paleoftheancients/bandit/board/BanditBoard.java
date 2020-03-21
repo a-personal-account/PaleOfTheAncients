@@ -57,7 +57,8 @@ public class BanditBoard extends AbstractBoard {
         for (int i = 0; i < 2; i++) bruh.add(getRandomRareSquare());
 
 
-        int x = (int) (Settings.WIDTH / 3.25);
+        int kwab = 8;
+        int x = (int) (Settings.WIDTH / 2F - squareOffset * (kwab + 1) / 2F);
         int y = (int) (Settings.HEIGHT / 1.75);
         final AbstractSpace s = new BanditGoSpace(this, x, y);
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
@@ -70,7 +71,6 @@ public class BanditBoard extends AbstractBoard {
             }
         });
         player.location.move((int) s.hb.cX, (int) s.hb.cY + Settings.HEIGHT);
-        int kwab = 8;
 
         ArrayList<Integer> slots = new ArrayList<>();
         for (int q = 0; q < kwab; q++) {
@@ -252,10 +252,10 @@ public class BanditBoard extends AbstractBoard {
                     space = squareList.get((piece.position + i) % squareList.size());
                     if (!(space instanceof EmptySpace)) {
                         found++;
-                        space.uponLand(actor);
                         for(int j = 1; j < amountOfTriggers; j++) {
                             space.onLanded(actor);
                         }
+                        space.uponLand(actor);
                     }
                 }
             }

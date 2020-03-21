@@ -106,6 +106,23 @@ public abstract class AbstractSpace {
             AbstractDungeon.actionManager.addToTop(new TransformSquareAction(board, this, EmptySpace.class));
         }
         onLanded(actor);
+        playVFX(actor);
+    }
+
+    public void playVFX(AbstractCreature actor) {}
+
+    protected AbstractCreature symmetricTarget(AbstractCreature actor) {
+        AbstractCreature target;
+        if(board instanceof BanditBoard) {
+            if (actor == ((BanditBoard) board).owner) {
+                target = AbstractDungeon.player;
+            } else {
+                target = ((BanditBoard) board).owner;
+            }
+        } else {
+            target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
+        }
+        return target;
     }
 
     public abstract void onLanded(AbstractCreature actor);

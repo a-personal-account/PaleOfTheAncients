@@ -32,7 +32,7 @@ public class HappyHitIntent extends FlashingIntent {
             result.append("#b" + info.multiplier + " ");
         }
         result.append(TEXT[3]);
-        result.append(TEXT[info.multiplier > 1 ? 4 : 5]);
+        result.append(TEXT[info.multiplier > 1 ? 5 : 4]);
         result.append(TEXT[6]);
 
         return result.toString();

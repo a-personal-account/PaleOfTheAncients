@@ -27,6 +27,6 @@ public class NobSpace extends AbstractSpace {
         return TEXT[0];
     }
     public String getBodyText() {
-        return TEXT[1] + GremlinSpace.ENEMYLIMIT + TEXT[2] + BASETEXT[2];
+        return TEXT[1] + BASETEXT[2];
     }
 }

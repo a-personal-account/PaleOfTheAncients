@@ -26,7 +26,7 @@ public class SpikeSpace extends AbstractSpace {
     }
 
     public void onLanded(AbstractCreature actor) {
-        att(new DamageAction(actor, new DamageInfo(actor, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        att(new DamageAction(actor, new DamageInfo(actor, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
     }
 
     public String getHeaderText() {

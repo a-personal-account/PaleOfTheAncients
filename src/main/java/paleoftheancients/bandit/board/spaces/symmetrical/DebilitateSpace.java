@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.CollectorStakeEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.board.AbstractBoard;
-import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.helpers.AssetLoader;
 
@@ -24,22 +23,19 @@ public class DebilitateSpace extends AbstractSpace {
         this.goodness = GOODNESS.GOOD;
     }
 
+    @Override
     public void onLanded(AbstractCreature actor) {
-        AbstractCreature target;
-        if(board instanceof BanditBoard) {
-            if (actor == ((BanditBoard) board).owner) {
-                target = AbstractDungeon.player;
-            } else {
-                target = ((BanditBoard) board).owner;
-            }
-        } else {
-            target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
-        }
+        AbstractCreature target = symmetricTarget(actor);
         att(new ApplyPowerAction(target, actor, new VulnerablePower(target, 1, target == AbstractDungeon.player), 1));
         att(new ApplyPowerAction(target, actor, new WeakPower(target, 1, target == AbstractDungeon.player), 1));
         att(new ApplyPowerAction(target, actor, new FrailPower(target, 1, target == AbstractDungeon.player), 1));
+    }
+
+    @Override
+    public void playVFX(AbstractCreature actor) {
+        AbstractCreature target = symmetricTarget(actor);
         for(int i = 0; i < 3; i++) {
-            att(new VFXAction(new CollectorStakeEffect(target.hb.cX, target.hb.cY), 0.1F));
+            att(new VFXAction(new CollectorStakeEffect(target.hb.cX, target.hb.cY), 0F));
         }
     }
 

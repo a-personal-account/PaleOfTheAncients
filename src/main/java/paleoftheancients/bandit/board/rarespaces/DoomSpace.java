@@ -26,12 +26,16 @@ public class DoomSpace extends AbstractSpace {
     }
 
     public void onLanded(AbstractCreature actor) {
-        splat();
-        splat();
-        splat();
-        splat();
-        splat();
         att(new DamageAction(actor, new DamageInfo(actor, DAMAGE, DamageInfo.DamageType.THORNS)));
+    }
+
+    @Override
+    public void playVFX(AbstractCreature actor) {
+        splat();
+        splat();
+        splat();
+        splat();
+        splat();
     }
 
     public void splat() {

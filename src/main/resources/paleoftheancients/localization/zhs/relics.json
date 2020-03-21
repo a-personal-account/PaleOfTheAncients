@@ -17,9 +17,9 @@
   },
     "paleoftheancients:BlurryLens": {
     "NAME": "模糊透镜",
-    "FLAVOR": "所有的东西看起来都有奇怪的缺陷。",
+    "FLAVOR": "所有的东西看起来都很奇怪。",
     "DESCRIPTIONS": [
-      "右键： ", "模糊外表！"
+      "右键： ", "模糊视野！"
     ]
   },
   "paleoftheancients:SoulOfTheVixen": {
@@ -123,6 +123,22 @@
     "FLAVOR": "",
     "DESCRIPTIONS": [
       "每当你额外抽牌时，获得 #b"," 层 #y真言 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheBandit": {
+    "NAME": "魔改骰子",
+    "FLAVOR": "你知道吗：你可以拜托Vex给你做爬塔mod！？",
+    "DESCRIPTIONS": [
+      "每场战斗开始时，进入 #b","-长度 全是 #r正面棋格 的 #y路径 。你打出牌的耗能将 #r前进 等量的 #y棋格 。"
+    ]
+  },
+  "paleoftheancients:KeyRelic": {
+    "NAME": "认同",
+    "FLAVOR": "曾经的努力……",
+    "DESCRIPTIONS": [
+      "每场战斗开始时， ",""," 获得 #b1 点 #y力量 ", " 获得 #b1 点 #y敏捷 ", " 获得 #b1 点 #y集中 。",
+      "回复 #b2 点生命", "额外获得 [E] ", "额外抽 #b2 张牌。",
+      "获得 #b10 点 #y格挡"," 和 ","给予所有敌人 #b1 "," 层 #y虚弱 "," #y易伤 "," 。"
     ]
   }
 }

@@ -29,7 +29,7 @@ public class WeirdMoveBoardAction extends AbstractGameAction {
     public void update() {
         if(this.cur == 0F) {
             AbstractSpace space;
-            int endposition, index, leftBoundary = board.leftBoundary();
+            int endposition, index, leftBoundary = board.player.location.x - (int)(board.squareOffset / 2F);
             for(int i = board.player.position; i < board.player.position + RelicBoard.SIZE; i++) {
                 index = i % board.squareList.size();
                 space = board.squareList.get(index);

@@ -15,6 +15,8 @@ public class SummonNobAction extends AbstractGameAction {
             }
         }
         AbstractMonster bandit = AbstractDungeon.getCurrRoom().monsters.getMonster(TheBandit.ID);
-        this.addToTop(new SpawnMonsterAutoPositionAction(new GremlinNob(0F, -30F), false, bandit.hb.x + bandit.hb.width, 1));
+        if(bandit != null && !bandit.isDeadOrEscaped()) {
+            this.addToTop(new SpawnMonsterAutoPositionAction(new GremlinNob(0F, -30F), false, bandit.hb.x + bandit.hb.width, 1));
+        }
     }
 }

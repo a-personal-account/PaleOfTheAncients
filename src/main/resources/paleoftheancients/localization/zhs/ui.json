@@ -59,8 +59,8 @@
   "paleoftheancients:flamewheel": {
     "TEXT": [
       "剥削",
-      "这名敌人意图 NL #y攻击  #b",
-      " 点伤害并格挡and Block for 2 for each point of increased damage you took through special Status cards. NL #r艳阳： NL 重复一次（已经打出）。"
+      "这名敌人意图 NL #y攻击 造成 #b",
+      " 点伤害。你每有因特殊的状态牌提高的伤害，获得2点格挡。 NL #r艳阳： NL 重复一次（已经打出）。"
     ]
   },
 
@@ -114,6 +114,146 @@
       "Bomb",
       "死亡时会复活。",
       "这个需要连续特定攻击。"
+    ]
+  },
+  "paleoftheancients:PaleRelicReward": {
+    "TEXT": [
+      "先古连锁",
+      "获得这件遗物之后你将 #r不能获得 其他的 #y先古境地 遗物。"
+    ]
+  },
+
+
+  "paleoftheancients:AbstractSpace": {
+    "TEXT": [
+      "当棋子落在这个棋格时， ",
+      "当棋子落在或 #g经过 这个棋格时，",
+      " 并 #r变换 为 #y空白棋格 。"
+    ]
+  },
+  "paleoftheancients:GoSpace": {
+    "TEXT": [
+      "起点",
+      "不能被变换。 ","你受到 #b", " 点伤害并使“盗贼” #r落在 #y棋格 上触发的效果 #r增加一次 。",
+      "你对所有敌人造成 #b"," 点伤害并使你 #r落在 #y棋格 上触发的效果 #r增加一次 。"
+    ]
+  },
+  "paleoftheancients:DoomSpace": {
+    "TEXT": [
+      "殒命",
+      "#y棋子方 受到 #b"," 点伤害。"
+    ]
+  },
+  "paleoftheancients:EmptySpace": {
+    "TEXT": [
+      "空白棋格",
+      "无事发生。"
+    ]
+  },
+  "paleoftheancients:JailSpace": {
+    "TEXT": [
+      "监狱",
+      " #r棋子方的敌人 下一回合 不能 #y移动 。"
+    ]
+  },
+  "paleoftheancients:DamageSpace": {
+    "TEXT": [
+      "伤害",
+      "#r棋子方的敌人 受到 #b", " 点伤害 。"
+    ]
+  },
+  "paleoftheancients:SpikeSpace": {
+    "TEXT": [
+      "荆棘",
+      "#y棋子方 受到 #b", " 点伤害。"
+    ]
+  },
+  "paleoftheancients:DebilitateSpace": {
+    "TEXT": [
+      "减益",
+      "#y棋子方的敌人 获得 #b", " 层 #y易伤 、 #y虚弱 和 #y脆弱 。"
+    ]
+  },
+  "paleoftheancients:BlockSpace": {
+    "TEXT": [
+      "格挡",
+      "#y棋子方 获得 #b"," 点 #y格挡 。"
+    ]
+  },
+  "paleoftheancients:BufferSpace": {
+    "TEXT": [
+      "缓冲",
+      "阻止 #y棋子方 下次受到的伤害。"
+    ]
+  },
+  "paleoftheancients:GremlinSpace": {
+    "TEXT": [
+      "地精",
+      "如果场上少于 #b"," 个敌人。召唤一只 #r强化地精 。"
+    ]
+  },
+  "paleoftheancients:NobSpace": {
+    "TEXT": [
+      "大块头",
+      "如果场上没有 #r地精大块头 ，召唤一只 #r强化地精大块头 。"
+    ]
+  },
+  "paleoftheancients:EnergySpace": {
+    "TEXT": [
+      "能量",
+      "#y棋子方 吸取敌人 [E] 。"
+    ]
+  },
+  "paleoftheancients:ArtifactSpace": {
+    "TEXT": [
+      "人工制品",
+      "#y棋子方 获得 #b1 层 #y人工制品"
+    ]
+  },
+  "paleoftheancients:CursedSpace": {
+    "TEXT": [
+      "诅咒",
+      "put ", "将 ",
+      " 张 #y诅咒牌", " 张 #y诅咒牌",
+      " 顶部 ", " 加入",
+      " 你的抽牌堆。"
+    ]
+  },
+  "paleoftheancients:StrengthSpace": {
+    "TEXT": [
+      "力量",
+      "#y棋子方 获得 #b"," 点 #y力量 。"
+    ]
+  },
+
+  "paleoftheancients:HappyHitIntent": {
+    "TEXT": [
+      "快活！",
+      "将对你 #y攻击 造成 #b",
+      " 点伤害并触发棋子下 ",
+      " 个 #y","非空白棋格","非空白棋格"," 效果。"
+    ]
+  },
+  "paleoftheancients:DeadlyDashIntent": {
+    "TEXT": [
+      "冲刺！",
+      "将对你 #r攻击 造成 #b",
+      " 点伤害并 #r前进 #b"," 格。 NL 如果 #r棋子 落在 #r非空白棋格 ，重复一次。"
+    ]
+  },
+  "paleoftheancients:MoveAttackIntent": {
+    "TEXT": [
+      "冲着你来！",
+      "将对你 #r攻击 造成 #b",
+      " 点伤害",
+      " 并 #r前进 #b",
+      " 格 #b"," 次"
+    ]
+  },
+  "paleoftheancients:MassivePartyIntent": {
+    "TEXT": [
+      "开派对啦！！！",
+      "将要触发所有 #y棋格效果 #r一次 。"
     ]
   }
 }

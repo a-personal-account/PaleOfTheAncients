@@ -1,11 +1,9 @@
 package paleoftheancients.bandit.board.spaces;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,7 +11,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.SweepingBeamEffect;
 import paleoftheancients.bandit.board.AbstractBoard;
 import paleoftheancients.bandit.board.BanditBoard;
 import paleoftheancients.bandit.powers.KeyFinisherPower;
@@ -32,8 +29,6 @@ public class BanditGoSpace extends GoSpace {
         super.uponLand(actor);
         splat();
         att(new DamageAction(AbstractDungeon.player, new DamageInfo(board.owner, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        att(new VFXAction(board.owner, new SweepingBeamEffect(board.owner.hb.cX, board.owner.hb.cY, board.owner.flipHorizontal), 0.4F));
-        att(new SFXAction("ATTACK_DEFECT_BEAM"));
     }
 
     @Override
@@ -49,6 +44,11 @@ public class BanditGoSpace extends GoSpace {
         }
 
         att(new ApplyPowerAction(board.owner, actor, new KeyFinisherPower(board.owner, 1), 1));
+    }
+
+    @Override
+    public void playVFX(AbstractCreature actor) {
+        super.playVFX(board.owner);
     }
 
     public String getBodyText() {

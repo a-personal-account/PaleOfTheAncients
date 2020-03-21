@@ -20,6 +20,13 @@ public class CircumventBuffDebuffNegationAction extends AbstractGameAction {
         if(!target.hasPower(power.ID)) {
             this.target.powers.add(this.power);
             this.power.onInitialApplication();
+            this.addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    this.isDone = true;
+                    power.flash();
+                }
+            });
             Collections.sort(this.target.powers);
         }
         this.isDone = true;

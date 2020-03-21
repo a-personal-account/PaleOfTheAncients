@@ -26,12 +26,17 @@ public class DamageSpace extends AbstractSpace {
         this.goodness = GOODNESS.GOOD;
     }
 
+    @Override
     public void onLanded(AbstractCreature actor) {
         if(board instanceof BanditBoard && actor == ((BanditBoard) board).owner) {
             att(new DamageAction(AbstractDungeon.player, new DamageInfo(((BanditBoard) board).owner, BASEDAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         } else {
             att(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(BASEDAMAGE, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
         }
+    }
+
+    @Override
+    public void playVFX(AbstractCreature actor) {
         att(new VFXAction(new WhirlwindEffect(), 0.0F));
         att(new SFXAction("ATTACK_WHIRLWIND"));
     }

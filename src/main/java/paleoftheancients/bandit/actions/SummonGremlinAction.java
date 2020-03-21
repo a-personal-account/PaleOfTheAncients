@@ -45,6 +45,10 @@ public class SummonGremlinAction extends AbstractGameAction {
                 mo = new GremlinWizard(0, offsetY - 10.0F * Settings.scale);
                 break;
         }
-        AbstractDungeon.actionManager.addToTop(new SpawnMonsterAutoPositionAction(mo, false, AbstractDungeon.getCurrRoom().monsters.getMonster(TheBandit.ID).drawX));
+        AbstractMonster bandit = AbstractDungeon.getCurrRoom().monsters.getMonster(TheBandit.ID);
+        if(bandit != null && !bandit.isDeadOrEscaped()) {
+            AbstractDungeon.actionManager.addToTop(new SpawnMonsterAutoPositionAction(mo, false, bandit.drawX));
+            mo.usePreBattleAction();
+        }
     }
 }
