@@ -336,7 +336,7 @@
     "DESCRIPTIONS": ["当灵梦将要死亡时，如果有 #b2 个Bomb，在下一回合前无敌并将意图变为使用 #b2个Bomb。 NL 只在至少有 #b1 个Bomb是才生效。"]
   },
   "paleoftheancients:SealedPower": {
-    "NAME": "Sealed",
+    "NAME": "封印",
     "DESCRIPTIONS": ["你的回合开始时，消耗 #b", " 张牌", " 张牌", " 并失去 [E] 。"]
   },
   "paleoftheancients:ShotTypeBasePower": {
@@ -358,7 +358,7 @@
     ]
   },
     "paleoftheancients:BlockUponDeathPower": {
-    "NAME": "Divine Energy",
+    "NAME": "神力",
     "DESCRIPTIONS": [
       "当被玩家摧毁时，玩家获得 #b",
       " 点 #y格挡 且 #r灵梦 获得 #b",
@@ -430,7 +430,7 @@
     "NAME": "棋盘",
     "DESCRIPTIONS": [
       "移动",
-      "受 #r路径 约束。"," NL 你的牌获得 #r移动 值 （所有ID相同的牌共享数值） 。 NL 每当你打出一张牌，根据 #r移动 前进相应 #棋格 。 NL （没有 #r移动 数的默认为1）。",
+      "受 #r路径 约束。"," NL 你的牌获得 #r移动 值 （所有ID相同的牌共享数值） 。 NL 每当你打出一张牌，根据 #r移动 前进相应 #棋格 。 NL （没有 #r移动 数的默认为0，并加上移动为1的描述）。",
       " NL 回合结束时，至多 #r变换 #b"," 个 #y空白 #y","棋格","棋格"," 为 #r稀有棋格 。"
     ]
   },
