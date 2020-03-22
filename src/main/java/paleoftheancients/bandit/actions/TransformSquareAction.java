@@ -17,7 +17,10 @@ public class TransformSquareAction extends AbstractGameAction {
     }
 
     public void update() {
-        board.transform(board.squareList.indexOf(this.byeByeSquare), board.swapSquare(this.swapSquare, this.byeByeSquare.x, this.byeByeSquare.y));
+        int index = board.squareList.indexOf(this.byeByeSquare);
+        if(index >= 0) {
+            board.transform(index, board.swapSquare(this.swapSquare, this.byeByeSquare.x, this.byeByeSquare.y));
+        }
         this.isDone = true;
     }
 }

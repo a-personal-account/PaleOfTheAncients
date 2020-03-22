@@ -28,7 +28,7 @@ public class KeyRelic extends CustomRelic {
     private static final LandingSound SOUND = LandingSound.CLINK;
 
     private boolean firstTurn;
-    private final float offsetX = (float) ReflectionHacks.getPrivateStatic(AbstractRelic.class, "offsetX");
+    private float offsetX;
 
     public KeyRelic() {
         super(ID, AssetLoader.loadImage(PaleMod.assetPath("images/relics/keyrelic.png")), AssetLoader.loadImage(PaleMod.assetPath("images/relics/outline/keyrelic.png")), TIER, SOUND);
@@ -121,6 +121,7 @@ public class KeyRelic extends CustomRelic {
     public void renderInTopPanel(SpriteBatch sb) {
         if (Settings.hideRelics)
             return;
+        this.offsetX = (float) ReflectionHacks.getPrivateStatic(AbstractRelic.class, "offsetX");
         renderOutline(sb, true);
         sb.setColor(Color.WHITE);
         sb.draw(this.img, this.currentX - 64.0F + offsetX, this.currentY - 64.0F, 64.0F, 64.0F, 128.0F, 128.0F, this.scale, this.scale, 0, 0, 0, 128, 128, false, false);
