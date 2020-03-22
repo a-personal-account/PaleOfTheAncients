@@ -228,8 +228,8 @@ public class TheBandit extends AbstractBossMonster {
             return;
         }
 
-        if(turncounter++ > 10 && !phasetwo) {
-            phaseTransition(3, false);
+        if(!phasetwo && (turncounter++ > 10 || phaseTransitionTreshold())) {
+            phaseTransition(turncounter < 5 ? 4 : 3, false);
             return;
         }
 
@@ -257,7 +257,7 @@ public class TheBandit extends AbstractBossMonster {
     public void damage(DamageInfo info) {
         int curhp = this.currentHealth;
         super.damage(info);
-        if(!phasetwo && nextMove != FABRICATEFRIEND && curhp * 3 > this.maxHealth * 2 && this.currentHealth * 3 <= this.maxHealth * 2) {
+        if(board != null && !phasetwo && nextMove != FABRICATEFRIEND && curhp * 3 > this.maxHealth * 2 && phaseTransitionTreshold()) {
             phaseTransition(4, true);
         }
     }
@@ -320,6 +320,10 @@ public class TheBandit extends AbstractBossMonster {
         if(board != null) {
             board.render(sb);
         }
+    }
+
+    private boolean phaseTransitionTreshold() {
+        return this.currentHealth * 3 <= this.maxHealth * 2;
     }
 
     public static class BanditMoveInfo extends EnemyMoveInfo {

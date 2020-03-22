@@ -59,9 +59,7 @@ public class SoulOfTheBandit extends PaleRelic {
         }
     }
 
-    @Override
-    public void renderInTopPanel(SpriteBatch sb) {
-        super.renderInTopPanel(sb);
+    public void renderBoard(SpriteBatch sb) {
         if(this.board != null && !AbstractDungeon.isScreenUp) {
             this.board.render(sb);
         }
