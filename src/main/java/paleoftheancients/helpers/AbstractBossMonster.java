@@ -14,7 +14,7 @@ import java.util.Map;
 public abstract class AbstractBossMonster extends CustomMonster {
 
     protected Map<Byte, EnemyMoveInfo> moves;
-    private boolean damageInfoSet = false;
+    protected boolean damageInfoSet = false;
     public EnemyMoveInfo getMoveInfo() {
         return moves.get(this.nextMove);
     }
@@ -121,9 +121,7 @@ public abstract class AbstractBossMonster extends CustomMonster {
         setDamageInfo(info.baseDamage);
     }
     public void setMoveShortcut(byte next) {
-        EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-        setDamageInfo(info.baseDamage);
+        this.setMoveShortcut(next, null);
     }
     private void setDamageInfo(int baseDamage) {
         if(!damageInfoSet) {

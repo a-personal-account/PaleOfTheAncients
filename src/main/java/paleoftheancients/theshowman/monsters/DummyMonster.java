@@ -1,20 +1,24 @@
 package paleoftheancients.theshowman.monsters;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 
 public class DummyMonster extends AbstractMonster {
     public BobEffect effect;
+    public PowerTip intentTip;
 
     public DummyMonster(float hb_x, float hb_y, float hb_w, float hb_h, Texture t) {
         super("", "", 1, hb_x, hb_y, hb_w, hb_h, null);
         this.img = t;
         this.effect = new BobEffect();
+        this.intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
     }
 
     @Override
