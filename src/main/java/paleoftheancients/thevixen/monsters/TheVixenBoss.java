@@ -374,6 +374,7 @@ public class TheVixenBoss extends CustomMonster {
                 case SWAGGER_CONST:
                 case PSYBEAM_CONST:
                     tmp.applyPowers(AbstractDungeon.player, AbstractDungeon.player);
+                    tmp.output = (int)AbstractDungeon.player.stance.atDamageGive(tmp.output, tmp.type);
                     break;
 
                 default:
@@ -851,6 +852,9 @@ public class TheVixenBoss extends CustomMonster {
         for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
             p = (AbstractPower)var6.next();
         }
+
+        tmp = target.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+        tmp = target.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
 
         dmg = MathUtils.floor(tmp);
         if (dmg < 0) {

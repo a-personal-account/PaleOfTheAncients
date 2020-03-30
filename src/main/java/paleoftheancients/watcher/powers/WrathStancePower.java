@@ -1,14 +1,16 @@
 package paleoftheancients.watcher.powers;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.WrathStance;
 
 public class WrathStancePower extends AbstractStancePower {
+    private static final StanceStrings stanceString = (StanceStrings) ReflectionHacks.getPrivateStatic(WrathStance.class, "stanceString");
 
     public WrathStancePower(AbstractCreature owner) {
-        super(owner);
-        this.name = WrathStance.STANCE_ID;
+        super(owner, stanceString);
     }
 
     @Override

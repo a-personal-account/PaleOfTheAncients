@@ -20,6 +20,7 @@ public class HexaghostPrime extends CustomMonster {
     public static final String ID = PaleMod.makeID("HexaghostPrime");
 
     private ArrayList<HexaghostFamiliar> familiars;
+    private int spawnedFamiliars = 0;
 
     public HexaghostPrime() {
         super("", ID, 1200, 20.0F, 0.0F, 150.0F, 0.0F, PaleMod.assetPath("images/misc/emptypixel.png"));
@@ -51,6 +52,7 @@ public class HexaghostPrime extends CustomMonster {
             tmp.powers.add(new HexaghostPower(tmp));
         }
         AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(familiars.get(0), true, 0));
+        spawnedFamiliars++;
     }
 
     public static Vector2[] HexaghostPositions() {
@@ -66,9 +68,8 @@ public class HexaghostPrime extends CustomMonster {
 
     @Override
     public void takeTurn() {
-        int count = AbstractDungeon.getCurrRoom().monsters.monsters.size();
-        if(count < 7) {
-            AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(familiars.get(count - 1),true, count - 1));
+        if(spawnedFamiliars < 6) {
+            AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(familiars.get(spawnedFamiliars++),true, AbstractDungeon.getCurrRoom().monsters.monsters.size() - 1));
         }
     }
     @Override

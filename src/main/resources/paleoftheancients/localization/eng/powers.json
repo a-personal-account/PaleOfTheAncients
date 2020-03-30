@@ -115,7 +115,7 @@
   "paleoftheancients:ConfusionPower": {
     "NAME": "Confuzzled",
     "DESCRIPTIONS": [
-      "Whenever you deal damage, you hit yourself in confusion for 50% of that."
+      "Whenever you deal damage, you hit yourself in confusion for 50% of that. NL Lasts until the end of your turn."
     ]
   },
   "paleoftheancients:ReverseVulnerablePower": {
@@ -424,6 +424,12 @@
     "NAME": "Increased Handsize",
     "DESCRIPTIONS": [
       "#yMaximum #yHandsize is increased by #b"
+    ]
+  },
+  "paleoftheancients:FakeMarkPower": {
+    "NAME": "Marked",
+    "DESCRIPTIONS": [
+      "You take #b"," more damage from #rPressure #rPoints."
     ]
   },
 

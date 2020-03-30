@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.watcher.MarkPower;
+import com.megacrit.cardcrawl.powers.watcher.WrathNextTurnPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.stances.DivinityStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
@@ -29,8 +29,9 @@ import com.megacrit.cardcrawl.vfx.combat.PressurePointEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
-import paleoftheancients.helpers.AbstractBossMonster;
+import paleoftheancients.helpers.AbstractMultiIntentMonster;
 import paleoftheancients.relics.SoulOfTheWatcher;
+import paleoftheancients.watcher.actions.RemovePowerSilentlyAction;
 import paleoftheancients.watcher.cards.RemoveWrath;
 import paleoftheancients.watcher.intent.WatcherIntentEnums;
 import paleoftheancients.watcher.powers.*;
@@ -38,7 +39,7 @@ import paleoftheancients.watcher.stances.*;
 
 import java.util.ArrayList;
 
-public class TheWatcher extends AbstractBossMonster {
+public class TheWatcher extends AbstractMultiIntentMonster {
     public static final String ID = PaleMod.makeID("TheWatcher");
     private Bone eyeBone;
     protected TextureAtlas eyeAtlas = null;
@@ -65,7 +66,9 @@ public class TheWatcher extends AbstractBossMonster {
 
     public AbstractEnemyStance stance = null;
     private boolean bloodied = false;
-    private int untilPhaseChange = 2;
+    private final int actionsPerTurn = 2;
+    private final int turnsPerStance = 2;
+    private int untilPhaseChange = turnsPerStance;
     public void incrementPhaseChangeCounter() {
         untilPhaseChange++;
     }
@@ -84,14 +87,14 @@ public class TheWatcher extends AbstractBossMonster {
         this.eyeBone = this.skeleton.findBone("eye_anchor");
 
 
-        addMove(PRESSUREPOINTS, WatcherIntentEnums.PressurePointsIntent, calcAscensionNumber(16));
-        addMove(REACHHEAVEN, Intent.ATTACK_BUFF, calcAscensionNumber(20));
-        addMove(THROUGHVIOLENCE, Intent.ATTACK, calcAscensionNumber(40));
-        addMove(WALLOP, Intent.ATTACK_DEFEND, calcAscensionNumber(28));
-        addMove(FLAMEWREATH, Intent.BUFF, -1, calcAscensionNumber(5));
+        addMove(PRESSUREPOINTS, WatcherIntentEnums.PressurePointsIntent, calcAscensionNumber(8));
+        addMove(REACHHEAVEN, Intent.ATTACK_BUFF, calcAscensionNumber(16));
+        addMove(THROUGHVIOLENCE, Intent.ATTACK, calcAscensionNumber(30));
+        addMove(WALLOP, Intent.ATTACK_DEFEND, calcAscensionNumber(22));
+        //addMove(FLAMEWREATH, Intent.BUFF, -1, calcAscensionNumber(5));
         addMove(RAGNAROK, Intent.ATTACK, calcAscensionNumber(10), 5, true);
         addMove(TALKTOTHEHAND, Intent.ATTACK_DEBUFF, calcAscensionNumber(16));
-        addMove(FEARNOEVIL, Intent.ATTACK_BUFF, calcAscensionNumber(32));
+        addMove(FEARNOEVIL, Intent.ATTACK_BUFF, calcAscensionNumber(18));
         addMove(SIMMERINGFURY, Intent.BUFF);
         addMove(TANTRUM, Intent.ATTACK_BUFF, calcAscensionNumber(12), 3, true);
         addMove(BLASPHEMY, WatcherIntentEnums.BlasphemyIntent);
@@ -128,7 +131,7 @@ public class TheWatcher extends AbstractBossMonster {
         switch(this.nextMove) {
             case PRESSUREPOINTS:
                 this.addToBot(new VFXAction(new PressurePointEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
-                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new MarkPower(AbstractDungeon.player, this.getIntentBaseDmg()), this.getIntentBaseDmg()));
+                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new FakeMarkPower(AbstractDungeon.player, this.getIntentBaseDmg()), this.getIntentBaseDmg()));
                 info.output = getPressurePointsDamage(this);
                 this.addToBot(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.FIRE));
                 break;
@@ -173,8 +176,7 @@ public class TheWatcher extends AbstractBossMonster {
                 break;
 
             case SIMMERINGFURY:
-                this.untilPhaseChange = 2;
-                stance.ID = WrathStance.STANCE_ID;
+                this.untilPhaseChange = turnsPerStance;
                 this.addToBot(new ApplyPowerAction(this, this, new FakeWrathNextTurnPower(this)));
                 break;
 
@@ -215,23 +217,36 @@ public class TheWatcher extends AbstractBossMonster {
                 this.addToBot(new ChangeStateAction(this, CalmStance.STANCE_ID));
                 break;
         }
+    }
+
+    @Override
+    public void takeTurn() {
+        if(this.hasPower(WrathNextTurnPower.POWER_ID)) {
+            this.addToTop(new RemoveSpecificPowerAction(this, this, WrathNextTurnPower.POWER_ID));
+            this.addToTop(new ChangeStateAction(this, WrathStance.STANCE_ID));
+        }
+        super.takeTurn();
         this.bloodied = false;
         this.untilPhaseChange--;
     }
 
     @Override
     public void getMove(int num) {
-        if(this.currentHealth < this.maxHealth * 0.4F && this.stance.ID != DivinityStance.STANCE_ID) {
+        if(this.currentHealth < this.maxHealth * 0.4F && !this.stance.ID.equals(DivinityStance.STANCE_ID)) {
+            this.setIntentAmount(1);
             setMoveShortcut(BLASPHEMY, MOVES[BLASPHEMY]);
             return;
         }
 
+        boolean changeStance = this.untilPhaseChange <= 0 && !stance.ID.equals(DivinityStance.STANCE_ID);
+        this.setIntentAmount(actionsPerTurn + (changeStance ? 1 : 0));
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if(this.untilPhaseChange <= 0 && stance.ID != DivinityStance.STANCE_ID) {
-            switch(stance.ID) {
+
+        if (changeStance) {
+            switch (stance.ID) {
                 case WrathStance.STANCE_ID:
-                    for(int i = -2; i < 0; i++) {
-                        if(i < this.untilPhaseChange) {
+                    for (int i = -2; i < 0; i++) {
+                        if (i < this.untilPhaseChange) {
                             possibilities.add(FEARNOEVIL);
                         } else {
                             possibilities.add(VIGILANCE);
@@ -244,20 +259,23 @@ public class TheWatcher extends AbstractBossMonster {
                     possibilities.add(TANTRUM);
                     break;
             }
-        } else {
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            this.setMoveShortcut(move, MOVES[move]);
+        }
+
+        for(int moveIndex = 0; moveIndex < actionsPerTurn; moveIndex++) {
+            possibilities.clear();
             try {
                 switch (stance.ID) {
                     case DivinityStance.STANCE_ID:
                         if (!this.hasPower(FakeVigorPower.POWER_ID)) {
-                            setMoveShortcut(RAGNAROK, MOVES[RAGNAROK]);
-                            return;
+                            possibilities.add(RAGNAROK);
                         }
                         if (this.hasPower(ReachedHeavenPower.POWER_ID)) {
-                            setMoveShortcut(THROUGHVIOLENCE, MOVES[THROUGHVIOLENCE]);
-                            return;
+                            possibilities.add(THROUGHVIOLENCE);
                         }
-                        setMoveShortcut(TANTRUM, MOVES[TANTRUM]);
-                        return;
+                        possibilities.add(TANTRUM);
+                        break;
 
                     case WrathStance.STANCE_ID:
                         if (this.hasPower(ReachedHeavenPower.POWER_ID)) {
@@ -278,7 +296,7 @@ public class TheWatcher extends AbstractBossMonster {
                     default:
                         throw new NullPointerException();
                 }
-            } catch(NullPointerException npe) {
+            } catch (NullPointerException npe) {
                 possibilities.add(PRESSUREPOINTS);
                 possibilities.add(PRESSUREPOINTS);
                 possibilities.add(PRESSUREPOINTS);
@@ -286,29 +304,30 @@ public class TheWatcher extends AbstractBossMonster {
                 possibilities.add(REACHHEAVEN);
                 possibilities.add(TALKTOTHEHAND);
                 possibilities.add(WALLOP);
-                possibilities.add(FLAMEWREATH);
+                //possibilities.add(FLAMEWREATH);
                 possibilities.add(THIRDEYE);
                 possibilities.add(THIRDEYE);
             }
-        }
+            this.removeDuplicates(possibilities);
 
-        for(int i = this.moveHistory.size() - 1, found = 0; i >= this.moveHistory.size() - 4 && i >= 0 && found < 2 && possibilities.size() > 1; i--) {
-            Byte b = moveHistory.get(i);
-            if(possibilities.contains(b)) {
-                found++;
+            for (int i = this.moveHistory.size() - 1, found = 0; i >= this.moveHistory.size() - 4 && i >= 0 && found < 2 && possibilities.size() > 1; i--) {
+                Byte b = moveHistory.get(i);
+                if (possibilities.contains(b)) {
+                    found++;
 
-                while(possibilities.remove(b));
-                if(possibilities.isEmpty()) {
-                    possibilities.add(b);
+                    while (possibilities.remove(b)) ;
+                    if (possibilities.isEmpty()) {
+                        possibilities.add(b);
+                    }
                 }
             }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            this.setMoveShortcut(move, MOVES[move]);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        this.setMoveShortcut(move, MOVES[move]);
     }
 
     public static int getPressurePointsDamage(AbstractMonster mo) {
-        AbstractPower pow = AbstractDungeon.player.getPower(MarkPower.POWER_ID);
+        AbstractPower pow = AbstractDungeon.player.getPower(FakeMarkPower.POWER_ID);
         int num = mo.getIntentBaseDmg();
         if(pow != null) {
             num += pow.amount;
@@ -322,28 +341,31 @@ public class TheWatcher extends AbstractBossMonster {
             case CalmStance.STANCE_ID:
             case WrathStance.STANCE_ID:
             case DivinityStance.STANCE_ID:
-                this.untilPhaseChange = 2;
-                this.eyeState.setAnimation(0, state, true);
+                if(!stance.ID.equals(state)) {
+                    this.untilPhaseChange = turnsPerStance;
+                    this.eyeState.setAnimation(0, state, true);
 
-                switch(state) {
-                    case CalmStance.STANCE_ID:
-                        stance = new CalmEnemyStance(this);
-                        break;
-                    case WrathStance.STANCE_ID:
-                        stance = new WrathEnemyStance(this);
-                        this.addToTop(new ApplyPowerAction(this, this, new WrathStancePower(this)));
-                        break;
-                    case DivinityStance.STANCE_ID:
-                        stance = new DivinityEnemyStance(this);
-                        this.addToTop(new ApplyPowerAction(this, this, new DivinityStancePower(this)));
-                        break;
+                    switch (state) {
+                        case CalmStance.STANCE_ID:
+                            stance = new CalmEnemyStance(this);
+                            this.addToTop(new ApplyPowerAction(this, this, new CalmStancePower(this)));
+                            break;
+                        case WrathStance.STANCE_ID:
+                            stance = new WrathEnemyStance(this);
+                            this.addToTop(new ApplyPowerAction(this, this, new WrathStancePower(this)));
+                            break;
+                        case DivinityStance.STANCE_ID:
+                            stance = new DivinityEnemyStance(this);
+                            this.addToTop(new ApplyPowerAction(this, this, new DivinityStancePower(this)));
+                            break;
+                    }
+                    this.addToTop(new RemovePowerSilentlyAction(this, this, AbstractStancePower.POWER_ID));
                 }
-                this.addToTop(new RemoveSpecificPowerAction(this, this, AbstractStancePower.POWER_ID));
                 break;
             case NeutralStance.STANCE_ID:
                 this.eyeState.setAnimation(0, "None", true);
                 stance = new NeutralEnemyStance(this);
-                this.addToTop(new RemoveSpecificPowerAction(this, this, AbstractStancePower.POWER_ID));
+                this.addToTop(new RemovePowerSilentlyAction(this, this, AbstractStancePower.POWER_ID));
                 break;
         }
     }

@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -45,12 +46,19 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
             this.nextMove = mo.nextMove;
             addToBot(new VFXAction(new MoveNameEffect(this.hb.cX - this.animX, this.hb.cY + this.hb.height / 2.0F, mo.moveName)));
             addToBot(new IntentFlashAction(mo));
-            if(!this.damage.isEmpty()) {
+            if(!mo.damage.isEmpty()) {
                 damageInfoSet = true;
+                DamageInfo dmg = mo.damage.get(0);
+                this.damage.remove(dmg);
+                this.damage.add(0, dmg);
             }
+            this.setIntentBaseDmg(mo.getIntentBaseDmg());
             super.takeTurn();
             //super.takeTurn adds a RollMoveAction that I have to remove.
             AbstractDungeon.actionManager.actions.remove(AbstractDungeon.actionManager.actions.size() - 1);
+            if(i > 0) {
+                this.addToBot(new WaitAction(1.5F));
+            }
         }
 
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -72,7 +80,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
             monster.drawX = (orb.tX - AbstractDungeon.player.drawX) / 2F + this.drawX;
             monster.drawY = (orb.tY - AbstractDungeon.player.hb.cY) / 2F + this.hb.y + this.hb.height;
             monster.nextMove = -1;
+            monster.powers = this.powers;
             monster.refresh();
+            monster.damage.clear();
         }
         this.damage.clear();
     }
@@ -86,20 +96,31 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
         if(info.baseDamage > this.getIntentBaseDmg()) {
             this.setIntentBaseDmg(info.baseDamage);
         }
-        monster.damage.add(new DamageInfo(this, info.baseDamage));
+        DamageInfo dmg = new DamageInfo(this, info.baseDamage);
+        dmg.applyPowers(this, AbstractDungeon.player);
+        monster.damage.add(dmg);
+        this.damage.add(dmg);
+    }
+
+    protected void removeDuplicates(ArrayList<Byte> possibilities) {
+        for(final AbstractMonster d : dummies) {
+            while (possibilities.contains(d.nextMove)) {
+                possibilities.remove((Byte)d.nextMove);
+            }
+        }
     }
 
     @Override
     public void update() {
         super.update();
-        for(final AbstractMonster mo : dummies) {
+        for(final DummyMonster mo : dummies) {
             mo.update();
         }
     }
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        for(final AbstractMonster mo : dummies) {
+        for(final DummyMonster mo : dummies) {
             mo.render(sb);
         }
     }
@@ -108,8 +129,8 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
     public void renderTip(SpriteBatch sb) {
         this.tips.clear();
         if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
-            for(final DummyMonster mo : dummies) {
-                this.tips.add(mo.intentTip);
+            for(int i = dummies.size() - 1; i >= 0; i--) {
+                this.tips.add(dummies.get(i).intentTip);
             }
         }
         for (AbstractPower p : this.powers) {

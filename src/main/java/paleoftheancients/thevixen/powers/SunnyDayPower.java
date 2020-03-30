@@ -1,9 +1,11 @@
 package paleoftheancients.thevixen.powers;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.thevixen.actions.ApplyTempGainStrengthPowerAction;
 
@@ -44,12 +46,12 @@ public class SunnyDayPower extends AbstractTheVixenPower {
         } else {
             this.description = DESCRIPTIONS[3];
         }
+        this.description += " NL " + StrengthPower.DESCRIPTIONS[0] + this.amount + StrengthPower.DESCRIPTIONS[2];
     }
 
     @Override
-    public void atEndOfRound() {
-        this.flash();
-        AbstractDungeon.actionManager.addToBottom(new ApplyTempGainStrengthPowerAction(this.owner, this.owner, this.owner.getPower(SunnyDayPower.POWER_ID).amount));
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        return type == DamageInfo.DamageType.NORMAL ? damage + (float)this.amount : damage;
     }
 
     static {

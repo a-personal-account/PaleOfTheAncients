@@ -76,9 +76,9 @@ public class TheSilentBoss extends CustomMonster {
     private static final int A_9_BOUNCE = 5;
     private int bounce;
 
-    private static final int BOUNCEPOTENCY = 3;
-    private static final int A_4_BOUNCEPOTENCY = 4;
-    private static final int A_19_BOUNCEPOTENCY = 5;
+    private static final int BOUNCEPOTENCY = 5;
+    private static final int A_4_BOUNCEPOTENCY = 6;
+    private static final int A_19_BOUNCEPOTENCY = 7;
     private int bouncepotency;
 
     private static final int BLOCK_AMT = 25;
