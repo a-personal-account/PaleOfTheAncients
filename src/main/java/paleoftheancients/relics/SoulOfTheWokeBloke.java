@@ -61,7 +61,7 @@ public class SoulOfTheWokeBloke extends PaleRelic implements OnReceivePowerRelic
     @Override
     public void update() {
         super.update();
-        if (!Settings.hideRelics && AbstractDungeon.isPlayerInDungeon()) {
+        if (!Settings.hideRelics && AbstractDungeon.player != null) {
             this.fireTimer -= Gdx.graphics.getDeltaTime();
             if (this.fireTimer < 0.0F && AbstractDungeon.player.relics.indexOf(this) / 25 == AbstractRelic.relicPage) {
                 this.fireTimer = 0.1F;

@@ -341,7 +341,7 @@ public class TheWatcher extends AbstractMultiIntentMonster {
             case CalmStance.STANCE_ID:
             case WrathStance.STANCE_ID:
             case DivinityStance.STANCE_ID:
-                if(!stance.ID.equals(state)) {
+                if(stance == null || !stance.ID.equals(state)) {
                     this.untilPhaseChange = turnsPerStance;
                     this.eyeState.setAnimation(0, state, true);
 
