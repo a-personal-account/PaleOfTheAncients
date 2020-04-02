@@ -129,6 +129,9 @@ public class BanditBoard extends AbstractBoard {
     }
 
     private ArrayList<Class<? extends AbstractSpace>> rareHistory = new ArrayList<>();
+    public void resetRareHistory() {
+        rareHistory.clear();
+    }
     public Class<? extends AbstractSpace> getRandomRareSquare() {
         return this.getRandomRareSquare(AbstractDungeon.monsterRng);
     }
@@ -180,7 +183,7 @@ public class BanditBoard extends AbstractBoard {
 
             for (int i = 0; i < motion.size(); i++) {
                 for (final AbstractDrone piece : pieceList) {
-                    for(int number = motion.get(i); number > 0 || number == motion.get(i); number--) {
+                    for(int number = motion.get(i); (number > 0 && piece == player) || number == motion.get(i); number--) {
                         squareRenderingInfoMap.put((piece.position + curOffset + number) % squareList.size(),
                                 new SquareRenderingInfo((i == 0 || owner.intent != EnumBuster.HappyHitIntent) ? number : 0, colors[Math.min(1, i) * 2 + (number == motion.get(i) ? 1 : 0)], number == motion.get(i)));
                     }
@@ -198,6 +201,25 @@ public class BanditBoard extends AbstractBoard {
                             amount--;
                             squareRenderingInfoMap.put((drone.position + curOffset + i) % squareList.size(), new SquareRenderingInfo(0, Color.RED, true));
                         }
+                    }
+                }
+            } else if(owner.intent == EnumBuster.MassivePartyIntent) {
+                for (int i = 0; i < squareList.size(); i++) {
+                    if(!(squareList.get(i) instanceof EmptySpace) && !squareRenderingInfoMap.containsKey(i)) {
+                        squareRenderingInfoMap.put(i, new SquareRenderingInfo(0, null, true));
+                    }
+                }
+            } else if(owner.nextMove == TheBandit.DEADLYDASH) {
+                for(int i = 0; i < squareList.size(); i++) {
+                    if(!(squareList.get((player.position + curOffset + i) % squareList.size()) instanceof EmptySpace)) {
+                        for (final AbstractDrone piece : pieceList) {
+                            if(!squareRenderingInfoMap.containsKey((piece.position + curOffset + i + 1) % squareList.size())) {
+                                squareRenderingInfoMap.put((piece.position + curOffset + i + 1) % squareList.size(),
+                                        new SquareRenderingInfo(1, colors[3], true));
+                            }
+                        }
+                    } else {
+                        break;
                     }
                 }
             }

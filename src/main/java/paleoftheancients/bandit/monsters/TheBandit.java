@@ -51,7 +51,7 @@ public class TheBandit extends AbstractBossMonster {
     private final static byte EXTENDEDJUMP = 3;
     private final static byte BIGUPGRADE = 4;
     private final static byte DOUBLEDASH = 5;
-    private final static byte DEADLYDASH = 6;
+    public final static byte DEADLYDASH = 6;
     private final static byte VERYLONGJUMP = 7;
     private final static byte HAPPYHIT = 8;
     private final static byte F = 9;
@@ -136,6 +136,7 @@ public class TheBandit extends AbstractBossMonster {
                     this.addToBot(new AddDroneAction(this.board, multiplier));
                 }
                 phasetwo = true;
+                board.resetRareHistory();
                 this.resetCycles();
                 break;
 
