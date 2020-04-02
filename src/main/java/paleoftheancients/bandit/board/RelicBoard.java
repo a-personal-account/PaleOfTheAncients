@@ -1,7 +1,6 @@
 package paleoftheancients.bandit.board;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -77,25 +76,23 @@ public class RelicBoard extends AbstractBoard {
     }
 
     @Override
-    protected void renderBoardNumbers(SpriteBatch sb) {
-        if (AbstractDungeon.player.hoveredCard != null) {
-            int motion = this.getCardMotion(AbstractDungeon.player.hoveredCard, false);
-            if(motion > 0) {
-                this.renderNumbersFromPosition(sb, player.position, motion, null, Color.GOLD, Color.WHITE);
-            }
-        }
-    }
-
-    @Override
     protected void movePieces(int jumpdistance, int x, int y, float speed, AbstractDrone piece) {
         AbstractDungeon.actionManager.addToTop(new WeirdMoveBoardAction(this, speed));
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void updateBoardSpecifics() {
         for(final AbstractSpace space : squareList) {
             space.updateAlpha();
+        }
+        if (AbstractDungeon.player.hoveredCard != null) {
+            int motion = this.getCardMotion(AbstractDungeon.player.hoveredCard, false);
+            for(int i = 1; i < motion; i++) {
+                squareRenderingInfoMap.put((this.player.position + i) % this.squareList.size(), new SquareRenderingInfo(i, Color.WHITE, false));
+            }
+            if(motion > 0 && motion < DISPLAYEDSPACES) {
+                squareRenderingInfoMap.put((this.player.position + motion) % this.squareList.size(), new SquareRenderingInfo(motion,Color.GOLD, true));
+            }
         }
     }
 

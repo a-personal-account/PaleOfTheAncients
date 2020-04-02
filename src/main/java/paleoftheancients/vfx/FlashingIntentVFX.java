@@ -1,4 +1,4 @@
-package paleoftheancients.helpers;
+package paleoftheancients.vfx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -7,23 +7,31 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import paleoftheancients.helpers.AssetLoader;
 
 public class FlashingIntentVFX extends AbstractGameEffect {
     private Texture img;
     private static final int RAW_W = 64;
-    private static final float DURATION = 2.0F;
     private float x;
     private float y;
     private float scale;
+    private float scaleVelocity;
 
     public FlashingIntentVFX(String tex, float x, float y) {
-        this(AssetLoader.loadImage(tex), x, y);
+        this(tex, x, y, 2F, 0.5F, 1.1F);
     }
     public FlashingIntentVFX(Texture tex, float x, float y) {
-        this.scale = Settings.scale / 2.0F;
-        this.duration = 2.0F;
+        this(tex, x, y, 2F, 0.5F, 1.1F);
+    }
+    public FlashingIntentVFX(String tex, float x, float y, float startingDuration, float startingScale, float scaleVelocity) {
+        this(AssetLoader.loadImage(tex), x, y, startingDuration, startingScale, scaleVelocity);
+    }
+    public FlashingIntentVFX(Texture tex, float x, float y, float startingDuration, float startingScale, float scaleVelocity) {
+        this.scale = Settings.scale * startingScale;
+        this.duration = startingDuration;
         this.x = x;
         this.y = y;
+        this.scaleVelocity = scaleVelocity;
 
         img = tex;
 
@@ -32,7 +40,7 @@ public class FlashingIntentVFX extends AbstractGameEffect {
     }
 
     public void update() {
-        this.scale += Gdx.graphics.getDeltaTime() * Settings.scale * 1.1F;
+        this.scale += Gdx.graphics.getDeltaTime() * Settings.scale * scaleVelocity;
         if (this.duration > 1.0F) {
             this.color.a = Interpolation.fade.apply(0.0F, 0.3F, 1.0F - (this.duration - 1.0F));
         } else {

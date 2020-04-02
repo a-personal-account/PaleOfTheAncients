@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.RazIntent.CustomIntent;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.helpers.FlashingIntentVFX;
+import paleoftheancients.vfx.FlashingIntentVFX;
 import paleoftheancients.thevixen.TheVixenMod;
 import paleoftheancients.thevixen.powers.SunnyDayPower;
 

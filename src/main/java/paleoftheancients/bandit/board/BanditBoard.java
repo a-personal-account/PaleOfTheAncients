@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
-import org.apache.commons.lang3.ArrayUtils;
 import paleoftheancients.PaleMod;
 import paleoftheancients.bandit.actions.AddSpaceAction;
 import paleoftheancients.bandit.actions.SetSpaceAction;
@@ -149,50 +148,46 @@ public class BanditBoard extends AbstractBoard {
     }
 
     @Override
-    public void render(SpriteBatch sb) {
-        if (shouldRender) {
-            super.render(sb);
-            if (!droneList.isEmpty()) {
-                for (AbstractDrone r : droneList) {
-                    sb.draw(dronePiece, r.location.x - ((dronePiece.getWidth() * Settings.scale) / 2F), r.location.y - ((dronePiece.getHeight() * Settings.scale) / 2F), dronePiece.getWidth() / 2F, dronePiece.getHeight() / 2F, dronePiece.getWidth(), dronePiece.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, dronePiece.getWidth(), dronePiece.getHeight(), false, false);
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void renderBoardNumbers(SpriteBatch sb) {
+    public void updateBoardSpecifics() {
         if(owner.displayNumbers) {
             int curOffset = 0;
+            boolean playerDisplayed = false;
             AbstractSpace space;
-            int[] motion = new int[2];
+            ArrayList<Integer> motion = new ArrayList<>();
             if (AbstractDungeon.player.hoveredCard != null && !AbstractDungeon.player.hasPower(ImprisonedPower.POWER_ID)) {
-                motion[0] = cards.getOrDefault(AbstractDungeon.player.hoveredCard.cardID, 1);
+                motion.add(cards.getOrDefault(AbstractDungeon.player.hoveredCard.cardID, 1));
+                playerDisplayed = true;
             }
-            motion[1] = owner.getDisplayMotion();
+
+            motion.addAll(owner.getDisplayMotion());
+
             AbstractDrone[] pieceList = getPieces();
-            ArrayUtils.reverse(pieceList);
-            if (motion[0] > 0 || motion[1] > 0) {
-                Color[] colors = new Color[]{
-                        Color.WHITE, Color.GOLD,
-                        Color.RED, Color.PURPLE
-                };
-                if (motion[0] > 0 && motion[1] > 0) {//If both are displayed at the same time, make the enemy one a bit translucent.
-                    for (int i = 2; i < colors.length; i++) {
-                        colors[i] = colors[i].cpy();
-                        colors[i].a = 0.6F;
-                    }
+            //ArrayUtils.reverse(pieceList);
+
+            Color[] colors = new Color[]{
+                    Color.WHITE, Color.GOLD,
+                    Color.RED, Color.PURPLE
+            };
+            if (playerDisplayed) {//If both are displayed at the same time, make the enemy one a bit translucent.
+                for (int i = 2; i < colors.length; i++) {
+                    colors[i] = colors[i].cpy();
+                    colors[i].a = 0.6F;
                 }
-                Set<Integer> takenNumbers = new HashSet<>();
-                for (int i = 0; i < motion.length; i++) {
-                    if (motion[i] > 0) {
-                        for (final AbstractDrone piece : pieceList) {
-                            this.renderNumbersFromPosition(sb, piece.position + curOffset, motion[i], takenNumbers, colors[1 + i * 2], (piece == player) ? colors[i * 2] : null);
-                        }
-                        curOffset = motion[0];
-                    }
-                }
+            } else {
+                colors[0] = colors[2];
+                colors[1] = colors[3];
             }
+
+            for (int i = 0; i < motion.size(); i++) {
+                for (final AbstractDrone piece : pieceList) {
+                    for(int number = motion.get(i); number > 0 || number == motion.get(i); number--) {
+                        squareRenderingInfoMap.put((piece.position + curOffset + number) % squareList.size(),
+                                new SquareRenderingInfo((i == 0 || owner.intent != EnumBuster.HappyHitIntent) ? number : 0, colors[Math.min(1, i) * 2 + (number == motion.get(i) ? 1 : 0)], number == motion.get(i)));
+                    }
+                }
+                curOffset += motion.get(i);
+            }
+
             if (owner.intent == EnumBuster.HappyHitIntent) {
                 int origAmount = owner.getMoveInfo().multiplier;
                 for (final AbstractDrone drone : pieceList) {
@@ -201,9 +196,21 @@ public class BanditBoard extends AbstractBoard {
                         space = squareList.get((drone.position + curOffset + i) % squareList.size());
                         if (!(space instanceof EmptySpace)) {
                             amount--;
-                            this.renderSpaceNumber(sb, 0, space.x, space.y, Color.RED);
+                            squareRenderingInfoMap.put((drone.position + curOffset + i) % squareList.size(), new SquareRenderingInfo(0, Color.RED, true));
                         }
                     }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        if (shouldRender) {
+            super.render(sb);
+            if (!droneList.isEmpty()) {
+                for (AbstractDrone r : droneList) {
+                    sb.draw(dronePiece, r.location.x - ((dronePiece.getWidth() * Settings.scale) / 2F), r.location.y - ((dronePiece.getHeight() * Settings.scale) / 2F), dronePiece.getWidth() / 2F, dronePiece.getHeight() / 2F, dronePiece.getWidth(), dronePiece.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, dronePiece.getWidth(), dronePiece.getHeight(), false, false);
                 }
             }
         }

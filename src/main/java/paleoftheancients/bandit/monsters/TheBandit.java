@@ -281,12 +281,18 @@ public class TheBandit extends AbstractBossMonster {
         }
         return 0;
     }
-    public int getDisplayMotion() {
-        if(this.hasPower(ImprisonedPower.POWER_ID)) {
-            return 0;
+    public ArrayList<Integer> getDisplayMotion() {
+        ArrayList<Integer> result = new ArrayList<>();
+        if(!this.hasPower(ImprisonedPower.POWER_ID)) {
+            int motion = getMotion();
+            EnemyMoveInfo emi = moves.get(nextMove);
+            if(emi instanceof BanditMoveInfo) {
+                for (int i = emi.isMultiDamage ? emi.multiplier : 1; i > 0; i--) {
+                    result.add(motion);
+                }
+            }
         }
-        EnemyMoveInfo emi = moves.get(nextMove);
-        return getMotion() * (emi.isMultiDamage ? emi.multiplier : 1);
+        return result;
     }
 
     private int getTriggerCount() {

@@ -1,10 +1,12 @@
 package paleoftheancients.bandit.board;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -18,9 +20,12 @@ import paleoftheancients.bandit.board.spaces.symmetrical.EmptySpace;
 import paleoftheancients.bandit.powers.ImprisonedPower;
 import paleoftheancients.bandit.powers.KeyFinisherPower;
 import paleoftheancients.helpers.AssetLoader;
+import paleoftheancients.vfx.FlashingIntentVFX;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class AbstractBoard {
@@ -43,9 +48,12 @@ public abstract class AbstractBoard {
 
     public final float squareOffset = 64F * Settings.scale;
 
+    protected Map<Integer, SquareRenderingInfo> squareRenderingInfoMap = new HashMap<>();
     protected boolean finishedSetup;
+    protected float pulseTimer;
     public AbstractBoard() {
         this.finishedSetup = false;
+        this.pulseTimer = 0F;
     }
 
     public void init() {
@@ -79,10 +87,26 @@ public abstract class AbstractBoard {
     }
 
     public void update() {
+        squareRenderingInfoMap.clear();
         for (AbstractSpace s : squareList) {
             s.hb.update();
         }
+
+        this.updateBoardSpecifics();
+
+        this.pulseTimer -= Gdx.graphics.getDeltaTime();
+        if(this.pulseTimer <= 0F) {
+            this.pulseTimer = 0.2F;
+
+            for(final Map.Entry<Integer, SquareRenderingInfo> sqi : squareRenderingInfoMap.entrySet()) {
+                if(sqi.getValue().pulsing) {
+                    AbstractSpace space = this.squareList.get(sqi.getKey());
+                    AbstractDungeon.effectList.add(new FlashingIntentVFX(space.getOutline(), space.hb.cX, space.hb.cY, 2F, 0.7F, 0.6F));
+                }
+            }
+        }
     }
+    protected abstract void updateBoardSpecifics();
 
     public void render(SpriteBatch sb) {
         if (shouldRender) {
@@ -116,7 +140,14 @@ public abstract class AbstractBoard {
 
             //Draw the numbers on the tiles.
             if(finishedSetup) {
-                this.renderBoardNumbers(sb);
+                AbstractSpace space;
+                for(final Map.Entry<Integer, SquareRenderingInfo> sqi : squareRenderingInfoMap.entrySet()) {
+                    space = squareList.get(sqi.getKey());
+                    SquareRenderingInfo sri = sqi.getValue();
+                    if(sri.color != null) {
+                        this.renderSpaceNumber(sb, sri.number, space.x, space.y, sri.color);
+                    }
+                }
             }
             sb.setColor(Color.WHITE);
             sb.draw(playerPiece, player.location.x - ((playerPiece.getWidth() * Settings.scale) / 2F), player.location.y - ((playerPiece.getHeight() * Settings.scale) / 2F), playerPiece.getWidth() / 2F, playerPiece.getHeight() / 2F, playerPiece.getWidth(), playerPiece.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, playerPiece.getWidth(), playerPiece.getHeight(), false, false);
@@ -154,7 +185,6 @@ public abstract class AbstractBoard {
         this.renderSpaceNumber(sb, jump, space.x, space.y, endColor);
     }
 
-    protected abstract void renderBoardNumbers(SpriteBatch sb);
     protected void renderExtraPieces() {}
 
     public void transform(AbstractSpace oldSquare, AbstractSpace newSquare) {
@@ -211,4 +241,16 @@ public abstract class AbstractBoard {
         return new AbstractDrone[]{player};
     }
     protected abstract void movePieces(int jumpdistance, int x, int y, float speed, AbstractDrone piece);
+
+    protected static class SquareRenderingInfo {
+        int number;
+        Color color;
+        boolean pulsing;
+
+        public SquareRenderingInfo(int number, Color color, boolean pulsing) {
+            this.number = number;
+            this.color = color;
+            this.pulsing = pulsing;
+        }
+    }
 }

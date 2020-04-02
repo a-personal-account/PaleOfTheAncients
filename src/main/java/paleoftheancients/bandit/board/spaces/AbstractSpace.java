@@ -67,6 +67,11 @@ public abstract class AbstractSpace {
         if (this.hover)
             FontHelper.renderFontCentered(sb, FontHelper.energyNumFontRed, String.valueOf(((board.squareList.indexOf(this) - board.player.position) + board.squareList.size()) % board.squareList.size()), x + ((64 / 2F)), y + ((64 / 2F)), Color.WHITE);
 
+        Texture toRender = this.getOutline();
+        sb.draw(toRender, x, y, toRender.getWidth() / 2F, toRender.getHeight() / 2F, toRender.getWidth(), toRender.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, toRender.getWidth(), toRender.getHeight(), false, false);
+    }
+
+    public Texture getOutline() {
         Texture toRender;
         if (board.squareList.get(board.player.position) == this || droneOnThis()) {
             toRender = board.onOutline;
@@ -88,7 +93,7 @@ public abstract class AbstractSpace {
                     break;
             }
         }
-        sb.draw(toRender, x, y, toRender.getWidth() / 2F, toRender.getHeight() / 2F, toRender.getWidth(), toRender.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, toRender.getWidth(), toRender.getHeight(), false, false);
+        return toRender;
     }
 
     public boolean droneOnThis() {

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import paleoftheancients.RazIntent.CustomIntent;
+import paleoftheancients.vfx.FlashingIntentVFX;
 
 import java.util.ArrayList;
 
