@@ -25,17 +25,23 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
 
     public AbstractMultiIntentMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
-        this.setMove((byte)-1, Intent.NONE);
+        this.setStartingIntent();
     }
 
     public AbstractMultiIntentMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
-        this.setMove((byte)-1, Intent.NONE);
+        this.setStartingIntent();
     }
 
     public AbstractMultiIntentMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
-        this.setMove((byte)-1, Intent.NONE);
+        this.setStartingIntent();
+    }
+
+    protected void setStartingIntent() {
+        if(AbstractDungeon.player != null) {
+            this.setMove((byte)-1, Intent.NONE);
+        }
     }
 
     @Override
