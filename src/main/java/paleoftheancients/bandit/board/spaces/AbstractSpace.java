@@ -32,6 +32,7 @@ public abstract class AbstractSpace {
         hb = new Hitbox(x2, y2, 64 * Settings.scale, 64 * Settings.scale);
         hb.translate(x2, y2);
         this.alpha = 1.0F;
+        this.rotation = 0F;
     }
 
     protected int maxLines = 36;
@@ -54,12 +55,13 @@ public abstract class AbstractSpace {
     public int y;
 
     private float alpha;
+    public float rotation;
 
     public void render(SpriteBatch sb) {
         Color c = Color.WHITE.cpy();
         c.a = alpha;
         sb.setColor(c);
-        sb.draw(tex, x, y, tex.getWidth() / 2F, tex.getHeight() / 2F, tex.getWidth(), tex.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
+        sb.draw(tex, x, y, tex.getWidth() / 2F, tex.getHeight() / 2F, tex.getWidth(), tex.getHeight(), Settings.scale, Settings.scale, this.rotation, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
         renderOutline(sb);
     }
 
@@ -68,7 +70,7 @@ public abstract class AbstractSpace {
             FontHelper.renderFontCentered(sb, FontHelper.energyNumFontRed, String.valueOf(((board.squareList.indexOf(this) - board.player.position) + board.squareList.size()) % board.squareList.size()), x + ((64 / 2F)), y + ((64 / 2F)), Color.WHITE);
 
         Texture toRender = this.getOutline();
-        sb.draw(toRender, x, y, toRender.getWidth() / 2F, toRender.getHeight() / 2F, toRender.getWidth(), toRender.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, toRender.getWidth(), toRender.getHeight(), false, false);
+        sb.draw(toRender, x, y, toRender.getWidth() / 2F, toRender.getHeight() / 2F, toRender.getWidth(), toRender.getHeight(), Settings.scale, Settings.scale, this.rotation, 0, 0, toRender.getWidth(), toRender.getHeight(), false, false);
     }
 
     public Texture getOutline() {

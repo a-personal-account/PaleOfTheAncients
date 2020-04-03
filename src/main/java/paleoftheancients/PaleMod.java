@@ -31,6 +31,7 @@ import paleoftheancients.bandit.intent.DeadlyDashIntent;
 import paleoftheancients.bandit.intent.HappyHitIntent;
 import paleoftheancients.bandit.intent.MassivePartyIntent;
 import paleoftheancients.bandit.intent.MoveAttackIntent;
+import paleoftheancients.bandit.monsters.TestFucker;
 import paleoftheancients.bandit.monsters.TheBandit;
 import paleoftheancients.bard.helpers.MelodyManager;
 import paleoftheancients.bard.intents.DervishDanceIntent;
@@ -135,6 +136,7 @@ public class PaleMod implements
         BaseMod.addMonster(TheWatcher.ID, TheWatcher::new);
         BaseMod.addMonster(Reimu.ID, (BaseMod.GetMonster) Reimu::new);
         BaseMod.addMonster(TheBandit.ID, TheBandit::new);
+        BaseMod.addMonster(TestFucker.ID, TestFucker::new);
 
         BaseMod.addMonster(N.ID, N::new);
 
