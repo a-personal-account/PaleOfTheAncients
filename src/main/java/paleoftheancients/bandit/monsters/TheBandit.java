@@ -58,7 +58,7 @@ public class TheBandit extends AbstractBossMonster {
     private final static byte PEPEGA = 10;
     private final static byte SETUPBOARD = 11;
 
-    private BanditBoard board = null;
+    public BanditBoard board = null;
     private ArrayList<Byte> cycletracker;
     public boolean phasetwo;
     private int turncounter;

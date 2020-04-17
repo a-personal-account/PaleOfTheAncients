@@ -66,6 +66,7 @@ public abstract class Eye extends AbstractMonster {
                 N n = (N) AbstractDungeon.getCurrRoom().monsters.getMonster(N.ID);
                 if (n != null) {
                     n.awaken();
+                    n.createIntent();
                 }
             } else {
                 for(int i = this.powers.size() - 1; i >= 0; i--) {

@@ -18,7 +18,7 @@ import paleoftheancients.helpers.AssetLoader;
 
 public class DamageSpace extends AbstractSpace {
     private static String[] TEXT = CardCrawlGame.languagePack.getUIString(PaleMod.makeID("DamageSpace")).TEXT;
-    private static int BASEDAMAGE = 10;
+    public static int BASEDAMAGE = 10;
 
     public DamageSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);

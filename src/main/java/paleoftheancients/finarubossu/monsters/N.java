@@ -274,7 +274,18 @@ public class N extends AbstractMonster {
     @Override
     protected void getMove(int num) {
         if(this.halfDead) {
-            this.setMove(Byte.MIN_VALUE, Intent.NONE);
+            boolean eyesded = true;
+            for (final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Eye && !(mo.halfDead || mo.isDeadOrEscaped())) {
+                    eyesded = false;
+                    break;
+                }
+            }
+            if (eyemonsters != null && eyesded) {
+                awaken();
+            } else {
+                this.setMove(Byte.MIN_VALUE, Intent.NONE);
+            }
         } else {
             Map<Byte, EnemyMoveInfo> stuff = new HashMap<>();
             stuff.putAll(this.moves);
@@ -320,7 +331,6 @@ public class N extends AbstractMonster {
 
     public void awaken() {
         this.setMoveShortcut(AWAKEN);
-        this.createIntent();
         for(final AbstractMonster mo : this.eyemonsters) {
             AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                 @Override

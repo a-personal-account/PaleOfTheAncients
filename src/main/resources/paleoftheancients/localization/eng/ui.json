@@ -248,7 +248,7 @@
       "Intends to #yAttack for #b",
       " damage",
       " and #rMove #b",
-      " #b"," times"
+      ". Executed #b"," times"
     ]
   },
   "paleoftheancients:MassivePartyIntent": {

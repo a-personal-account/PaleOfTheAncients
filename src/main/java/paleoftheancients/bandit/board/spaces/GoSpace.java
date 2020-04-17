@@ -11,7 +11,7 @@ import paleoftheancients.helpers.AssetLoader;
 
 public abstract class GoSpace extends AbstractSpace {
     protected static String[] TEXT = CardCrawlGame.languagePack.getUIString(PaleMod.makeID("GoSpace")).TEXT;
-    protected static int BASEDAMAGE = 25;
+    public static int BASEDAMAGE = 25;
 
     public GoSpace(AbstractBoard board, int x, int y) {
         super(board, x, y);

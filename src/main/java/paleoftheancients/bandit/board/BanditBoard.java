@@ -1,12 +1,12 @@
 package paleoftheancients.bandit.board;
 
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DescriptionLine;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,8 +24,8 @@ import paleoftheancients.bandit.board.spaces.asymmetrical.SpikeSpace;
 import paleoftheancients.bandit.board.spaces.symmetrical.*;
 import paleoftheancients.bandit.intent.EnumBuster;
 import paleoftheancients.bandit.monsters.TheBandit;
-import paleoftheancients.bandit.powers.BoardBoundPower;
 import paleoftheancients.bandit.powers.ImprisonedPower;
+import paleoftheancients.bandit.util.MoveModifier;
 import paleoftheancients.helpers.AssetLoader;
 
 import java.util.*;
@@ -266,10 +266,9 @@ public class BanditBoard extends AbstractBoard {
         this.addDescription(card);
     }
     public void addDescription(AbstractCard card) {
-        if(!processedCards.contains(card)) {
+        if(!CardModifierManager.hasModifier(card, MoveModifier.ID)) {
             processedCards.add(card);
-            card.initializeDescription();
-            card.description.add(new DescriptionLine("[#FF6666]" + BoardBoundPower.DESCRIPTIONS[0] + " " + cards.get(card.cardID) + "[]", (BoardBoundPower.DESCRIPTIONS[0].length() + 2) * 12F));
+            CardModifierManager.addModifier(card, new MoveModifier(cards.get(card.cardID)));
         }
     }
 
