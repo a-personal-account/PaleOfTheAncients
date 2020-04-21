@@ -12,4 +12,12 @@ public abstract class EnumBuster {
     public static AbstractMonster.Intent MoveAttackIntent;
     @SpireEnum
     public static AbstractMonster.Intent MassivePartyIntent;
+    @SpireEnum
+    public static AbstractMonster.Intent RedLeftArrowIntent;
+    @SpireEnum
+    public static AbstractMonster.Intent RedRightArrowIntent;
+    @SpireEnum
+    public static AbstractMonster.Intent GreenLeftArrowIntent;
+    @SpireEnum
+    public static AbstractMonster.Intent GreenRightArrowIntent;
 }

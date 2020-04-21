@@ -223,7 +223,7 @@
   "paleoftheancients:StrengthSpace": {
     "TEXT": [
       "Strength Space",
-      "you gain #b"," #yStrength."
+      "the #yacting #yplayer gains #b"," #yStrength."
     ]
   },
 

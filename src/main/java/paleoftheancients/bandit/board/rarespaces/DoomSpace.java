@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -51,5 +52,10 @@ public class DoomSpace extends AbstractSpace {
     }
     public String getBodyText() {
         return TEXT[1] + DAMAGE + TEXT[2] + BASETEXT[2];
+    }
+
+    @Override
+    public int getSelfDamageNumber(AbstractCreature actor) {
+        return DAMAGE;
     }
 }

@@ -1,4 +1,4 @@
-package paleoftheancients.bandit.board.spaces.asymmetrical;
+package paleoftheancients.bandit.board.spaces.symmetrical;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -34,5 +34,9 @@ public class SpikeSpace extends AbstractSpace {
     }
     public String getBodyText() {
         return TEXT[1] + BASEDAMAGE + TEXT[2];
+    }
+
+    public int getSelfDamageNumber(AbstractCreature actor) {
+        return BASEDAMAGE;
     }
 }

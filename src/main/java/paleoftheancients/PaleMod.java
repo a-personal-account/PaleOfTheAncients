@@ -31,6 +31,10 @@ import paleoftheancients.bandit.intent.DeadlyDashIntent;
 import paleoftheancients.bandit.intent.HappyHitIntent;
 import paleoftheancients.bandit.intent.MassivePartyIntent;
 import paleoftheancients.bandit.intent.MoveAttackIntent;
+import paleoftheancients.bandit.intent.arrows.GreenLeftArrowIntent;
+import paleoftheancients.bandit.intent.arrows.GreenRightArrowIntent;
+import paleoftheancients.bandit.intent.arrows.RedLeftArrowIntent;
+import paleoftheancients.bandit.intent.arrows.RedRightArrowIntent;
 import paleoftheancients.bandit.monsters.TheBandit;
 import paleoftheancients.bard.helpers.MelodyManager;
 import paleoftheancients.bard.intents.DervishDanceIntent;
@@ -183,6 +187,10 @@ public class PaleMod implements
         CustomIntent.add(new DeadlyDashIntent());
         CustomIntent.add(new MoveAttackIntent());
         CustomIntent.add(new MassivePartyIntent());
+        CustomIntent.add(new RedLeftArrowIntent());
+        CustomIntent.add(new RedRightArrowIntent());
+        CustomIntent.add(new GreenLeftArrowIntent());
+        CustomIntent.add(new GreenRightArrowIntent());
     }
 
     @Override

@@ -173,6 +173,13 @@ public abstract class AbstractSpace {
         }
     }
 
+    public int getDamageNumber(AbstractCreature actor) {
+        return 0;
+    }
+    public int getSelfDamageNumber(AbstractCreature actor) {
+        return 0;
+    }
+
     public enum GOODNESS {
         GOOD,
         OKAY,

@@ -2,6 +2,7 @@ package paleoftheancients.bandit.board.spaces;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.vfx.combat.SweepingBeamEffect;
@@ -28,5 +29,14 @@ public abstract class GoSpace extends AbstractSpace {
 
     public String getHeaderText() {
         return TEXT[0];
+    }
+
+    @Override
+    public int getDamageNumber(AbstractCreature actor) {
+        return actor instanceof AbstractPlayer ? 0 : BASEDAMAGE;
+    }
+    @Override
+    public int getSelfDamageNumber(AbstractCreature actor) {
+        return actor instanceof AbstractPlayer ? BASEDAMAGE : 0;
     }
 }

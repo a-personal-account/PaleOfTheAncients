@@ -1,4 +1,4 @@
-package paleoftheancients.bandit.board.spaces.symmetrical;
+package paleoftheancients.bandit.board.spaces.asymmetrical;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;

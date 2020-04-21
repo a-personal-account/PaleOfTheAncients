@@ -65,7 +65,7 @@ public class TheBandit extends AbstractBossMonster {
     public boolean displayNumbers;
 
     public TheBandit() {
-        super(NAME, ID, 15000,0.0F, -15.0F, 240.0F, 320.0F, null, 0, -20);
+        super(NAME, ID, 12000,0.0F, -15.0F, 240.0F, 320.0F, null, 0, -20);
         this.animation = new SpriterAnimation(PaleMod.assetPath("images/bandit/spriter/bandit_resized_hat.scml"));
         this.animation.setFlip(true, false);
 
@@ -258,7 +258,7 @@ public class TheBandit extends AbstractBossMonster {
     public void damage(DamageInfo info) {
         int curhp = this.currentHealth;
         super.damage(info);
-        if(board != null && !phasetwo && nextMove != FABRICATEFRIEND && curhp * 3 > this.maxHealth * 2 && phaseTransitionTreshold()) {
+        if(board != null && !phasetwo && nextMove != FABRICATEFRIEND && this.phaseTransitionTreshold(curhp, this.maxHealth) && phaseTransitionTreshold()) {
             phaseTransition(4, true);
         }
     }
@@ -330,7 +330,10 @@ public class TheBandit extends AbstractBossMonster {
     }
 
     private boolean phaseTransitionTreshold() {
-        return this.currentHealth * 3 <= this.maxHealth * 2;
+        return this.phaseTransitionTreshold(this.currentHealth, this.maxHealth);
+    }
+    private boolean phaseTransitionTreshold(float a, float b) {
+        return a * 12 <= b * 9.5F;
     }
 
     public static class BanditMoveInfo extends EnemyMoveInfo {

@@ -12,6 +12,7 @@ import paleoftheancients.bandit.board.rarespaces.ArtifactSpace;
 import paleoftheancients.bandit.board.rarespaces.BufferSpace;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.bandit.board.spaces.RelicGoSpace;
+import paleoftheancients.bandit.board.spaces.asymmetrical.EnergySpace;
 import paleoftheancients.bandit.board.spaces.symmetrical.*;
 
 import java.util.ArrayList;

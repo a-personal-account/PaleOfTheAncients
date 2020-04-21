@@ -47,4 +47,9 @@ public class DamageSpace extends AbstractSpace {
     public String getBodyText() {
         return TEXT[1] + BASEDAMAGE + TEXT[2];
     }
+
+    @Override
+    public int getDamageNumber(AbstractCreature actor) {
+        return BASEDAMAGE;
+    }
 }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 import paleoftheancients.PaleMod;
@@ -19,14 +20,17 @@ import paleoftheancients.bandit.actions.WeirdMoveGuyAction;
 import paleoftheancients.bandit.board.rarespaces.*;
 import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.bandit.board.spaces.BanditGoSpace;
+import paleoftheancients.bandit.board.spaces.asymmetrical.EnergySpace;
 import paleoftheancients.bandit.board.spaces.asymmetrical.GremlinSpace;
-import paleoftheancients.bandit.board.spaces.asymmetrical.SpikeSpace;
+import paleoftheancients.bandit.board.spaces.symmetrical.SpikeSpace;
 import paleoftheancients.bandit.board.spaces.symmetrical.*;
 import paleoftheancients.bandit.intent.EnumBuster;
 import paleoftheancients.bandit.monsters.TheBandit;
 import paleoftheancients.bandit.powers.ImprisonedPower;
+import paleoftheancients.bandit.powers.KeyFinisherPower;
 import paleoftheancients.bandit.util.MoveModifier;
 import paleoftheancients.helpers.AssetLoader;
+import paleoftheancients.theshowman.monsters.DummyMonster;
 
 import java.util.*;
 
@@ -40,11 +44,26 @@ public class BanditBoard extends AbstractBoard {
     public Map<String, Integer> cards;
     public Set<AbstractCard> processedCards;
     public Map<Integer, Integer> renderNumbers;
+    private final DummyMonster[][] dummyMonster;
     public BanditBoard(TheBandit owner) {
         this.owner = owner;
         this.cards = new HashMap<>();
         this.renderNumbers = new HashMap<>();
         this.processedCards = new HashSet<>();
+        this.dummyMonster = new DummyMonster[2][];
+        for(int i = 0; i < 2; i++) {
+            this.dummyMonster[i] = new DummyMonster[2];
+            for(int j = 0; j < 2; j++) {
+                this.dummyMonster[i][j] = new DummyMonster(0, 0, 0, 0, AssetLoader.emptyPixel());
+                this.dummyMonster[i][j].drawX = Settings.WIDTH / 2F;
+                this.dummyMonster[i][j].drawY = Settings.HEIGHT / 1.75F + squareOffset * (2.5F - i);
+            }
+            this.dummyMonster[i][0].drawX -= Settings.WIDTH * 0.05F;
+            this.dummyMonster[i][1].drawX += Settings.WIDTH * 0.05F;
+            for(final DummyMonster d : this.dummyMonster[i]) {
+                d.refresh();
+            }
+        }
     }
 
     public void init() {
@@ -153,6 +172,15 @@ public class BanditBoard extends AbstractBoard {
     @Override
     public void updateBoardSpecifics() {
         if(owner.displayNumbers) {
+            int boardSelfDamage = 0, boardDamage = 0;
+            for(final DummyMonster[] d : dummyMonster) {
+                for(final DummyMonster dd : d) {
+                    dd.update();
+                }
+            }
+
+            AbstractDrone[] pieceList = getPieces();
+            //ArrayUtils.reverse(pieceList);
             int curOffset = 0;
             boolean playerDisplayed = false;
             AbstractSpace space;
@@ -160,12 +188,34 @@ public class BanditBoard extends AbstractBoard {
             if (AbstractDungeon.player.hoveredCard != null && !AbstractDungeon.player.hasPower(ImprisonedPower.POWER_ID)) {
                 motion.add(cards.getOrDefault(AbstractDungeon.player.hoveredCard.cardID, 1));
                 playerDisplayed = true;
+
+                for(final AbstractDrone piece : pieceList) {
+                    for (int i = motion.get(0) == 0 ? 0 : 1; i <= motion.get(0) || (motion.get(0) == 0 && i == 0); i++) {
+                        space = squareList.get((piece.position + i) % squareList.size());
+                        if(space.triggersWhenPassed || i == motion.get(0)) {
+                            boardDamage += space.getDamageNumber(AbstractDungeon.player);
+                            boardSelfDamage += space.getSelfDamageNumber(AbstractDungeon.player);
+                        }
+                    }
+                }
+                if(dummyMonster[0][0].getIntentBaseDmg() != boardSelfDamage) {
+                    dummyMonster[0][0].setMove((byte) 0, boardSelfDamage > 0 ? EnumBuster.GreenLeftArrowIntent : AbstractMonster.Intent.NONE, boardSelfDamage);
+                    dummyMonster[0][0].createIntent();
+                }
+                boardSelfDamage = 0;
+                if(dummyMonster[0][1].getIntentBaseDmg() != boardDamage) {
+                    dummyMonster[0][1].setMove((byte) 0, boardDamage > 0 ? EnumBuster.GreenRightArrowIntent : AbstractMonster.Intent.NONE, boardDamage);
+                    dummyMonster[0][1].createIntent();
+                }
+                boardDamage = 0;
+            } else {
+                for(final DummyMonster d : dummyMonster[0]) {
+                    d.setMove((byte)0, AbstractMonster.Intent.NONE);
+                    d.createIntent();
+                }
             }
 
             motion.addAll(owner.getDisplayMotion());
-
-            AbstractDrone[] pieceList = getPieces();
-            //ArrayUtils.reverse(pieceList);
 
             Color[] colors = new Color[]{
                     Color.WHITE, Color.GOLD,
@@ -200,16 +250,22 @@ public class BanditBoard extends AbstractBoard {
                         if (!(space instanceof EmptySpace)) {
                             amount--;
                             squareRenderingInfoMap.put((drone.position + curOffset + i) % squareList.size(), new SquareRenderingInfo(0, Color.RED, true));
+                            boardDamage += space.getDamageNumber(owner);
+                            boardSelfDamage += space.getSelfDamageNumber(owner);
                         }
                     }
                 }
             } else if(owner.intent == EnumBuster.MassivePartyIntent) {
                 for (int i = 0; i < squareList.size(); i++) {
-                    if(!(squareList.get(i) instanceof EmptySpace) && !squareRenderingInfoMap.containsKey(i)) {
+                    space = squareList.get(i);
+                    if(!(space instanceof EmptySpace) && !squareRenderingInfoMap.containsKey(i)) {
                         squareRenderingInfoMap.put(i, new SquareRenderingInfo(0, null, true));
+                        boardDamage += space.getDamageNumber(owner);
+                        boardSelfDamage += space.getSelfDamageNumber(owner);
                     }
                 }
             } else if(owner.nextMove == TheBandit.DEADLYDASH) {
+                int keyfinisher = 1 + (owner.hasPower(KeyFinisherPower.POWER_ID) ? owner.getPower(KeyFinisherPower.POWER_ID).amount : 0);
                 for(int i = 0; i < squareList.size(); i++) {
                     if(!(squareList.get((player.position + curOffset + i) % squareList.size()) instanceof EmptySpace)) {
                         for (final AbstractDrone piece : pieceList) {
@@ -217,11 +273,40 @@ public class BanditBoard extends AbstractBoard {
                                 squareRenderingInfoMap.put((piece.position + curOffset + i + 1) % squareList.size(),
                                         new SquareRenderingInfo(1, colors[3], true));
                             }
+                            space = squareList.get((piece.position + curOffset + i + 1) % squareList.size());
+                            boardDamage += space.getDamageNumber(owner) * keyfinisher;
+                            boardSelfDamage += space.getSelfDamageNumber(owner) * keyfinisher;
                         }
                     } else {
                         break;
                     }
                 }
+            } else if(owner.intent == EnumBuster.MoveAttackIntent) {
+                int keyfinisher = 1 + (owner.hasPower(KeyFinisherPower.POWER_ID) ? owner.getPower(KeyFinisherPower.POWER_ID).amount : 0);
+                int playerOffset = playerDisplayed ? motion.get(0) : 0;
+                for(final Integer singleMotion : owner.getDisplayMotion()) {
+                    for (final AbstractDrone piece : pieceList) {
+                        for (int i = 1; i < singleMotion; i++) {
+                            space = squareList.get((piece.position + playerOffset + i) % squareList.size());
+                            if (space.triggersWhenPassed) {
+                                boardDamage += space.getDamageNumber(owner);
+                                boardSelfDamage += space.getSelfDamageNumber(owner);
+                            }
+                        }
+                        space = squareList.get((piece.position + playerOffset + singleMotion) % squareList.size());
+                        boardDamage += space.getDamageNumber(owner) * keyfinisher;
+                        boardSelfDamage += space.getSelfDamageNumber(owner) * keyfinisher;
+                    }
+                    playerOffset += singleMotion;
+                }
+            }
+            if(dummyMonster[1][1].getIntentBaseDmg() != boardSelfDamage) {
+                dummyMonster[1][1].setMove((byte) 0, boardSelfDamage > 0 ? EnumBuster.RedRightArrowIntent : AbstractMonster.Intent.NONE, boardSelfDamage);
+                dummyMonster[1][1].createIntent();
+            }
+            if(dummyMonster[1][0].getIntentBaseDmg() != boardDamage) {
+                dummyMonster[1][0].setMove((byte) 0, boardDamage > 0 ? EnumBuster.RedLeftArrowIntent : AbstractMonster.Intent.NONE, boardDamage);
+                dummyMonster[1][0].createIntent();
             }
         }
     }
@@ -233,6 +318,11 @@ public class BanditBoard extends AbstractBoard {
             if (!droneList.isEmpty()) {
                 for (AbstractDrone r : droneList) {
                     sb.draw(dronePiece, r.location.x - ((dronePiece.getWidth() * Settings.scale) / 2F), r.location.y - ((dronePiece.getHeight() * Settings.scale) / 2F), dronePiece.getWidth() / 2F, dronePiece.getHeight() / 2F, dronePiece.getWidth(), dronePiece.getHeight(), Settings.scale, Settings.scale, 0, 0, 0, dronePiece.getWidth(), dronePiece.getHeight(), false, false);
+                }
+            }
+            for(final DummyMonster[] d : dummyMonster) {
+                for(final DummyMonster dd : d) {
+                    dd.render(sb);
                 }
             }
         }
