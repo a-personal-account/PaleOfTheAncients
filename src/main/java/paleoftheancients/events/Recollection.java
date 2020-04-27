@@ -223,27 +223,30 @@ public class Recollection extends AbstractImageEvent {
 
     private ArrayList<String> vexRelics() {
         ArrayList<String> IDs = new ArrayList<>();
-        IDs.add(VoiceBox.ID);
-        IDs.add(NotEnergy.ID);
-        IDs.add(NewsTicker.ID);
-        IDs.add(StoryBook.ID);
-        IDs.add(Pepega.ID);
-        IDs.add(SpireShuffle.ID);
-        IDs.add(HealthChanger.ID);
-        IDs.add(Bottle.ID);
-        IDs.add(Incredibleness.ID);
-        IDs.add(RealismEngine.ID);
-        IDs.add(Rainbarrow.ID);
-        if (!AbstractDungeon.player.hasRelic(PopTire.ID) && !AbstractDungeon.player.hasRelic(JugglerBalls.ID) && !AbstractDungeon.player.hasRelic(MiniSolarSystem.ID) && !AbstractDungeon.player.hasRelic(TheWave.ID)) {
-            IDs.add(TheWave.ID);
-            IDs.add(PopTire.ID);
-            IDs.add(JugglerBalls.ID);
-            IDs.add(MiniSolarSystem.ID);
-        }
-        for(int i = IDs.size() - 1; i >= 0; i--) {
-            if(AbstractDungeon.player.hasRelic(IDs.get(i))) {
-                IDs.remove(i);
+        try {
+            IDs.add(VoiceBox.ID);
+            IDs.add(NotEnergy.ID);
+            IDs.add(NewsTicker.ID);
+            IDs.add(StoryBook.ID);
+            IDs.add(Pepega.ID);
+            IDs.add(SpireShuffle.ID);
+            IDs.add(HealthChanger.ID);
+            IDs.add(Bottle.ID);
+            IDs.add(Incredibleness.ID);
+            IDs.add(RealismEngine.ID);
+            IDs.add(Rainbarrow.ID);
+            if (!AbstractDungeon.player.hasRelic(PopTire.ID) && !AbstractDungeon.player.hasRelic(MiniSolarSystem.ID) && !AbstractDungeon.player.hasRelic(TheWave.ID)) {
+                IDs.add(TheWave.ID);
+                IDs.add(PopTire.ID);
+                IDs.add(MiniSolarSystem.ID);
             }
+            for (int i = IDs.size() - 1; i >= 0; i--) {
+                if (AbstractDungeon.player.hasRelic(IDs.get(i))) {
+                    IDs.remove(i);
+                }
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
         }
         return IDs;
     }
