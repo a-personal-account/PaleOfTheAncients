@@ -2,7 +2,6 @@ package paleoftheancients.events;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -19,10 +18,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import paleoftheancients.PaleMod;
 import paleoftheancients.relics.KeyRelic;
 import paleoftheancients.relics.Timepiece;
-import vexMod.relics.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Recollection extends AbstractImageEvent {
     public static final String ID = PaleMod.makeID("Recollection");
@@ -54,13 +51,7 @@ public class Recollection extends AbstractImageEvent {
         this.addToPossibilities(aoeCheck(), 1, 5, PaleMod.assetPath("images/events/nob.jpg"), GremlinHorn.ID, LetterOpener.ID, BronzeScales.ID, MercuryHourglass.ID);
         if(possibilities.size() <= 2) {
             DescriptedList<String> stuff = new DescriptedList<>();
-            if(Loader.isModLoaded("vexMod")) {
-                ArrayList<String> vexStuff = vexRelics();
-                Collections.shuffle(vexStuff);
-                for(int i = 0; i < vexStuff.size(); i++) {
-                    stuff.add(vexStuff.get(i));
-                }
-            }
+
             if(!AbstractDungeon.player.hasRelic(CultistMask.ID)) {
                 stuff.add(CultistMask.ID);
             }
@@ -218,36 +209,5 @@ public class Recollection extends AbstractImageEvent {
         public String description;
         public int maxHpIncrease;
         public String imagePath;
-    }
-
-
-    private ArrayList<String> vexRelics() {
-        ArrayList<String> IDs = new ArrayList<>();
-        try {
-            IDs.add(VoiceBox.ID);
-            IDs.add(NotEnergy.ID);
-            IDs.add(NewsTicker.ID);
-            IDs.add(StoryBook.ID);
-            IDs.add(Pepega.ID);
-            IDs.add(SpireShuffle.ID);
-            IDs.add(HealthChanger.ID);
-            IDs.add(Bottle.ID);
-            IDs.add(Incredibleness.ID);
-            IDs.add(RealismEngine.ID);
-            IDs.add(Rainbarrow.ID);
-            if (!AbstractDungeon.player.hasRelic(PopTire.ID) && !AbstractDungeon.player.hasRelic(MiniSolarSystem.ID) && !AbstractDungeon.player.hasRelic(TheWave.ID)) {
-                IDs.add(TheWave.ID);
-                IDs.add(PopTire.ID);
-                IDs.add(MiniSolarSystem.ID);
-            }
-            for (int i = IDs.size() - 1; i >= 0; i--) {
-                if (AbstractDungeon.player.hasRelic(IDs.get(i))) {
-                    IDs.remove(i);
-                }
-            }
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
-        return IDs;
     }
 }
