@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,11 +17,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.GoldenSlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
+import paleoftheancients.PaleMod;
 import paleoftheancients.reimu.actions.DamagingAction;
 import paleoftheancients.reimu.actions.PersuasionNeedleAction;
 import paleoftheancients.reimu.vfx.EvilSealingCircleVFX;
 import paleoftheancients.reimu.vfx.ExterminationVFX;
 import paleoftheancients.reimu.vfx.HakureiBarrierVFX;
+import paleoftheancients.reimu.vfx.SpellCardDeclarationVFX;
 
 public class ReimuThree extends ReimuPhase {
     private static final byte EVILSEALINGCIRCLE = 0;
@@ -32,7 +35,7 @@ public class ReimuThree extends ReimuPhase {
 
     public ReimuThree() {
         this.moves.put(EVILSEALINGCIRCLE, new ReimuMoveInfo(EVILSEALINGCIRCLE, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(14), 3, true, Reimu.ReimuAnimation.None, calcAscensionNumber(1.7F)));
-        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(3), calcAscensionNumber(15), true, Reimu.ReimuAnimation.None, calcAscensionNumber(150F)));
+        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(3), calcAscensionNumber(15), true, Reimu.ReimuAnimation.None, calcAscensionNumber(50F)));
         this.moves.put(COMBO, new ReimuMoveInfo(COMBO, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(12), 2, true, Reimu.ReimuAnimation.None, calcAscensionNumber(2F)));
         this.moves.put(THWACK, new ReimuMoveInfo(THWACK, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(20), 1, false, Reimu.ReimuAnimation.ForwardOccult));
         this.moves.put(EXTERMINATION, new ReimuMoveInfo(EXTERMINATION, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(8), 3, true, Reimu.ReimuAnimation.MagicUp, calcAscensionNumber(2.4F)));
@@ -51,10 +54,10 @@ public class ReimuThree extends ReimuPhase {
                 EndSpellcard(reimu);
                 break;
             case HAKUREIDANMAKUBARRIER:
-                DeclareSpellcard(reimu, 3, 2);
+                AbstractDungeon.actionManager.addToBottom(new SFXAction(PaleMod.makeID("touhou_spellcard")));
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new SpellCardDeclarationVFX(reimu, -1)));
                 AbstractDungeon.actionManager.addToBottom(new DamagingAction(() -> new HakureiBarrierVFX(AbstractDungeon.player, reimu, info, rmi.multiplier)));
                 AbstractDungeon.actionManager.addToBottom(new GainBlockAction(reimu, reimu, rmi.magicNumber));
-                EndSpellcard(reimu);
                 break;
 
             case PERSUASIONNEEDLE:
@@ -96,5 +99,6 @@ public class ReimuThree extends ReimuPhase {
     @Override
     public void setDeathbombIntent(Reimu reimu) {
         reimu.setMoveShortcut(HAKUREIDANMAKUBARRIER, 8);
+        DeclareSpellcard(reimu, 3, 0);
     }
 }

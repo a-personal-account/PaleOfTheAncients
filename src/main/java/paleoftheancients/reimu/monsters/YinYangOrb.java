@@ -32,9 +32,12 @@ public class YinYangOrb extends CustomMonster {
     public Reimu master;
 
     public YinYangOrb(float x, float y, int type, int position, int delay, Reimu master) {
+        this(x, y, type, position, delay, master, 0.86F, true);
+    }
+    public YinYangOrb(float x, float y, int type, int position, int delay, Reimu master, float scale, boolean powers) {
         super(NAME, ID, HP + HP_VARIANCE * type - (2 - master.rui.extralives) * 5, 0.0F, 0.0F, 140.0F, 120.0F, null, x, y);
 
-        this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.atlas"), PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.json"), 0.86F);
+        this.loadAnimation(PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.atlas"), PaleMod.assetPath("images/reimu/monsters/YinYangOrb/YinYangOrb.json"), scale);
         forward();
 
         this.type = EnemyType.NORMAL;
@@ -44,22 +47,23 @@ public class YinYangOrb extends CustomMonster {
         this.delay = delay;
         this.position = position;
         this.master = master;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MonsterPosition(this, delay, position)));
-        AbstractPower p = null;
-        switch(master.rui.extralives) {
-            case 0:
-                p = new ShotTypeNeedlePower(this);
-                break;
-            case 1:
-                p = new ShotTypeAmuletPower(this);
-                break;
-            case 2:
-                p = new ShotTypeBasePower(this);
-                break;
-        }
+        if(powers) {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MonsterPosition(this, delay, position)));
+            AbstractPower p = null;
+            switch (master.rui.extralives) {
+                case 0:
+                    p = new ShotTypeNeedlePower(this);
+                    break;
+                case 1:
+                    p = new ShotTypeAmuletPower(this);
+                    break;
+                case 2:
+                    p = new ShotTypeBasePower(this);
+                    break;
+            }
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p, -1, true));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BlockUponDeathPower(this, BlockUponDeathPower.BLOCK), 0, true));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, p, -1, true));
+        }
     }
 
     private void move() {

@@ -61,6 +61,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         this.addTempMusic(PaleMod.makeID("tellurtownautumn"), PaleMod.assetPath("music/pokken-tellurtownautumn_loop.ogg"));
         this.addTempMusic(PaleMod.makeID("phoenix"), PaleMod.assetPath("music/ffxiv-phoenix_loop.ogg"));
         this.addTempMusic(PaleMod.makeID("finaldream"), PaleMod.assetPath("music/final-dream.ogg"));
+        this.addTempMusic(PaleMod.makeID("ultimatedream"), PaleMod.assetPath("music/ultimate-dream.ogg"));
         this.addTempMusic(PaleMod.makeID("thunderrolls"), PaleMod.assetPath("music/ffxiv-thunder_rolls.ogg"));
     }
 

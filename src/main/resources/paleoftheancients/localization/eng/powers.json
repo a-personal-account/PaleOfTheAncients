@@ -331,9 +331,17 @@
       " instead."
     ]
   },
-  "paleoftheancients:DeathBombPower": {
-    "NAME": "Quick Reflexes",
-    "DESCRIPTIONS": ["If the Shrine Maiden would die, become invincible until next turn and change Intent to use #b2 Bombs. NL Requires at least #b1 Bomb to take effect."]
+  "paleoftheancients:InvincibleTresholdPower": {
+    "NAME": "Nonspell",
+    "DESCRIPTIONS": ["Can only lose up to #b", " life. NL Upon taking that much damage, lose this power and #rpermanently #rchange #rintent."]
+  },
+  "paleoftheancients:SpellcardResistancePower": {
+    "NAME": "Spellcard",
+    "DESCRIPTIONS": ["Damage taken is ", "reduced", "increased", " by #b", "%. NL Every #b", " damage taken, lose #b1 #rStrength this turn. NL Damage taken and #rStrength increase each subsequent turn."]
+  },
+  "paleoftheancients:FreeControlPower": {
+    "NAME": "Free Control",
+    "DESCRIPTIONS": ["Player Character is freely controllable via keyboard, controller or mouse."]
   },
   "paleoftheancients:SealedPower": {
     "NAME": "Sealed",

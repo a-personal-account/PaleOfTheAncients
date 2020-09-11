@@ -5,9 +5,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CannotLoseAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -19,10 +23,15 @@ import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
+import paleoftheancients.helpers.PlayTempMusicAction;
+import paleoftheancients.reimu.actions.FantasyHeavenAction;
 import paleoftheancients.reimu.actions.PersuasionNeedleAction;
+import paleoftheancients.reimu.actions.WaitOnFantasyHeavenAction;
 import paleoftheancients.reimu.actions.WaitOnVFXAction;
 import paleoftheancients.reimu.powers.HakureiShrineMaidenPower;
+import paleoftheancients.reimu.powers.InvincibleTresholdPower;
 import paleoftheancients.reimu.powers.Position;
+import paleoftheancients.reimu.powers.SpellcardResistancePower;
 import paleoftheancients.reimu.util.ReimuUserInterface;
 import paleoftheancients.reimu.vfx.*;
 import paleoftheancients.relics.SoulOfTheShrineMaiden;
@@ -122,10 +131,6 @@ public class Reimu extends CustomMonster {
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, StrengthPower.POWER_ID));
             phase.die(this);
             CardCrawlGame.sound.playV(PaleMod.makeID("touhou_powerup"), 0.25F);
-            if(spellcircle == null) {
-                spellcircle = new SpellCircleVFX(this);
-                AbstractDungeon.effectList.add(spellcircle);
-            }
 
             //Return to idle
             lockAnimation = false;
@@ -144,6 +149,8 @@ public class Reimu extends CustomMonster {
                     orbs[i][playerPosition].createIntent();
                 }
             }
+            addToTop(new RemoveSpecificPowerAction(this, this, SpellcardResistancePower.POWER_ID));
+            addToBot(new ApplyPowerAction(this, this, new InvincibleTresholdPower(this)));
         } else if(this.nextMove == ReimuPhase.BOMBREFILL) {
             rui.addBomb();
 
@@ -166,7 +173,9 @@ public class Reimu extends CustomMonster {
 
     @Override
     protected void getMove(int num) {
-        phase.getMove(this, num);
+        if(!this.hasPower(SpellcardResistancePower.POWER_ID)) {
+            phase.getMove(this, num);
+        }
     }
 
     public void setMoveShortcut(byte next, int moveIndex) {
@@ -186,33 +195,36 @@ public class Reimu extends CustomMonster {
     }
 
     @Override
-    public void changeState(String state) {
-        switch(state) {
-            case Deathbomb:
-                AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this, this, new InvinciblePower(this, -1), -1));
-                phase.setDeathbombIntent(this);
-                CardCrawlGame.sound.playV(PaleMod.makeID("touhou_death"), 0.15F);
-                this.createIntent();
-
-                startSpellAnimation();
-                break;
-        }
-    }
-
-    @Override
     public void damage(DamageInfo info) {
         int before = this.currentHealth;
         super.damage(info);
         if(this.currentHealth > 0 && before > 1) {
-            if(before > this.currentHealth) {
-                if(MathUtils.randomBoolean()) {
-                    runAnim(ReimuAnimation.Hithigh);
-                } else {
-                    runAnim(ReimuAnimation.Hitlow);
-                }
-            } else {
+            if(before == this.currentHealth) {
                 runAnim(ReimuAnimation.Guard);
+            } else {
+                if(this.hasPower(InvincibleTresholdPower.POWER_ID) && this.getPower(InvincibleTresholdPower.POWER_ID).amount == 0) {
+                    addToBot(new RemoveSpecificPowerAction(this, this, InvincibleTresholdPower.POWER_ID));
+                    addToBot(new ApplyPowerAction(this, this, new SpellcardResistancePower(this)));
+                    addToBot(new TextAboveCreatureAction(this, TextAboveCreatureAction.TextType.INTERRUPTED));
+                    phase.setDeathbombIntent(this);
+                    this.createIntent();
+                    if(spellcircle == null) {
+                        spellcircle = new SpellCircleVFX(this);
+                        addToBot(new VFXAction(spellcircle));
+                    }
+                    rui.bombs = 0;
+                    this.startSpellAnimation(false);
+                }
             }
+        }
+    }
+
+    @Override
+    public void useStaggerAnimation() {
+        if(MathUtils.randomBoolean()) {
+            runAnim(ReimuAnimation.Hithigh);
+        } else {
+            runAnim(ReimuAnimation.Hitlow);
         }
     }
 
@@ -226,19 +238,11 @@ public class Reimu extends CustomMonster {
                     AbstractDungeon.actionManager.addToBottom(new SuicideAction(mo));
                 }
             }
-            spellcircle.end();
-            lockAnimation = true;
-            this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
-            PaleOfTheAncients.addRelicReward(SoulOfTheShrineMaiden.ID);
-            AbstractDungeon.actionManager.addToBottom(new WaitOnVFXAction(new TouhouDeathVFX(this)));
-            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    PaleOfTheAncients.resumeMainMusic();
-                    delayedDie(triggerRelics);
-                    this.isDone = true;
-                }
-            });
+            if(AbstractDungeon.ascensionLevel >= 4) {
+                this.engageFantasyHeaven();
+            } else {
+                this.killShrineMaiden(triggerRelics);
+            }
         } else if(!this.halfDead) {
             this.halfDead = true;
             PaleOfTheAncients.deathTriggers(this);
@@ -252,8 +256,40 @@ public class Reimu extends CustomMonster {
                 spellcircle.end();
                 spellcircle = null;
             }
+            if(this.hasPower(SpellcardResistancePower.POWER_ID)) {
+                phase.EndSpellBackground();
+            }
             AbstractDungeon.actionManager.addToBottom(new RemoveDebuffsAction(this));
         }
+    }
+
+    private void engageFantasyHeaven() {
+        this.setMove((byte)0, Intent.NONE);
+        this.createIntent();
+        for(int i = 0; i < 10; i++) {
+            addToBot(new WaitAction(0.1F));
+        }
+        addToBot(new PlayTempMusicAction(PaleMod.makeID("ultimatedream"), 1));
+        AbstractDungeon.actionManager.addToBottom(new SFXAction(PaleMod.makeID("touhou_spellcard")));
+        addToBot(new VFXAction(new SpellCardDeclarationVFX(this, -1)));
+        addToBot(new TextAboveCreatureAction(this, DIALOG[0]));
+        addToBot(new WaitOnFantasyHeavenAction(new FantasyHeavenAction(this)));
+    }
+
+    public void killShrineMaiden(boolean triggerRelics) {
+        spellcircle.end();
+        lockAnimation = true;
+        this.state.setAnimation(0, ReimuAnimation.Defeat.name(), false);
+        PaleOfTheAncients.addRelicReward(SoulOfTheShrineMaiden.ID);
+        AbstractDungeon.actionManager.addToBottom(new WaitOnVFXAction(new TouhouDeathVFX(this)));
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            @Override
+            public void update() {
+                PaleOfTheAncients.resumeMainMusic();
+                delayedDie(triggerRelics);
+                this.isDone = true;
+            }
+        });
     }
 
     private void delayedDie(boolean triggerRelics) {
@@ -331,6 +367,7 @@ public class Reimu extends CustomMonster {
     public boolean lastMoveBefore(byte move) {
         return super.lastMoveBefore(move);
     }
+
 
     public enum ReimuAnimation {
         None,

@@ -1,5 +1,6 @@
 package paleoftheancients.reimu.monsters;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
@@ -99,10 +100,18 @@ public abstract class ReimuPhase {
         AbstractDungeon.actionManager.addToBottom(new VFXAction(new SpellCardDeclarationVFX(reimu, image)));
         reimu.rui.bombs = Math.max(0, reimu.rui.bombs - bombs);
     }
-    protected void EndSpellcard(Reimu reimu) {
+    public void EndSpellcard(Reimu reimu) {
         AbstractDungeon.actionManager.addToBottom(new EndSpellAction(reimu, backgroundVFX));
     }
-
+    public void EndSpellBackground() {
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                backgroundVFX.end();
+            }
+        });
+    }
 
 
     class ReimuMoveInfo extends EnemyMoveInfo {

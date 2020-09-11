@@ -1,17 +1,20 @@
 package paleoftheancients.reimu.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import paleoftheancients.PaleMod;
 import paleoftheancients.reimu.actions.DamagingAction;
 import paleoftheancients.reimu.actions.EndSpellAction;
 import paleoftheancients.reimu.powers.ShotTypeAmuletPower;
@@ -19,6 +22,7 @@ import paleoftheancients.reimu.powers.ShotTypeNeedlePower;
 import paleoftheancients.reimu.vfx.FSBlinkVFX;
 import paleoftheancients.reimu.vfx.FantasySealVFX;
 import paleoftheancients.reimu.vfx.HakureiAmuletVFX;
+import paleoftheancients.reimu.vfx.SpellCardDeclarationVFX;
 
 public class ReimuTwo extends ReimuPhase {
     private static final byte FANTASYSEAL = 0;
@@ -47,10 +51,9 @@ public class ReimuTwo extends ReimuPhase {
                 EndSpellcard(reimu);
                 break;
             case FSBLINK:
-                DeclareSpellcard(reimu, 2, 2);
+                AbstractDungeon.actionManager.addToBottom(new SFXAction(PaleMod.makeID("touhou_spellcard")));
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new SpellCardDeclarationVFX(reimu, -1)));
                 AbstractDungeon.actionManager.addToBottom(new DamagingAction(() -> new FSBlinkVFX(AbstractDungeon.player, reimu, info, rmi.multiplier)));
-                AbstractDungeon.actionManager.addToBottom(new EndSpellAction(reimu, backgroundVFX));
-                EndSpellcard(reimu);
                 break;
 
             case AMULET:
@@ -93,6 +96,7 @@ public class ReimuTwo extends ReimuPhase {
     @Override
     public void setDeathbombIntent(Reimu reimu) {
         reimu.setMoveShortcut(FSBLINK, 5);
+        DeclareSpellcard(reimu, 2, 0);
     }
 
     @Override

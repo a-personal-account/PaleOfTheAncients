@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class WaitOnVFXAction extends AbstractGameAction {
-    private AbstractGameEffect age;
+    protected AbstractGameEffect age;
 
     public WaitOnVFXAction(AbstractGameEffect age) {
         this.age = age;

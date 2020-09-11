@@ -115,7 +115,10 @@
       "Divine Arts \"Omnidirectional Oni-Binding Circle\"",
       "Great Barrier \"Hakurei Danmaku Barrier\""
     ],
-    "NAME": "Shrine Maiden of Paradise"
+    "NAME": "Shrine Maiden of Paradise",
+    "DIALOG": [
+      "\"Fantasy Heaven\""
+    ]
   },
   "paleoftheancients:YinYangOrb": {
     "NAME": "Yin-Yang Orb"

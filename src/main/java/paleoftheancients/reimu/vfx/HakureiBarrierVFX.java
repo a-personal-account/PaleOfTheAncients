@@ -7,13 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
-import paleoftheancients.reimu.actions.FastVampireDamageAction;
 import paleoftheancients.reimu.monsters.Reimu;
 
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class HakureiBarrierVFX extends AbstractDamagingVFX {
 
                         boolean stillActive = true;
                         for(; num > 0; num--) {
-                            AbstractDungeon.actionManager.addToTop(new FastVampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
+                            AbstractDungeon.actionManager.addToTop(new DamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
                             if(stillActive) {
                                 stillActive = false;
                                 AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {

@@ -15,7 +15,7 @@ public class SpellCardDeclarationVFX extends AbstractGameEffect {
     public static String textpath = "images/reimu/vfx/spellcard_text.png";
     public static String reimupath = "images/reimu/vfx/Reimu";
 
-    private Texture text, reimuimage;
+    private Texture text, reimuimage = null;
     private Reimu reimu;
 
     private int textwidth, textheight, reimuwidth, reimuheight;
@@ -32,24 +32,26 @@ public class SpellCardDeclarationVFX extends AbstractGameEffect {
     public SpellCardDeclarationVFX(Reimu reimu, int num) {
         this.reimu = reimu;
 
-        reimuimage = AssetLoader.loadImage(PaleMod.assetPath(reimupath + num + ".png"));
+        if(num >= 0) {
+            reimuimage = AssetLoader.loadImage(PaleMod.assetPath(reimupath + num + ".png"));
+            reimuwidth = reimuimage.getWidth();
+            reimuheight = reimuimage.getHeight();
+
+            reimuX = Settings.WIDTH * 0.85F - reimuwidth / 2;
+            reimuY = Settings.HEIGHT * -0.3F;
+        }
         text = AssetLoader.loadImage(PaleMod.assetPath(textpath));
 
         this.scale *= 1.3F;
 
         textwidth = text.getWidth();
         textheight = text.getHeight();
-        reimuwidth = reimuimage.getWidth();
-        reimuheight = reimuimage.getHeight();
 
         verticalTextX = Settings.WIDTH * 0.85F;
         verticalTextY = MathUtils.random(textheight);
 
         horizontalTextX = MathUtils.random(textwidth);
         horizontalTextY = Settings.HEIGHT * 0.1F;
-
-        reimuX = Settings.WIDTH * 0.85F - reimuwidth / 2;
-        reimuY = Settings.HEIGHT * -0.3F;
 
         this.color = Color.WHITE.cpy();
         this.color.a = 0F;
@@ -102,7 +104,9 @@ public class SpellCardDeclarationVFX extends AbstractGameEffect {
     @Override
     public void render(SpriteBatch sb) {
         sb.setColor(color);
-        sb.draw(reimuimage, reimuX, reimuY, reimuwidth / 2F, 0, reimuwidth, reimuheight, this.scale, this.scale, 0, 0, 0, reimuwidth, reimuheight, true, false);
+        if(reimuimage != null) {
+            sb.draw(reimuimage, reimuX, reimuY, reimuwidth / 2F, 0, reimuwidth, reimuheight, this.scale, this.scale, 0, 0, 0, reimuwidth, reimuheight, true, false);
+        }
         for(int i = -1; i < 2; i++) {
             sb.draw(text, verticalTextX, verticalTextY + i * textwidth * scale, 0, textheight / 2F, textwidth, textheight, this.scale, this.scale, 270, 0, 0, textwidth, textheight, false, false);
         }
