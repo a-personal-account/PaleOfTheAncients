@@ -51,7 +51,7 @@ public class OrbShootsBulletsAction extends AbstractGameEffect {
             }
         }
 
-        this.duration -= Gdx.graphics.getDeltaTime();
+        this.duration -= Gdx.graphics.getRawDeltaTime();
         if(this.duration <= 0) {
             this.isDone = true;
             if(this.orbindex < orbs.length - 1) {

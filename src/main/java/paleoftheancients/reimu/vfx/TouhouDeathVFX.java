@@ -41,7 +41,7 @@ public class TouhouDeathVFX extends AbstractGameEffect {
     @Override
     public void update() {
         if(count >= 0) {
-            timer -= Gdx.graphics.getDeltaTime();
+            timer -= Gdx.graphics.getRawDeltaTime();
             if (timer <= 0F) {
                 timer = 0.15F;
                 if (count-- > 0) {
@@ -56,7 +56,7 @@ public class TouhouDeathVFX extends AbstractGameEffect {
                     }
                 }
             }
-            leaftimer -= Gdx.graphics.getDeltaTime();
+            leaftimer -= Gdx.graphics.getRawDeltaTime();
             if(leaftimer <= 0) {
                 rotation += (MathUtils.random(0.01F) + 0.12F) * (float)Math.PI;
                 leaftimer = 0.04F;
@@ -114,10 +114,10 @@ public class TouhouDeathVFX extends AbstractGameEffect {
         }
 
         public void update() {
-            x += vX * Gdx.graphics.getDeltaTime();
-            y += vY * Gdx.graphics.getDeltaTime();
-            rotation += rotationVelocity * Gdx.graphics.getDeltaTime();
-            this.color.a -= Gdx.graphics.getDeltaTime() / 2F;
+            x += vX * Gdx.graphics.getRawDeltaTime();
+            y += vY * Gdx.graphics.getRawDeltaTime();
+            rotation += rotationVelocity * Gdx.graphics.getRawDeltaTime();
+            this.color.a -= Gdx.graphics.getRawDeltaTime() / 2F;
         }
 
         public void render(SpriteBatch sb) {

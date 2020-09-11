@@ -41,7 +41,7 @@ public class FantasyHeavenBullet extends AbstractGameEffect {
     public void update() {
         switch (textureIndex) {
             case 0:
-                velocity.setLength(Math.max(0, velocity.len() - tmp.len() * Gdx.graphics.getDeltaTime()));
+                velocity.setLength(Math.max(0, velocity.len() - tmp.len() * Gdx.graphics.getRawDeltaTime()));
                 if(velocity.len() <= 0) {
                     this.textureIndex += 3;
                     this.duration = this.startingDuration;
@@ -51,9 +51,9 @@ public class FantasyHeavenBullet extends AbstractGameEffect {
                 break;
 
             case 1:
-                this.position.x += this.velocity.x * (1 - Math.abs((float)Math.cos(this.duration))) * Gdx.graphics.getDeltaTime();
-                this.position.y += this.velocity.y * (1 - Math.abs((float)Math.cos(this.duration))) * Gdx.graphics.getDeltaTime();
-                this.duration -= Gdx.graphics.getDeltaTime() * 2;
+                this.position.x += this.velocity.x * (1 - Math.abs((float)Math.cos(this.duration))) * Gdx.graphics.getRawDeltaTime();
+                this.position.y += this.velocity.y * (1 - Math.abs((float)Math.cos(this.duration))) * Gdx.graphics.getRawDeltaTime();
+                this.duration -= Gdx.graphics.getRawDeltaTime() * 2;
                 if(this.duration <= 0F) {
                     this.textureIndex += 3;
                     this.duration = this.startingDuration;
@@ -62,8 +62,8 @@ public class FantasyHeavenBullet extends AbstractGameEffect {
                 break;
 
             case 2:
-                this.position.x += this.velocity.x * Gdx.graphics.getDeltaTime();
-                this.position.y += this.velocity.y * Gdx.graphics.getDeltaTime();
+                this.position.x += this.velocity.x * Gdx.graphics.getRawDeltaTime();
+                this.position.y += this.velocity.y * Gdx.graphics.getRawDeltaTime();
                 if(this.position.x < -Settings.WIDTH * 0.1F
                         || this.position.x > Settings.WIDTH * 1.1F
                         || this.position.y < -Settings.HEIGHT * 0.1F
@@ -76,7 +76,7 @@ public class FantasyHeavenBullet extends AbstractGameEffect {
             case 3:
             case 4:
             case 5:
-                this.duration -= Gdx.graphics.getDeltaTime();
+                this.duration -= Gdx.graphics.getRawDeltaTime();
                 if(this.duration <= 0) {
                     if(this.transitioning) {
                         this.transitioning = false;

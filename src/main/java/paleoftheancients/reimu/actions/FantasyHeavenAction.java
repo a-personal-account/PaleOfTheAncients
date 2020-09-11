@@ -87,7 +87,7 @@ public class FantasyHeavenAction extends AbstractGameEffect {
 
     @Override
     public void update() {
-        phase += Gdx.graphics.getDeltaTime() * 4;
+        phase += Gdx.graphics.getRawDeltaTime() * 4;
         for(int i = 0; i < this.orbs.length; i++) {
             final double tmpphase = phase + i * Math.PI * 2 / this.orbs.length;
             this.orbs[i].drawX = reimu.drawX + (float)Math.sin(tmpphase) * reimu.hb.width * distance;
@@ -99,11 +99,11 @@ public class FantasyHeavenAction extends AbstractGameEffect {
                 AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FreeControlPower(AbstractDungeon.player)));
                 AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Position.POWER_ID));
             }
-            distance += Gdx.graphics.getDeltaTime();
+            distance += Gdx.graphics.getRawDeltaTime();
         }
 
 
-        this.bullettimer -= Gdx.graphics.getDeltaTime();
+        this.bullettimer -= Gdx.graphics.getRawDeltaTime();
         if(this.bullettimer <= 0F) {
             this.staggertime = Math.max(0.7F, this.staggertime - 0.2F);
             this.bullettimer = this.staggertime;
@@ -119,8 +119,8 @@ public class FantasyHeavenAction extends AbstractGameEffect {
             }
         }
 
-        this.rotation += Gdx.graphics.getDeltaTime() * 90;
-        this.duration -= Gdx.graphics.getDeltaTime();
+        this.rotation += Gdx.graphics.getRawDeltaTime() * 90;
+        this.duration -= Gdx.graphics.getRawDeltaTime();
         if(this.duration <= 0F) {
             this.isDone = true;
             Settings.hidePopupDetails = this.hiddenBefore;
@@ -160,8 +160,8 @@ public class FantasyHeavenAction extends AbstractGameEffect {
             mouseControlled = true;
         }
         if(mouseControlled) {
-            AbstractDungeon.player.drawX = MathUtils.lerp(AbstractDungeon.player.drawX, InputHelper.mX, Gdx.graphics.getDeltaTime() * 3F);
-            AbstractDungeon.player.drawY = MathUtils.lerp(AbstractDungeon.player.drawY, InputHelper.mY - AbstractDungeon.player.hb.height / 2F, Gdx.graphics.getDeltaTime() * 3F);
+            AbstractDungeon.player.drawX = MathUtils.lerp(AbstractDungeon.player.drawX, InputHelper.mX, Gdx.graphics.getRawDeltaTime() * 3F);
+            AbstractDungeon.player.drawY = MathUtils.lerp(AbstractDungeon.player.drawY, InputHelper.mY - AbstractDungeon.player.hb.height / 2F, Gdx.graphics.getRawDeltaTime() * 3F);
         }
         AbstractDungeon.player.hb.move(AbstractDungeon.player.drawX, AbstractDungeon.player.drawY + AbstractDungeon.player.hb.height / 2F);
         this.playerhitbox.move(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY);
