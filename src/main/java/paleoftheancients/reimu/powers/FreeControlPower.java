@@ -23,7 +23,6 @@ public class FreeControlPower extends AbstractPower {
 
         type = PowerType.BUFF;
         isTurnBased = false;
-        this.canGoNegative = true;
 
         this.region128 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/reimu/powers/SpellCard84.png")), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/reimu/powers/SpellCard32.png")), 0, 0, 32, 32);

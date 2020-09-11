@@ -70,7 +70,7 @@
   "paleoftheancients:SynergyBurstPower": {
     "NAME": "Synergy Burst",
     "DESCRIPTIONS": [
-      "Able to use Psycracker."
+      "Upon reaching 1 HP, will use Psycracker."
     ]
   },
   "paleoftheancients:BlazePower": {
@@ -115,13 +115,13 @@
   "paleoftheancients:ConfusionPower": {
     "NAME": "Confuzzled",
     "DESCRIPTIONS": [
-      "Whenever you deal damage, you hit yourself in confusion for 50% of that. NL Lasts until the end of your turn."
+      "Whenever you deal damage, you hit yourself in confusion for 50% of the damage dealt. NL Lasts until the end of your turn."
     ]
   },
   "paleoftheancients:ReverseVulnerablePower": {
     "NAME": "Filter",
     "DESCRIPTIONS": [
-      "You take significantly less damage while #rVulnerable",
+      "Takes significantly less damage while #rVulnerable",
       " this turn.",
       " for #b",
       " turn/s.",

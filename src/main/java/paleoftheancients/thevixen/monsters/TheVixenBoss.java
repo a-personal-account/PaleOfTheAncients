@@ -194,6 +194,7 @@ public class TheVixenBoss extends CustomMonster {
     private boolean firstCycle = true;
     private boolean usedOverdrive = false;
     public boolean oneHP = false;
+    private boolean buffedCycle = false;
 
 
     private ArrayList<Byte> cycletracker = new ArrayList<>();
@@ -352,14 +353,7 @@ public class TheVixenBoss extends CustomMonster {
 
         CardCrawlGame.sound.playV(PaleMod.makeID("vixencry"), 0.15F);
 
-        int defiant = 2;
-        if(AbstractDungeon.ascensionLevel >= 9) {
-            defiant++;
-        }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SunnyDayPower(this, 1), 1));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DefiantPower(this, defiant), defiant));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GutsPower(this, 5), 5));
-
     }
 
     public void takeTurn() {
@@ -552,6 +546,24 @@ public class TheVixenBoss extends CustomMonster {
         if(++turncounter % this.sunny_turncount == 0) {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SunnyDayPower(this, 1), 1));
         }
+        if(!buffedCycle) {
+            buffedCycle = true;
+            switch(this.lastCycle) {
+                case Fire:
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new DefiantPower(this, 2), 1));
+                    break;
+                case Confusion:
+                    AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth / 10));
+                    break;
+                case Debuffs:
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new GutsPower(this, 5), 5));
+                    break;
+
+                default:
+                    buffedCycle = false;
+                    break;
+            }
+        }
 
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
@@ -697,6 +709,7 @@ public class TheVixenBoss extends CustomMonster {
             possibilities.remove(this.lastCycle);
         }
         cycletracker.clear();
+        this.buffedCycle = false;
         this.lastCycle = possibilities.get(AbstractDungeon.aiRng.random(possibilities.size() - 1));
         switch(this.lastCycle) {
             case Fire:
