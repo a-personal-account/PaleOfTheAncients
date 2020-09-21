@@ -117,6 +117,8 @@ public class TheSilentBoss extends CustomMonster {
     private static final int A_19_FINALE = 50;
     private int finale;
 
+    private int beatOfDeath;
+
     private int threshold = 0;
     private ArrayList<Byte> cycletracker = new ArrayList<>();
 
@@ -125,7 +127,10 @@ public class TheSilentBoss extends CustomMonster {
         this.dialogX = -30.0F * Settings.scale;
         this.dialogY = 30.0F * Settings.scale;
         this.type = EnemyType.BOSS;
+
+        this.beatOfDeath = 2;
         if (AbstractDungeon.ascensionLevel >= 9) {
+            this.beatOfDeath++;
             this.currentHealth /= 2;
             this.blockAmt = A_9_BLOCK_AMT;
             this.corrosion = A_9_CORROSION;
@@ -145,6 +150,7 @@ public class TheSilentBoss extends CustomMonster {
         }
 
         if (AbstractDungeon.ascensionLevel >= 19) {
+            this.beatOfDeath++;
             this.corrosion = A_19_CORROSION;
             this.encorrosion = A_19_ENCORROSION;
             this.bouncepotency = A_19_BOUNCEPOTENCY;
@@ -200,6 +206,7 @@ public class TheSilentBoss extends CustomMonster {
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new CorrosiveFumesPower(this, fumes), fumes));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new EncorrosionPower(this, this.encorrosion), this.encorrosion));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new PlayerChokedPower(AbstractDungeon.player, this.beatOfDeath), this.beatOfDeath));
     }
 
     public void takeTurn() {
