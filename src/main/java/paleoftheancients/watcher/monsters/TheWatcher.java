@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.watcher.WrathNextTurnPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.stances.DivinityStance;
@@ -31,6 +32,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.dungeons.PaleOfTheAncients;
 import paleoftheancients.helpers.AbstractMultiIntentMonster;
 import paleoftheancients.relics.SoulOfTheWatcher;
+import paleoftheancients.watcher.actions.PressurePointDamageAction;
 import paleoftheancients.watcher.actions.RemovePowerSilentlyAction;
 import paleoftheancients.watcher.cards.RemoveWrath;
 import paleoftheancients.watcher.intent.WatcherIntentEnums;
@@ -132,8 +134,7 @@ public class TheWatcher extends AbstractMultiIntentMonster {
             case PRESSUREPOINTS:
                 this.addToBot(new VFXAction(new PressurePointEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY)));
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new FakeMarkPower(AbstractDungeon.player, this.getIntentBaseDmg()), this.getIntentBaseDmg()));
-                info.output = getPressurePointsDamage(this);
-                this.addToBot(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.FIRE));
+                this.addToBot(new PressurePointDamageAction(AbstractDungeon.player, this));
                 break;
 
             case REACHHEAVEN:
@@ -327,6 +328,9 @@ public class TheWatcher extends AbstractMultiIntentMonster {
     }
 
     public static int getPressurePointsDamage(AbstractMonster mo) {
+        if(AbstractDungeon.player.hasPower(IntangiblePlayerPower.POWER_ID)) {
+            return 1;
+        }
         AbstractPower pow = AbstractDungeon.player.getPower(FakeMarkPower.POWER_ID);
         int num = mo.getIntentBaseDmg();
         if(pow != null) {

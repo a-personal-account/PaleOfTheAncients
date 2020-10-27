@@ -132,6 +132,14 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
     }
 
     @Override
+    public void applyPowers() {
+        super.applyPowers();
+        for(final DummyMonster mo : dummies) {
+            mo.applyPowers();
+        }
+    }
+
+    @Override
     public void renderTip(SpriteBatch sb) {
         this.tips.clear();
         if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
