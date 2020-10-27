@@ -30,4 +30,15 @@ public class WokeOne extends AwakenedOne {
     public void onBossVictoryLogic() {}
     @Override
     public void onFinalBossVictoryLogic() {}
+
+    @Override
+    public void changeState(String key) {
+        switch (key) {
+            case "REBIRTH":
+                return;
+            default:
+                super.changeState(key);
+                return;
+        }
+    }
 }
