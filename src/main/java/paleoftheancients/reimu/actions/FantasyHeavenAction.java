@@ -178,7 +178,7 @@ public class FantasyHeavenAction extends AbstractGameEffect {
         playerhitbox.render(sb);
 
         if(this.startingDuration - this.duration > 10) {
-            FontHelper.renderFontCentered(sb, FontHelper.applyPowerFont, Integer.toString((int)this.duration), reimu.hb.cX, reimu.drawY + reimu.hb.height, this.duration > 10 ? Color.WHITE : Color.RED);
+            FontHelper.renderFontCentered(sb, FontHelper.panelNameFont, Integer.toString((int)this.duration), reimu.hb.cX, reimu.drawY + reimu.hb.height, this.duration > 10 ? Color.WHITE : Color.RED);
         }
     }
 

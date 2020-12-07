@@ -94,11 +94,11 @@ public class MonsterDiscardPilePanel extends DiscardPilePanel {
     public void render(SpriteBatch sb) {
         this.renderButton(sb);
         String msg = Integer.toString(this.boss.discardpile.size());
-        this.privateGl.setText(FontHelper.eventBodyText, msg);
+        this.privateGl.setText(FontHelper.panelNameFont, msg);
         sb.setColor(Color.WHITE);
         sb.draw(ImageMaster.DECK_COUNT_CIRCLE, this.current_x + COUNT_OFFSET_X, this.current_y + COUNT_OFFSET_Y, COUNT_CIRCLE_W, COUNT_CIRCLE_W);
 
-        FontHelper.renderFontCentered(sb, FontHelper.eventBodyText, msg, this.current_x + COUNT_X, this.current_y + COUNT_Y);
+        FontHelper.renderFontCentered(sb, FontHelper.panelNameFont, msg, this.current_x + COUNT_X, this.current_y + COUNT_Y);
         if (!this.isHidden) {
             this.privateHb.render(sb);
             if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.DISCARD_VIEW) {

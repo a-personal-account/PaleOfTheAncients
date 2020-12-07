@@ -121,10 +121,10 @@ public class MonsterExhaustPanel extends ExhaustPanel {
             }
 
             String msg = Integer.toString(this.boss.exhaustpile.size());
-            this.privateGl.setText(FontHelper.eventBodyText, msg);
+            this.privateGl.setText(FontHelper.panelNameFont, msg);
             sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.8F));
             sb.draw(ImageMaster.DECK_COUNT_CIRCLE, this.current_x - COUNT_CIRCLE_W / 2.0F, this.current_y - COUNT_CIRCLE_W / 2.0F, COUNT_CIRCLE_W, COUNT_CIRCLE_W);
-            FontHelper.renderFontCentered(sb, FontHelper.eventBodyText, msg, this.current_x, this.current_y + 2.0F * Settings.scale, Settings.PURPLE_COLOR.cpy());
+            FontHelper.renderFontCentered(sb, FontHelper.panelNameFont, msg, this.current_x, this.current_y + 2.0F * Settings.scale, Settings.PURPLE_COLOR.cpy());
             if (Settings.isControllerMode) {
                 sb.setColor(Color.WHITE);
                 sb.draw(CInputActionSet.pageRightViewExhaust.getKeyImg(), this.current_x - 32.0F + 30.0F * Settings.scale, this.current_y - 32.0F - 30.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.75F, Settings.scale * 0.75F, 0.0F, 0, 0, 64, 64, false, false);

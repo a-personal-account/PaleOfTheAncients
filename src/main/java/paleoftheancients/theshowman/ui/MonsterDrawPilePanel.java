@@ -116,14 +116,14 @@ public class MonsterDrawPilePanel extends DrawPilePanel {
         sb.setColor(Color.WHITE);
         sb.draw(ImageMaster.DECK_BTN_BASE, this.current_x + DECK_X, this.current_y + DECK_Y + this.privateBob.y / 2.0F, 64.0F, 64.0F, 128.0F, 128.0F, this.privateScale, this.privateScale, 0.0F, 0, 0, 128, 128, false, false);
         String msg = Integer.toString(this.boss.drawpile.size());
-        this.privateGl.setText(FontHelper.eventBodyText, msg);
+        this.privateGl.setText(FontHelper.panelNameFont, msg);
         sb.setColor(Color.WHITE);
         sb.draw(ImageMaster.DECK_COUNT_CIRCLE, this.current_x + COUNT_OFFSET_X, this.current_y + COUNT_OFFSET_Y, COUNT_CIRCLE_W, COUNT_CIRCLE_W);
         if (Settings.isControllerMode) {
             sb.draw(CInputActionSet.drawPile.getKeyImg(), this.current_x - 32.0F + 30.0F * Settings.scale, this.current_y - 32.0F + 40.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.75F, Settings.scale * 0.75F, 0.0F, 0, 0, 64, 64, false, false);
         }
 
-        FontHelper.renderFontCentered(sb, FontHelper.eventBodyText, msg, this.current_x + COUNT_X, this.current_y + COUNT_Y);
+        FontHelper.renderFontCentered(sb, FontHelper.panelNameFont, msg, this.current_x + COUNT_X, this.current_y + COUNT_Y);
         if (!this.isHidden) {
             this.privateHb.render(sb);
             if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GAME_DECK_VIEW) {

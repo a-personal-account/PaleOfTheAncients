@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.ui.buttons.ReturnToMenuButton;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.DeathScreenFloatyEffect;
@@ -44,9 +45,9 @@ public class FakeDeathScreen extends DeathScreen {
         shownstats = false;
 
         float progress;
-        ReflectionHacks.setPrivate(this, DeathScreen.class, "unlockProgress", progress = (float) UnlockTracker.getCurrentProgress(AbstractDungeon.player.chosenClass));
-        ReflectionHacks.setPrivate(this, DeathScreen.class, "unlockTargetStart", progress);
-        ReflectionHacks.setPrivate(this, DeathScreen.class, "unlockCost", UnlockTracker.getCurrentScoreCost(AbstractDungeon.player.chosenClass));
+        ReflectionHacks.setPrivate(this, GameOverScreen.class, "unlockProgress", progress = (float) UnlockTracker.getCurrentProgress(AbstractDungeon.player.chosenClass));
+        ReflectionHacks.setPrivate(this, GameOverScreen.class, "unlockTargetStart", progress);
+        ReflectionHacks.setPrivate(this, GameOverScreen.class, "unlockCost", UnlockTracker.getCurrentScoreCost(AbstractDungeon.player.chosenClass));
     }
 
     public static void init(DeathScreen ds) {
@@ -66,9 +67,11 @@ public class FakeDeathScreen extends DeathScreen {
         }
 
 
-        ReflectionHacks.setPrivate(ds, DeathScreen.class, "showingStats", false);
-        ds.returnButton = new ReturnToMenuButton();
-        ds.returnButton.appear((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT * 0.15F, TEXT[0]);
+        ReflectionHacks.setPrivate(ds, GameOverScreen.class, "showingStats", false);
+
+        ReturnToMenuButton rtmb = new ReturnToMenuButton();
+        ReflectionHacks.setPrivate(ds, GameOverScreen.class, "returnButton", rtmb);
+        rtmb.appear((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT * 0.15F, TEXT[0]);
 
         try {
             Method tmp = DeathScreen.class.getDeclaredMethod("getDeathBannerText");
@@ -118,8 +121,8 @@ public class FakeDeathScreen extends DeathScreen {
 
             if(!shownstats) {
                 shownstats = true;
-                ReflectionHacks.setPrivate(this, DeathScreen.class, "showingStats", true);
-                ReflectionHacks.setPrivate(this, DeathScreen.class, "statsTimer", 0.5F);
+                ReflectionHacks.setPrivate(this, GameOverScreen.class, "showingStats", true);
+                ReflectionHacks.setPrivate(this, GameOverScreen.class, "statsTimer", 0.5F);
             }
         }
 
