@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -102,7 +103,7 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
 
     @Override
     public void onRightClick() {
-        if(this.pulse && AbstractDungeon.getCurrRoom() instanceof DejaVuRoom) {
+        if(rightClickAble()) {
             this.flash();
             this.stopPulse();
             this.getUpdatedDescription();
@@ -136,5 +137,16 @@ public class Timepiece extends CustomRelic implements ClickableRelic, OnPlayerDe
         if(this.counter == -3) {
             this.counter = -2;
         }
+    }
+
+    @Override
+    public void onUnequip() {
+        if(rightClickAble() && this.counter > -2 && Settings.hasEmeraldKey && Settings.hasRubyKey && Settings.hasSapphireKey) {
+            ((DejaVuRoom) AbstractDungeon.getCurrRoom()).();
+        }
+    }
+
+    private boolean rightClickAble() {
+        return this.pulse && AbstractDungeon.getCurrRoom() instanceof DejaVuRoom;
     }
 }

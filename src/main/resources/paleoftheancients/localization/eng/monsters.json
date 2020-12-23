@@ -220,5 +220,28 @@
       "@Look@ @who's@ @on@ @top@ @of@ @the@ @game!@",
       "You know the game quite well."
     ]
+  },
+
+  "paleoftheancients:Casey": {
+    "NAME": "The Maker's Reflection",
+    "MOVES": [
+      "Humble Beginnings",
+      "Arduous Journeys",
+      "Winding Ascent"
+    ],
+    "DIALOG": [
+      "~Hello~ ~","...~"
+    ]
+  },
+  "paleoftheancients:Kio": {
+    "NAME": "The Usurper's Shadow",
+    "MOVES": [
+      "Humble Beginnings",
+      "Arduous Journeys",
+      "Winding Ascent"
+    ],
+    "DIALOG": [
+      "~Hello~ ~","...~"
+    ]
   }
 }

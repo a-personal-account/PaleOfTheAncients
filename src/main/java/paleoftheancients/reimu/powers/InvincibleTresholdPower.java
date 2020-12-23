@@ -24,7 +24,10 @@ public class InvincibleTresholdPower extends InvinciblePower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public InvincibleTresholdPower(AbstractCreature owner) {
-        super(owner, owner.maxHealth * 2 / 3);
+        this(owner, 2F / 3F);
+    }
+    public InvincibleTresholdPower(AbstractCreature owner, float multiplier) {
+        super(owner, (int)(owner.maxHealth * multiplier));
         name = NAME;
         ID = POWER_ID;
     }

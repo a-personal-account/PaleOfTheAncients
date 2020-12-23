@@ -478,5 +478,12 @@
     "DESCRIPTIONS": [
       "You have #b"," less [E] available #rnext #rturn."
     ]
+  },
+
+  "paleoftheancients:GainPlatedArmorPower": {
+    "NAME": "The Maker's Armor",
+    "DESCRIPTIONS": [
+      "Whenever #rthe #rMaker takes damage, he gains #b"," #yPlated #yArmor at the end of his turn."
+    ]
   }
 }

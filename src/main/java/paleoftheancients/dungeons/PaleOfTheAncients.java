@@ -63,6 +63,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         this.addTempMusic(PaleMod.makeID("finaldream"), PaleMod.assetPath("music/final-dream.ogg"));
         this.addTempMusic(PaleMod.makeID("ultimatedream"), PaleMod.assetPath("music/ultimate-dream.ogg"));
         this.addTempMusic(PaleMod.makeID("thunderrolls"), PaleMod.assetPath("music/ffxiv-thunder_rolls.ogg"));
+        this.addTempMusic(PaleMod.makeID("promisestokeep"), PaleMod.assetPath("music/ffxiv-promises_to_keep.ogg"));
     }
 
     public PaleOfTheAncients(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

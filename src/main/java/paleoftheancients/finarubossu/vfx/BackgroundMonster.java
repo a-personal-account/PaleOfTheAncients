@@ -43,11 +43,14 @@ public class BackgroundMonster extends AbstractGameEffect {
     private Skeleton skeleton;
     private Texture img;
     private AbstractAnimation animation;
-    private float rotationVelocity;
-    private Vector2 direction;
+    protected float rotationVelocity;
+    protected Vector2 direction;
 
     public BackgroundMonster(boolean isfast) {
-        this.ac = RandomEntity();
+        this(isfast, null);
+    }
+    public BackgroundMonster(boolean isfast, Class clz) {
+        this.ac = (clz == null ? RandomEntity() : getSpineEntity(clz));
         this.ac.flipHorizontal = MathUtils.randomBoolean();
 
 
