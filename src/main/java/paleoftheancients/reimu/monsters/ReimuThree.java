@@ -35,7 +35,7 @@ public class ReimuThree extends ReimuPhase {
 
     public ReimuThree() {
         this.moves.put(EVILSEALINGCIRCLE, new ReimuMoveInfo(EVILSEALINGCIRCLE, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(14), 3, true, Reimu.ReimuAnimation.None, calcAscensionNumber(1.7F)));
-        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(3), calcAscensionNumber(15), true, Reimu.ReimuAnimation.None, calcAscensionNumber(50F)));
+        this.moves.put(HAKUREIDANMAKUBARRIER, new ReimuMoveInfo(HAKUREIDANMAKUBARRIER, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(3), calcAscensionNumber(13), true, Reimu.ReimuAnimation.None, calcAscensionNumber(50F)));
         this.moves.put(COMBO, new ReimuMoveInfo(COMBO, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(12), 2, true, Reimu.ReimuAnimation.None, calcAscensionNumber(2F)));
         this.moves.put(THWACK, new ReimuMoveInfo(THWACK, AbstractMonster.Intent.ATTACK_DEFEND, calcAscensionNumber(20), 1, false, Reimu.ReimuAnimation.ForwardOccult));
         this.moves.put(EXTERMINATION, new ReimuMoveInfo(EXTERMINATION, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(8), 3, true, Reimu.ReimuAnimation.MagicUp, calcAscensionNumber(2.4F)));

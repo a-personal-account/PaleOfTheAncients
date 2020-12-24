@@ -1,6 +1,5 @@
 package paleoftheancients.reimu.powers;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import paleoftheancients.PaleMod;
-import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.thevixen.actions.ApplyTempLoseStrengthPowerAction;
 
 
@@ -40,8 +38,7 @@ public class SpellcardResistancePower extends TwoAmountPower {
         isTurnBased = false;
         this.canGoNegative = true;
 
-        this.region128 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/reimu/powers/SpellCard84.png")), 0, 0, 84, 84);
-        this.region48 = new TextureAtlas.AtlasRegion(AssetLoader.loadImage(PaleMod.assetPath("images/reimu/powers/SpellCard32.png")), 0, 0, 32, 32);
+        this.loadRegion("shift");
 
         this.damagePerStrength = 10;
         this.amount2 = this.damagePerStrength;
@@ -56,7 +53,7 @@ public class SpellcardResistancePower extends TwoAmountPower {
     @Override
     public void atEndOfRound() {
         this.amount = this.amount - (AbstractDungeon.ascensionLevel >= 19 ? 10 : 20);
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, 3), 3));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, 2), 2));
         this.updateDescription();
     }
 

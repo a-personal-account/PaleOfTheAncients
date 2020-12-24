@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import paleoftheancients.PaleMod;
@@ -34,10 +35,10 @@ public class ReimuTwo extends ReimuPhase {
 
     public ReimuTwo() {
         this.moves.put(FANTASYSEAL, new ReimuMoveInfo(FANTASYSEAL, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(35), 1, false, Reimu.ReimuAnimation.None));
-        this.moves.put(FSBLINK, new ReimuMoveInfo(FSBLINK, AbstractMonster.Intent.ATTACK_BUFF, calcAscensionNumber(5), 8, true, Reimu.ReimuAnimation.None));
-        this.moves.put(AMULET, new ReimuMoveInfo(AMULET, AbstractMonster.Intent.ATTACK, calcAscensionNumber(11), 3, true, Reimu.ReimuAnimation.MagicUp));
-        this.moves.put(STAB, new ReimuMoveInfo(STAB, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(25), 1, false, Reimu.ReimuAnimation.DashAttack, calcAscensionNumber(1.8F)));
-        this.moves.put(SKYCONQUERINGWINDGODKICK, new ReimuMoveInfo(SKYCONQUERINGWINDGODKICK, AbstractMonster.Intent.ATTACK, calcAscensionNumber(35), 1, false, Reimu.ReimuAnimation.Flipkick));
+        this.moves.put(FSBLINK, new ReimuMoveInfo(FSBLINK, AbstractMonster.Intent.ATTACK, calcAscensionNumber(5), 8, true, Reimu.ReimuAnimation.None));
+        this.moves.put(AMULET, new ReimuMoveInfo(AMULET, AbstractMonster.Intent.ATTACK, calcAscensionNumber(5), 3, true, Reimu.ReimuAnimation.MagicUp));
+        this.moves.put(STAB, new ReimuMoveInfo(STAB, AbstractMonster.Intent.ATTACK_DEBUFF, calcAscensionNumber(13), 1, false, Reimu.ReimuAnimation.DashAttack, calcAscensionNumber(1.8F)));
+        this.moves.put(SKYCONQUERINGWINDGODKICK, new ReimuMoveInfo(SKYCONQUERINGWINDGODKICK, AbstractMonster.Intent.ATTACK, calcAscensionNumber(18), 1, false, Reimu.ReimuAnimation.Flipkick));
         this.moves.put(BUFFORBS, new ReimuMoveInfo(BUFFORBS, AbstractMonster.Intent.DEFEND_BUFF, -1, -1, false, Reimu.ReimuAnimation.Spellcall, calcAscensionNumber(50)));
     }
 
@@ -61,7 +62,10 @@ public class ReimuTwo extends ReimuPhase {
                 break;
             case STAB:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new VulnerablePower(AbstractDungeon.player, rmi.magicNumber, true), rmi.magicNumber));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new FrailPower(AbstractDungeon.player, rmi.magicNumber, true), rmi.magicNumber));
+                if(AbstractDungeon.ascensionLevel >= 19) {
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, reimu, new VulnerablePower(AbstractDungeon.player, rmi.magicNumber, true), rmi.magicNumber));
+                }
                 break;
             case SKYCONQUERINGWINDGODKICK:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

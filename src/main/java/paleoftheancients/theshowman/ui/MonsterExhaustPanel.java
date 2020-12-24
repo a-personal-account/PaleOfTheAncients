@@ -1,11 +1,8 @@
 package paleoftheancients.theshowman.ui;
 
-import paleoftheancients.theshowman.misc.DummyCard;
-import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -22,13 +19,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.ExhaustPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.ExhaustPileParticle;
+import paleoftheancients.theshowman.misc.DummyCard;
+import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 
 import java.util.ArrayList;
 
 public class MonsterExhaustPanel extends ExhaustPanel {
     private TheShowmanBoss boss;
     private Hitbox privateHb;
-    private GlyphLayout privateGl;
     private float scale;
     private ArrayList<AbstractGameEffect> particles;
 
@@ -38,7 +36,6 @@ public class MonsterExhaustPanel extends ExhaustPanel {
         this.boss = boss;
         this.particles = new ArrayList<>();
         this.privateHb = (Hitbox) ReflectionHacks.getPrivate(this, ExhaustPanel.class, "hb");
-        this.privateGl = (GlyphLayout) ReflectionHacks.getPrivate(this, ExhaustPanel.class, "gl");
         this.COUNT_CIRCLE_W = (float) ReflectionHacks.getPrivateStatic(ExhaustPanel.class, "COUNT_CIRCLE_W");
 
         this.current_x = this.boss.drawX + this.boss.hb.width;
@@ -121,10 +118,9 @@ public class MonsterExhaustPanel extends ExhaustPanel {
             }
 
             String msg = Integer.toString(this.boss.exhaustpile.size());
-            this.privateGl.setText(FontHelper.panelNameFont, msg);
-            sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.8F));
+            sb.setColor(Settings.TWO_THIRDS_TRANSPARENT_BLACK_COLOR);
             sb.draw(ImageMaster.DECK_COUNT_CIRCLE, this.current_x - COUNT_CIRCLE_W / 2.0F, this.current_y - COUNT_CIRCLE_W / 2.0F, COUNT_CIRCLE_W, COUNT_CIRCLE_W);
-            FontHelper.renderFontCentered(sb, FontHelper.panelNameFont, msg, this.current_x, this.current_y + 2.0F * Settings.scale, Settings.PURPLE_COLOR.cpy());
+            FontHelper.renderFontCentered(sb, FontHelper.turnNumFont, msg, this.current_x, this.current_y + 2.0F * Settings.scale, Settings.PURPLE_COLOR.cpy());
             if (Settings.isControllerMode) {
                 sb.setColor(Color.WHITE);
                 sb.draw(CInputActionSet.pageRightViewExhaust.getKeyImg(), this.current_x - 32.0F + 30.0F * Settings.scale, this.current_y - 32.0F - 30.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.75F, Settings.scale * 0.75F, 0.0F, 0, 0, 64, 64, false, false);

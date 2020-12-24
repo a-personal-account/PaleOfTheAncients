@@ -10,6 +10,7 @@ import paleoftheancients.PaleMod;
 import paleoftheancients.helpers.AssetLoader;
 import paleoftheancients.reimu.actions.SpawnOrbAction;
 import paleoftheancients.reimu.monsters.Reimu;
+import paleoftheancients.reimu.monsters.ReimuOne;
 
 
 public class HakureiShrineMaidenPower extends AbstractPower {
@@ -37,15 +38,17 @@ public class HakureiShrineMaidenPower extends AbstractPower {
     @Override
     public void duringTurn() { //we use this instead of end of turn so the spawned orbs roll their moves for the next turn correctly
         Reimu reimu = (Reimu) owner;
-        if (reimu.orbNum() == 0) {
-            AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 1));
-            AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
-            AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
-        } else {
-            if(AbstractDungeon.ascensionLevel >= 9) {
+        if(reimu.phase instanceof ReimuOne || reimu.currentHealth <= 0 || reimu.hasPower(InvincibleTresholdPower.POWER_ID)) {
+            if (reimu.orbNum() == 0) {
+                AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 1));
                 AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
+                AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
+            } else {
+                if (AbstractDungeon.ascensionLevel >= 9) {
+                    AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 2));
+                }
+                AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
             }
-            AbstractDungeon.actionManager.addToBottom(new SpawnOrbAction(reimu, 3));
         }
     }
 

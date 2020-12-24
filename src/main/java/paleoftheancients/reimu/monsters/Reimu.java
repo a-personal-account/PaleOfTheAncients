@@ -203,6 +203,11 @@ public class Reimu extends CustomMonster {
                 runAnim(ReimuAnimation.Guard);
             } else {
                 if(this.hasPower(InvincibleTresholdPower.POWER_ID) && this.getPower(InvincibleTresholdPower.POWER_ID).amount == 0) {
+                    for(final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                        if(mo instanceof YinYangOrb && !mo.isDeadOrEscaped()) {
+                            addToBot(new SuicideAction(mo));
+                        }
+                    }
                     addToBot(new RemoveSpecificPowerAction(this, this, InvincibleTresholdPower.POWER_ID));
                     addToBot(new ApplyPowerAction(this, this, new SpellcardResistancePower(this)));
                     addToBot(new TextAboveCreatureAction(this, TextAboveCreatureAction.TextType.INTERRUPTED));
