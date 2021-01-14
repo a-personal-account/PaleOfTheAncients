@@ -52,6 +52,7 @@ import paleoftheancients.hexaghost.monsters.HexaghostPrime;
 import paleoftheancients.ironcluck.monsters.IronCluck;
 import paleoftheancients.reimu.monsters.Reimu;
 import paleoftheancients.relics.*;
+import paleoftheancients.rooms.FixedMonsterRoom;
 import paleoftheancients.slimeboss.monsters.SlimeBossest;
 import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
@@ -191,6 +192,8 @@ public class PaleMod implements
         CustomIntent.add(new RedRightArrowIntent());
         CustomIntent.add(new GreenLeftArrowIntent());
         CustomIntent.add(new GreenRightArrowIntent());
+
+        FixedMonsterRoom.initialize();
     }
 
     @Override

@@ -45,7 +45,7 @@ public class IronCluck extends CustomMonster {
     public static final String[] MOVES;
     public static final String[] DIALOG;
 
-    public static final byte STARTING_STRENGTH = 10;
+    public static final byte STARTING_STRENGTH = 20;
 
     private Map<Byte, EnemyMoveInfo> moves;
     private static final byte BARRICADE = 0;

@@ -22,7 +22,7 @@ public class SoulOfTheWokeBloke extends PaleRelic implements OnReceivePowerRelic
     private static final RelicTier TIER = RelicTier.SPECIAL;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    private static final int STRENGTH = 2;
+    private static final int STRENGTH = 1;
 
     private boolean active = true;
 
