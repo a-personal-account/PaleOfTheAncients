@@ -60,6 +60,10 @@ import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.intent.*;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
 import paleoftheancients.thorton.monsters.Thorton;
+import paleoftheancients.timeeater.intent.DualApocalypseIntent;
+import paleoftheancients.timeeater.intent.SingularApocalypseIntent;
+import paleoftheancients.timeeater.intent.TripleApocalypseIntent;
+import paleoftheancients.timeeater.monsters.TimeEaterer;
 import paleoftheancients.watcher.intent.BlasphemyIntent;
 import paleoftheancients.watcher.intent.PressurePointsIntent;
 import paleoftheancients.watcher.monsters.TheWatcher;
@@ -160,6 +164,7 @@ public class PaleMod implements
                 new Decaer(),
                 new Donuer()
         }));
+        BaseMod.addMonster(TimeEaterer.ID, TimeEaterer::new);
 
         BaseMod.addMonster(SpireWaifu.ID, SpireWaifu::new);
 
@@ -192,6 +197,10 @@ public class PaleMod implements
         CustomIntent.add(new RedRightArrowIntent());
         CustomIntent.add(new GreenLeftArrowIntent());
         CustomIntent.add(new GreenRightArrowIntent());
+
+        CustomIntent.add(new SingularApocalypseIntent());
+        CustomIntent.add(new DualApocalypseIntent());
+        CustomIntent.add(new TripleApocalypseIntent());
 
         FixedMonsterRoom.initialize();
     }
@@ -237,6 +246,7 @@ public class PaleMod implements
         BaseMod.addRelic(new SoulOfTheCollector(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheWatcher(), RelicType.SHARED);
         BaseMod.addRelic(new SoulOfTheBandit(), RelicType.SHARED);
+        BaseMod.addRelic(new SoulOfTheTimeEater(), RelicType.SHARED);
     }
 
     private Settings.GameLanguage languageSupport()

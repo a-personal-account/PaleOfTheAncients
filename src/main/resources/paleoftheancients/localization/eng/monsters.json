@@ -220,5 +220,19 @@
       "@Look@ @who's@ @on@ @top@ @of@ @the@ @game!@",
       "You know the game quite well."
     ]
+  },
+
+  "paleoftheancients:TimeEaterer": {
+    "MOVES": [
+      "Haste",
+      "Singular Apocalypse",
+      "Dual Apocalypse",
+      "Triple Apocalypse"
+    ],
+    "DIALOG": [
+      "@The@ @Abyss@ @awaits!@",
+      "@The@ @Void@ @beckons!@",
+      "@Chaos@ @reigns@ @eternal!@"
+    ]
   }
 }

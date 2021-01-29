@@ -140,5 +140,12 @@
       "heal #b2 HP", "an additional [E] ", "draw #b2 additional cards",
       "gain #b10 #yBlock"," and ","apply #b1 ","#yWeak","#yVulnerable"," to ALL enemies"
     ]
+  },
+  "paleoftheancients:SoulOfTheTimeEater": {
+    "NAME": "Clock hands",
+    "FLAVOR": "With these, even a broken clock can be right twice a day.",
+    "DESCRIPTIONS": [
+      "The first non-exhausting #rnon-power card you play each turn is returned to your hand every time you play it. NL It costs #b1 less this turn but not less than #b1."
+    ]
   }
 }

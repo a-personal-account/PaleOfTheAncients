@@ -25,7 +25,7 @@ public class MapRoomNodeRelicTipPatch {
     public static void Insert(MapRoomNode __instance, SpriteBatch sb) {
         if(__instance.hb.hovered && __instance.room instanceof FixedMonsterRoom) {
             ((FixedMonsterRoom) __instance.room).relicTips(sb
-                    , __instance.x * (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class, "SPACING_X") + (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_X") - 64F + __instance.hb.width * 2 + __instance.offsetX
+                    , __instance.x * (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class, "SPACING_X") + (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_X") - 64F + __instance.hb.width * 2+ __instance.offsetX
                     , __instance.y * Settings.MAP_DST_Y + (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class, "OFFSET_Y") + DungeonMapScreen.offsetY - 96.0F + __instance.hb.height * 2 + __instance.offsetY);
         }
     }

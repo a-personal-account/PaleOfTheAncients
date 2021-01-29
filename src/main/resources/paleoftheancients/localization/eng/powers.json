@@ -478,5 +478,11 @@
     "DESCRIPTIONS": [
       "You have #b"," less [E] available #rnext #rturn."
     ]
+  },
+
+  "paleoftheancients:TimeWarpIntentPower": {
+    "DESCRIPTIONS": [
+      "Whenever you play a card, increase this power by the #yenergy you spent on it NL (but at least #b1). NL When this power reaches #b",", this creature gains another action when you end your turn."
+    ]
   }
 }

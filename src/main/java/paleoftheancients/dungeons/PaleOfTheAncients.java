@@ -39,6 +39,7 @@ import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
+import paleoftheancients.timeeater.monsters.TimeEaterer;
 import paleoftheancients.watcher.monsters.TheWatcher;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -63,6 +64,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         this.addTempMusic(PaleMod.makeID("finaldream"), PaleMod.assetPath("music/final-dream.ogg"));
         this.addTempMusic(PaleMod.makeID("ultimatedream"), PaleMod.assetPath("music/ultimate-dream.ogg"));
         this.addTempMusic(PaleMod.makeID("thunderrolls"), PaleMod.assetPath("music/ffxiv-thunder_rolls.ogg"));
+        this.addTempMusic(PaleMod.makeID("theextreme"), PaleMod.assetPath("music/ffxiv-the_extreme.ogg"));
     }
 
     public PaleOfTheAncients(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
@@ -154,6 +156,7 @@ public class PaleOfTheAncients extends CustomDungeon {
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/showman.png"), PaleMod.assetPath("images/ui/map/showmanOutline.png"), TheShowmanBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/silent.png"), PaleMod.assetPath("images/ui/map/silentOutline.png"), TheSilentBoss.ID));
         easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/watcher.png"), PaleMod.assetPath("images/ui/map/watcherOutline.png"), TheWatcher.ID));
+        easyishEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/timeeater.png"), PaleMod.assetPath("images/ui/map/timeeaterOutline.png"), TimeEaterer.ID));
 
         if(!Loader.isModLoaded("TheBandit") || !(AbstractDungeon.player instanceof theWario.TheBandit)) {
             toughEncounters.add(new MonsterRoomCreator(PaleMod.assetPath("images/ui/map/bandit.png"), PaleMod.assetPath("images/ui/map/banditOutline.png"), TheBandit.ID));

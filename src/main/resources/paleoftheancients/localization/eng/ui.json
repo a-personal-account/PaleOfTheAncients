@@ -256,5 +256,22 @@
       "PARTY!!!",
       "Intends to activate ALL #ySpaces #ronce."
     ]
+  },
+
+  "paleoftheancients:SingularApocalypseIntent": {
+    "TEXT": [
+      "Intends to #yAttack for #b",
+      " damage"," NL Will merge with other Apocalypse Intents.",
+      " #b"," times and inflict a #yNegative #yEffect on you.",
+      " times and inflict several #yNegative #yEffects on you."
+    ]
+  },
+  "paleoftheancients:DualApocalypseIntent": {
+    "TEXT": [
+    ]
+  },
+  "paleoftheancients:TripleApocalypseIntent": {
+    "TEXT": [
+    ]
   }
 }

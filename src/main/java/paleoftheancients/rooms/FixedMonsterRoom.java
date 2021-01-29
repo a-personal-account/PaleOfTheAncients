@@ -21,6 +21,7 @@ import paleoftheancients.thedefect.monsters.TheDefectBoss;
 import paleoftheancients.theshowman.monsters.TheShowmanBoss;
 import paleoftheancients.thesilent.monsters.TheSilentBoss;
 import paleoftheancients.thevixen.monsters.TheVixenBoss;
+import paleoftheancients.timeeater.monsters.TimeEaterer;
 import paleoftheancients.watcher.monsters.TheWatcher;
 import paleoftheancients.wokeone.monsters.WokeOne;
 
@@ -55,6 +56,7 @@ public class FixedMonsterRoom extends MonsterRoom {
         relics.put(TheVixenBoss.ID, SoulOfTheVixen.ID);
         relics.put(TheWatcher.ID, SoulOfTheWatcher.ID);
         relics.put(WokeOne.ID, SoulOfTheWokeBloke.ID);
+        relics.put(TimeEaterer.ID, SoulOfTheTimeEater.ID);
     }
 
     @Override

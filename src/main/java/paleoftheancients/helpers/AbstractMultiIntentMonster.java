@@ -1,7 +1,6 @@
 package paleoftheancients.helpers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -46,11 +45,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
 
     @Override
     public void takeTurn() {
-        AbstractMonster mo;
-        for(int i = dummies.size() - 1; i >= 0; i--) {
-            mo = dummies.get(i);
+        for(DummyMonster mo : dummies) {
             this.nextMove = mo.nextMove;
-            addToBot(new VFXAction(new MoveNameEffect(this.hb.cX - this.animX, this.hb.cY + this.hb.height / 2.0F, mo.moveName)));
+            if(mo.moveName != null && !mo.moveName.isEmpty()) {
+                addToBot(new VFXAction(new MoveNameEffect(this.hb.cX - this.animX, this.hb.cY + this.hb.height / 2.0F, mo.moveName)));
+            }
             addToBot(new IntentFlashAction(mo));
             if(!mo.damage.isEmpty()) {
                 damageInfoSet = true;
@@ -62,7 +61,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
             super.takeTurn();
             //super.takeTurn adds a RollMoveAction that I have to remove.
             AbstractDungeon.actionManager.actions.remove(AbstractDungeon.actionManager.actions.size() - 1);
-            if(i > 0) {
+            if(mo == dummies.get(dummies.size() - 1)) {
                 this.addToBot(new WaitAction(1.5F));
             }
         }
@@ -70,6 +69,17 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
+    protected void setDummyPositions() {
+        DummyOrb orb = new DummyOrb();
+        DummyMonster monster;
+        for(int i = 0; i < dummies.size(); i++) {
+            orb.setSlot(i, dummies.size());
+            monster = dummies.get(i);
+            monster.drawX = -(orb.tX - AbstractDungeon.player.drawX) + this.drawX;
+            monster.drawY = (orb.tY - AbstractDungeon.player.hb.cY) / 2F + this.hb.y + this.hb.height;
+            monster.refresh();
+        }
+    }
     public void setIntentAmount(int length) {
         this.setMove((byte)-1, Intent.NONE);
         while(dummies.size() < length) {
@@ -78,25 +88,27 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
         while(dummies.size() > length) {
             dummies.remove(0);
         }
-        DummyOrb orb = new DummyOrb();
-        DummyMonster monster;
-        for(int i = 0; i < length; i++) {
-            orb.setSlot(i, length);
-            monster = dummies.get(i);
-            monster.drawX = (orb.tX - AbstractDungeon.player.drawX) / 2F + this.drawX;
-            monster.drawY = (orb.tY - AbstractDungeon.player.hb.cY) / 2F + this.hb.y + this.hb.height;
+        this.setDummyPositions();
+        for(DummyMonster monster : dummies) {
+            monster.setMove((byte)-1, Intent.NONE);
             monster.nextMove = -1;
             monster.powers = this.powers;
-            monster.refresh();
             monster.damage.clear();
         }
         this.damage.clear();
     }
+
     public void setMoveShortcut(byte next, String text) {
         EnemyMoveInfo info = this.moves.get(next);
         int index = 0;
-        AbstractMonster monster;
-        for(; (monster = dummies.get(index)).nextMove != (byte)-1; index++);
+        DummyMonster monster = null;
+        for(; index < dummies.size() && (monster = dummies.get(index)).nextMove != (byte)-1; index++);
+        if(index == dummies.size() && monster != null && monster.nextMove != -1) {
+            monster = new DummyMonster(0, 0, 0, 0, null);
+            monster.powers = this.powers;
+            dummies.add(monster);
+            setDummyPositions();
+        }
         monster.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
         monster.createIntent();
         if(info.baseDamage > this.getIntentBaseDmg()) {
@@ -104,6 +116,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
         }
         DamageInfo dmg = new DamageInfo(this, info.baseDamage);
         dmg.applyPowers(this, AbstractDungeon.player);
+        monster.damage.clear();
         monster.damage.add(dmg);
         this.damage.add(dmg);
     }
@@ -126,8 +139,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        for(final DummyMonster mo : dummies) {
-            mo.render(sb);
+        if(this.intent == Intent.NONE) {
+            for (final DummyMonster mo : dummies) {
+                mo.render(sb);
+            }
         }
     }
 
@@ -143,8 +158,8 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
     public void renderTip(SpriteBatch sb) {
         this.tips.clear();
         if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
-            for(int i = dummies.size() - 1; i >= 0; i--) {
-                this.tips.add(dummies.get(i).intentTip);
+            for(DummyMonster dummy : dummies) {
+                this.tips.add(dummy.intentTip);
             }
         }
         for (AbstractPower p : this.powers) {
@@ -164,13 +179,6 @@ public abstract class AbstractMultiIntentMonster extends AbstractBossMonster {
 
                         TipHelper.calculateAdditionalOffset(this.tips, this.hb.cY), this.tips);
             }
-        }
-    }
-
-    @Override
-    public void addPower(AbstractPower power) {
-        if(power instanceof StunMonsterPower) {
-            dummies.clear();
         }
     }
 }
