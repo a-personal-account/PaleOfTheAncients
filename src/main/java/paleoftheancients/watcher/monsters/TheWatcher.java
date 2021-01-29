@@ -243,27 +243,6 @@ public class TheWatcher extends AbstractMultiIntentMonster {
         this.setIntentAmount(actionsPerTurn + (changeStance ? 1 : 0));
         ArrayList<Byte> possibilities = new ArrayList<>();
 
-        if (changeStance) {
-            switch (stance.ID) {
-                case WrathStance.STANCE_ID:
-                    for (int i = -2; i < 0; i++) {
-                        if (i < this.untilPhaseChange) {
-                            possibilities.add(FEARNOEVIL);
-                        } else {
-                            possibilities.add(VIGILANCE);
-                        }
-                    }
-                    break;
-                default:
-                    possibilities.add(SIMMERINGFURY);
-                    possibilities.add(TANTRUM);
-                    possibilities.add(TANTRUM);
-                    break;
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            this.setMoveShortcut(move, MOVES[move]);
-        }
-
         for(int moveIndex = 0; moveIndex < actionsPerTurn; moveIndex++) {
             possibilities.clear();
             try {
@@ -321,6 +300,28 @@ public class TheWatcher extends AbstractMultiIntentMonster {
                         possibilities.add(b);
                     }
                 }
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            this.setMoveShortcut(move, MOVES[move]);
+        }
+
+        if (changeStance) {
+            possibilities.clear();
+            switch (stance.ID) {
+                case WrathStance.STANCE_ID:
+                    for (int i = -2; i < 0; i++) {
+                        if (i < this.untilPhaseChange) {
+                            possibilities.add(FEARNOEVIL);
+                        } else {
+                            possibilities.add(VIGILANCE);
+                        }
+                    }
+                    break;
+                default:
+                    possibilities.add(SIMMERINGFURY);
+                    possibilities.add(TANTRUM);
+                    possibilities.add(TANTRUM);
+                    break;
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             this.setMoveShortcut(move, MOVES[move]);
