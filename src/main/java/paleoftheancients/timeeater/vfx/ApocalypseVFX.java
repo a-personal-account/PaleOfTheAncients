@@ -29,6 +29,7 @@ public class ApocalypseVFX extends AbstractSignalEffect {
     private ApocalypseOrb[] orbs;
     private List<BurstParticle> particles;
     private boolean firstImpact = true;
+    private boolean playingVFX;
 
     public ApocalypseVFX(AbstractCreature target, AbstractCreature source, int amount, AbstractGameAction damageActions) {
         spark = ImageMaster.loadImage(PaleMod.assetPath("images/vfx/spark.png"));
@@ -38,12 +39,14 @@ public class ApocalypseVFX extends AbstractSignalEffect {
         this.followUp = damageActions;
 
         orbs = new ApocalypseOrb[amount];
+        int divisor = (int)Math.round(Math.sqrt(amount));
         for(int i = 0; i < orbs.length; i++) {
-            Vector2 velocity = new Vector2(target.hb.cX - source.hb.cX, target.hb.cY - source.hb.cY + MathUtils.random(-2000, 2000) * Settings.scale * (i + 2F) / 3F);
+            float rand = MathUtils.random(MathUtils.PI2);
+            Vector2 velocity = new Vector2((float)Math.sin(rand), (float)Math.cos(rand));
             velocity.nor();
             velocity.x *= speed;
             velocity.y *= speed;
-            orbs[i] = new ApocalypseOrb(new Vector2(source.hb.cX, source.hb.cY), velocity, (orbs.length - i) * 0.25F);
+            orbs[i] = new ApocalypseOrb(new Vector2(source.hb.cX, source.hb.cY), velocity, ((orbs.length - i) / divisor) * 0.35F);
         }
         this.scale = Settings.scale;
         this.particles = new ArrayList<>();
@@ -51,15 +54,16 @@ public class ApocalypseVFX extends AbstractSignalEffect {
 
     @Override
     public void update() {
+        this.playingVFX = false;
         this.isDone = true;
         for(ApocalypseOrb orb : orbs) {
-            if(orb.update(target)) {
+            if(orb.update(this, target)) {
                 if(firstImpact) {
                     AbstractDungeon.actionManager.addToTop(followUp);
                     firstImpact = false;
                     end();
                 }
-                CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.3F);
+                playVFX("ORB_LIGHTNING_EVOKE", 0.3F);
                 CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
                 for(int i = MathUtils.random(200, 250); i > 0; i--) {
                     particles.add(new BurstParticle(orb.leader.position));
@@ -69,6 +73,13 @@ public class ApocalypseVFX extends AbstractSignalEffect {
         }
         for(BurstParticle par : particles) {
             this.isDone = par.update() && this.isDone;
+        }
+    }
+
+    private void playVFX(String key, float pitchvar) {
+        if(!playingVFX) {
+            playingVFX = true;
+            CardCrawlGame.sound.play(key, pitchvar);
         }
     }
 
@@ -103,13 +114,13 @@ public class ApocalypseVFX extends AbstractSignalEffect {
             this.trail = new ArrayList<>();
         }
 
-        public boolean update(AbstractCreature target) {
+        public boolean update(ApocalypseVFX vfx, AbstractCreature target) {
             boolean returnVal = false;
             if(delay > 0F) {
                 delay -= Gdx.graphics.getRawDeltaTime();
                 if(delay <= 0F) {
                     active = true;
-                    CardCrawlGame.sound.play("ATTACK_FIRE");
+                    vfx.playVFX("ATTACK_FIRE", 0.3F);
                 }
             } else {
                 ActualOrb tmp;
