@@ -22,7 +22,6 @@ import paleoftheancients.bandit.board.spaces.AbstractSpace;
 import paleoftheancients.bandit.board.spaces.BanditGoSpace;
 import paleoftheancients.bandit.board.spaces.asymmetrical.EnergySpace;
 import paleoftheancients.bandit.board.spaces.asymmetrical.GremlinSpace;
-import paleoftheancients.bandit.board.spaces.symmetrical.SpikeSpace;
 import paleoftheancients.bandit.board.spaces.symmetrical.*;
 import paleoftheancients.bandit.intent.EnumBuster;
 import paleoftheancients.bandit.monsters.TheBandit;
@@ -73,6 +72,7 @@ public class BanditBoard extends AbstractBoard {
         ArrayList<Class<? extends AbstractSpace>> bruh = new ArrayList<>();
         for (int i = 0; i < 10; i++) bruh.add(getRandomCommonSquare());
         for (int i = 0; i < 2; i++) bruh.add(getRandomRareSquare());
+        bruh.add(DoomSpace.class);
 
 
         int kwab = 8;
@@ -160,7 +160,6 @@ public class BanditBoard extends AbstractBoard {
         list.add(BufferSpace.class);
         list.add(CursedSpace.class);
         list.add(ArtifactSpace.class);
-        list.add(DoomSpace.class);
         //Want to encourage movement in the later phase.
         if(!owner.phasetwo) {
             list.add(JailSpace.class);

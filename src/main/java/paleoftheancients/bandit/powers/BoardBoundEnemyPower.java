@@ -1,8 +1,8 @@
 package paleoftheancients.bandit.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import paleoftheancients.bandit.actions.AddDoomSpaceAction;
 import paleoftheancients.bandit.actions.TransformEmptySpaceAction;
-import paleoftheancients.bandit.board.AbstractBoard;
 import paleoftheancients.bandit.board.BanditBoard;
 
 public class BoardBoundEnemyPower extends BoardBoundPower {
@@ -23,6 +23,7 @@ public class BoardBoundEnemyPower extends BoardBoundPower {
 
     @Override
     public void atEndOfRound() {
+        this.addToBot(new AddDoomSpaceAction(board, this.amount));
         for(int i = 0; i < this.amount; i++) {
             this.addToBot(new TransformEmptySpaceAction(board, board.getRandomRareSquare()));
         }
