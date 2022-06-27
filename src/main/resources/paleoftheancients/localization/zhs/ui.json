@@ -107,7 +107,7 @@
       "消耗堆"
     ]
   },
-  
+
   "paleoftheancients:ReimuUserInterface": {
     "TEXT": [
       "残机",
@@ -254,6 +254,22 @@
     "TEXT": [
       "开派对啦！！！",
       "将要触发所有 #y棋格效果 #r一次 。"
+    ]
+  },
+  "paleoftheancients:SingularApocalypseIntent": {
+    "TEXT": [
+      "将对你 #r攻击 造成 #b",
+      " 点伤害"," NL 将叠加多种启示意图。",
+      " #b"," 次并给予你一种 #y负面效果 。",
+      " 次并给予你多种种 #y负面效果 。"
+    ]
+  },
+  "paleoftheancients:DualApocalypseIntent": {
+    "TEXT": [
+    ]
+  },
+  "paleoftheancients:TripleApocalypseIntent": {
+    "TEXT": [
     ]
   }
 }

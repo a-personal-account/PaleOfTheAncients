@@ -45,7 +45,7 @@
     "UPGRADE_DESCRIPTION": "造成 !D! 伤害。 NL paleoftheancients:堆叠 。 NL paleoftheancients:堆叠 。"
   },
   "paleoftheancients:ForMyNextTrick": {
-    "NAME": "为了我的下一个把戏！",
+    "NAME": "为了我的下一个魔术！",
     "DESCRIPTION": " 消耗 你手牌中的一张牌。 NL 下一回合，将 !M! 张复制品加入你的手牌。那一回合，它们的耗能降低 1 。 NL 消耗 。"
   },
   "paleoftheancients:GrossDisplay": {
@@ -57,7 +57,7 @@
     "DESCRIPTION": "你的消耗堆中每有一张牌， 造成 !D! 伤害。"
   },
   "paleoftheancients:ReappearingTrick": {
-    "NAME": "重现诡计",
+    "NAME": "魔术再现",
     "DESCRIPTION": "对所有敌人造成 !D! 伤害。 NL 将消耗堆中所有的非诅咒非状态牌加入你的抽牌堆。"
   },
   "paleoftheancients:Showstopper": {
@@ -66,7 +66,7 @@
     "UPGRADE_DESCRIPTION": "随机顺序再次打出消耗堆中的所有角色牌。"
   },
   "paleoftheancients:SleeveAces": {
-    "NAME": "袖子王牌",
+    "NAME": "袖中王牌",
     "DESCRIPTION": "将消耗堆中的一张非诅咒非状态牌，复制 1 张到你的抽牌堆和弃牌堆。 NL 消耗 。",
     "UPGRADE_DESCRIPTION": "将消耗堆中的一张非诅咒非状态牌，复制 !M! 张到你的抽牌堆和弃牌堆。 NL 消耗 。"
   },
@@ -87,9 +87,9 @@
     "NAME": "女士们，先生们……",
     "DESCRIPTION": "开始表演。 NL 固有。 NL 即逝 。",
     "EXTENDED_DESCRIPTION": ["女士们，先生们……",
-      "蜘蛛目和节肢动物", "kdx和土豆", "异蛇和史莱姆", "异鸟和异鸟", "男孩和女孩", "建造机和邪教徒", "地精们还有大块头", "奴隶贩子和……嗯……奴隶贩子？", "BD and BD's stupid Pylons",
-      "这不是Jedi的把戏！这是", "你一定会的 Vex'd by", "有请", "咔咔咔", "不费吹灰之力", "我们正在潜入", "准备受到启发", "请把注意力集中在", "让你的眼睛吞噬",
-      "大大大大大伤害", "活泼可爱火狐的火爆终结技！！", "是的", "咔咔咔咔！", "高塔奇观", "充实商场！", "让商店睡觉！", "掠夺柱子", "塔的倒塌",
+      "蜘蛛目和节肢动物", "kdx和土豆", "异蛇和史莱姆", "异鸟和异鸟", "男孩和女孩", "建造机和邪教徒", "地精们还有大块头", "奴隶贩子和……嗯……奴隶贩子？", "BD和BD的笨比架构",
+      "这不是Jedi的魔术！这是", "你一定会的 Vex'd ", "有请", "咔咔咔", "不费吹灰之力", "我们正在潜入", "惊喜就要来了", "请把注意力集中在", "睁大你们的双眼",
+      "大大大大大伤害", "活泼可爱火狐的火爆终结技！！", "是的", "咔咔咔咔！", "高塔奇观", "充实商场！", "让老板睡觉！", "掠夺柱子", "塔的倒塌",
       "等等等等"]
   },
   "paleoftheancients:SetTheStage": {

@@ -16,7 +16,7 @@
   "paleoftheancients:NotEchoPower": {
     "NAME": "回响形态",
     "DESCRIPTIONS": [
-      "每回合多行动 1 次。",
+      "每回合多行动 #g1 次。",
       "每回合多行动 #g",
       " 次。"
     ]
@@ -24,7 +24,7 @@
   "paleoftheancients:OrbReactivePower": {
     "NAME": "反应",
     "DESCRIPTIONS": [
-      "直到一个充能求被摧毁时，可能会改变意图。"
+      "在充能求被摧毁时，可能会改变意图。"
     ]
   },
   "paleoftheancients:BossOrbPower": {
@@ -33,7 +33,7 @@
       "与故障机器人的电子连接。 NL 单目标的攻击也会影响故障机器人。。"
     ]
   },
-  
+
   "paleoftheancients:PocketFactoryPower": {
     "NAME": "便携工厂",
     "DESCRIPTIONS": [
@@ -61,7 +61,7 @@
   "paleoftheancients:SunnyDayPower": {
     "NAME": "艳阳天",
     "DESCRIPTIONS": [
-      "下 1 张有艳阳效果的牌会增强。",
+      "下 #b1 张有艳阳效果的牌会增强。",
       "下 #b",
       " 张有艳阳效果的牌会增强。",
       "一些攻击将会消耗本能力的层数增加 #r额外效果 。"
@@ -70,7 +70,7 @@
   "paleoftheancients:SynergyBurstPower": {
     "NAME": "协同爆发",
     "DESCRIPTIONS": [
-      "能够使用精神崩溃。"
+      "在仅剩 #b1 点生命时，将使用精神崩溃。"
     ]
   },
   "paleoftheancients:BlazePower": {
@@ -98,24 +98,24 @@
   "paleoftheancients:EndurePower": {
     "NAME": "忍耐",
     "DESCRIPTIONS": [
-      "你的生命不会低于1",
-      "。当你的生命等于1是，失去本能力，每有一层艳阳天并准备最终攻击……，重新获得 #b",
-      " 生命。"
+      "你的生命不会低于 #b1 点。",
+      "。当你的生命等于 #b1 时，失去这个效果，每有一层艳阳天回复 #b",
+      " 点生命并准备最终攻击……"
     ]
   },
   "paleoftheancients:ClearSkyPower": {
     "NAME": "晴空",
     "DESCRIPTIONS": [
       "本回合将不会消耗艳阳天",
-      "Japanese translators suck it for #b",
-      " turns.",
-      "Sunny day is not consumed for... basically ever."
+      "中文翻译将在 #b",
+      " 回合内摆烂。",
+      "艳阳天在……额……基本不会消耗。"
     ]
   },
   "paleoftheancients:ConfusionPower": {
     "NAME": "混淆",
     "DESCRIPTIONS": [
-      "每当你造成伤害，你将伤害的一半攻击自己。"
+      "在你的回合结束前，每当你造成伤害，将对自己造成一半的伤害。"
     ]
   },
   "paleoftheancients:ReverseVulnerablePower": {
@@ -161,11 +161,11 @@
     ]
   },
   "paleoftheancients:ForMyNextTrickPower": {
-    "NAME": "为了我的下一个把戏！",
+    "NAME": "为了我的下一个魔术！",
     "DESCRIPTIONS": [
       "下一回合，将 #b",
       " 张“",
-      "”的复制品加入你的手牌。他们的耗能减少1。"
+      "”的复制品加入你的手牌。它们的耗能减少1。"
     ]
   },
 
@@ -179,7 +179,7 @@
     ]
   },
   "paleoftheancients:SlimeUnityPower": {
-    "NAME": "史莱姆集体",
+    "NAME": "史莱姆团体",
     "DESCRIPTIONS": [
       "已分裂的史莱姆在这个单位还活着前不能受到伤害。"
     ]
@@ -188,7 +188,7 @@
   "paleoftheancients:HexaghostPower": {
     "NAME": "重燃",
     "DESCRIPTIONS": [
-      "死亡时，立即 #r复活自己。 NL #r复活 时对本体造成伤害 并最多消耗 #b2 个 #y火焰 (行为模式)。"
+      "死亡时，立即 #r复活自己。 NL #r复活 时对本体造成伤害 并最多熄灭 #b2 个 #y火焰 （影响意图）。"
     ]
   },
 
@@ -275,7 +275,7 @@
   "paleoftheancients:DemotionPower": {
     "NAME": "降级",
     "DESCRIPTIONS": [
-      "缺乏 #y权限 是你无法给自己上 #b增益效果或给予别人 #r负面效果 。"
+      "缺乏 #y权限 是你无法给自己上 #b增益效果 或给予别人 #r负面效果 。"
     ]
   },
 
@@ -310,14 +310,14 @@
   "paleoftheancients:NotDexterityPower": {
     "NAME": "敏捷",
     "DESCRIPTIONS": [
-      "减少获得的 #y格挡 #b",
-      " 点。"
+      "减少 #b",
+      " 点获得的 #y格挡 。"
     ]
   },
-  
+
   "paleoftheancients:PositionPower": {
     "NAME": "符卡规则",
-    "DESCRIPTIONS": ["你在 #b", "层。 NL 每当你打出一张 #y技能 ，#y向上移动一行 。 NL 每当你打出一张 #y攻击 ， #y向下移动一行。"]
+    "DESCRIPTIONS": ["你在 #b", "层。 NL 每当你打出一张 #y技能 ， #y向上移动一行 。 NL 每当你打出一张 #y攻击 ， #y向下移动一行。"]
   },
   "paleoftheancients:MonsterPositionPower": {
     "NAME": "符卡规则",
@@ -326,14 +326,22 @@
   "paleoftheancients:HakureiShrineMaidenPower": {
     "NAME": "乐园的巫女",
     "DESCRIPTIONS": [
-      "在她的回合结束时，最多召唤 #b",
+      "在她的回合结束时如果没有使用 #y符卡 ，最多召唤 #b",
       " 个 #y阴阳玉 。如果场上没有 #y阴阳玉 ，变为召唤 #b",
       " 个。"
-	  ]
+    ]
   },
-  "paleoftheancients:DeathBombPower": {
-    "NAME": "决死",
-    "DESCRIPTIONS": ["当灵梦将要死亡时，如果有 #b2 个Bomb，在下一回合前无敌并将意图变为使用 #b2个Bomb。 NL 只在至少有 #b1 个Bomb是才生效。"]
+  "paleoftheancients:InvincibleTresholdPower": {
+    "NAME": "非符卡",
+    "DESCRIPTIONS": ["至多失去 #b", " 点生命。 NL 受到上述伤害后，失去这个效果并 #r永久改变意图 。"]
+  },
+  "paleoftheancients:SpellcardResistancePower": {
+    "NAME": "符卡",
+    "DESCRIPTIONS": ["受到的伤害", "降低", "提高", " #b", "% 。 NL 每当受到 #b", " 点伤害，本回合失去 #b1 点 #r力量 。 NL 每回合提高受到的伤害和 #r力量 。"]
+  },
+  "paleoftheancients:FreeControlPower": {
+    "NAME": "自由操控",
+    "DESCRIPTIONS": ["玩家现在能用鼠标键盘或控制器操控他们的角色走位了。"]
   },
   "paleoftheancients:SealedPower": {
     "NAME": "封印",
@@ -348,7 +356,7 @@
   "paleoftheancients:ShotTypeAmuletPower": {
     "NAME": "追踪护符",
     "DESCRIPTIONS": [
-      "只有在与你相同高度且与你相同位置时才会对你造成伤害。 NL 攻击球顺时针旋转。"
+      "曾近身且与你高度相同时将在回合结束时会对你造成伤害。 NL 会攻击阴阳玉呈顺时针旋转。"
     ]
   },
   "paleoftheancients:ShotTypeNeedlePower": {
@@ -357,7 +365,7 @@
       "只有在与你相同相同高度时才会造成伤害。"
     ]
   },
-    "paleoftheancients:BlockUponDeathPower": {
+  "paleoftheancients:BlockUponDeathPower": {
     "NAME": "神力",
     "DESCRIPTIONS": [
       "当被玩家摧毁时，玩家获得 #b",
@@ -366,7 +374,7 @@
       "。 NL #b5 个 #y碎片 = #b1 个 #yBomb"
     ]
   },
-  
+
   "paleoftheancients:GazeOne": {
     "NAME": "紧闭之眼的凝视",
     "DESCRIPTIONS": [
@@ -417,15 +425,22 @@
 
   "paleoftheancients:ReachedHeavenPower": {
     "DESCRIPTIONS": [
-      "能够使用以暴易暴。"
+      "能够使用 #y以暴易暴 。"
     ]
   },
-    "paleoftheancients:HandSpacePower": {
+  "paleoftheancients:HandSpacePower": {
     "NAME": "手牌扩充",
     "DESCRIPTIONS": [
       "#y手牌数上限 提高 #b"
     ]
   },
+  "paleoftheancients:FakeMarkPower": {
+    "NAME": "印记",
+    "DESCRIPTIONS": [
+      "从 #y点穴 中受到的伤害提高 #b"," 点。"
+    ]
+  },
+
   "paleoftheancients:BoardBoundPower": {
     "NAME": "棋盘",
     "DESCRIPTIONS": [
@@ -462,6 +477,11 @@
     "NAME": "精疲力竭",
     "DESCRIPTIONS": [
       "#r下回合 开始时你失去 #b"," [E] 。"
+    ]
+  },
+  "paleoftheancients:TimeWarpIntentPower": {
+    "DESCRIPTIONS": [
+      "你打出的牌 #y耗能 将提高这个效果的数值（至少提高 #b1 ）。 NL 当这个效果达到 #b"," 点时，这名敌人在在你的回合结束时将额外行动一个意图。"
     ]
   }
 }

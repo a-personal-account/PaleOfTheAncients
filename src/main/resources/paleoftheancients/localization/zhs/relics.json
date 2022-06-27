@@ -15,7 +15,7 @@
       "右键点击：？？？"
     ]
   },
-    "paleoftheancients:BlurryLens": {
+  "paleoftheancients:BlurryLens": {
     "NAME": "模糊透镜",
     "FLAVOR": "所有的东西看起来都很奇怪。",
     "DESCRIPTIONS": [
@@ -29,7 +29,7 @@
       "每当你攻击时，给予敌人 2 层 #rpaleoftheancients:灼伤 。"
     ]
   },
-    "paleoftheancients:SoulOfTheHexaghost": {
+  "paleoftheancients:SoulOfTheHexaghost": {
     "NAME": "等离子六火",
     "FLAVOR": "回报大的惊人。但是周期实在是太长了，所以牌打着打着它就触发了。",
     "DESCRIPTIONS": [
@@ -70,18 +70,18 @@
     "DESCRIPTIONS": [
       "确认你是 NL #y“索顿·米尔泰彭” 。",
       "索顿？"
-    ] 
+    ]
   },
   "paleoftheancients:SoulOfTheShrineMaiden": {
     "NAME": "退治妖怪的热诚",
     "FLAVOR": "毕生都在退治妖怪和扫地。",
     "DESCRIPTIONS": [
-      "如果你上一回合失去生命， [E] 。 NL 每当你 #y格挡 了伤害，你的回合结束前获得格挡量相等的 #r力量 。"
+      "如果你上一回合失去生命，获得 [E] 。 NL 每当你 #y格挡 伤害时，你的回合结束前获得格挡量的 #r力量 。"
     ]
   },
   "paleoftheancients:SoulOfTheShapes": {
     "NAME": "混沌机",
-    "FLAVOR": "在美味与恶心之间反复横跳。",
+    "FLAVOR": "在魅力与丑陋之间反复横跳。",
     "DESCRIPTIONS": [
       "每当你打出一张牌，变换这个遗物。 NL 如果打出的是 ",
       " #r攻击牌，本回合获得 3 点 #y敏捷 。",
@@ -104,7 +104,7 @@
   },
   "paleoftheancients:SoulOfTheBard": {
     "NAME": "神灯",
-    "FLAVOR": "许个愿。不是与鱼、菜或者是乳酪。",
+    "FLAVOR": "许个愿。别听成是苑、怨或者是预案。",
     "DESCRIPTIONS": [
       "每场战斗开始时，选择一张 #y稀有 攻击或技能牌加入你的手牌。这张牌的耗能减少 #b1 。"
     ]
@@ -120,14 +120,14 @@
   },
   "paleoftheancients:SoulOfTheWatcher": {
     "NAME": "神珠",
-    "FLAVOR": "我想不出来有什么遗物描述。",
+    "FLAVOR": "我想不出来什么遗物描述了。",
     "DESCRIPTIONS": [
       "每当你额外抽牌时，获得 #b"," 层 #y真言 。"
     ]
   },
   "paleoftheancients:SoulOfTheBandit": {
     "NAME": "魔改骰子",
-    "FLAVOR": "你知道吗：你可以拜托Vex给你做爬塔mod！？",
+    "FLAVOR": "你知道吗：你其实可以拜托Vex给你做爬塔mod的！？在中国的话你可以找Rita！？",
     "DESCRIPTIONS": [
       "每场战斗开始时，进入 #b","格长 全是 #r正面棋格 的 #y路径 。你打出牌的耗能将 #r前进 等量的 #y棋格 。"
     ]
@@ -139,6 +139,13 @@
       "每场战斗开始时， ",""," 获得 #b1 点 #y力量 ", " 获得 #b1 点 #y敏捷 ", " 获得 #b1 点 #y集中 。",
       "回复 #b2 点生命", "额外获得 [E] 。", "额外抽 #b2 张牌。",
       "获得 #b10 点 #y格挡"," 和 ","给予所有敌人 #b1 "," 层 #y虚弱 "," #y易伤 "," 。"
+    ]
+  },
+  "paleoftheancients:SoulOfTheTimeEater": {
+    "NAME": "时钟指针",
+    "FLAVOR": "有了这个，就算是破表一天也至少有两次是准时的。",
+    "DESCRIPTIONS": [
+      "你每回合打出的第一张 #y非消耗非能力牌 将在打出后返回手牌。 NL 它的耗能本回合降低 #b1 但不会低于 #b1 。"
     ]
   }
 }

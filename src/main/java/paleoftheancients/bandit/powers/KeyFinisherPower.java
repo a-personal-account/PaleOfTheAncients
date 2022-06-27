@@ -1,6 +1,7 @@
 package paleoftheancients.bandit.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -32,6 +33,18 @@ public class KeyFinisherPower extends AbstractPower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + DESCRIPTIONS[this.amount == 1 ? 2 : 3];
+        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + DESCRIPTIONS[this.amount == 1 ? 2 : 3] + DESCRIPTIONS[4] + factor() + DESCRIPTIONS[5];
+    }
+
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            return damage * factor();
+        }
+        return damage;
+    }
+
+    private int factor() {
+        return (int)Math.pow(2, this.amount);
     }
 }
