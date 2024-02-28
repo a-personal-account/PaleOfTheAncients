@@ -257,7 +257,7 @@ public class DejaVu extends AbstractEvent {
         AbstractGameEffect tmp;
         AbstractDungeon.player.masterDeck.clear();
         for(AbstractCard card : cards.group) {
-            card = card.makeStatEquivalentCopy();
+            //card = card.makeStatEquivalentCopy();
             AbstractCard.CardRarity originalRarity = card.rarity;
             card.rarity = AbstractCard.CardRarity.BASIC;
             AbstractDungeon.effectsQueue.add(tmp = new RestoreCardEffect(card, MathUtils.random(0, Settings.WIDTH), MathUtils.random(0, Settings.HEIGHT), originalRarity));

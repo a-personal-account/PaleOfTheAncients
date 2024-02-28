@@ -452,7 +452,7 @@
   "paleoftheancients:KeyFinisherPower": {
     "NAME": "致胜关键",
     "DESCRIPTIONS": [
-      "落在 #y棋格 上的效果额外触发 #b"," ","次","次。"
+      "落在 #y棋格 上的效果额外触发 #b"," ","次","次。", "", ""
     ]
   },
   "paleoftheancients:ImprisonedPower": {

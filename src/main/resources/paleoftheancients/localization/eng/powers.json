@@ -452,7 +452,7 @@
   "paleoftheancients:KeyFinisherPower": {
     "NAME": "The Key Finisher",
     "DESCRIPTIONS": [
-      "#ySpaces game pieces #rland #ron trigger #b"," more ","time","times."
+      "#ySpaces game pieces #rland #ron trigger #b"," more ","time","times.","Damage taken increased by ","x."
     ]
   },
   "paleoftheancients:ImprisonedPower": {
